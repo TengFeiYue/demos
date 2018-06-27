@@ -1,0 +1,50 @@
+
+	<view class="header">
+		<image class="header-bg" src="../resources/img/bg.png"/>
+		<view class="header-con">
+			<image class="header-bgimg" src="../resources/img/bg2.png"/>
+			<view class="header-con-center">
+				<view class="header-img">
+					<image src="../resources/img/headImg.png"/>
+				</view>
+				<view class="header-info">
+					<view class="header-info-name">
+						<text>谭翔</text>
+						<image src="../resources/icons/confirm.png"/>
+					</view>
+					<view class="header-info-work">市场销售</view>
+					<view class="header-info-company">上海迪塔班克数据科技有限公司</view>
+				</view>
+				<view class="header-title">
+					<scroll-view scroll-x="false" style="">
+						<button size="mini">市场销售</button>
+						<button size="mini">市场销售</button>
+						<button size="mini" bindtap="showokk">+</button>
+					</scroll-view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="main">
+		<view class="main-list">
+			<view class="main-title pad15">
+				<image src="../resources/icons/parallelogram.png"/>
+				<text>联系方式</text>
+			</view>
+			<view class="main-detail pad15">
+				<text>移动电话</text>
+				<text>18202112896</text>
+			</view>
+			<view class="main-detail pad15">
+				<text>电子邮箱</text>
+				<text>tanxiang@antsoo.com</text>
+			</view>
+			<view class="main-title pad15">
+				<image src="../resources/icons/parallelogram.png"/>
+				<text>企业概况</text>
+			</view>
+			<view class="main-company pad15">
+				<text>上海华特新材料有限公司</text>
+			</view>
+		</view>
+	</view>

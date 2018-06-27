@@ -1,0 +1,108 @@
+<style lang="less">
+	.container {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
+		box-sizing: border-box;
+	}
+</style>
+
+<script>
+	import wepy from 'wepy'
+	import 'wepy-async-function'
+	import { aldstat } from './utils/ald-stat'
+	export default class extends wepy.app {
+		config = {
+			pages: [
+				'pages/index',
+				'pages/login',
+				'pages/exit',
+				'pages/connectionDetail', //人脉-人脉详情
+				'pages/roundCompany', //首页-周边企业
+				'pages/roundPerson', //首页-周边的人
+				'pages/cityposition', //首页-城市选择
+				'pages/searchCom', //首页-搜索企业
+				'pages/searchPer', //首页-搜索人脉
+				'pages/antsooConfirm', //首页-俺搜认证
+				'pages/bannerPage', //首页-banner图链接跳转
+				'pages/myCard', //我的-我的电子名片
+				'pages/myQRCode', //我的-我的小程序码
+				'pages/myCollect', //我的-我的收藏
+				'pages/antsooComfirming', //我的-俺搜认证中
+				'pages/deblockingConnection', //我的-我的解锁人脉
+				'pages/feedback', //我的-意见反馈
+				'pages/attestationChange', //我的-认证变更
+				'pages/companyName', //首页-俺搜认证-企业名称
+				'pages/companyType', //首页-俺搜认证-企业类型
+				'pages/productDetails', //企业-产品详情
+				'pages/comDetailInfo', //企业-企业详情
+				'pages/information', //企业-基本信息
+				'pages/comRoundCom', //企业-周边企业
+				'pages/downLoad',//ios
+				'pages/downloadApp',//android
+			],
+
+			window: {
+				backgroundTextStyle: 'light',
+				navigationBarBackgroundColor: '#fff',
+				navigationBarTitleText: 'WeChat',
+				navigationBarTextStyle: 'black'
+			}
+		}
+
+		globalData = {
+			userInfo: null,
+			long:0,
+			lat:0,
+			city:'',
+			province:'',
+			area:''
+		}
+
+		constructor() {
+			super()
+			this.use('requestfix')
+		}
+
+		onLaunch() {
+			const that = this;
+			wepy.login({
+				success: function(data) {
+					wepy.getUserInfo({
+						success: function(res) {
+							that.globalData.userInfo = res.userInfo;
+							wx.setStorageSync('wechatUserInfo', res.userInfo);
+						}
+					});
+				}
+			});
+		}
+
+		sleep(s) {
+			return new Promise((resolve, reject) => {
+				setTimeout(() => {
+					resolve('promise resolved')
+				}, s * 1000)
+			})
+		}
+
+		async testAsync() {
+			const data = await this.sleep(3);
+		}
+
+		getUserInfo(cb) {
+			const that = this
+			if(this.globalData.userInfo) {
+				return this.globalData.userInfo
+			}
+			wepy.getUserInfo({
+				success(res) {
+					that.globalData.userInfo = res.userInfo
+					cb && cb(res.userInfo)
+				}
+			})
+		}
+	}
+</script>

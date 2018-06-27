@@ -1,0 +1,148 @@
+<style type="scss">
+page,
+.body {
+    height: 100%;
+    font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+    background-color: #eeeeee;
+    font-size:14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+.teasingBanner{
+    padding:30rpx;
+    .textWrapper{
+      width:93%;
+      height:300rpx;
+      background:#ffffff;
+      padding:20rpx;
+      margin:0 auto;
+    }
+   textarea{
+    background:#ffffff;
+   }
+  .placeholderClass{
+      font-size: 32rpx;
+      color: #B2B2B2;
+      letter-spacing: 0;
+  }
+  .btn_sub{
+    padding-top:50rpx;
+    width:96%;
+    margin:0 auto;
+    button{
+      background: #128EFF;
+      border-radius: 10rpx;
+      ont-size: 36rpx;
+      color: #FFFFFF;
+    }
+
+  }
+}
+    .view{
+       background:#333333;
+       color:#ffffff;
+       width:270rpx;
+       height:270rpx;
+       position:fixed;
+       left:50%;
+       top:50%;
+       border-radius:10rpx;
+       margin-top:-135rpx;
+       margin-left:-135rpx;
+       text-align:center;
+       display:flex;
+       flex-direction:column;
+       justify-content:space-between;
+       align-items:center;
+       .tipPic{
+           flex:1;
+           padding-top:36rpx;
+           image{
+             width:100rpx;
+             height:100rpx;
+           }
+       }
+       text{
+         flex:1;
+         padding:0 15rpx;
+       }
+    }
+}
+</style>
+<template>
+    <view class="body">
+        <view class="teasingBanner">
+          <form bindsubmit="bindFormSubmit">
+              <view class="textWrapper"><textarea value="{{desVal}}" placeholder-class="placeholderClass" name="textarea" /></view>
+              <view class="btn_sub"><button formType="submit">提交</button></view>
+          </form>
+        </view>
+        <view wx:if="{{opa}}" class="view">
+           <view class="tipPic"><image src="../resources/icons/warning.png"></image></view>
+           <text>{{tip}}</text>
+        </view>
+    </view>
+
+</template>
+
+<script>
+import wepy from 'wepy'
+import { api } from '../config'
+export default class description extends wepy.page {
+    config = {
+        'navigationBarTitleText': '详细描述',
+        'navigationBarTextStyle': '#FFFFFF',
+        'navigationBarBackgroundColor': '#0386FF'
+    }
+
+    components = {
+
+    }
+
+    data = {
+      desVal:"",
+      loginUId:-1,
+      opa:false,
+      tip:"内容不能为空!"
+    }
+
+    methods = {
+         bindFormSubmit(e){
+           var advice=e.detail.value.textarea.trim();
+            if(advice==""||advice==null){
+                this.warningTip();
+                return false;
+            }
+            var pages = this.getCurrentPages();
+            var currPage = pages[pages.length - 1];   //当前页面
+            var prevPage = pages[pages.length - 2];  //上一个页面
+            //prevPage.data.seleCity=this.city;
+            prevPage.setData({
+               description: advice
+            })
+             wx.navigateBack();
+         }
+        }
+
+    onShow() {
+
+    }
+    onLoad(e) {
+         console.log(e)
+        const antsooUserInfo = wepy.getStorageSync("antUserInfo");
+        this.loginUId=antsooUserInfo.userId;
+        let preDes='';
+        this.desVal=(e.val=='undefined')?preDes:e.val;
+        this.$apply()
+    }
+    warningTip() {
+         let that=this;
+          this.opa=true;
+          this.$apply();
+          setTimeout(function(){
+            that.opa=false;
+            that.$apply();
+          },800)
+      }
+}
+</script>

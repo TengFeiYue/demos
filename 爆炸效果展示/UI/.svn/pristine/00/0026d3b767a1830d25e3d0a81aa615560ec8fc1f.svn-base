@@ -1,0 +1,84 @@
+@import "./mySubPrice.wxss";
+@import "./switchSubPrice.wxss";
+page,
+.body {
+  height: 100%;
+  font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+  background-color: #ffffff;
+  font-size: 14px;
+  overflow: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column; }
+
+.subPriceList {
+  background: #ffffff;
+  padding-bottom: 30rpx; }
+  .subPriceList .subPriceUl {
+    padding: 15rpx;
+    padding: 15rpx;
+    height: 140rpx;
+    overflow-y: hidden; }
+    .subPriceList .subPriceUl .subPriceLi {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 28rpx;
+      color: #888888;
+      line-height: 50rpx; }
+      .subPriceList .subPriceUl .subPriceLi .submiter {
+        flex: 1;
+        padding: 0 15rpx; }
+      .subPriceList .subPriceUl .subPriceLi .subTime {
+        flex: 2;
+        padding-right: 15rpx;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; }
+      .subPriceList .subPriceUl .subPriceLi .subPro {
+        flex: 5;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; }
+  .subPriceList .viewMore {
+    padding-top: 10rpx;
+    text-align: center; }
+    .subPriceList .viewMore text {
+      display: inline-block;
+      width: 146rpx;
+      height: 58rpx;
+      border: 2rpx solid #0386FF;
+      border-radius: 6rpx;
+      line-height: 58rpx;
+      font-size: 26rpx;
+      color: #0386FF; }
+
+.tabBarWraper {
+  background: #FAFAFA;
+  box-shadow: inset 0 -1px 0 0 #E5E5E5;
+  padding: 0 30rpx; }
+  .tabBarWraper .tabBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 30rpx;
+    color: #353535;
+    letter-spacing: 0;
+    line-height: 94rpx; }
+    .tabBarWraper .tabBar .subPrice {
+      flex: 1;
+      text-align: center;
+      position: relative; }
+    .tabBarWraper .tabBar .subPriceAct {
+      color: #0386FF; }
+    .tabBarWraper .tabBar .subPriceAct:after {
+      content: "";
+      display: inline-block;
+      width: 314rpx;
+      height: 6rpx;
+      background: #0386FF;
+      position: absolute;
+      left: 15rpx;
+      bottom: 0; }

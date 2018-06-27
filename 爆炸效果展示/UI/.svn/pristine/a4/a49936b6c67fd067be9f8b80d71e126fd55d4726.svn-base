@@ -1,0 +1,837 @@
+<style lang="less">
+	.bgColor {
+		background-color: #fff;
+	}
+
+	.con {
+		width: 100%;
+		background-color: #f2f2f2;
+		position: relative;
+		.layer {
+			width: 248rpx;
+			height: 140rpx;
+			background: #fff;
+			box-shadow: 3rpx 5rpx 20rpx rgba(0, 0, 0, 0.3);
+			padding: 10rpx 20rpx;
+			box-sizing: border-box;
+			position: absolute;
+			right: 30rpx;
+			top: 100rpx;
+			.jiao {
+				position: absolute;
+				left: 0;
+				right: 0;
+				margin: auto;
+				top: -20rpx;
+				height: 0px;
+				width: 0px;
+				border-left: 20rpx solid transparent;
+				border-right: 20rpx solid transparent;
+				border-bottom: 20rpx solid #fff;
+			}
+			.layer-list {
+				height: 60rpx;
+				width: 100%;
+				.layer-list-icons {
+					margin-top: 15rpx;
+					height: 30rpx;
+					width: 30rpx;
+					float: left;
+					image {
+						display: block;
+						width: 100%;
+						height: 100%;
+					}
+				}
+				.layer-list-text {
+					height: 100%;
+					width: 80%;
+					line-height: 60rpx;
+					float: right;
+					font-size: 24rpx;
+					color: #666;
+					border-bottom: 2rpx solid #ececec;
+					text-align: center;
+				}
+			}
+			.layer-list:nth-last-of-type(1) .layer-list-text {
+				border-bottom: none;
+			}
+		}
+		.list {
+			width: 100%;
+			height: 90rpx;
+			line-height: 90rpx;
+			padding-left: 30rpx;
+			box-sizing: border-box;
+		}
+		.list-bottom:nth-last-of-type(7) {
+			margin-bottom: 20rpx;
+			.detail {
+				border-bottom: none;
+			}
+		}
+		.list-bottom:nth-last-of-type(1) .detail {
+			border-bottom: none;
+		}
+		.con-status {
+			padding-right: 30rpx;
+			box-sizing: border-box;
+			border-bottom: 2rpx solid #0092ff;
+			text {
+				float: left;
+				font-size: 28rpx;
+				color: #4a4a4a;
+			}
+			image {
+				margin-top: 17rpx;
+				width: 156rpx;
+				height: 56rpx;
+				float: right;
+			}
+		}
+		.detail {
+			width: 100%;
+			height: 100%;
+			border-bottom: 2rpx solid #ececec;
+			padding-right: 30rpx;
+			box-sizing: border-box;
+			.list-icons {
+				margin: 21rpx 20rpx 0 0;
+				width: 48rpx;
+				height: 48rpx;
+				float: left;
+				image {
+					display: block;
+					width: 100%;
+					height: 100%;
+				}
+			}
+			.list-title {
+				width: 142rpx;
+				height: 100%;
+				float: left;
+				font-size: 28rpx;
+				color: #4a4a4a;
+			}
+			.list-text {
+				width: 65%;
+				height: 100%;
+				float: right;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				font-size: 24rpx;
+				color: #999;
+				text-align: right;
+			}
+		}
+	}
+
+	 ::-webkit-scrollbar {
+		width: 0;
+		height: 0;
+		color: transparent;
+	}
+
+	.changeInfoLayer {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: #000000;
+		opacity: .6;
+		z-index: 100;
+	}
+
+	.changeInfoLayerCon {
+		position: fixed;
+		top: 130rpx;
+		right: 30rpx;
+		width: 252rpx;
+		background: #ffffff;
+		border-radius: 4px;
+		font-size: 24rpx;
+		color: #999999;
+		letter-spacing: 0;
+		padding: 12rpx;
+		z-index: 1000;
+		image {
+			width: 30rpx;
+			height: 20rpx;
+			position: absolute;
+			top: -16rpx;
+			right: 40rpx;
+		}
+	}
+
+	.OperateLayerCon {
+		position: fixed;
+		width: 100%;
+		top: 25%;
+		z-index: 1000;
+		text-align: center;
+		.ConDetail {
+			display: inline-block;
+			width: 80%;
+			background: #ffffff;
+			border-radius: 8rpx;
+			padding: 30rpx;
+			.layerTitle {
+				font-size: 36rpx;
+				color: #333333;
+				letter-spacing: -0.43px;
+				padding-bottom: 20rpx;
+			}
+			.layerDl {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+				font-size: 32rpx;
+				color: #333333;
+				letter-spacing: -0.38px;
+				border-bottom: 1px solid #ECECEC;
+				padding: 20rpx 0;
+				.layerDt {
+					flex: 3;
+					text-align: left;
+				}
+				picker {
+					flex: 8;
+				}
+				.layerDd {
+					flex: 6;
+					.pClass {
+						font-size: 32rpx;
+						color: #999999;
+						letter-spacing: -0.38px;
+						text-align: left;
+					}
+				}
+			}
+			.auditRes {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+				font-size: 32rpx;
+				color: #333333;
+				letter-spacing: -0.38px;
+				border-bottom: 1px solid #ECECEC;
+				padding: 20rpx 0;
+				.layerDt {
+					flex: 3;
+					text-align: left;
+				}
+				.layerDd {
+					flex: 6;
+					font-size: 32rpx;
+					color: #999999;
+					letter-spacing: -0.38px;
+					text-align: left;
+				}
+			}
+			.upload {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				font-size: 32rpx;
+				color: #333333;
+				letter-spacing: -0.38px;
+				padding: 30rpx 0;
+				.uploadDl {
+					flex: 1;
+					text-align: left;
+				}
+				.uploadImg {
+					flex: 6;
+					image {
+						width: 260rpx;
+						height: 150rpx;
+					}
+				}
+			}
+			.operateBtn {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+				padding-top: 30rpx;
+				font-size: 36rpx;
+				color: #FFFFFF;
+				letter-spacing: -0.19px;
+				.opCancel {
+					flex: 3;
+					display: inline-block;
+					height: 88rpx;
+					background: #CCCCCC;
+					border-radius: 8rpx;
+					text-align: center;
+					line-height: 88rpx;
+				}
+				.gap {
+					flex: 1
+				}
+				.opSubmit {
+					flex: 3;
+					display: inline-block;
+					height: 88rpx;
+					background: #0092FF;
+					border-radius: 8rpx;
+					text-align: center;
+					line-height: 88rpx;
+				}
+			}
+			.layercontent {
+				font-size: 32rpx;
+				color: #999999;
+				letter-spacing: -0.38px;
+				line-height: 48rpx;
+				text-align: center;
+				padding-bottom: 20rpx;
+			}
+			.layerFooter {
+				font-size: 36rpx;
+				color: #0092FF;
+				letter-spacing: -0.43px;
+				border-top: 1px solid #ECECEC;
+				padding-top: 30rpx;
+			}
+		}
+	}
+
+	.view {
+		background: #333333;
+		color: #ffffff;
+		width: 270rpx;
+		height: 270rpx;
+		position: fixed;
+		z-index: 1000000;
+		left: 50%;
+		top: 50%;
+		border-radius: 10rpx;
+		margin-top: -135rpx;
+		margin-left: -135rpx;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+		.tipPic {
+			flex: 1;
+			padding-top: 36rpx;
+			image {
+				width: 100rpx;
+				height: 100rpx;
+			}
+		}
+		text {
+			flex: 1;
+			padding: 0 15rpx;
+		}
+	}
+</style>
+<template>
+	<view class="con" style="height: {{sh}}px;">
+		<!--<view class="list con-status bgColor" wx:if="{{applyStatus==1}}">-->
+		<view class="list con-status bgColor">
+			<text bindtap="modalcnt">您的信息已认证</text>
+			<image src="../resources/icons/infochange.png" bindtap="swLayer"></image>
+		</view>
+		<view class="layer" wx:if="{{layerFlag}}">
+			<view class="jiao"></view>
+			<view class="layer-list" bindtap="posterDutyChange">
+				<view class="layer-list-icons">
+					<image src="../resources/icons/icon-workchange.png"></image>
+				</view>
+				<view class="layer-list-text">名片职位变更</view>
+			</view>
+			<view class="layer-list" bindtap="offCompany">
+				<view class="layer-list-icons">
+					<image src="../resources/icons/icon-comchange.png"></image>
+				</view>
+				<view class="layer-list-text">脱离企业</view>
+			</view>
+		</view>
+		<view class="list list-bottom bgColor">
+			<view class="detail">
+				<view class="list-icons">
+					<image src="../resources/icons/icon-name.png"></image>
+				</view>
+				<view class="list-title">姓名</view>
+				<view class="list-text">{{info.name}}</view>
+			</view>
+		</view>
+		<view class="list list-bottom bgColor">
+			<view class="detail">
+				<view class="list-icons">
+					<image src="../resources/icons/icon-email.png"></image>
+				</view>
+				<view class="list-title">邮箱</view>
+				<view class="list-text">{{info.email}}</view>
+			</view>
+		</view>
+		<view class="list list-bottom bgColor">
+			<view class="detail">
+				<view class="list-icons">
+					<image src="../resources/icons/icon-card.png"></image>
+				</view>
+				<view class="list-title">名片职位</view>
+				<view class="list-text">{{info.position}}</view>
+			</view>
+		</view>
+		<view class="list list-bottom bgColor">
+			<view class="detail">
+				<view class="list-icons">
+					<image src="../resources/icons/icon-comname.png"></image>
+				</view>
+				<view class="list-title">企业名称</view>
+				<view class="list-text">{{info.companyName}}</view>
+			</view>
+		</view>
+		<view class="list list-bottom bgColor">
+			<view class="detail">
+				<view class="list-icons">
+					<image src="../resources/icons/icon-type.png"></image>
+				</view>
+				<view class="list-title">企业类型</view>
+				<view class="list-text">{{info.opeIndustry}}</view>
+			</view>
+		</view>
+		<view class="list list-bottom bgColor">
+			<view class="detail">
+				<view class="list-icons">
+					<image src="../resources/icons/icon-model.png"></image>
+				</view>
+				<view class="list-title">经营模式</view>
+				<view class="list-text">{{info.businessMode}}</view>
+			</view>
+		</view>
+		<view class="list list-bottom bgColor">
+			<view class="detail">
+				<view class="list-icons">
+					<image src="../resources/icons/icon-area.png"></image>
+				</view>
+				<view class="list-title">企业地区</view>
+				<view class="list-text">{{info.province}}{{info.city}}{{info.area}}</view>
+			</view>
+		</view>
+		<view class="list list-bottom bgColor">
+			<view class="detail">
+				<view class="list-icons">
+					<image src="../resources/icons/icon-adress.png"></image>
+				</view>
+				<view class="list-title">详细地址</view>
+				<view class="list-text">{{info.address}}</view>
+			</view>
+		</view>
+	</view>
+	<view class="changeInfoLayer" wx:if="{{hideOperateLayer}}" bindtap="closeLayer"></view>
+	<view class="OperateLayerCon" wx:if="{{hideOperateLayer}}">
+		<view class="ConDetail">
+			<view class="layerTitle">名片职位变更</view>
+			<view class="layerDl">
+				<view class="layerDt">*名片职位</view>
+				<view class="layerDd"><input placeholder="请输入新名片职位" value="{{cardDuty}}" placeholder-class="pClass" bindblur="getVal" /></view>
+			</view>
+			<view class="upload">
+				<text class="uploadDl">*名片</text>
+				<view class="uploadImg">
+					<image src="{{changeNameCard}}" bindtap="upLoadCard"></image>
+				</view>
+			</view>
+			<view class="operateBtn">
+				<text class="opCancel" bindtap="closeLayer">取消</text>
+				<text class="gap"></text>
+				<text class="opSubmit" catchtap="subChangedInfo">提交</text>
+			</view>
+		</view>
+	</view>
+	<view class="changeInfoLayer" wx:if="{{unPassedOperateLayer}}" bindtap="closeLayer"></view>
+	<view class="OperateLayerCon" wx:if="{{unPassedOperateLayer}}">
+		<view class="ConDetail">
+			<view class="layerTitle">名片职位变更</view>
+			<view class="layerDl">
+				<view class="layerDt">*名片职位</view>
+				<view class="layerDd"><input placeholder="请输入新名片职位" value="{{cardDuty}}" placeholder-class="pClass" bindblur="getVal" /></view>
+			</view>
+			<view class="upload">
+				<text class="uploadDl">*名片</text>
+				<view class="uploadImg">
+					<image src="{{changeNameCard}}" bindtap="upLoadCard"></image>
+				</view>
+			</view>
+			<view class="auditRes">
+				<text class="layerDt">审核结果</text>
+				<view class="layerDd">
+					{{rejectReason}}
+				</view>
+			</view>
+			<view class="operateBtn" style="padding-top:40rpx;">
+				<text class="opCancel" bindtap="closeLayer">取消</text>
+				<text class="gap"></text>
+				<text class="opSubmit" catchtap="subChangedInfo">提交</text>
+			</view>
+		</view>
+	</view>
+	<view class="changeInfoLayer" wx:if="{{verifyingOperateLayer}}" bindtap="closeLayer"></view>
+	<view class="OperateLayerCon" wx:if="{{verifyingOperateLayer}}">
+		<view class="ConDetail">
+			<view class="layerTitle">名片职位变更</view>
+			<view class="layercontent">您的名片职位变更已提交，俺搜将在48小时内核实。核实期间将不影响您的身份认证。请勿多次提交</view>
+			<view class="layerFooter" bindtap="closeLayer">知道了</view>
+		</view>
+	</view>
+
+	<view class="changeInfoLayer" wx:if="{{offCompanyLayer}}" bindtap="closeLayer"></view>
+	<view class="OperateLayerCon" wx:if="{{offCompanyLayer}}">
+		<view class="ConDetail">
+			<view class="layerTitle">脱离企业</view>
+			<view class="layercontent">选择确定后，您将于原企业脱离任何关系，重新获得认证身份需再次提交认证信息</view>
+			<view class="operateBtn" style="padding-top:40rpx;">
+				<text class="opCancel" bindtap="closeLayer">取消</text>
+				<text class="gap"></text>
+				<text class="opSubmit" catchtap="offCompanySub">提交</text>
+			</view>
+		</view>
+	</view>
+
+	<view wx:if="{{opa}}" class="view">
+		<view class="tipPic">
+			<image src="../resources/icons/warning.png"></image>
+		</view>
+		<text>{{tip}}</text>
+	</view>
+</template>
+<script>
+	import wepy from 'wepy';
+	import { api } from '../config';
+
+	export default class attestationChange extends wepy.page {
+		config = {
+			'navigationBarTitleText': '俺搜认证变更',
+			'navigationBarTextStyle': '#FFFFFF',
+			'navigationBarBackgroundColor': '#0092FF'
+		}
+		components = {
+
+		}
+		data = {
+
+			opa: false,
+			tip: "",
+			sh: 0,
+			loginUId: 10379,
+			info: {},
+			layerFlag: false,
+			hideOperateLayer: false,
+			unPassedOperateLayer: false,
+			verifyingOperateLayer: false,
+			offCompanyLayer: false,
+			cardDuty: '',
+			rejectReason: "",
+			changeNameCard: "../resources/img/camera.png",
+		}
+		events = {}
+		methods = {
+			swLayer() {
+				var _this = this;
+				_this.layerFlag = !_this.layerFlag;
+			},
+			posterDutyChange() {
+				let that = this;
+				wepy.request({
+					url: api.my.changeInfoStatus.url,
+					method: api.my.changeInfoStatus.method,
+					data: {
+						'userId': that.loginUId,
+					},
+					success: function(res) {
+					      console.log(res)
+						  let applyStatus=res.data.body.status;
+						   that.statement=res.data.body.status;
+               that.UserCompanyId=res.data.body.id;
+               var position=res.data.body.position;
+               var imgUrl=res.data.body.nameCardPhoto;
+               var reject=res.data.body.rejectReason;
+               switch(applyStatus) {//
+										case 1:
+											that.hideLayer = false;
+											that.hideOperateLayer = true; //通过
+											break;
+										case 2:
+											that.hideLayer = false;
+											that.unPassedOperateLayer = true; //未通过
+											that.cardDuty=position;
+                      that.changeNameCard=imgUrl;
+                      that.rejectReason=reject;
+											break;
+										case 0:
+											that.hideLayer = false;
+											that.verifyingOperateLayer = true; //审核中
+											break;
+											case 4:
+												that.hideLayer = false;
+												that.hideOperateLayer = true; //通过
+												break;
+							}
+						that.$apply();
+					}
+				});
+
+			},
+			offCompany() {
+				this.offCompanyLayer = true;
+			},
+			closeLayer() {
+				this.layerFlag = false;
+				this.hideOperateLayer = false; //变更职位信息
+				this.unPassedOperateLayer = false; //未通过
+				this.verifyingOperateLayer = false; //审核中
+				this.offCompanyLayer = false; //脱离企业
+			},
+			getVal(e) {
+				this.cardDuty = e.detail.value;
+			},
+			upLoadCard() {
+				var that = this;
+				wx.chooseImage({
+					count: 1, // 默认9
+					sizeType: ['original', 'compressed'],
+					sourceType: ['album', 'camera'],
+					success: function(res) {
+						that.isUpload = 8; //判断是否是上传的还是服务器返回的
+						that.changeNameCard = res.tempFilePaths[0];
+						if(res.tempFilePaths.length > 0) {
+							wx.saveFile({
+								tempFilePath: res.tempFilePaths[0],
+								success: function(res) {
+									that.changeNameCard = res.savedFilePath;
+									that.$apply();
+								}
+							})
+						}
+						that.$apply();
+					}
+				})
+			},
+			offCompanySub() { //提交脱离企业
+				let that = this;
+				wepy.request({
+					url: api.my.offCompany.url,
+					method: 'POST',
+					data: {
+						'userId': this.loginUId,
+					},
+					success: function(res) {
+						console.log(res.data)
+						let msg = typeof res.data == "string" ? JSON.parse(res.data) : res.data;
+						if(msg.isSuccess == 1) {
+							wx.showToast({
+								title: '脱离成功！',
+								icon: 'success'
+							});
+							that.offCompanyLayer = false; //脱离企业
+							wx.setStorageSync('offCompanySub', 'success');
+						} else {
+							that.warningTip({
+								msg: msg.errorMsg
+							});
+						}
+						that.$apply();
+					}
+				});
+			},
+			subChangedInfo() {
+				let that = this;
+				const loginUId = this.loginUId;
+				var changedDuty = this.cardDuty.trim();
+				var uploadPic = this.changeNameCard;
+				if(changedDuty == '' || changedDuty == null) {
+					this.warningTip({
+						msg: '职位不能为空！'
+					});
+					return
+				}
+				if(uploadPic == '../resources/img/layerCamera.jpg') {
+					this.warningTip({
+						msg: '请选择名片！'
+					});
+					return
+				}
+				wx.getSavedFileList({
+					success: function(res) {
+						console.log(res)
+						for(var i = 0; i < res.fileList.length - 1; i++) {
+							for(var j = 0; j < res.fileList.length - 1 - i; j++) {
+								if(res.fileList[j].createTime > res.fileList[j + 1].createTime) {
+									var tem = res.fileList[j];
+									res.fileList[j] = res.fileList[j + 1];
+									res.fileList[j + 1] = tem;
+								}
+							}
+						}
+						if(res.fileList.length > 5) {
+							wx.removeSavedFile({
+								filePath: res.fileList[0].filePath,
+								complete: function(res) {
+									console.log(res)
+								}
+							})
+						}
+						that.changeNameCard = res.fileList[res.fileList.length - 1].filePath;
+						that.$apply();
+					}
+				})
+				console.log(this.statement)
+				if(this.statement == 2) {
+					console.log(this.isUpload)
+					if(this.isUpload == 8 && this.statement == 2) { //使用上传图片带参数
+						wx.uploadFile({
+							url: api.my.changeInfo.url, //仅为示例，非真实的接口地址
+							filePath: that.changeNameCard,
+							name: 'photo',
+							header: {
+								'content-type': 'multipart/form-data'
+							},
+							formData: {
+								'userId': loginUId,
+								'userPosition': changedDuty
+							},
+							success: function(res) {
+								let msg = typeof res.data == "string" ? JSON.parse(res.data) : res.data;
+								if(msg.isSuccess == 1) {
+									wx.showToast({
+										title: '提交成功!',
+										icon: 'success'
+									});
+								} else {
+									that.warningTip({
+										msg: msg.errorMsg
+									});
+								}
+								that.hideLayer = false;
+								that.hideOperateLayer = false; //变更职位信息
+								that.unPassedOperateLayer = false; //未通过
+								that.verifyingOperateLayer = false;
+								that.$apply();
+							}
+						})
+					} else { //使用request上传
+					  console.log(that.changeNameCard)
+						wepy.request({
+							url: api.my.changeInfo.url,
+							method: 'POST',
+							header: {
+								"Content-Type": "application/x-www-form-urlencoded"
+							},
+							data: {
+								'userId': loginUId,
+								'userPosition': changedDuty,
+								'userCardUrl': that.changeNameCard //如果要使用回显的名片
+							},
+							success: function(res) {
+								console.log(res.data)
+								let msg = typeof res.data == "string" ? JSON.parse(res.data) : res.data;
+								if(msg.isSuccess == 1) {
+									wx.showToast({
+										title: '提交成功！',
+										icon: 'success'
+									});
+								} else {
+									that.warningTip({
+										msg: msg.errorMsg
+									});
+								}
+								that.hideLayer = false;
+								that.hideOperateLayer = false; //变更职位信息
+								that.unPassedOperateLayer = false; //未通过
+								that.verifyingOperateLayer = false;
+								that.$apply();
+							}
+						});
+					}
+				} else {
+					wx.uploadFile({
+						url: api.my.changeInfo.url, //仅为示例，非真实的接口地址
+						filePath: that.changeNameCard,
+						name: 'photo',
+						header: {
+							'content-type': 'multipart/form-data'
+						},
+						formData: {
+							'userId': loginUId,
+							'userPosition': changedDuty
+						},
+						success: function(res) {
+							let msg = typeof res.data == "string" ? JSON.parse(res.data) : res.data;
+							if(msg.isSuccess == 1) {
+								wx.showToast({
+									title: '提交成功!',
+									icon: 'success'
+								});
+							} else {
+								that.warningTip({
+									msg: msg.errorMsg
+								});
+							}
+							that.hideLayer = false;
+							that.hideOperateLayer = false; //变更职位信息
+							that.unPassedOperateLayer = false; //未通过
+							that.verifyingOperateLayer = false;
+							that.$apply();
+						}
+					})
+				}
+			},
+		}
+		onShow() {
+			const antsooUserInfo = wepy.getStorageSync("antUserInfo");
+			this.loginUId = antsooUserInfo.userId;
+			this.getInfo();
+			this.$apply();
+		}
+		onLoad() {
+			var that = this;
+			wx.getSystemInfo({
+				success: function(res) {
+					that.sh = res.windowHeight;
+				}
+			})
+		}
+
+		onLaunch() {}
+
+		// 请求数据
+		getInfo() {
+			let that = this;
+			wepy.request({
+				url: api.my.attestationChange.url,
+				method: api.my.attestationChange.method,
+				data: {
+					'userId': that.loginUId,
+				},
+				success: function(res) {
+					if(res.statusCode == 200) {
+						that.info = res.data.body;
+						console.log(that.info)
+						that.$apply();
+						wx.hideLoading()
+					}
+				}
+			});
+		}
+		warningTip(obj) {
+			this.opa = true;
+			this.tip = obj.msg;
+			this.$apply();
+			let that = this;
+			setTimeout(function() {
+				that.opa = false;
+				that.$apply();
+			}, 800)
+		}
+	}
+</script>

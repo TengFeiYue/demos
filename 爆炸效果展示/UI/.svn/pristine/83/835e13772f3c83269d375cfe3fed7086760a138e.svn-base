@@ -1,0 +1,134 @@
+page,
+.body {
+  height: 100%;
+  font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+  background-color: #eeeeee;
+  font-size: 28rpx;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column; }
+
+.myCollectUl {
+  background: #ffffff;
+  padding-left: 30rpx; }
+  .myCollectUl .myCollectPersonLi {
+    padding: 40rpx 28rpx 34rpx 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eeeeee; }
+    .myCollectUl .myCollectPersonLi .myCollectHeadImg {
+      flex: 1; }
+      .myCollectUl .myCollectPersonLi .myCollectHeadImg image {
+        width: 92rpx;
+        height: 102rpx; }
+    .myCollectUl .myCollectPersonLi .myCollectDes {
+      flex: 6;
+      padding-left: 30rpx; }
+      .myCollectUl .myCollectPersonLi .myCollectDes .h3 {
+        font-size: 34rpx;
+        color: #222222;
+        padding-right: 40rpx; }
+      .myCollectUl .myCollectPersonLi .myCollectDes .runningWay {
+        font-size: 26rpx;
+        color: #333333; }
+      .myCollectUl .myCollectPersonLi .myCollectDes .myCollectComName {
+        font-size: 26rpx;
+        color: #333333;
+        padding: 12rpx 0; }
+        .myCollectUl .myCollectPersonLi .myCollectDes .myCollectComName image {
+          width: 28rpx;
+          height: 33rpx;
+          position: relative;
+          left: 3rpx;
+          top: 5rpx; }
+      .myCollectUl .myCollectPersonLi .myCollectDes .myCollectLinks {
+        font-size: 26rpx;
+        color: #3F3F3F;
+        line-height: 37rpx; }
+        .myCollectUl .myCollectPersonLi .myCollectDes .myCollectLinks .orange {
+          color: #FE9900;
+          padding-right: 3rpx; }
+        .myCollectUl .myCollectPersonLi .myCollectDes .myCollectLinks .linkNum {
+          color: #FE9900;
+          padding-left: 50rpx; }
+    .myCollectUl .myCollectPersonLi .myCollectDate {
+      flex: 1;
+      font-size: 26rpx;
+      color: #999999; }
+      .myCollectUl .myCollectPersonLi .myCollectDate .linkedDate {
+        padding-bottom: 27rpx;
+        text-align: right; }
+      .myCollectUl .myCollectPersonLi .myCollectDate .linkButton {
+        width: 146rpx;
+        height: 58rpx;
+        line-height: 58rpx;
+        text-align: center;
+        border: 2rpx solid #0386FF;
+        border-radius: 6rpx;
+        font-size: 26rpx;
+        color: #0386FF; }
+  .myCollectUl .tips {
+    background: #ffffff;
+    line-height: 60rpx; }
+  .myCollectUl .loadShow {
+    background: #ffffff;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: center;
+    justify-content: center; }
+  .myCollectUl .loadShow icon {
+    position: relative;
+    top: 17rpx;
+    right: 5rpx; }
+
+.noDatas {
+  height: 100%;
+  font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+  background-color: #ffffff;
+  font-size: 28rpx;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+  .noDatas .noDatasTip {
+    flex: 6;
+    padding-top: 300rpx;
+    text-align: center; }
+    .noDatas .noDatasTip image {
+      width: 206rpx;
+      height: 206rpx; }
+    .noDatas .noDatasTip .noDatasTipTxt {
+      padding-top: 27rpx;
+      font-size: 28rpx;
+      color: #3FB5E9;
+      letter-spacing: -0.11px; }
+  .noDatas .checkedBtn {
+    flex: 3; }
+    .noDatas .checkedBtn text {
+      display: inline-block;
+      width: 360rpx;
+      height: 70rpx;
+      line-height: 70rpx;
+      text-align: center;
+      border: 2rpx solid #0688FF;
+      border-radius: 10rpx;
+      font-size: 32rpx;
+      color: #0688FF; }
+
+.gototop {
+  position: fixed;
+  bottom: 140rpx;
+  right: 20rpx;
+  transition: all 0.3s;
+  opacity: 0;
+  z-index: 12;
+  transform: translateY(200rpx) rotate(180deg); }
+
+.gototop.active {
+  opacity: 0.9;
+  transform: translateY(0) rotate(180deg); }

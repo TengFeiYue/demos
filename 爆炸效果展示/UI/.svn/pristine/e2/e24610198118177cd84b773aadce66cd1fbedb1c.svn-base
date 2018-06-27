@@ -1,0 +1,103 @@
+@import "./../../index/findmeSearch.wxss";
+
+.indexPage {
+    background-color: white;
+}
+.price_rep{
+   position:fixed;
+   bottom:98rpx;
+   right:5rpx;
+   z-index:111111;
+}
+.price_rep .img{
+   width:128rpx;
+   height:128rpx;
+}
+.findList{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+    background: #FFFFFF;
+    padding:30rpx 30rpx 34rpx;
+    border-bottom:1px solid #eeeeee;
+}
+.tips{
+   background:#ffffff;
+   line-height:60rpx;
+}
+.loadShow{
+      background:#ffffff;
+      text-align:center;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      align-self: center;
+      justify-content: center;
+}
+.loadShow icon{
+    position:relative;
+    top:17rpx;
+    right:5rpx;
+}
+.materialPic{
+   flex:1;
+}
+.companyInfo{
+   flex:8;
+   padding-left:30rpx;
+}
+.toDetail{
+    flex:1;
+    text-align:right;
+}
+.materialPic image{
+    width:92rpx;
+    height:102rpx;
+}
+.name{
+    display:inline-block;
+    line-height:56rpx;
+    font-size:34rpx;
+    color:#222222;
+    padding-right:30rpx;
+}
+.runingWays{
+  font-size: 26rpx;
+  color: #333333;
+}
+.companyName{
+  padding:15rpx 0;
+}
+.comName{
+    font-size: 26rpx;
+    color: #333333;
+}
+.settled{
+    width:28rpx;
+    height:33rpx;
+    position:relative;
+    top:5rpx;
+    left:10rpx;
+}
+.contacts{
+    font-size: 26rpx;
+    color: #999999;
+    line-height: 37rpx;
+}
+.contacts text{
+   display:inline-block;
+   vertical-align:top;
+}
+.contacts .orange{
+    font-size: 26rpx;
+    color: #fe9900;
+    line-height: 37rpx;
+}
+.toDetail image{
+   width:16rpx;
+   height:26rpx;
+}
+.pro{
+  padding-right:20rpx;
+}

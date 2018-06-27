@@ -1,0 +1,14 @@
+/*针对不同屏幕分辨率*/
+
+@media screen and ( min-width: 412px ){
+	
+
+}
+/*调试iphone6s*/
+@media only screen and ( min-device-width: 375px )and (max-device-width:412px){
+  
+}
+@media screen and ( max-width: 322px ){
+	
+	
+}

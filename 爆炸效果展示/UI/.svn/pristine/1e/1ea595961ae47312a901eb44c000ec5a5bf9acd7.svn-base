@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta charset="utf-8">
+		<title>下载APP</title>
+		<link rel="stylesheet" href="../bootstrap/bootstrap.min.css" />
+		<script src="../js/jquery-2.1.0.min.js"></script>
+		<script src="../js/bscroll.min.js"></script>
+		<script src="../js/axios.js"></script>
+		<script src="../js/vue.js"></script>
+		<script src="../js/myComponent.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/vue-resource.min.js"></script>
+		<script src="../js/vue-router.js"></script>
+		<script src="../dev.js?v=20180125"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+		<style>
+			* {
+				margin: 0;
+				padding: 0
+			}
+			
+			a {
+				text-decoration: none;
+			}
+			
+			ul {
+				list-style: none;
+			}
+			
+			.p-0 {
+				padding: 0
+			}
+			
+			.m-0 {
+				margin: 0
+			}
+			
+			.p-t-0 {
+				padding-top: 0
+			}
+			
+			.p-b-0 {
+				padding-bottom: 0
+			}
+			
+			.p-l-0 {
+				padding-left: 0
+			}
+			
+			.p-r-0 {
+				padding-right: 0
+			}
+			
+			.m-t-0 {
+				margin-top: 0
+			}
+			
+			.m-b-0 {
+				margin-bottom: 0
+			}
+			
+			.b-w {
+				background: #fff;
+			}
+			
+			.c-w {
+				color: #fff;
+			}
+			
+			html {
+				padding-bottom: 4rem;
+			}
+			
+			header {
+				padding: 1rem 0;
+				border-bottom: 1rem solid #f2f2f2;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+			}
+			
+			header .logo {
+				width: 4.17rem;
+				height: 4.17rem;
+				margin-right: 1.2rem;
+			}
+			
+			header .logo img {
+				display: block;
+				width: 100%;
+				height: 100%;
+			}
+			
+			header .col-xs-8 {
+				line-height: 4.17rem;
+				font-size: 1.6rem;
+			}
+			
+			header h4 {
+				font-size: 1.5rem;
+				font-weight: bold;
+			}
+			
+			.toHome {
+				color: #999;
+			}
+			
+			.downloadApp img {
+				width: 6rem;
+			}
+			
+			.inviteContent h3 {
+				font-size: 1.8rem;
+				font-weight: bold;
+				margin: 1rem 0;
+			}
+			
+			.inviteContent .type {
+				color: #999;
+			}
+			
+			.inviteContent .types li {
+				color: #239fdb;
+				border: 1px solid #239fdb;
+				border-radius: 1rem;
+				padding: 0 1rem;
+				height: 1.8rem;
+				line-height: 1.9rem;
+			}
+			
+			.insertWords p {
+				color: #666;
+			}
+			
+			.insertWords img {
+				width: 100%;
+			}
+			
+			.hotDiscution {
+				background: #f2f2f2;
+				color: #727272;
+				line-height: 3rem;
+				padding-left: 1rem;
+			}
+			
+			.discutionList img {
+				width: 3rem;
+			}
+			
+			.personInfo {
+				font-size: 1rem;
+			}
+			
+			.personInfo span {
+				display: inline-block;
+				vertical-align: middle;
+			}
+			
+			.personInfo .name {
+				font-size: 1.6rem;
+				font-weight: bold;
+				padding-right: 1rem;
+			}
+			
+			.open-antsoo {
+				width: 90%;
+				height: 2.6rem;
+				background: #d0d0ff;
+				margin: 0 auto;
+				line-height: 2.6rem;
+				border-radius: .5rem;
+				text-align: center;
+				overflow: hidden;
+			}
+			
+			.open-antsoo a {
+			    color: #0092ff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="app">
+			<header class="col-xs-12">
+				<div class="col-xs-8 p-0 pull-left">
+					<div class="col-xs-3 p-0 logo">
+						<img src="shareHotImg/logo_05.png" />
+					</div>
+					<span>俺搜-找塑讯</span>
+				</div>
+				<div class="col-xs-4 p-0 pull-right text-center">
+					<a class="downloadApp" href="http://www.antsoo.com/appdownload.shtml"><img src="shareHotImg/downloadAPP.png" /></a>
+				</div>
+			</header>
+			<div class="col-xs-12  inviteContent">
+				<h3>{{title}}</h3>
+				<p class="type">{{category}}</p>
+				<ul class="list-inline types" v-if="hasTags">
+					<li v-for="(item,index) in tags">{{item}}</li>
+				</ul>
+				<div class='col-xs-12 p-0 insertWords'></div>
+			</div>
+			<div class="col-xs-12 p-0">
+				<p class="hotDiscution"><span>热点讨论</span></p>
+				<div class="col-xs-12 discutionList" v-for="(val,index) in topicList">
+					<div class="col-xs-2 p-l-0">
+						<img :src="val.headImg" />
+					</div>
+					<div class="col-xs-10 p-l-0">
+						<p class="personInfo"><span class='name'>{{val.userName}}</span><span>{{val.title}}&nbsp;</span><span>{{val.enterpriseName}}</span></p>
+						<p class="evaluate">{{val.content}}</p>
+					</div>
+				</div>
+				<div class="open-antsoo">
+					<a href="http://www.antsoo.com/appdownload.shtml">打开俺搜，下载最新干货</a>
+				</div>
+			</div>
+			<footer-download v-if="!showToward"></footer-download>
+		</div>
+		<script type="text/javascript">
+			new Vue({
+				el: '#app',
+				data: {
+					fromId: -1,
+					title: '',
+					tags: [],
+					category: '',
+					topicList: [],
+					htmlStr: '',
+					hasTags: false,
+					fromSys: '',
+					showToward: true
+				},
+				beforeMount() {
+					var signatureUrl = location.href.split('#')[0];
+					//alert(signatureUrl);
+					this.$http.post(urlPort + '/wechat/ticket', {
+						url: signatureUrl
+					}).then(function(response) {
+						var body = response.body.body;
+						//alert(body.signature);
+						//alert(body.url);
+						wx.config({
+							debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+							appId: body.appid, // 必填，公众号的唯一标识
+							timestamp: body.timestamp, // 必填，生成签名的时间戳
+							nonceStr: body.nonceStr, // 必填，生成签名的随机串
+							signature: body.signature, // 必填，签名，见附录1
+							jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+						});
+
+					})
+				},
+				mounted() {
+					var _this = this;
+					this.$nextTick(function() {
+						_this.fromSys = getQueryString('fromSys');
+						_this.isShare();
+						_this.fromId = getQueryString('id');
+						_this.getContentData();
+						_this.getDetailData();
+						_this.getTopicData();
+					})
+				},
+				methods: {
+					//请求数据
+					isShare() {
+						if(this.fromSys == 'app') {
+							this.showToward = false;
+						} else {
+							document.body.style.paddingBottom = '0px';
+						}
+					},
+					getContentData() {
+						var _this = this;
+						var id = parseInt(this.fromId)
+						this.$http.post(appUrl + "/topic/content", {
+							id: id
+						}).then(function(response) {
+							//console.log("content"+JSON.stringify(response.body));
+							var res = response.body.body;
+							var change = res.replace(/&lt;/ig, "<")
+								.replace(/&gt;/ig, ">")
+								.replace(/&amp;/ig, "&")
+								.replace(/&quot;/ig, "\"")
+								.replace(/<br\/>/ig, "\n")
+								.replace(/'/ig, "'")
+								.replace(/&ldquo;/ig, "“")
+								.replace(/&rdquo;/ig, "”")
+								.replace(/&lsquo;/ig, "‘")
+								.replace(/&rsquo;/ig, "’")
+								.replace(/&mdash;/ig, "—");
+							_this.htmlStr = change;
+							$('.insertWords').html($.parseHTML(_this.htmlStr));
+						}).catch(function(err) {
+							console.log(err)
+						});
+					},
+					getDetailData() {
+						var _this = this;
+						var id = parseInt(this.fromId)
+						this.$http.post(appUrl + "/topic/detail", {
+							topicId: id
+						}).then(function(response) {
+							var signatureUrl = location.href.split('#')[0];
+							var res = response.data;
+							console.log(res.body);
+							if(res.isSuccess == 1) {
+								_this.title = res.body.appTopicResponse.name;
+								$(document).attr("title", _this.title);
+
+								wx.ready(function() {
+									wx.onMenuShareTimeline({
+										title: _this.title,
+										link: signatureUrl,
+										imgUrl: res.body.appTopicResponse.shareDto.logoUrl,
+										trigger: function(res) {
+											// 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+											// alert('用户点击分享到朋友圈');
+										},
+										success: function(res) {
+											alert('已分享');
+										},
+										cancel: function(res) {
+											// alert('已取消');
+										},
+										fail: function(res) {
+											// alert(JSON.stringify(res));
+										}
+									});
+									wx.onMenuShareAppMessage({
+										title: _this.title, // 分享标题  
+										desc: res.body.appTopicResponse.content, // 分享描述  
+										link: signatureUrl, // 分享链接  
+										imgUrl: res.body.appTopicResponse.shareDto.logoUrl, // 分享图标  
+										type: '', // 分享类型,music、video或link，不填默认为link  
+										dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空  
+										success: function() {
+											// 用户确认分享后执行的回调函数  
+										},
+										cancel: function() {
+											// 用户取消分享后执行的回调函数  
+										}
+									});
+								});
+								_this.category = res.body.appTopicResponse.category;
+								if(res.body.tags == "") {
+									_this.hasTags = false;
+								} else {
+									_this.hasTags = true;
+									_this.tags = res.body.appTopicResponse.tags.split(',');
+								}
+
+							}
+
+						}).catch(function(err) {
+							console.log(err)
+						});
+					},
+					getTopicData() {
+						var _this = this;
+						var id = parseInt(this.fromId)
+						this.$http.post(appUrl + "/comment/topic", {
+							topicId: id,
+							replyCount: 2,
+							order: 1
+						}).then(function(response) {
+							console.log(response)
+							var res = response.body;
+							if(res.isSuccess == 1) {
+								_this.topicList = res.body;
+							}
+
+						}).catch(function(err) {
+							console.log(err)
+						});
+					}
+
+				}
+			})
+		</script>
+	</body>
+
+</html>

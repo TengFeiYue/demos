@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="format-detection" content="telephone=no"/>		
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta charset="utf-8">
+		<title>俺搜邀你领礼包</title>
+		<link rel="stylesheet" href="../bootstrap/bootstrap.min.css" />
+		<link rel="stylesheet" href="invitecss/base.css" />
+		<link rel="stylesheet" href="invitecss/media.css" />
+		<script src="../js/jquery-2.1.0.min.js"></script>
+		<script src="../js/bscroll.min.js"></script>
+		<script src="../js/axios.js"></script>
+		<script src="../js/vue.js"></script>
+		<script src="../js/vue-resource.min.js"></script>
+		<script src="../js/vue-router.js"></script>
+		<script src="../dev.js"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+		<style>
+			.red{
+			   color: red;
+               line-height: 3rem;
+			}
+		</style>
+	</head>
+	<body>
+	  <div id="app">	
+		<header class="col-xs-12 p-0">
+			<img src="inviteImg/header_02.png" alt="" />
+		</header>
+		<div class="col-xs-12 inviteContent">
+			<div class="col-xs-12 getRedPack p-0">
+				<img src="inviteImg/partBg_07.png" class="getRedPackBackground"/>
+				
+				<div class="inset-get">
+					<p class="text-center cash m-0">俺搜<span class="packMoney">200积分</span>礼包</p>
+					<p class='ipt text-center'>
+						<input id="phone" type="text" placeholder="请输入你的手机号" v-model="phoneNum"/><br>
+						<span class="red" v-show="rightNum">手机号码有误，请重填</span>
+					</p>
+					
+					<p class='btn' @click="getData" v-show="showGoNow"><img src="inviteImg/getNow_03.png"/></p>
+					<p class='btn' @click="goNow" v-show="!showGoNow"><img src="inviteImg/goNow.png"/></p>
+				</div>
+			</div>
+			
+			  <div class="col-xs-12 prizeTip p-0">
+			  	<img src="inviteImg/partBg_07.png" alt="" />
+			  	<div class="rules">
+			  		<h3><span>规则说明</span></h3>
+				  	 <ul>
+				  	 	<li>1.即日起至6月30日0点,凡通过邀请链接领取俺搜礼包并在7天内注册成为俺搜会员,即可获得价值20元礼包一份;
+				  	 	</li>
+				  	 	<li>2.注册成功后,内含200积分礼包即时到账,可到俺搜-会员中查看;
+				  	 	</li>
+				  	 	<li>3.成功邀请一位好友下载并注册俺搜,即可获得20积分,最高可得1000积分;
+				  	 	</li>
+				  	 	<li>4.俺搜可在法律范围内对本次活动规则进行解释;
+				  	 	</li>
+				  	 </ul>					  		
+			  	</div>
+			  	 	  	 
+			  </div>
+			<footer class="col-xs-12 text-center antsooLogo">
+			 <img src="inviteImg/logo_05.png" alt="" />
+		    </footer>
+		</div>
+	  </div>
+		
+		<script type="text/javascript">
+		    new  Vue({
+				el:'#app',
+				data:{
+					phoneNum:"",
+					fromId:-1,
+					rightNum:false,
+					showGoNow:true,
+					appId:"",
+					timestamp:"",
+					nonceStr:"",
+					signature:"",					
+				},
+				beforeMount(){
+					this.getShareData();
+				},
+				mounted(){			
+				var _this=this;		   	 	
+				 this.$nextTick(function(){
+					_this.fromId=getQueryString('fromUserId');					
+				})
+				},
+				methods:{	
+					/*验证手机号*/
+					verifyNum(){
+					   var phone = parseInt(document.getElementById('phone').value);						
+					    if(!(/^((13[0-9])|(15[0-9])|(18[0-9])|(17[0-9])|(147))\d{8}$/.test(phone))){ 
+					        this.rightNum=true;  
+					        return false; 
+					    }else{
+					    	this.rightNum=false;
+					    }
+					},
+					//请求数据
+					getData(){
+						this.verifyNum();					   
+						var _this=this;	
+						var fromId=parseInt(this.fromId)					
+						this.$http.post(appUrl+"/vip/vipPick",{fromUserId:fromId,mobile:this.phoneNum}).then(function(response){
+							var res=response.data;
+							if(res.isSuccess==1){
+								if(confirm('领取礼包成功！是否前往？')){
+									_this.showGoNow=false;
+								}
+								
+								//_this.phoneNum="";
+							}else if(res.isSuccess==0){
+								 alert(res.errorMsg);
+								 _this.phoneNum="";
+							}
+							
+						}).catch(function(err){
+		   	 			   console.log(err)
+		   	 		    });
+					},
+					goNow(){
+							window.location.replace("http://www.antsoo.com/appdownload.shtml");
+					},
+					getShareData:function(){
+						var _this=this;
+						var signatureUrl = location.href.split('#')[0];
+						//alert(signatureUrl);
+						this.$http.post(urlPort+'/wechat/ticket',{url:signatureUrl}).then(function(response){ 	
+							var body = response.body.body;
+							//alert(body.signature);
+							//alert(body.url);
+							wx.config({
+									debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+									appId: body.appid, // 必填，公众号的唯一标识
+									timestamp: body.timestamp, // 必填，生成签名的时间戳
+									nonceStr: body.nonceStr, // 必填，生成签名的随机串
+									signature: body.signature,// 必填，签名，见附录1
+									jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+								});	 
+								wx.ready(function(){
+									wx.onMenuShareTimeline({
+										title: '俺搜钜惠，邀请好友下载注册就送1000积分',
+										link: body.url,
+										imgUrl: 'http://h5.antsoo.com/'+version+'/app/appIcon.png',
+										trigger: function (res) {
+										  // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+										  // alert('用户点击分享到朋友圈');
+										},
+										success: function (res) {
+										  alert('已分享');
+										},
+										cancel: function (res) {
+										  // alert('已取消');
+										},
+										fail: function (res) {
+										  // alert(JSON.stringify(res));
+										}
+									  });
+									  wx.onMenuShareAppMessage({  
+										title: '俺搜钜惠，邀请好友下载注册就送1000积分', // 分享标题  
+										desc: '还等什么？立即解锁10+品类历史塑价和500000+产业人脉', // 分享描述  
+										link: body.url, // 分享链接  
+										imgUrl: 'http://h5.antsoo.com/'+version+'/app/appIcon.png', // 分享图标  
+										type: '', // 分享类型,music、video或link，不填默认为link  
+										dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空  
+										success: function () {   
+											// 用户确认分享后执行的回调函数  
+										},  
+										cancel: function () {   
+											// 用户取消分享后执行的回调函数  
+										}  
+									});
+								});  
+						})
+					}
+					
+				}
+			})
+		</script>
+		<script>
+                var _mtac = {};
+                (function() {
+                    var mta = document.createElement("script");
+                    mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";
+                    mta.setAttribute("name", "MTAH5");
+                    mta.setAttribute("sid", "500566864");
+                    var s = document.getElementsByTagName("script")[0];
+                    s.parentNode.insertBefore(mta, s);
+                })();
+         </script>
+	</body>
+</html>
+

@@ -1,0 +1,44 @@
+<template lang="html">
+     <div class="filters">
+            <span class="select">距离最近</span>
+            <span >全部产业链</span>
+            <span >全部地区</span>
+     </div>
+</template>
+
+<script>
+export default {
+  name:'conditionFilter',
+  data(){
+    return{
+
+    }
+  },
+  methods:{
+
+  },
+  mounted(){
+
+  }
+}
+</script>
+
+<style lang="css">
+.filters{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.filters span{
+    display: inline-block;
+    background: #F2F2F2;
+    text-align: center;
+    font-size: 14px;
+    color: #333333;
+    letter-spacing: 0.17px;
+}
+.filters .select{
+
+}
+</style>

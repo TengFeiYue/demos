@@ -1,0 +1,97 @@
+
+  <view class="wraper">
+    <view class="head">
+        <view class="cityPos"><image class="pos" src="../resources/icons/position.png"/>{{currentCityName}}</view>
+        <view class="cares">
+            <view class="eye"><image src="../resources/img/phone.png" style="right:30rpx"/>{{userDto.linkManCount}}</view>
+            <view class="eye" style="padding-right:12rpx;"><image src="../resources/img/eye.png"/>{{userDto.browseNum}}</view>
+            <view class="collect" bindtap="collection">
+                <image src="../resources/img/share.png"  wx:if="{{!hasCollected}}"/>
+                <image src="../resources/img/shared.png"  wx:if="{{hasCollected}}"/>收藏</view>
+        </view>
+    </view>
+    </view>
+    <view class="cardWraper">
+        <image class="cardBg" src="../resources/img/cardBg.png"/>
+
+        <view class="linkInfos">
+         <view class="materialPic"><image src="{{userDto.userLogo}}"/></view>
+         <view class="materialInfo">
+              <view>
+                 <text class="name">{{userDto.name}}</text>
+                 <text class="runingWays">{{userDto.businessMode}}</text>
+              </view>
+              <view class="companyName">
+                 <view class="comName">{{userDto.enterpriseName}} <image class="settled" src="../resources/img/zhu.png"/></view>
+              </view>
+         </view>
+         <view class="linkBtn" data-tel="{{userDto.phone}}" data-uid="{{userDto.userId}}" catchtap="startCall">
+             <text>一键联系</text>
+         </view>
+       </view>
+       <view class="linkInfoDetails">
+          <view class="linkWays">
+              <view><image class="way" src="../resources/img/tele.png"/><text class="linkWayCon">{{userDto.phone}}</text></view>
+              <view><image class="way" src="../resources/img/email.png"/><text class="linkWayCon">{{userDto.email}}</text></view>
+              <view class="linkWayaddressWrap"><image class="way" src="../resources/img/site.png"/><text class="linkWayCon linkWayaddress">{{userDto.address}}</text></view>
+          </view>
+          <view class="scanCode">
+              <image class="scan" src="{{userDto.qrCode}}" data-img="{{userDto.qrCode}}" bindtap="saveImg"/>
+          </view>
+       </view>
+
+    </view>
+
+   <view class="hisProTitle"  wx:if="{{theProductsList.length!=0}}">他的产品</view>
+  <view class="scrollWrap" style="padding-bottom:{{pBottom}}rpx;background:#ffffff;">
+  <view class="container-body">
+   <view class="ul">
+           <view class="hisProList"  wx:for="{{theProductsList}}" wx:key="{{index}}" data-id="{{item.id}}" bindtap="toMaterialDetail">
+              <view class="hisMaterialPic">
+                 <view wx:if="{{item.productType=='原料'}}"><image src="../resources/img/materialPic.png"/></view>
+                 <view wx:if="{{item.productType=='改性料'}}"><image src="../resources/img/betterMaterial.png"/></view>
+                 <view wx:if="{{item.productType=='辅料'}}"><image src="../resources/img/accessory.png"/></view>
+                 <view wx:if="{{item.productType=='回料'}}"><image src="../resources/img/recirculatMaterial.png"/></view>
+              </view>
+              <view class="hisMaterialInfo">
+                  <view class="hisMaterialName">
+                     <text class="h3">{{item.productName}}</text>
+                     <text class="price_display">{{item.priceString}}</text>
+                  </view>
+                  <view class="hisMaterialDes">
+                          {{item.remark}}
+                  </view>
+                  <view class="hisMaterialAdd">
+                      <text class="address">交货地：{{item.deliveryPlace}}</text>
+                      <text class="time">{{item.timeAgo}}</text>
+                  </view>
+              </view>
+           </view>
+   </view>
+</view>
+</view>
+<view class="hisCompany"><!--bindtap="downloadApp"-->
+   <view class="hisCompanyTitle" catchtap="expand">
+      <text class="titleTxt">{{enterpriseDto.name}}</text>
+      <view class="sliderUp"><image src="../resources/img/{{slideDown?'down':'up'}}.png"/></view>
+   </view>
+   <view class="serveItems" style="{{slideDown?'height:0px;padding:0':'height:auto'}}">
+      <view class="left">
+          <view class="dl"><text class="dt">产 业 链</text><text class="dd">: {{enterpriseDto.type}}</text></view>
+          <view class="dl"><text class="dt">经营模式</text><text class="dd">: {{enterpriseDto.businessMode}}</text></view>
+          <view class="dl"><text class="dt">主营行业</text><text class="dd">: {{enterpriseDto.mainLines}}</text></view>
+      </view>
+      <view class="right">
+          <view class="dl"><text class="dt">分类</text><text class="dd">:{{enterpriseDto.baseSecondCategory}}</text></view>
+          <view class="dl"><text class="dt">服务区域</text><text class="dd">: {{enterpriseDto.serviceArea}}</text></view>
+          <view class="dl"><text class="dt">主营系列</text><text class="dd">: {{enterpriseDto.mainProduct}}</text></view>
+      </view>
+   </view>
+</view>
+<!--<modal title="提示" confirm-text="知道了"  bindconfirm="confirm" no-cancel="{{true}}" wx:if="{{!hiddeModel}}">
+    请前往俺搜APP查看！
+</modal>-->
+  <view  wx:if="{{opa}}" class="view">
+     <view class="tipPic"><image src="../resources/icons/warning.png"/></view>
+     <text>{{tip}}</text>
+  </view>

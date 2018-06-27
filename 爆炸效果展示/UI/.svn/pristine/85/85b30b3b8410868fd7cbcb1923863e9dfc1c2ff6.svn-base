@@ -1,0 +1,87 @@
+<template>
+  <div class="my">
+         <div class="mybanner">
+             <img :src="'headImg'" alt="">
+         </div>
+      <ul>
+        <router-link tag='li' :to="{ name: 'myElecCard', params: {} }">
+            <span>我的电子名片</span>
+            <span>电子社交更便捷></span>
+         </router-link>
+         <router-link tag='li' :to="{ name: 'collect', params: {} }">
+            <span>我的收藏</span>
+            <span>></span>
+         </router-link>
+         <router-link tag='li' :to="{ name: 'myConnections', params: {} }">
+            <span>我解锁的人脉</span>
+            <span>></span>
+         </router-link>
+         <router-link tag='li' :to="{ name: 'myBooks', params: {} }">
+            <span>我的通讯录</span>
+            <span>></span>
+         </router-link>
+         <router-link tag='li' :to="{ name: 'confirmChange', params: {} }">
+            <span>俺搜认证变更</span>
+            <span>职位变更,企业变更></span>
+         </router-link>
+         <router-link tag='li' :to="{ name: 'feedBack', params: {} }">
+            <span>意见反馈</span>
+            <span>></span>
+         </router-link>
+         <router-link tag='li' :to="{ name: '', params: {} }">
+            <span>退出登录</span>
+            <span>></span>
+         </router-link>
+         <router-link tag='li' :to="{ name: 'chooseCity', params: {} }">
+            <span>选择城市(调试用的)</span>
+            <span>></span>
+         </router-link>
+      </ul>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'my',
+  data () {
+    return {
+      headImg: ''
+    }
+  },
+  mounted(){
+
+  },
+  methods:{
+     getHeadImg(){
+       this.$http({
+          method: 'get',
+          url: 'https://open.weixin.qq.com/connect/oauth2/authorize',
+          data: {
+            appid: 'wx4c238a1fb60f5357',
+            redirect_uri: 'http://antsoo.com',
+            response_type: 'code',
+            scope: 'snsapi_userinfo',
+            state: '1#wechat_redirect',
+          }
+       }).then(function(res){
+          console.log(res)
+        }).catch(function(err){
+          console.log(err)
+        })
+     }
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+.my{
+  padding:.2rem;
+}
+ul li{
+  font-size:.3rem;
+  line-height:.5rem;
+  text-align: left;
+}
+
+</style>

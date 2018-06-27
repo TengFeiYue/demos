@@ -1,0 +1,85 @@
+@import "./../../companySearch.wxss";
+.scrollBody .ul {
+  padding: 14rpx 0rpx 100rpx 30rpx;
+  box-sizing: border-box; }
+  .scrollBody .ul .recommandList {
+    padding-right: 30rpx;
+    border-bottom: 2rpx solid #ececec;
+    box-sizing: border-box; }
+    .scrollBody .ul .recommandList .companyName {
+      text-align: left;
+      font-size: 28rpx;
+      color: #333333;
+      letter-spacing: 0.17px;
+      margin-top: 10rpx; }
+      .scrollBody .ul .recommandList .companyName image {
+        width: 25.2rpx;
+        height: 26.8rpx;
+        position: relative;
+        right: -14rpx; }
+    .scrollBody .ul .recommandList .applies {
+      overflow: hidden;
+      margin: 5rpx 0; }
+      .scrollBody .ul .recommandList .applies .types,
+      .scrollBody .ul .recommandList .applies .list-text {
+        display: inline-block;
+        float: left;
+        margin-right: 20rpx;
+        font-size: 22rpx; }
+      .scrollBody .ul .recommandList .applies .types {
+        height: 36rpx;
+        width: 36rpx;
+        line-height: 36rpx;
+        text-align: center;
+        color: #fff;
+        background-color: #cce9ff;
+        border-radius: 50%; }
+      .scrollBody .ul .recommandList .applies .list-text {
+        height: 40rpx;
+        border: 2rpx solid #c2e6f7;
+        line-height: 25rpx;
+        color: #999;
+        border-radius: 4rpx;
+        padding: 6rpx 10rpx;
+        box-sizing: border-box; }
+    .scrollBody .ul .recommandList .otherDataService {
+      font-size: 20rpx;
+      display: flex;
+      flex-direction: row;
+      justify-content: between;
+      align-items: center;
+      margin-top: 5rpx; }
+      .scrollBody .ul .recommandList .otherDataService .otherserve {
+        width: 80%;
+        flex: 1.7;
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; }
+      .scrollBody .ul .recommandList .otherDataService .distance {
+        width: 20%;
+        flex: 0.3;
+        text-align: right; }
+    .scrollBody .ul .recommandList .companySite {
+      font-size: 20rpx;
+      text-align: left;
+      padding: 14rpx 0; }
+
+.tips {
+  font-size: 28rpx;
+  background: #ffffff;
+  height: 60rpx;
+  line-height: 60rpx;
+  margin-bottom: 100rpx; }
+  .tips .loadShow {
+    background: #ffffff;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: center;
+    justify-content: center; }
+    .tips .loadShow icon {
+      position: relative;
+      top: 17rpx;
+      right: 5rpx; }

@@ -1,0 +1,73 @@
+page,
+.body {
+  height: 100%;
+  font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+  background-color: #eeeeee;
+  font-size: 14px;
+  overflow: hidden; }
+
+.myBannner {
+  background: #ffffff;
+  padding: 20rpx 20rpx 33rpx;
+  text-align: center;
+  position: relative; }
+  .myBannner image {
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 50%; }
+  .myBannner .username {
+    padding-top: 13rpx;
+    font-size: 28rpx;
+    color: #0688FF; }
+  .myBannner .helloname {
+    padding-top: 13rpx;
+    font-size: 28rpx;
+    color: #000000; }
+  .myBannner .login {
+    width: 108rpx;
+    height: 58rpx;
+    line-height: 58rpx;
+    text-align: center;
+    border: 2rpx solid #0386FF;
+    border-radius: 6rpx;
+    font-size: 26rpx;
+    color: #0386FF;
+    position: absolute;
+    top: 76rpx;
+    right: 30rpx; }
+
+.aboutMe {
+  padding-bottom: 20rpx; }
+  .aboutMe .aboutMeUl {
+    background: #ffffff;
+    padding-left: 30rpx; }
+    .aboutMe .aboutMeUl .aboutMeLi {
+      background: #ffffff;
+      padding: 22rpx 31rpx 22rpx 0;
+      border-bottom: 1px solid #eeeeee;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center; }
+      .aboutMe .aboutMeUl .aboutMeLi .aboutItem {
+        flex: 8;
+        font-size: 32rpx;
+        color: #000000;
+        letter-spacing: 0; }
+      .aboutMe .aboutMeUl .aboutMeLi .toItemDetail {
+        flex: 1;
+        text-align: right; }
+        .aboutMe .aboutMeUl .aboutMeLi .toItemDetail image {
+          width: 16rpx;
+          height: 26rpx; }
+
+.hotLine {
+  position: fixed;
+  bottom: 120rpx;
+  right: 25rpx;
+  text-align: center; }
+  .hotLine image {
+    width: 120rpx;
+    height: 120rpx; }
+  .hotLine .txt {
+    color: #0092ff; }

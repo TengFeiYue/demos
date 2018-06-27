@@ -1,0 +1,194 @@
+.componentWrper {
+  padding-bottom: 198rpx; }
+  .componentWrper .noPriceRecord {
+    background: #ffffff;
+    padding: 60rpx; }
+    .componentWrper .noPriceRecord .noRecords {
+      text-align: center;
+      padding-bottom: 156rpx; }
+      .componentWrper .noPriceRecord .noRecords image {
+        width: 206rpx;
+        height: 206rpx; }
+      .componentWrper .noPriceRecord .noRecords .noRecordsTips {
+        padding-top: 26rpx;
+        font-size: 28rpx;
+        color: #3FB5E9;
+        letter-spacing: -0.11px; }
+    .componentWrper .noPriceRecord .priceReportBtn {
+      text-align: center; }
+      .componentWrper .noPriceRecord .priceReportBtn text {
+        display: inline-block;
+        width: 360rpx;
+        height: 70rpx;
+        line-height: 70rpx;
+        text-align: center;
+        font-size: 32rpx;
+        color: #0688FF;
+        border: 2rpx solid #0688FF;
+        border-radius: 10rpx; }
+  .componentWrper .mySubpriceUl {
+    background: #ffffff;
+    padding-left: 30rpx; }
+    .componentWrper .mySubpriceUl .mySubpriceLi {
+      position: relative;
+      padding: 30rpx 30rpx 34rpx 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eeeeee; }
+      .componentWrper .mySubpriceUl .mySubpriceLi .mysubPriceImg {
+        flex: 1;
+        padding-right: 20rpx; }
+        .componentWrper .mySubpriceUl .mySubpriceLi .mysubPriceImg image {
+          width: 80rpx;
+          height: 80rpx; }
+      .componentWrper .mySubpriceUl .mySubpriceLi .mysubPriceInfo {
+        flex: 8; }
+        .componentWrper .mySubpriceUl .mySubpriceLi .mysubPriceInfo .myMaterialMsg {
+          padding-bottom: 16rpx; }
+          .componentWrper .mySubpriceUl .mySubpriceLi .mysubPriceInfo .myMaterialMsg .h3 {
+            font-size: 34rpx;
+            color: #222222; }
+          .componentWrper .mySubpriceUl .mySubpriceLi .mysubPriceInfo .myMaterialMsg .orange {
+            font-size: 28rpx;
+            color: #FF9A00;
+            margin-left: 14rpx; }
+        .componentWrper .mySubpriceUl .mySubpriceLi .mysubPriceInfo .myTradeMsg {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center; }
+          .componentWrper .mySubpriceUl .mySubpriceLi .mysubPriceInfo .myTradeMsg .myTradeAdd {
+            flex: 3;
+            font-size: 26rpx;
+            color: #333333; }
+          .componentWrper .mySubpriceUl .mySubpriceLi .mysubPriceInfo .myTradeMsg .myTradeTime {
+            text-align: right;
+            font-size: 26rpx;
+            color: #999999; }
+            .componentWrper .mySubpriceUl .mySubpriceLi .mysubPriceInfo .myTradeMsg .myTradeTime text {
+              display: inlie-block;
+              vertical-align: middle; }
+      .componentWrper .mySubpriceUl .mySubpriceLi .showOperation {
+        flex: 1;
+        display: inline-block;
+        height: 80rpx;
+        position: relative;
+        top: 25rpx;
+        line-height: 80rpx; }
+        .componentWrper .mySubpriceUl .mySubpriceLi .showOperation image {
+          width: 26rpx;
+          height: 6rpx;
+          margin-left: 28rpx;
+          display: inline-block; }
+      .componentWrper .mySubpriceUl .mySubpriceLi .ListOperate {
+        width: 510rpx;
+        padding: 25rpx 25rpx;
+        background: #FFFFFF;
+        box-shadow: 0 2px 6px 0 rgba(3, 134, 255, 0.5);
+        border-radius: 8px 8px 8px 8px 0 0 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        position: absolute;
+        bottom: -122rpx;
+        right: 27rpx;
+        z-index: 100; }
+        .componentWrper .mySubpriceUl .mySubpriceLi .ListOperate .upPointer {
+          width: 20rpx;
+          height: 20rpx;
+          position: absolute;
+          top: -20rpx;
+          right: 10rpx; }
+        .componentWrper .mySubpriceUl .mySubpriceLi .ListOperate .operateOpt {
+          flex: 1;
+          text-align: center; }
+          .componentWrper .mySubpriceUl .mySubpriceLi .ListOperate .operateOpt image {
+            width: 32rpx;
+            height: 36rpx; }
+          .componentWrper .mySubpriceUl .mySubpriceLi .ListOperate .operateOpt .optTex {
+            font-size: 24rpx;
+            color: #0386FF;
+            padding-top: 10rpx; }
+  .componentWrper .fixedButton {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    text-align: center; }
+    .componentWrper .fixedButton .refreshTip {
+      text-align: center;
+      position: relative;
+      display: inline-block; }
+      .componentWrper .fixedButton .refreshTip .tipTxt {
+        position: absolute;
+        font-size: 26rpx;
+        color: #FFFFFF;
+        width: 100%;
+        line-height: 83rpx; }
+      .componentWrper .fixedButton .refreshTip image {
+        width: 500rpx;
+        height: 104rpx; }
+    .componentWrper .fixedButton .refreshBtn {
+      width: 100%;
+      height: 94rpx;
+      line-height: 94rpx;
+      text-align: center;
+      background: #128EFF;
+      font-size: 36rpx;
+      color: #FFFFFF; }
+  .componentWrper .gototop {
+    position: fixed;
+    bottom: 140rpx;
+    right: 20rpx;
+    transition: all 0.3s;
+    opacity: 0;
+    z-index: 12;
+    transform: translateY(200rpx) rotate(180deg); }
+  .componentWrper .gototop.active {
+    opacity: 0.9;
+    transform: translateY(0) rotate(180deg); }
+
+.layer {
+  background: #333333;
+  opacity: .6;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  z-index: 10000; }
+
+.layerCon {
+  background: #FFFFFF;
+  padding: 50rpx 0rpx;
+  border-radius: 8rpx;
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  z-index: 11000;
+  width: 80%; }
+  .layerCon .layerClose {
+    position: absolute;
+    top: 30rpx;
+    right: 30rpx; }
+    .layerCon .layerClose image {
+      width: 34rpx;
+      height: 34rpx; }
+  .layerCon .modelHead {
+    font-size: 36rpx;
+    color: #000000;
+    padding: 22rpx 70rpx;
+    border-bottom: 1px solid #eeeeee; }
+  .layerCon .layerList {
+    text-align: center; }
+    .layerCon .layerList .layerli {
+      line-height: 70rpx;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center; }
+      .layerCon .layerList .layerli text {
+        flex: 1; }

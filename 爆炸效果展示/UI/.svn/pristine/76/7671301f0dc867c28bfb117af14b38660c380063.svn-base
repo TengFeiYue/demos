@@ -1,0 +1,271 @@
+*{margin:0;padding:0}
+a{text-decoration: none;}
+ul{list-style: none;}
+.p-0{padding:0}
+.m-0{margin:0}
+.p-t-0{padding-top:0}
+.p-b-0{padding-bottom:0}
+.p-l-0{padding-left:0}
+.p-r-0{padding-right:0}
+.m-t-0{margin-top:0}
+.m-b-0{margin-bottom:0}
+.b-w{background:#fff;}
+.c-w{color:#fff;}
+
+/*invite_checkDetail*/
+.inviteHeader{
+	background: #91ccd0;
+    color: #fff;
+    padding: 1.5vh;
+}
+.inviteProgress{
+	background: url(../img/invite_03.jpg) no-repeat left center;
+    background-size: 18%;
+    padding-left: 12vw;
+    font-size: 1.5rem;
+}
+.checkDetail{
+	padding-top:.6vh;
+}
+.checkDetail button{
+	background: #239fdb;
+    border: 1px solid #239fdb;
+    border-radius: .3rem;
+    line-height: 5vh;
+    width: 23vw;
+}
+.inviteContent{
+	background:#fff9c5;
+}
+.inviteFriends{
+	
+    position: relative;
+    height: 60vh;
+    background: url(../img/cashPack_03.png) no-repeat center;
+    background-size: 90%;
+    margin-top: 1vh;
+}
+.inviteFriends h3{
+	position: absolute;
+    top: 11.5vh;
+    left: 26vw;
+    color: #e58f02;
+    font-weight: bold;
+    font-size: 2rem;
+}
+.inviteFriends h3 .money{
+	font-size: 3rem;
+    display: inline-block;
+    vertical-align: middle;
+	
+}
+.inviteFriends ul{
+	position: absolute;
+    top: 24vh;
+    left: 21vw;
+    color: #e94935;
+    line-height: 3vh;
+    font-size: 1.2rem;
+}
+.inviteFriends .inviteYou{
+	position: absolute;
+    top: 50vh;
+    left: 13vw   
+}
+.inviteFriends .inviteYou img{
+	width: 66vw;
+}
+.myPrise{
+	margin: 3vh 0;
+}
+.myPrise img{
+	width:70vw;
+}
+.failInvite{
+	color:#666;
+}
+.failInvite a{
+	color:#666;
+}
+.prizeTip{
+	color:#e94935;
+}
+.prizeTip h3 {
+	text-align: center;
+	font-size: 2rem;
+	font-weight: bold;
+	border-left: 18vw solid;
+	border-right: 18vw solid;
+	width: 66vw;
+	margin: 5vh auto;
+	line-height: 1px;
+}
+
+.prizeTip ul{	
+    font-size: 1.6rem;  
+}
+.prizeTip ul li{
+	margin:2vh 0;
+}
+
+.antsooLogo{
+	padding:2vh;
+}
+.antsooLogo img{
+	width:30%;
+}
+.lastLi{
+	font-size: 1.2rem;
+    text-align: center;
+}
+#layer{
+	width:100%;
+	height:100%;
+	background:#000;
+	opacity: .5;
+	position:fixed;
+	top:0;
+	left:0;	
+}
+#layerBody{
+	width: 90%;
+    height: 70vh;
+    line-height: 1vh;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%);
+    background: url(../img/inviteNew_03.png) no-repeat center;
+    background-size: 100%;
+    font-size:1.3rem;
+}
+.layerClose{
+	position: absolute;
+    bottom: -10vh;
+    left: 50%;
+    transform:translateX(-50%);
+}
+.layerClose img{
+	width:10vw;
+}
+.goodOne{
+	position: absolute;
+    top: 21vh;
+    left: 33vw;
+    color: #fff;	
+}
+.smallwords{
+	margin-bottom:0;
+}
+.smallwords img{
+	width:48vw;   
+}
+.goodTwo{
+	position: absolute;
+    top: 37vh;
+    left: 33vw;
+    color: #fff;
+}
+.goodThree{
+	position: absolute;
+    top: 51vh;
+    left: 33vw;
+    color: #fff;
+}
+.goodThree h5{
+	line-height:1.5rem;
+}
+.activityTime{
+	position: absolute;
+    bottom: 2vh;
+    width: 100%;
+    text-align: center;  
+}
+.goodOne h5,.goodTwo h5{
+	font-weight: bold;
+}
+/*invite_present*/
+.invite-getNone img{
+	width:100%;
+	height:23rem;
+}
+.dog{
+	padding:0 0 0 15vw;
+    background: url(../img/dog_03.png) no-repeat 5VW 0VH;
+    background-size: 14%;
+    font-size: 1.5rem;
+    line-height:5rem;
+    height: 5rem;
+}
+.dog .packMoney{
+	color: #fe7e00;
+    font-size: 1.9rem;
+}
+.casher{
+	height: 16rem;
+    background: url(../img/presentPack_03.png) no-repeat center center;
+    background-size: 80%;
+    position: relative;
+    margin-bottom: 2rem;
+}
+.casher span{
+	position: absolute;
+    top: 5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ec4d35;
+    font-size: 2.3rem;
+    font-weight: bold;
+}
+.inset-get .ipt input{
+	width: 87%;
+    height: 4rem;
+    line-height: 4rem;
+    border-radius: 12vw;
+    border: 1px solid #fff;
+    outline: none;
+    box-shadow: 0 2px 5px #ccc;
+    font-size: 2rem;
+    text-align: center;
+}
+.inset-get .btn img{
+	width:100%;
+}
+.inset-get .red{
+	color:#fe7e00;
+}
+.inset-get .intoPhone{
+	width: 60vw;
+    margin: 2vh auto;
+}
+.dog_get{
+	padding: 0 0 0 2vw;
+    background: url(../img/dog_03.png) no-repeat 5VW 0VH;
+    background-size: 14%;
+    font-size: 1.5rem;
+    line-height: 10vh;
+    height: 9vh;
+}
+.dog_get .packMoney{
+	color: #fe7e00;
+    font-size: 1.9rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

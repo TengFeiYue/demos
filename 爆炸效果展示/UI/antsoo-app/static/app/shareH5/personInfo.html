@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>分享</title>
+		<link rel="stylesheet" type="text/css" href="css/base.css" />
+		<link rel="stylesheet" type="text/css" href="css/copy.css" />
+
+	</head>
+
+	<body>
+		<div class="con" id="app">
+			<div class="con-head pad-l-r">
+				<div class="user-intr">
+					<div class="top">
+						<img src="images/Group21.png" />
+						<div class="top-list">
+							<p>
+								<span>{{comMeb.memberName}}</span>
+								<i></i>
+							</p>
+							<p>{{comMeb.title}}</p>
+							<p>{{comMeb.enterpriseName}}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="con-list mag-btm first">
+				<p class="list-title pad-l-r"><span>&ensp;&ensp;联系方式</span></p>
+				<ul class="pro-detail pad-l-r">
+					<li>
+						<span>移动电话</span>
+						<span>下载App才能查看</span>
+					</li>
+					<li>
+						<span>电子邮箱</span>
+						<span>{{comMeb.email}}</span>
+					</li>
+				</ul>
+			</div>
+			<div class="con-list mag-btm">
+				<p class="list-title pad-l-r"><span>&ensp;&ensp;企业概况</span></p>
+				<ul class="com-detail pad-l-r">
+					<li>{{comMeb.enterpriseName}}</li>
+					<li v-if="comInfo.baseFirstCategory == ''?false:true">
+						<span>产业链</span>
+						<span>{{comInfo.baseFirstCategory}}</span>
+					</li>
+					<li v-if="comInfo.baseSecondCategory == ''?false:true">
+						<span>分类</span>
+						<span>{{comInfo.baseSecondCategory}}</span>
+					</li>
+					<li v-if="comInfo.businessMode == ''?false:true">
+						<span>经营模式</span>
+						<span>{{comInfo.businessMode}}</span>
+					</li>
+					<li v-if="comInfo.serviceArea == ''?false:true">
+						<span>服务区域</span>
+						<span>{{comInfo.serviceArea}}</span>
+					</li>
+					<li v-if="comInfo.mainLines == ''?false:true">
+						<span>主营行业</span>
+						<span>{{comInfo.mainLines}}</span>
+					</li>
+					<li v-if="comInfo.mainProduct == ''?false:true">
+						<span>主营系列</span>
+						<span>{{comInfo.mainProduct}}</span>
+					</li>
+				</ul>
+			</div>
+			<p class="con-adress pad-l-r mag-btm">{{comInfo.cityName}}{{comInfo.districtName}}{{comInfo.address}}</p>
+			<div class="con-list mag-btm first">
+				<p class="list-title pad-l-r"><span>&ensp;&ensp;我的产品</span></p>
+				<ul class="pro-detail pad-l-r">
+					<li>
+						<textarea name="" rows="" cols="">{{comMeb.agencyProduct}}</textarea>
+					</li>
+				</ul>
+			</div>
+			<section class="antsooLogo" v-if="!showToward">
+				<!--<div class="open-antsoo">
+					<a href="http://www.antsoo.com/appdownload.shtml">打开俺搜，下载最新干货</a>
+				</div>-->
+                <span class="pull-left"><img src="../shareHotImg/newLogo.png" alt="" /></span>
+                <a class="pull-right" href="http://www.antsoo.com/appdownload.shtml">下载APP</a>
+            </section>
+		</div>
+		<script type="text/javascript">
+			var deviceWidth = document.documentElement.clientWidth;
+			if(deviceWidth > 750) deviceWidth = 750;
+			document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';
+		</script>
+		<script src="../../dev.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/axios.js" type="text/javascript" charset="utf-8"></script>		
+		<script src="../../js/vue-resource.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			new Vue({
+				el: '#app',
+				data: {
+					// 请求借口参数
+					params: {
+						enterpriseId: -1,
+						userId: -1,
+						memberId: -1
+					},
+					// 公司操作信息
+					comInfo: {},
+					// 公司人员
+					comMeb: {},
+					fromSys: '',
+					showToward: true
+				},
+				mounted() {
+					var _this = this;
+					this.$nextTick(function() {
+						//?enterpriseId=51&memberId=0&userId=2780
+						_this.params.enterpriseId = getQueryString('enterpriseId');
+						_this.params.userId = getQueryString('userId');
+						_this.params.memberId = getQueryString('memberId');
+						_this.fromSys = getQueryString('fromSys');
+						_this.getData();
+						_this.getCompayInfo();
+					})
+
+				},
+				methods: {
+					getCompayInfo: function() {
+						let _this = this;
+						_this.$http.post(appUrl + '/member/memberDetailInfo', {
+							"enterpriseId": _this.params.enterpriseId,
+							"userId": _this.params.userId,
+							"memberId": _this.params.memberId,
+						}).then(function(res) {
+							if(res.status == 200) {
+								_this.comInfo = res.body.body.enterpriseInfoDto;
+								_this.comMeb = res.body.body.companyMember;
+								document.title = _this.comMeb.memberName + '-' + _this.comMeb.enterpriseName + '_俺搜';
+							}
+						}).catch(function(err) {
+							console.log(err);
+						})
+					},
+					//请求数据
+					getData() {
+						if(this.fromSys == 'app') {
+							this.showToward = false;
+						}
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>

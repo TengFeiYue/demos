@@ -1,0 +1,459 @@
+<style type="scss">
+	.con {
+		width: 100%;
+		.search-box {
+			width: 100%;
+			height: 88rpx;
+			padding: 20rpx 30rpx;
+			box-sizing: border-box;
+			background: rgba(0, 146, 255, 0.20);
+			display: flex;
+			.search {
+				width: 600rpx;
+				height: 48rpx;
+				background-color: #fff;
+				border-radius: 16rpx;
+				position: relative;
+				.icons {
+					height: 48rpx;
+					width: 48rpx;
+					text-align: center;
+					float: left;
+					image {
+						height: 50%;
+						width: 50%;
+					}
+				}
+				input {
+					display: block;
+					height: 48rpx;
+					min-height: 48rpx;
+					width: 80%;
+					font-size: 24rpx;
+					color: #666;
+					float: left;
+				}
+				.icons-del {
+					height: 48rpx;
+					width: 48rpx;
+					float: right;
+					text-align: center;
+					image {
+						height: 50%;
+						width: 50%;
+					}
+				}
+			}
+			.cancel {
+				height: 48rpx;
+				width: 90rpx;
+				line-height: 48rpx;
+				text-align: center;
+				font-size: 24rpx;
+				color: #666;
+			}
+		}
+		.list-op {
+			padding: 20rpx 30rpx;
+			box-sizing: border-box;
+			overflow: hidden;
+			.icons {
+				width: 48rpx;
+				height: 48rpx;
+				float: left;
+				image {
+					width: 100%;
+					height: 100%;
+				}
+			}
+			.text {
+				width: 20%;
+				height: 48rpx;
+				line-height: 48rpx;
+				float: left;
+				font-size: 28rpx;
+				color: #666;
+				text-align: center;
+			}
+			.del {
+				height: 48rpx;
+				width: 48rpx;
+				float: right;
+				image {
+					width: 100%;
+					height: 100%;
+				}
+			}
+		}
+		.list-detail {
+			padding: 0rpx 30rpx;
+			box-sizing: border-box;
+			font-size: 24rpx;
+			color: #666;
+			text {
+				display: inline-block;
+				height: 52rpx;
+				line-height: 46rpx;
+				padding: 0 20rpx;
+				box-sizing: border-box;
+				border: 2rpx solid #ececec;
+				border-radius: 8rpx;
+				box-sizing: border-box;
+				margin-right: 20rpx;
+				margin-bottom: 20rpx;
+			}
+		}
+	}
+
+	.emptyRes {
+		text-align: center;
+		padding-top: 250rpx;
+		.emptyIcon {
+			padding-bottom: 58rpx;
+			image {
+				width: 184rpx;
+				height: 202rpx;
+			}
+		}
+		.emptyTip {
+			font-size: 28rpx;
+			color: #999999;
+			letter-spacing: 0.17px;
+			padding-bottom: 34rpx;
+			line-height: 40rpx;
+		}
+		.subAdvice {
+			text {
+				display: inline-block;
+				width: 120rpx;
+				height: 52rpx;
+				line-height: 52rpx;
+				border: 2rpx solid #0092FF;
+				border-radius: 8rpx;
+				font-size: 24rpx;
+				color: #0092FF;
+				letter-spacing: 0.14px;
+			}
+		}
+	}
+
+	.scrollBody {
+		.ul {
+			padding: 10rpx 0rpx 20rpx 30rpx;
+			.searchList {
+				border-bottom: 1px solid #ECECEC;
+				padding: 16rpx 0;
+				.personName {
+					font-size: 28rpx;
+					color: #333333;
+					letter-spacing: -0.15px;
+					line-height: 40rpx;
+					.headerImg {
+						display: inline-block;
+						vertical-align: middle;
+						image {
+							width: 60rpx;
+							height: 60rpx;
+						}
+					}
+					.confirmed {
+						width: 80rpx;
+						height: 28rpx;
+						position: relative;
+						right: -14rpx;
+					}
+				}
+				.cName {
+					font-size: 24rpx;
+					color: #333333;
+					letter-spacing: 0.17px;
+					line-height: 40rpx;
+					.duty text{
+						padding-right: 12rpx;
+					}
+				}
+				.otherDataService {
+					font-size: 24rpx;
+					color: #4A4A4A;
+					letter-spacing: 0.17px;
+					line-height: 40rpx;
+				}
+				.companySite {
+					font-size: 20rpx;
+					color: #666666;
+					letter-spacing: 0.17px;
+				}
+			}
+			.tips {
+				font-size: 28rpx;
+				background: #ffffff;
+				height: 60rpx;
+				line-height: 60rpx;
+				.loadShow {
+					background: #ffffff;
+					text-align: center;
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					align-self: center;
+					justify-content: center;
+					icon {
+						position: relative;
+						top: 17rpx;
+						right: 5rpx;
+					}
+				}
+			}
+		}
+	}
+</style>
+<template>
+	<view class="con">
+		<view class="search-box">
+			<view class="search">
+				<view class="icons" bindtap="gotoquery">
+					<image src="../resources/icons/comSearch.png"></image>
+				</view>
+				<input type="text" bindconfirm="gotoquery" value='{{searchvalue}}' bindinput="insertkey" confirm-type="search" />
+				<view class="icons-del" bindtap="cancelSearch">
+					<image src="../resources/icons/delete.png" wx:if="{{show_hide}}"></image>
+				</view>
+			</view>
+			<view class="cancel" bindtap="cancelSearch">取消</view>
+		</view>
+		<view class="search-list" wx:if="{{searchList.length == 0}}">
+			<view class="list-op">
+				<view class="icons">
+					<image src="../resources/icons/icon-history.png"></image>
+				</view>
+				<view class="text">搜索历史</view>
+				<view class="del" bindtap="clearHistoryList">
+					<image src="../resources/icons/icon-history.png"></image>
+				</view>
+			</view>
+			<view class="list-detail">
+				<text wx:for="{{historyList}}" wx:key="{{index}}" wx:if="{{item != ''}}" bindtap="bindhistory({{index}})">{{item}}</text>
+			</view>
+		</view>
+	</view>
+	<view class="emptyRes" style="height:{{scrollWrapHeight/2}}px" wx:if="{{searchList.length==0 && searchHistory}}">
+		<view class="emptyIcon">
+			<image src="../resources/img/advice.png" />
+		</view>
+		<view class="emptyTip">
+			<view>找不到您想要的？</view>
+			<view>请选择反馈，我们将在第一时间联系您</view>
+		</view>
+		<view class="subAdvice"><text bindtap="subAdvice">前往反馈</text></view>
+	</view>
+	<scroll-view class="scrollBody" scroll-top="{{scrolltop}}" scroll-y="true" style="height:{{scrollWrapHeight}}px" bindscrolltolower="scrollLoading">
+		<view class="ul" wx:if="{{searchList.length!=0}}">
+			<view class="searchList" wx:for="{{searchList}}" wx:key="{{index}}"  data-id="{{item.id}}" bindtap="toPersonDetail">
+				<view class="personName">
+					<view class="headerImg">
+						<image style="border-radius: 50%;" src="{{item.userLogo}}" />
+					</view>
+					<text style="margin-left: 15rpx;">{{item.name}}</text>
+					<image class="confirmed" src="../resources/icons/confirm.png" wx:if="{{item.enterpriseId>0}}" />
+				</view>
+				<view class="cName">
+					<view class="duty"><text>{{item.job}}</text><text>{{item.companyName}}</text></view>
+				</view>
+				<view class="otherDataService">
+					<view class="otherserve">{{item.secondCategory}}</view>
+				</view>
+				<view class="companySite">
+					<text>{{item.city}}{{item.firstCategory}}</text>
+				</view>
+			</view>
+			<view class="tips">
+				<view wx:if="{{loadmore}}" class="loadShow">
+					<icon type="waiting" size="16" /><text>玩命的加载中...</text>
+				</view>
+				<view wx:else style="text-align:center;"><text>查看更多内容，请前往俺搜APP</text></view>
+			</view>
+		</view>
+	</scroll-view>
+</template>
+<script>
+	import wepy from 'wepy';
+	import { api } from '../config';
+
+	export default class searchCom extends wepy.page {
+		config = {
+			'navigationBarTitleText': '俺搜·找客户-搜索',
+			'navigationBarTextStyle': '#FFFFFF',
+			'navigationBarBackgroundColor': '#0092FF'
+		}
+		components = {
+
+		}
+		data = {
+			searchHistory: false,
+			show_hide: false,
+			scrolltop: 0,
+			searchList: [],
+			loadNum: 0,
+			wait: true,
+			loadmore: true,
+			scrollWrapHeight: 0,
+			loginUId: -1,
+			searchvalue: "",
+			long: -1,
+			lat: -1,
+			pageIndex: 1, //分页
+			historyList: [], //历史搜索记录
+		}
+		methods = {
+			insertkey(e) {
+				this.searchvalue = e.detail.value;
+				if(e.detail.value == "") {
+					this.show_hide = false;
+				} else {
+					this.show_hide = true;
+				}
+			},
+			gotoquery(e) {
+				this.searchvalue = e.detail.value;
+				this.fetchSearchCompanyData();
+				this.searchvalue = this.searchvalue == undefined ? '' : this.searchvalue;
+				var arr = this.historyList;
+				var newArr = [this.searchvalue].concat(arr);
+				this.historyList = this.unique1(newArr);
+				if(this.historyList.length>10){
+					this.historyList.splice(10, 1);
+					wx.setStorageSync('historyListPer', this.historyList);
+				}
+				wx.setStorageSync('historyListPer', this.historyList);
+			},
+			bindhistory(index) {
+				var history = wx.getStorageSync('historyListPer');
+				this.searchvalue = history[index];
+				this.fetchSearchCompanyData();
+				console.log(this.searchvalue)
+			},
+			scrollLoading() { //滚动加载
+				if(this.loadmore) {
+					this.pageIndex++;
+					if(this.pageIndex<6){
+					  this.fetchSearchCompanyData();
+					}else{
+						this.loadmore = false;
+						wx.showModal({
+							title: '',
+							content: '更多内容请前往按搜app',
+							showCancel: true,
+							confirmText: '确定',
+							confirmColor: '#0092ff',
+							success: function (res) {
+				        if (res.confirm) {
+				          if(wx.getSystemInfoSync().system.toLowerCase().indexOf('andr')!=-1){
+									    console.log('android')
+											wx.navigateTo({
+												  url:'downLoad'
+											})
+									}else{
+										console.log('iso')
+										wx.navigateTo({
+												url:'downLoad'
+										})
+									}
+				        } else if (res.cancel) {
+				          console.log('用户点击取消')
+				        }
+				      }
+						})
+					}
+				} else {
+					return false;
+				}
+			},
+			cancelSearch() {
+				this.searchvalue = "";
+				this.show_hide = false;
+			},
+			subAdvice() {
+				wx.navigateTo({
+					url: 'feedback'
+				});
+			},
+			clearHistoryList(){
+				this.historyList = []; // 清空列表
+				wx.removeStorageSync('historyListPer'); // 清除缓存
+			},
+			toPersonDetail(e){
+				if(!this.loginUId) {
+					wx.navigateTo({
+						url: 'login?fromPage=personDetail'
+					});
+					return;
+				}
+				let memberId=e.currentTarget.dataset.id;
+				wx.navigateTo({
+					url:'connectionDetail?memberId='+memberId+'&userId='+this.loginUId
+				})
+			}
+		}
+		onShow() {
+			this.pageIndex=1;
+		}
+		onLoad(e) {
+			const antUserInfo = wx.getStorageSync('antUserInfo');
+			this.loginUId = antUserInfo.userId
+			this.long = e.long;
+			this.lat = e.lat;
+			this.scrollWrapHeight = wx.getSystemInfoSync().windowHeight * 0.91;
+			this.searchList = []; //每次進入時置空列表
+			this.searchvalue = '';
+			this.historyList = wx.getStorageSync('historyListPer')=='' ? [] : wx.getStorageSync('historyListPer');
+		}
+		fetchSearchCompanyData() { //获取人脉统计
+			wx.showLoading({
+				title: '加载中',
+			})
+			let that = this;
+			const pageSize = 20;
+			wepy.request({
+				url: api.index.searchPerson.url,
+				method: api.index.searchPerson.method,
+				data: {
+					keyword: that.searchvalue,
+					userId: that.loginUId,
+					pIndex: that.pageIndex
+				},
+				success: function(res) {
+					console.log(res)
+					var searchListData = res.data.body;
+					if(searchListData != null){
+						//const tPages=res.data.page.tCount;
+						const pages = searchListData.length / 20;
+						//var isInt=tPages/(that.pageIndex*20);
+						that.loadmore = (pages == 1) ? true : false;
+						if(that.pageIndex > 1) {
+							that.searchList = that.searchList.concat(searchListData);
+						} else {
+							that.searchList = searchListData;
+						}
+						if(that.searchList.length <= 0) {
+							that.searchHistory = true;
+						}
+					}
+					that.$apply();
+					wx.hideLoading()
+				}
+			});
+		}
+		unique1(array){ // 数组去重
+			var n = []; //一个新的临时数组
+			//遍历当前数组
+			for(var i = 0; i < array.length; i++){
+				//如果当前数组的第i已经保存进了临时数组，那么跳过，
+				//否则把当前项push到临时数组里面
+				if (n.indexOf(array[i]) == -1) {
+					n.push(array[i]);
+				}
+			}
+			return n;
+		}
+	}
+</script>

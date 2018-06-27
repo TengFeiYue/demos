@@ -1,0 +1,446 @@
+<style type="scss">
+	page{
+		background-color: #F2F2F2;
+	}
+
+	.content-box{
+		margin-top: 20rpx;
+		overflow: hidden;
+	}
+
+	.control-fa{
+		height: 86rpx;
+		line-height: 86rpx;
+		position: relative;
+		z-index: 2;
+		background-color: white;
+		font: {
+			size: 32rpx;
+			weight: 600;
+		} color: #000000;
+	}
+
+	.control-fa-show{
+		color: #0092FF;
+		border-bottom: 1rpx solid #ECECEC;
+	}
+
+	.control-icon{
+		width: 10rpx;
+		height: 40rpx;
+		margin-left: 30rpx;
+		margin-top: 25rpx;
+	}
+
+	.control-title{
+		margin-left: 30rpx;
+	}
+
+	.control-dis-left{
+		display: block;
+		float: left;
+	}
+
+	.control-dis-right{
+		display: block;
+		width: 30rpx;
+		float: right;
+		margin-right: 30rpx;
+		font: {
+			size: 40rpx;
+		}
+		color: #0092FF;
+	}
+
+	.dis-right-false{
+		height: 4rpx;
+		margin-top: 44rpx;
+	}
+
+	.dis-right-true{
+		height: 30rpx;
+		margin-top: 28rpx;
+	}
+
+	$color-deep: #4A4A4A;
+	$color-shallow: #999999;
+
+	.showis{
+		height: 0;
+		background-color: white;
+		opacity: 0;
+		font-size: 28rpx;
+		transform: translateY(-50%);
+		transition: .3s;
+		overflow: hidden;
+		/*工商信息*/
+		.tab-content{
+			width: 95%;
+			line-height: 86rpx;
+			margin-left: 5%;
+			border-bottom: 1rpx solid #ECECEC;
+			&:not(:nth-child(7)){
+				height: 86rpx;
+			}
+			.con-bk{
+				display: block;
+				float: left;
+				font-size: 26rpx;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+			}
+			.content-left{
+				width: 33%;
+				color: $color-deep;
+			}
+			.content-right{
+				width: 67%;
+				color: $color-shallow;
+			}
+			.tb-bk{
+				display: block;
+				width: 97%;
+				line-height: 60rpx;
+				font-size: 26rpx;
+				&:first-child{
+					color: $color-deep;
+				}
+				&:last-child{
+					color: $color-shallow;
+				}
+			}
+		}
+		/*股东信息*/
+		.shareholder{
+			width: 100%;
+			height: 86rpx;
+			line-height: 86rpx;
+			padding: 0 0 0 25rpx;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			border-bottom: 1rpx solid #ECECEC;
+		}
+		.share-count{
+			width: 100%;
+			height: 200rpx;
+			margin: 0 auto;
+			border-bottom: 1rpx solid #ECECEC;
+			padding-left: 30rpx;
+			.count-msg{
+				width: 45%;
+				float: left;
+				.msg-childone{
+					margin-top: 16rpx;
+					color: $color-deep;
+				}
+				.msg-childtwo{
+					margin-top: 6rpx;
+					color: $color-shallow;
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+				}
+			}
+		}
+	}
+
+	.showis-show{
+		height: auto;
+		opacity: 1;
+		transform: translateY(0);
+	}
+</style>
+<template>
+	<!--工商信息-->
+	<view class="content-box" style="margin-top: 0;" wx:if="{{qccCommerceInfo!=null}}">
+		<view id="{{iwin[0].id}}" class="control-fa {{iwin[0].come ? 'control-fa-show':''}}" bindtap="newidea">
+			<image class="control-icon control-dis-left" src="../resources/icons/parallelogram.png" />
+			<text class="control-title control-dis-left">工商信息</text>
+			<image class="control-dis-right {{iwin[0].come ? 'dis-right-false':'dis-right-true'}}" src="../resources/icons/{{iwin[0].come ? 'subtract':'add'}}.png" />
+		</view>
+		<view class="showis {{iwin[0].come ? 'showis-show':''}}">
+			<view class="tab-content">
+				<text class="con-bk content-left">企业法人</text>
+				<text class="con-bk content-right">{{qccCommerceInfo.legalPerson}}</text>
+			</view>
+			<view class="tab-content">
+				<text class="con-bk content-left">成立日期</text>
+				<text class="con-bk content-right">{{qccCommerceInfo.establishmentDate}}</text>
+			</view>
+			<view class="tab-content">
+				<text class="con-bk content-left">注册资本</text>
+				<text class="con-bk content-right">{{qccCommerceInfo.registeredCapital}}</text>
+			</view>
+			<view class="tab-content">
+				<text class="con-bk content-left">企业类型</text>
+				<text class="con-bk content-right">{{qccCommerceInfo.companyType}}</text>
+			</view>
+			<view class="tab-content">
+				<text class="con-bk content-left">登记状态</text>
+				<text class="con-bk content-right">{{qccCommerceInfo.managementForms}}</text>
+			</view>
+			<view class="tab-content">
+				<text class="con-bk content-left">统一社会信用代码</text>
+				<text class="con-bk content-right">{{qccCommerceInfo.creditCode}}</text>
+			</view>
+			<view class="tab-content">
+				<text class="tb-bk">经营范围</text>
+				<text class="tb-bk">{{qccCommerceInfo.businessScope}}</text>
+			</view>
+			<view class="tab-content">
+				<text class="con-bk content-left">营业期限</text>
+				<text class="con-bk content-right">{{qccCommerceInfo.businessTerm}}</text>
+			</view>
+			<view class="tab-content">
+				<text class="con-bk content-left">核准日期</text>
+				<text class="con-bk content-right">{{qccCommerceInfo.issueDate}}</text>
+			</view>
+			<view class="tab-content">
+				<text class="con-bk content-left">登记机关</text>
+				<text class="con-bk content-right">{{qccCommerceInfo.registrationAuthority}}</text>
+			</view>
+		</view>
+	</view>
+
+	<!--股东信息-->
+	<view class="content-box" wx:if="{{qccInfoList.length!=0}}">
+		<view id="{{iwin[1].id}}" class="control-fa {{iwin[1].come ? 'control-fa-show':''}}" bindtap="newidea">
+			<image class="control-icon control-dis-left" src="../resources/icons/parallelogram.png" />
+			<text class="control-title control-dis-left">股东信息</text>
+			<image class="control-dis-right {{iwin[1].come ? 'dis-right-false':'dis-right-true'}}" src="../resources/icons/{{iwin[1].come ? 'subtract':'add'}}.png" />
+		</view>
+		<view class="showis {{iwin[1].come ? 'showis-show':''}}">
+			<view style="font-size: 24rpx;" wx:for="{{qccInfoList}}" wx:key="{{index}}">
+				<view class="shareholder">{{item.stockholderName}}</view>
+				<view class="share-count">
+					<view class="count-msg">
+						<view class="msg-childone">持股比例</view>
+						<view class="msg-childtwo">{{item.shareholdingRatio}}</view>
+					</view>
+					<view class="count-msg">
+						<view class="msg-childone">股东类型</view>
+						<view class="msg-childtwo">{{item.stockholderType}}</view>
+					</view>
+					<view class="count-msg">
+						<view class="msg-childone">认缴出资额</view>
+						<view class="msg-childtwo">{{item.subscribedCapital}}</view>
+					</view>
+					<view class="count-msg">
+						<view class="msg-childone">认缴出资日期</view>
+						<view class="msg-childtwo">{{item.subscribedDate}}</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!--经营状况-->
+	<view class="content-box" wx:if="{{qccPandect!=null || qccTaxInfo!=null}}">
+		<view id="{{iwin[2].id}}" class="control-fa {{iwin[2].come ? 'control-fa-show':''}}" bindtap="newidea">
+			<image class="control-icon control-dis-left" src="../resources/icons/parallelogram.png" />
+			<text class="control-title control-dis-left">经营状况</text>
+			<image class="control-dis-right {{iwin[2].come ? 'dis-right-false':'dis-right-true'}}" src="../resources/icons/{{iwin[2].come ? 'subtract':'add'}}.png" />
+		</view>
+		<view class="showis {{iwin[2].come ? 'showis-show':''}}">
+			<view style="font-size: 24rpx;" wx:if="{{qccPandect!=null}}">
+				<view class="shareholder">财务总览 <text style="color: #999999;">（以数据为估算，仅供参考）</text></view>
+				<view class="share-count">
+					<view class="count-msg">
+						<view class="msg-childone">公司实力等级</view>
+						<view class="msg-childtwo">{{qccPandect.enterpriseStrengthRank}}</view>
+					</view>
+					<view class="count-msg">
+						<view class="msg-childone">纳税区间</view>
+						<view class="msg-childtwo">{{qccPandect.payDutySection}}</view>
+					</view>
+					<view class="count-msg">
+						<view class="msg-childone">销售净利润率</view>
+						<view class="msg-childtwo">{{qccPandect.netProfitMargin}}</view>
+					</view>
+					<view class="count-msg">
+						<view class="msg-childone">销售毛利率</view>
+						<view class="msg-childtwo">{{qccPandect.grossProfitMargin}}</view>
+					</view>
+				</view>
+			</view>
+			<view style="font-size: 24rpx;" wx:if="{{qccTaxInfo!=null}}">
+				<view class="shareholder">税务信息 <text style="color: #999999;">（显示最近一年数据）</text></view>
+				<view class="share-count" style="height: 300rpx;">
+					<view class="count-msg">
+						<view class="msg-childone">纳税信用等级</view>
+						<view class="msg-childtwo">{{qccTaxInfo.taxPayingCredit}}</view>
+					</view>
+					<view class="count-msg">
+						<view class="msg-childone">是否正常纳税</view>
+						<view class="msg-childtwo">{{qccTaxInfo.payDuty}}</view>
+					</view>
+					<view class="count-msg">
+						<view class="msg-childone">是否欠税</view>
+						<view class="msg-childtwo">{{qccTaxInfo.owingTaxes}}</view>
+					</view>
+					<view class="count-msg">
+						<view class="msg-childone">欠税余额</view>
+						<view class="msg-childtwo">{{qccTaxInfo.owingTaxesBalance}}</view>
+					</view>
+					<view class="count-msg">
+						<view class="msg-childone">纳税人识别号</view>
+						<view class="msg-childtwo">{{qccTaxInfo.taxpayerIdentificationNumber}}</view>
+					</view>
+					<view class="count-msg">
+						<view class="msg-childone">评价年度</view>
+						<view class="msg-childtwo">{{qccTaxInfo.year}}</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!--对外投资-->
+	<view class="content-box" wx:if="{{qccAbroadList.length!=0}}">
+		<view id="{{iwin[3].id}}" class="control-fa {{iwin[3].come ? 'control-fa-show':''}}" bindtap="newidea">
+			<image class="control-icon control-dis-left" src="../resources/icons/parallelogram.png" />
+			<text class="control-title control-dis-left">对外投资</text>
+			<image class="control-dis-right {{iwin[3].come ? 'dis-right-false':'dis-right-true'}}" src="../resources/icons/{{iwin[3].come ? 'subtract':'add'}}.png" />
+		</view>
+		<view class="showis {{iwin[3].come ? 'showis-show':''}}" wx:for="{{qccAbroadList}}" wx:key="{{index}}">
+			<view style="font-size: 24rpx;">
+				<view class="shareholder">{{item.investedEnterpriseName}}</view>
+				<view class="share-count">
+					<view class="count-msg">
+						<view class="msg-childone">注册资本</view>
+						<view class="msg-childtwo">{{item.registeredCapital}}</view>
+					</view>
+					<view class="count-msg">
+						<view class="msg-childone">登记状态</view>
+						<view class="msg-childtwo">{{item.status}}</view>
+					</view>
+					<view class="count-msg">
+						<view class="msg-childone">法定代表人</view>
+						<view class="msg-childtwo">{{item.investedLegal}}</view>
+					</view>
+					<view class="count-msg">
+						<view class="msg-childone">出资比例</view>
+						<view class="msg-childtwo">{{item.investmentRate}}</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+
+</template>
+<script>
+	import wepy from 'wepy'
+	import { api } from '../config'
+	export default class information extends wepy.page {
+		config = {
+			'navigationBarTextStyle': '#FFFFFF',
+			'navigationBarBackgroundColor': '#0092FF'
+		}
+
+		components = {
+
+		}
+
+		data = {
+			qccCommerceInfo: [],
+			qccAbroadList: [],
+			qccPandect: [],
+			qccInfoList: [],
+			qccTaxInfo: [],
+			iwin: [{
+					id: 1,
+					come: false,
+					adNsu: '+',
+				},
+				{
+					id: 2,
+					come: false,
+					adNsu: '+',
+				},
+				{
+					id: 3,
+					come: false,
+					adNsu: '+',
+				},
+				{
+					id: 4,
+					come: false,
+					adNsu: '+',
+				},
+				{
+					id: 5,
+					come: false,
+					adNsu: '+',
+				},
+				{
+					id: 6,
+					come: false,
+					adNsu: '+',
+				}
+			],
+			companyName: '',
+			iconId: 0
+		}
+
+		events = {
+
+		}
+
+		methods = {
+			newidea(e) {
+				var id = e.currentTarget.id,
+					list = this.iwin;
+				for(var i = 0, len = list.length; i < len; i++) {
+					if(list[i].id == id) {
+						list[i].come = !list[i].come;
+					} else {
+						list[i].come = false;
+					}
+				}
+				this.setData({
+					iwin: list
+				});
+			}
+		}
+
+		onShow() {
+			wx.setNavigationBarTitle({
+				title: this.companyName
+			});
+		}
+
+		onLoad(e) {
+			console.log(e)
+			this.companyName = e.company;
+			this.getInfo();
+			this.iconId = e.iconId;
+		}
+
+		onReady() {
+			this.iwin[this.iconId].come = true;
+		}
+
+		getInfo() {
+			var that = this;
+			wepy.request({
+            	url:api.company.companyInformation.url,
+            	method:api.company.companyInformation.method,
+	            data:{
+	                enterpriseName: that.companyName,
+	            },
+	            success:function(res){
+	            	console.log(res)
+	                if(res.statusCode == 200){
+	                	var res = res.data.body;
+		                that.qccCommerceInfo = res.qccEnterpriseIndustryCommerceInfo;
+		                that.qccAbroadList = res.qccEnterpriseInvestmentAbroadList;
+		                that.qccPandect = res.qccEnterprisePandect;
+		                that.qccInfoList = res.qccEnterpriseStockInfoList;
+		                that.qccTaxInfo = res.qccEnterpriseTaxInfo;
+		                that.$apply();
+	                }
+	            }
+        	});
+		}
+	}
+</script>

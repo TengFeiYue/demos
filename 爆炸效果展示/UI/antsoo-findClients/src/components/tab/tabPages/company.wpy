@@ -1,0 +1,278 @@
+<style type="scss">
+	.scrollBody {
+		.ul {
+			padding: 14rpx 0rpx 100rpx 30rpx;
+			box-sizing: border-box;
+			.recommandList {
+				padding-right: 30rpx;
+				border-bottom: 2rpx solid #ececec;
+				box-sizing: border-box;
+				.companyName {
+					text-align: left;
+					font-size: 28rpx;
+					color: #333333;
+					letter-spacing: 0.17px;
+					margin-top: 10rpx;
+					image {
+						width: 25.2rpx;
+						height: 26.8rpx;
+						position: relative;
+						right: -14rpx;
+					}
+				}
+				.applies {
+					overflow: hidden;
+					margin: 5rpx 0;
+					.types,
+					.list-text{
+						display: inline-block;
+						float: left;
+						margin-right: 20rpx;
+						font-size: 22rpx;
+					}
+					.types {
+						height: 36rpx;
+						width: 36rpx;
+						line-height: 36rpx;
+						text-align: center;
+						color: #fff;
+						background-color: #cce9ff;
+						border-radius: 50%;
+					}
+					.list-text{
+						height: 40rpx;
+						border: 2rpx solid #c2e6f7;
+						line-height: 25rpx;
+						color: #999;
+						border-radius: 4rpx;
+						padding: 6rpx 10rpx;
+						box-sizing: border-box;
+					}
+				}
+				.otherDataService {
+					font-size: 20rpx;
+					display: flex;
+					flex-direction: row;
+					justify-content: between;
+					align-items: center;
+					margin-top: 5rpx;
+					.otherserve {
+						width: 80%;
+						flex: 1.7;
+						text-align: left;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						white-space: nowrap;
+					}
+					.distance {
+						width: 20%;
+						flex: 0.3;
+						text-align: right;
+					}
+				}
+				.companySite {
+					font-size: 20rpx;
+					text-align: left;
+					padding: 14rpx 0;
+				}
+			}
+		}
+	}
+	.tips {
+		font-size: 28rpx;
+		background: #ffffff;
+		height: 60rpx;
+		line-height: 60rpx;
+		margin-bottom: 100rpx;
+		.loadShow {
+			background: #ffffff;
+			text-align: center;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			align-self: center;
+			justify-content: center;
+			icon {
+				position: relative;
+				top: 17rpx;
+				right: 5rpx;
+			}
+		}
+	}
+</style>
+<template>
+	<view>
+		<companySearch />
+		<view>
+			<scroll-view class="scrollBody" scroll-y="true" style="max-height:{{scrollWrapHeight}}px" bindscrolltolower="scrollLoading">
+				<view class="ul">
+					<view class="recommandList" wx:for="{{info}}" wx:key="{{index}}" data-id="{{item.id}}" bindtap="toCompanyDetail">
+						<view class="companyName">
+							<text>{{item.name}}</text>
+							<image src="../../../resources/icons/zhu.png" wx:if="{{item.companyId > 0}}"/>
+						</view>
+						<view class="applies">
+							<view class="types" wx:for="{{item.typeArr}}" wx:for-item="i" wx:key="{{i}}">{{i}}</view>
+							<view class="list-text" wx:for="{{item.baseSecondCategoryArr}}" wx:for-item="j" wx:key="{{j}}" wx:if="{{item.baseSecondCategoryArr.length != 0}}">{{j}}</view>
+						</view>
+						<view class="otherDataService">
+							<view class="otherserve">{{item.mainLines}}</view>
+							<view class="distance">{{item.distance}}</view>
+						</view>
+						<view class="companySite">
+							<text>{{item.provinceName}}{{item.districtName}}{{item.address}}</text>
+						</view>
+					</view>
+				</view>
+				<view class="tips">
+					<view wx:if="{{loadmore}}" class="loadShow">
+						<icon type="waiting" size="16" /><text>玩命加载中...</text>
+					</view>
+					<view wx:else style="text-align:center;">
+						<text>查看更多内容，请前往俺搜APP</text>
+					</view>
+				</view>
+			</scroll-view>
+		</view>
+	</view>
+</template>
+
+<script>
+	import wepy from 'wepy'
+	import { api } from '../../../config'
+	import location from '../../../utils/location'
+	import companySearch from '../../companySearch'
+	export default class index extends wepy.component {
+		components = {
+			companySearch
+		}
+		data = {
+			loginUId: -1,
+			pageIndex: 1,
+			loadmore: false,
+			scrollWrapHeight: 0,
+			tItem: '原料',
+			sSite: '',
+			sAll: '',
+			sAllModel: '',
+			long: -1,
+			lat: -1,
+			info: [],
+			findIndex: 0,
+			currentCity: '',
+		}
+		events = {
+			'sendFilterDatas': (filterParam) => {
+				console.log(filterParam)
+				this.pageIndex=1;
+				this.tItem = filterParam.tabItem;
+				this.sSite = filterParam.selectedSite == undefined? '': filterParam.selectedSite;
+				this.sAll = filterParam.selectedAll == undefined? '':filterParam.selectedAll;
+				this.sAllModel = filterParam.selectedAllModel == undefined? '':filterParam.selectedAllModel;
+				this.long = filterParam.long;
+				this.lat = filterParam.lat;
+				this.currentCity = filterParam.currentCity;
+				this.fetchCompanyListData();
+			},
+
+		}
+		methods = {
+			scrollLoading() { //滚动加载
+				if(this.loadmore) {
+					this.pageIndex++;
+					if(this.pageIndex<6){
+						this.fetchCompanyListData();
+					}else{
+						this.loadmore = false;
+						wx.showModal({
+							title: '',
+							content: '更多内容请前往按搜app',
+							showCancel: true,
+							confirmText: '确定',
+							confirmColor: '#0092ff',
+							success: function (res) {
+				        if (res.confirm) {
+				          if(wx.getSystemInfoSync().system.toLowerCase().indexOf('andr')!=-1){
+									    console.log('android')
+											wx.navigateTo({
+												  url:'downLoad'
+											})
+									}else{
+										console.log('iso')
+										wx.navigateTo({
+												url:'downLoad'
+										})
+									}
+				        } else if (res.cancel) {
+				          console.log('用户点击取消')
+				        }
+				      }
+						})
+					}
+				}
+			},
+			toCompanyDetail(e){
+				if(!this.loginUId) {
+					wx.navigateTo({
+						url: '../../../pages/login?fromPage=company'
+
+					});
+					return;
+				}
+				let memberId=e.currentTarget.dataset.id;
+				wx.navigateTo({
+					url:'../../../pages/comDetailInfo?companyId='+memberId+'&userId='+this.loginUId
+				})
+			}
+		}
+		onShow() {
+			this.$apply();
+		}
+		onLoad(e) {
+			const antUserInfo = wx.getStorageSync('antUserInfo');
+			this.loginUId = antUserInfo.userId;
+			this.scrollWrapHeight = wx.getSystemInfoSync().windowHeight * 0.91 - 130;
+		}
+		fetchCompanyListData() { //获取企业列表
+			let that = this;
+			wepy.request({
+				url: api.company.companyList.url,
+				method: api.company.companyList.method,
+				data: {
+					cityName: this.currentCity,
+					baseFirstCategory: this.tItem,
+					baseThirdCategory: this.sAll,
+					enterpriseSearchName: '',
+					businessMode: this.sAllModel,
+					baseSecondCategory: '',
+					districtName: (this.sSite=='附近' || this.sSite.indexOf('km')!=-1)?'':this.sSite,
+					longitude: this.long,
+					latitude: this.lat,
+					distanceCondition: (this.sSite=='附近'||this.sSite.indexOf('km')!=-1)?this.sSite :'',
+					sort: 1,
+					pageInfo2: {
+						pSize: 20,
+						pIndex: that.pageIndex
+					}
+				},
+				success: function(res) {
+					console.log(res)
+					if (res.statusCode == 200) {
+						var info = res.data.body;
+						const tpages = res.data.page.tCount;
+	            		const pages = info.length/20;
+	            		var isInt=tpages/(that.pageIndex*20);
+	            		that.loadmore = (pages==1&&isInt!=1) ? true : false;
+
+	            		if(that.pageIndex>1){
+	            			that.info = that.info.concat(info);
+	            		}else{
+	            			that.info = info;
+	            		}
+						that.$apply();
+					}
+				}
+			});
+		}
+	}
+</script>

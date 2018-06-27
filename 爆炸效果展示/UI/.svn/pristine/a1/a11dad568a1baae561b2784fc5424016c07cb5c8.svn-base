@@ -1,0 +1,154 @@
+
+        <view class="release">
+           <form bindsubmit="formSubmit">
+               <view class="classify releaseInfos">
+                   <view class="releaseDt">
+                      <text>*分类</text>
+                   </view>
+                   <view class="releaseDd">
+                        <view class="radio"  wx:for="{{sorts}}" wx:key="{{index}}" data-index="{{index}}" data-v="{{item.value}}" bindtap="radioTab">
+                            <image src="../resources/icons/sort{{radioIndex===index?'Act':''}}.jpg"/>
+                            <checkbox value="{{item.name}}"/>{{item.value}}
+                        </view>
+                   </view>
+               </view>
+
+               <view class="classify releaseInfos">
+                   <view class="releaseDt">
+                      <text  wx:if="{{showModelItem}}">*品种</text>
+                      <text wx:if="{{!showModelItem}}">*品名</text>
+                   </view>
+                   <view class="releaseDd">
+                        <input value="{{csName}}" name="csName" hidden/>
+                        <input value="{{mName=='null'?tName:mName}}" focus="{{autoFocus}}" name="mName" bindinput="filterMname"/>
+                        <view class="pNameSelect" wx:if="{{showSeachList}}">
+                            <scroll-view scroll-y style="height:250rpx;">
+                                <view>
+                                      <view class="pNameOpt" wx:for="{{filteredName}}" wx:key="{{index}}" data-v="{{item.name}}" data-c="{{item.sName}}" bindtap="selectPname">{{item.name}}</view>
+                                  </view>
+                            </scroll-view>
+                        </view>
+                   </view>
+               </view>
+               <view class="classify releaseInfos">
+                   <view class="releaseDt" style="flex:2;">
+                      <text>*生产厂家</text>
+                   </view>
+                   <view class="releaseDd">
+                        <input value="{{mProducer}}" name="mProducer"/>
+                   </view>
+               </view>
+               <view class="classify releaseInfos" wx:if="{{showModelItem}}">
+                   <view class="releaseDt">
+                      <text>*型号</text>
+                   </view>
+                   <view class="releaseDd">
+                        <input value="{{mModel}}" name="mModel"/>
+                   </view>
+               </view>
+               <view class="classify releaseInfos" wx:if="{{!showModelItem}}">
+                   <view class="releaseDt">
+                      <text>*牌号</text>
+                   </view>
+                   <view class="releaseDd">
+                        <input value="{{mBrandNum}}" name="mBrandNum"/>
+                   </view>
+               </view>
+               <view class="classify releaseInfos">
+                   <view class="releaseDt">
+                      <text>*价格</text>
+                   </view>
+                   <view class="releaseDd priceSelect">
+                        <input value="{{mPrice}}" name="mPrice"/>
+                        <input value="{{mUnit}}" name="mUnit" hidden/>
+                        <view class="showSel" bindtap="showSel">
+                            <view wx:if="{{!showOption}}">
+                               <image src="../resources/img/expand.png"/>
+                            </view>
+                            <view wx:if="{{showOption}}">
+                               <image src="../resources/img/shink.png"/>
+                            </view>
+                        <text>{{mUnit}}</text></view>
+                        <view class="select">
+                           <view class="options" wx:if="{{showOption}}">
+                               <view class="option" wx:for="{{unit}}" wx:key="{{index}}" data-v="{{item}}" bindtap="selUint">{{item}}</view>
+                           </view>
+                        </view>
+                   </view>
+               </view>
+               <view class="classify releaseInfos">
+                   <view class="releaseDt">
+                      <text>*是否含税</text>
+                   </view>
+                   <view class="releaseDd">
+                        <view class="radio" wx:for="{{hasTax}}" wx:key="{{index}}" data-index="{{index}}" bindtap="hasTaxTab">
+                            <image src="../resources/icons/sort{{taxRadioIndex===index?'Act':''}}.jpg"/>
+                            <checkbox value="{{item}}"/>{{item}}
+                        </view>
+                   </view>
+               </view>
+               <view class="classify releaseInfos">
+                   <view class="releaseDt">
+                      <text>*交货方式</text>
+                   </view>
+                   <view class="releaseDd priceSelect">
+                        <input value="{{deliveryWay}}" name="deliveryWay" hidden/>
+                        <view class="showSel" bindtap="showDeliveryWays" style="top:-18rpx;">
+                            <view wx:if="{{!showDeliverOption}}">
+                               <image src="../resources/img/expand.png"/>
+                            </view>
+                            <view wx:if="{{showDeliverOption}}">
+                               <image src="../resources/img/shink.png"/>
+                            </view>
+                        <text>{{deliveryWay}}</text></view>
+                        <view class="select" style="top:26rpx;">
+                           <view class="options" wx:if="{{showDeliverOption}}">
+                               <view class="option" wx:for="{{deliveryWays}}" wx:key="{{index}}" data-v="{{item}}" bindtap="selDeliveryWays">{{item}}</view>
+                           </view>
+                        </view>
+                   </view>
+               </view>
+               <view class="classify releaseInfos">
+                   <view class="releaseDt">
+                      <text>*交货地</text>
+                   </view>
+                   <view class="releaseDd subArea">
+                      <input value="{{seleCity}}" name="seleCity"/>
+                      <text class="showAdd" bindtap="showAdd">+</text>
+                   </view>
+               </view>
+               <view class="classify releaseInfos" data-v="{{pVal}}" bindtap="toDescription">
+                   <view class="releaseDt">
+                      <text>详细描述</text>
+                   </view>
+                   <view class="releaseDd subArea">
+                      <input value="{{pVal}}" placeholder="请描述一下产品信息" name="pVal" hidden="{{pVal!=''}}"/>
+                      <view class="placeholderCon">{{pVal}}</view>
+                      <text class="showAdd">+</text>
+                   </view>
+               </view>
+               <view class="classify releaseInfos" style="border-bottom:none;">
+                   <view class="releaseDt">
+                      <text>图片</text>
+                   </view>
+                   <view class="releaseDd">
+                        <view class="imgList">
+                          <view class="imgItem" bindtap="chooseImg">
+                              <view class="delImg" catchtap="removeImg" wx:if="{{uploaded}}"><image src="../resources/img/delete.png"/></view>
+                             <image src="{{upPics}}"/>
+                          </view>
+                          <!--<view class="imgItem2" bindtap="chooseImg"><image src="{{upLoadPic[1].photoAddress}}"></image></view>
+                          <view class="imgItem3" bindtap="chooseImg"><image src="{{upLoadPic[2].photoAddress}}"></image></view>-->
+                        </view>
+                   </view>
+               </view>
+               <view class="warmTip"><text class="warmDt"/><text class="warmDd">发布照片有助于卖家联系您</text></view>
+              <view class="subButton">
+                 <button formType="submit">发布</button>
+              </view>
+           </form>
+        </view>
+        <view  wx:if="{{opa}}" class="view">
+           <view class="tipPic"><image src="../resources/icons/warning.png"/></view>
+           <text>{{tip}}</text>
+        </view>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="format-detection" content="telephone=no"/>		
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta charset="utf-8">
+		<title>圣诞节，俺搜送你“蔚来”大礼</title>
+		<link rel="stylesheet" href="bootstrap/bootstrap.min.css" />
+		<link rel="stylesheet" href="NewYearcss/base.css" />
+		<link rel="stylesheet" href="NewYearcss/media.css" />
+		<script src="js/jquery-2.1.0.min.js"></script>
+		<script src="js/html2canvas.min.js"></script>
+		<script src="js/canvas2image.js"></script>
+		<script src="js/bscroll.min.js"></script>
+		<script src="js/axios.js"></script>
+		<script src="js/vue.js"></script>
+		<script src="js/vue-resource.min.js"></script>
+		<script src="js/vue-router.js"></script>
+		<script src="dev.js"></script>
+		 <script type="text/javascript">
+		 	window.onload=window.onresize=function(){
+		 		console.log($(window).height())
+		 		$(document.body).css('height',$(window).height()+'px');
+		 		var deviceWidth = document.documentElement.clientWidth;
+				if(deviceWidth > 750) deviceWidth = 750;
+				document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';
+				
+		 	}
+		 
+		 </script>
+		 <style>
+		 	.man{
+		 		transition:all .5s ease;
+		 		animation: move 2s linear infinite ;
+		 		transform: translateX(-.6rem);
+		 	}
+		 	@keyframes move{
+		 		0%{
+		 		    transform: translateX(-.6rem);
+		 		}
+		 		50%{
+		 			transform: translateX(0rem);
+		 		}
+		 		100%{
+		 			transform: translateX(-.6rem);
+		 		}
+		 	}
+		 </style>
+	</head>
+	<body>
+	  <div id="app">	
+		<div class="container-fluid p-0">			
+			<header class="col-xs-12 p-0">
+				<img src="NewYearimages/header.png" alt="" class="img-responsive" />				
+			</header>
+			<section class="col-xs-12 p-0 startTest">
+				<span class="man"><img src="NewYearimages/man_03.png" alt="" /></span>
+				<a href="unittest.html"><img src="NewYearimages/testBtn_03.png"/></a>
+			</section>
+			<section class="col-xs-12 p-0 rangeList text-center">
+				<div class="centerPos">
+					<h3 class="m-0"><img src="NewYearimages/title.png"/></h3>
+					<div class="ulWraper">
+						<ul class="moves">
+							<li>                 
+								<span>来自xxxx企业张三</span>
+								<span>3分钟前 </span>
+								<span>牛x指数</span>
+								<span>73分</span>
+							</li>
+							<li>                 
+								<span>来自xxxx企业李大妞</span>
+								<span>2分钟前 </span>
+								<span>牛x指数</span>
+								<span>83分</span>
+							</li>
+							<li>                 
+								<span>来自xxxx企业王五</span>
+								<span>1分钟前 </span>
+								<span>牛x指数</span>
+								<span>96分</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+			</section>
+			<footer class="col-xs-12 p-0">
+				<a href="" class="logo"><img src="NewYearimages/logo_03.png"/></a>
+				<img src="NewYearimages/lantern.png" class="lantern" alt="" />
+				<img src="NewYearimages/indexfooter.png" alt="" class="img-responsive" />
+			</footer>
+		</div>
+	  </div>
+		
+		<script type="text/javascript">
+		    new  Vue({
+				el:'#app',
+				data:{
+					
+				},
+				mounted(){			
+				var _this=this;		   	 	
+				 this.$nextTick(function(){
+		 		$(document.body).css('height',$(window).height()+'px');
+		 		var deviceWidth = document.documentElement.clientWidth;
+				if(deviceWidth > 750) deviceWidth = 750;
+				document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';
+					_this.automove();
+					
+				})
+				},
+				methods:{
+					automove:function(){
+						 var n=0;
+						var oWrap=document.querySelector('.ulWraper');
+						var oUl=document.getElementsByClassName('moves')[0];
+						var aLi=oUl.getElementsByTagName('li');
+						
+						oUl.innerHTML+=oUl.innerHTML;						
+						oUl.style.height=aLi[0].offsetHeight*aLi.length+'px';
+						console.log(oUl.offsetHeight)
+						var timer=setInterval(move,100);
+						
+						oWrap.addEventListener('touchstart',function(){
+							clearInterval(timer)
+						},false)
+						oWrap.addEventListener('touchend',function(){
+							clearInterval(timer)
+							var timer=setInterval(move,100);
+						},false)
+						function move(){
+							if(n<-(oUl.offsetHeight/2)){
+								n=0;
+								oUl.style.top=0;
+							}else{
+								n--;
+								oUl.style.top=n+'px';
+							}
+										    
+						}
+					}
+				}
+			})
+		</script>
+		<script>
+                var _mtac = {};
+                (function() {
+                    var mta = document.createElement("script");
+                    mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";
+                    mta.setAttribute("name", "MTAH5");
+                    mta.setAttribute("sid", "500566864");
+                    var s = document.getElementsByTagName("script")[0];
+                    s.parentNode.insertBefore(mta, s);
+                })();
+         </script>
+	</body>
+</html>
+

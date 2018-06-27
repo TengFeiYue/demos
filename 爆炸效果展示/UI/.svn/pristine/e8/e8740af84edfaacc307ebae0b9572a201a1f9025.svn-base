@@ -1,0 +1,696 @@
+<style type="scss">
+	$border-color: #ececec;
+	.pad15 {
+		padding: 0 30rpx;
+		box-sizing: border-box;
+	}
+
+	.header {
+		width: 100%;
+		height: 252rpx;
+		position: relative;
+		.header-bg {
+			width: 100%;
+			height: 100%;
+		}
+		.header-con {
+			width: 690rpx;
+			height: 320rpx;
+			box-shadow: 1rpx 1rpx 20rpx rgba(0, 0, 0, 0.3);
+			position: absolute;
+			left: 0;
+			right: 0;
+			margin: auto;
+			top: 0;
+			.header-bgimg {
+				width: 100%;
+				height: 100%;
+			}
+			.header-con-center {
+				height: 222rpx;
+				width: 100%;
+				background-color: #fff;
+				border-radius: 8rpx;
+				padding: 30rpx 30rpx 0 30rpx;
+				box-sizing: border-box;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			.header-con-code{
+				width: 140rpx;
+				height: 140rpx;
+				position: absolute;
+				right: 0;
+				top: 0;
+				image{
+					display: block;
+					width: 100%;
+					height: 100%;
+				}
+			}
+			.header-img {
+				width: 96rpx;
+				height: 96rpx;
+				float: left;
+				image {
+					width: 100%;
+					height: 100%;
+					border-radius: 50%;
+				}
+			}
+			.header-info {
+				width: 80%;
+				height: 100%;
+				float: right;
+				view {
+					width: 100%;
+					height: 60rpx;
+					line-height: 60rpx;
+					font-size: 32rpx;
+					color: #333;
+					image {
+						width: 80rpx;
+						height: 28rpx;
+						margin-left: 20rpx;
+					}
+				}
+				.header-info-work,
+				.header-info-company {
+					font-size: 24rpx;
+				}
+				.header-info-work {
+					color: #999;
+				}
+				.header-info-company {
+					color: #666;
+				}
+			}
+			.header-title {
+				height: 96rpx;
+				width: 100%;
+				float: left;
+				scroll-view {
+					display: flex;
+					white-space: nowrap;
+					height: 96rpx;
+					line-height: 96rpx;
+					box-sizing: border-box;
+					button {
+						background-color: transparent;
+						border: 2rpx solid #fff;
+						color: #fff;
+						line-height: 1.3;
+						padding: 0 .5em;
+						margin-right: 10rpx;
+					}
+				}
+			}
+		}
+	}
+
+	.main {
+		margin-top: 70rpx;
+		width: 100%;
+		margin-bottom: 100rpx;
+		.main-list {
+			width: 100%;
+			.main-title,
+			.main-detail,
+			.main-company,
+			.main-detail-box {
+				height: 80rpx;
+				line-height: 80rpx;
+				color: #4a4a4a;
+				font-size: 28rpx;
+			}
+			.main-title {
+				border-bottom: 2rpx solid $border-color;
+				image {
+					height: 26rpx;
+					width: 8rpx;
+					margin-right: 10rpx;
+				}
+				.edit {
+					padding: 5rpx 10rpx;
+					border: 1rpx solid #0092ff;
+					color: #0092ff;
+					margin-left: 20rpx;
+					border-radius: 8rpx;
+				}
+			}
+			.main-detail {
+				.title {
+					width: 30%;
+					float: left;
+				}
+				.con {
+					font-size: 24rpx;
+					color: #999;
+					float: right;
+				}
+			}
+			.main-company {
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			.main-detail-box .main-detail {
+				display: flex;
+				width: 50%;
+				float: left;
+				text {}
+				.title {
+					width: 140rpx;
+				}
+				.con {
+					width: 60%;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+				}
+			}
+			.main-detail-box {
+				display: flex;
+				.main-detail-box-title {
+					width: 140rpx;
+					height: 80rpx;
+				}
+				.main-detail-box-con {
+					width: 550rpx;
+					height: 80rpx;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					font-size: 24rpx;
+					color: #999;
+				}
+			}
+			.main-adress {
+				line-height: 88rpx;
+				width: 100%;
+				font-size: 24rpx;
+				color: #666;
+				background-color: #f2f2f2;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			.edit-con {
+				font-size: 12px;
+				color: #666666;
+				line-height: 1.5;
+			}
+		}
+	}
+
+	.foot,
+	.footclock {
+		width: 100%;
+		height: 100rpx;
+		background-color: #0092ff;
+		font-size: 32rpx;
+		color: #fff;
+		line-height: 100rpx;
+		position: fixed;
+		bottom: 0;
+		text-align: center;
+	}
+
+	.foot {
+		width: 100%;
+		height: 100rpx;
+		background-color: #0092ff;
+		font-size: 32rpx;
+		color: #fff;
+		line-height: 100rpx;
+		position: fixed;
+		bottom: 0;
+		display: flex;
+		.icon {
+			margin-top: 30rpx;
+			height: 40rpx;
+			width: 36rpx;
+			text-align: right;
+			flex: 0.8;
+			image {
+				display: block;
+				height: 40rpx;
+				width: 36rpx;
+				float: right;
+			}
+		}
+		.text {
+			margin-left: 20rpx;
+			height: 100%;
+			width: 50%;
+			text-align: left;
+			flex: 1;
+		}
+	}
+
+	.scan {
+		width: 80rpx;
+		height: 150rpx;
+		position: fixed;
+		right: 30rpx;
+		bottom: 120rpx;
+		.scan-list {
+			width: 100%;
+			height: 50%;
+			position: relative;
+			image {
+				width: 60rpx;
+				height: 60rpx;
+			}
+			text {
+				display: block;
+				height: 28rpx;
+				line-height: 28rpx;
+				padding: 0 6rpx;
+				border-radius: 14rpx;
+				font-size: 20rpx;
+				color: #fff;
+				background-color: #0092ff;
+				position: absolute;
+				right: 0;
+				top: 0;
+			}
+		}
+	}
+	.layer{
+		width: 100%;
+		background: rgba(0,0,0,0.4);
+		position: fixed;
+		top: 0;
+		left: 0;
+		.layer-con{
+			width: 690rpx;
+			height: 680rpx;
+			background-color: #fff;
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			top: 0;
+			margin: auto;
+			border-radius: 16rpx;
+			overflow: hidden;
+			.layer-con-bg{
+				width: 690rpx;
+				height: 470rpx;
+				image{
+					display: block;
+					width: 100%;
+					height: 100%;
+				}
+			}
+			.laycon{
+				width: 690rpx;
+				height: 680rpx;
+				position: absolute;
+				left: 0;
+				top: 0;
+				.laycon-img{
+					width: 132rpx;
+					height: 132rpx;
+					padding: 20rpx 0;
+					margin: 0 auto;
+					image{
+						display: block;
+						width: 100%;
+						height: 100%;
+					}
+				}
+				.laycon-name{
+					font-size: 36rpx;
+					color: #fff;
+					text-align: center;
+				}
+				.laycon-code{
+					height: 280rpx;
+					width: 320rpx;
+					background: #fff;
+					box-shadow: 0 1px 2px 0 #CFCFCF;
+					margin: 30rpx auto;
+					image{
+						display: block;
+						width: 280rpx;
+						height: 280rpx;
+						margin: 0 auto;
+					}
+				}
+				.laycon-op{
+					width: 320rpx;
+					height: 60rpx;
+					line-height: 60rpx;
+					text-align: center;
+					border: 2rpx solid #ececec;
+					font-size: 24rpx;
+					color: #333;
+					margin: 0 auto;
+					border-radius: 6rpx;
+				}
+			}
+		}
+	}
+</style>
+<template>
+	<view class="header">
+		<image class="header-bg" src="../resources/img/bg.png"></image>
+		<view class="header-con">
+			<image class="header-bgimg" src="../resources/img/bg2.png"></image>
+			<view class="header-con-center">
+				<view class="header-img">
+					<image wx:if="{{info.companyMember.memberLogoUrl == ''}}" src="../resources/img/myImg.png"></image>
+					<image wx:else src="{{info.companyMember.memberLogoUrl}}"></image>
+				</view>
+				<view class="header-info">
+					<view class="header-info-name">
+						<text>{{info.companyMember.memberName}}</text>
+						<image class="imageOne" wx:if="{{info.companyMember.bestFlag == 2}}" src="../resources/icons/verify.png" />
+						<image class="imageOne" wx:if="{{info.companyMember.bestFlag == 1}}" src="../resources/icons/noverify.png" />
+						<image class="imageOne" wx:if="{{info.companyMember.bestFlag == 3}}" src="../resources/icons/confirm.png" />
+					</view>
+					<view class="header-info-work">{{info.companyMember.title}}</view>
+					<view class="header-info-company">{{info.companyMember.enterpriseName}}</view>
+				</view>
+				<view class="header-title">
+					<scroll-view scroll-x="false" style="">
+						<button size="mini" wx:if="{{labels.length != 0}}" wx:for="{{labels}}" wx:key="{{index}}">{{item}}</button>
+						<button size="mini" bindtap="showokk">+</button>
+					</scroll-view>
+				</view>
+			</view>
+			<view class="header-con-code" bindtap="showLay" wx:if="{{info.companyMember.bestFlag == 3}}">
+				<image src="../resources/img/code.png"></image>
+			</view>
+		</view>
+	</view>
+	<view class="main">
+		<view class="main-list">
+			<view class="main-title pad15">
+				<image src="../resources/icons/parallelogram.png"></image>
+				<text>联系方式</text>
+			</view>
+			<view class="main-detail pad15">
+				<text class="title">移动电话</text>
+				<text class="con" wx:if="{{info.companyMember.isUnlocked == 0}}">解锁后才能查看</text>
+				<text class="con" wx:if="{{info.companyMember.isUnlocked == 1}}">{{info.companyMember.phoneNo}}</text>
+			</view>
+			<view class="main-detail pad15">
+				<text class="title">电子邮箱</text>
+				<text class="con">{{info.companyMember.email}}</text>
+			</view>
+			<view class="main-title pad15">
+				<image src="../resources/icons/parallelogram.png"></image>
+				<text>企业概况</text>
+			</view>
+			<view class="main-company pad15">
+				<text>{{info.companyMember.enterpriseName}}</text>
+			</view>
+			<view class="main-detail-box pad15">
+				<view class="main-detail">
+					<text class="title">产业链</text>
+					<text class="con">{{info.enterpriseInfoDto.type}}</text>
+				</view>
+				<view class="main-detail">
+					<text class="title">经营分类</text>
+					<text class="con">{{info.enterpriseInfoDto.baseSecondCategory}}</text>
+				</view>
+			</view>
+			<view class="main-detail-box pad15">
+				<view class="main-detail">
+					<text class="title">经营模式</text>
+					<text class="con">{{info.enterpriseInfoDto.businessMode}}</text>
+				</view>
+				<view class="main-detail">
+					<text class="title">服务区域</text>
+					<text class="con">{{info.enterpriseInfoDto.serviceArea}}</text>
+				</view>
+			</view>
+			<view class="main-detail-box pad15">
+				<text class="main-detail-box-title">主营行业</text>
+				<text class="main-detail-box-con">{{info.enterpriseInfoDto.mainLines}}</text>
+			</view>
+			<view class="main-detail-box pad15">
+				<text class="main-detail-box-title">主营系列</text>
+				<text class="main-detail-box-con">{{info.enterpriseInfoDto.mainProduct}}</text>
+			</view>
+			<view class="main-adress pad15">
+				<text>{{info.enterpriseInfoDto.cityName}}{{info.enterpriseInfoDto.districtName}}{{info.enterpriseInfoDto.address}}</text>
+			</view>
+			<view class="main-title pad15">
+				<image src="../resources/icons/parallelogram.png"></image>
+				<text>我的产品</text>
+			</view>
+			<view class="edit-con pad15">{{info.companyMember.agencyProduct}}</view>
+		</view>
+		<view class="foot" wx:if="{{info.companyMember.isUnlocked == 0}}" bindtap="showIsClock">
+			<view class="icon">
+				<image src="../resources/icons/icon-clock.png"></image>
+			</view>
+			<view class="text">
+				<text>解锁联系方式</text>
+			</view>
+		</view>
+		<view class="footclock" wx:if="{{info.companyMember.isUnlocked == 1}}" bindtap="callPhone">一键拨号</view>
+		<view class="scan">
+			<!--浏览量-->
+			<view class="scan-list">
+				<image src="../resources/icons/scannum.png"></image>
+				<text>{{info.companyMember.browseQty}}</text>
+			</view>
+			<!--收藏量-->
+			<view class="scan-list" bindtap="isCollect">
+				<image src="../resources/icons/icon-collect.png"></image>
+				<text>{{num}}</text>
+			</view>
+		</view>
+	</view>
+	<view class="layer" style="height: {{sh}}px;" wx:if="{{layFlag}}" bindtap="closeLayer">
+		<view class="layer-con">
+			<view class="layer-con-bg">
+				<image src="../resources/img/bg.png"></image>
+			</view>
+			<view class="laycon">
+				<view class="laycon-img">
+					<image src="{{layInfo.userLogo}}"></image>
+				</view>
+				<view class="laycon-name">{{info.companyMember.memberName}}</view>
+				<view class="laycon-code" bindtap="previewImage">
+					<image src="{{imgalist}}"></image>
+				</view>
+				<view class="laycon-op">微信长按识别/查看我的名片</view>
+			</view>
+		</view>
+	</view>
+</template>
+<script>
+	import wepy from 'wepy';
+	import { api } from '../config';
+
+	export default class connectionDetail extends wepy.page {
+		config = {
+			'navigationBarTitleText': '俺搜·找客户-人脉',
+			'navigationBarTextStyle': '#FFFFFF',
+			'navigationBarBackgroundColor': '#0092FF'
+		}
+		components = {
+
+		}
+		data = {
+			loginUId: -1,
+			info: {},
+			num: -1,
+			labels: [],
+			memberId: '',
+			phone: '',
+			collectFlag: -1,
+			sh: 0,
+			imgalist: {},
+			layFlag: false,
+			imgalist: [],
+		}
+		events = {
+
+		}
+		methods = {
+			closeLayer:function(){
+				this.layFlag=false;
+			},
+			showIsClock: function() {
+				wx.showModal({
+					title: '',
+					content: '请前往俺搜APP解锁联系方式',
+					cancelText: '取消',
+					confirmText: '前往',
+					confirmColor: '#0092ff',
+					success: function(res) {
+						if(res.confirm) {
+							wx.navigateTo({
+								url: 'downLoad'
+							})
+						}
+					}
+				})
+			},
+			callPhone: function() {
+				wx.makePhoneCall({
+					phoneNumber: this.phone
+				})
+			},
+			isCollect: function() {
+				var _this = this;
+				if(_this.collectFlag == 1) { //表示已经收藏过了，点击时取消收藏，调用取消收藏接口
+					wx.request({
+						method: 'POST',
+						url: api.company.cancelCollection.url,
+						data: {
+							userId: _this.loginUId,
+							bizId: _this.memberId,
+							type: 5
+						},
+						success: function(res) {
+							if(res.statusCode == 200) {
+								wx.showToast({
+									title: '收藏取消成功',
+									icon: 'success',
+									duration: 2000
+								});
+								if(res.data.isSuccess == 1) {
+									_this.num = res.data.body;
+								}
+								_this.getCollect();
+								_this.$apply();
+							}
+						}
+					})
+				} else { //表示未曾收藏过，点击时添加收藏，调用添加收藏接口
+					wx.request({
+						method: 'POST',
+						url: api.company.addCollection.url,
+						data: {
+							userId: _this.loginUId,
+							bizId: _this.memberId,
+							type: 5
+						},
+						success: function(res) {
+							if(res.statusCode == 200) {
+								wx.showToast({
+									title: '收藏已成功',
+									icon: 'success',
+									duration: 2000
+								});
+								if(res.data.isSuccess == 1) {
+									_this.num = res.data.body;
+								}
+								_this.getCollect();
+								_this.$apply();
+							}
+						}
+					})
+				}
+			},
+			showLay: function(){
+				var _this = this;
+				_this.layFlag = true;
+				_this.getQrCode();
+			},
+			previewImage: function(){
+				var _this = this;
+				_this.layFlag = false;
+		        wx.previewImage({
+		            urls: _this.data.imgalist
+		        })
+    		}
+		}
+
+		onLoad(options) {
+			var that = this;
+			wx.getSystemInfo({
+		      	success: function (res) {
+		          	that.sh = res.screenHeight;
+		      	}
+		   	});
+			let scene = decodeURIComponent(options.scene);
+			if(scene != 'undefined') {
+				var optionUid = (scene.split('&')[0]).split('=')[1];
+				var optionEntId = (scene.split('&')[1]).split('=')[1];
+				this.loginUId = optionUid;
+				this.companyId = optionEntId;
+				this.getInfo();
+			}
+
+
+			this.loginUId = options.scene == undefined ? options.userId : optionUid;
+			this.memberId = options.scene == undefined ? options.memberId : optionEntId;
+			this.getInfo();
+			this.getCollect();
+		}
+
+		getInfo() {
+			var _this = this;
+			wx.request({
+				method: api.my.myCard.method,
+				url: api.my.myCard.url,
+				data: {
+					memberId: _this.memberId,
+					userId: _this.loginUId
+				},
+				success: function(res) {
+					if(res.statusCode == 200) {
+						_this.info = res.data.body;
+						_this.phone = _this.info.companyMember.phoneNo;
+						_this.num = _this.info.companyMember.favoriteQty;
+						var labels = _this.info.companyMember.labels;
+						if (labels == '' || labels == null) {
+							_this.labels = [];
+						} else {
+							_this.labels = labels.split(',');
+						}
+					}
+					_this.$apply();
+				}
+			})
+		}
+
+		getCollect() {
+			var _this = this;
+			wx.request({
+				method: api.company.isCollect.method,
+				url: api.company.isCollect.url,
+				data: {
+					userId: _this.loginUId,
+					bizId: _this.memberId,
+					type: 5
+				},
+				success: function(res) {
+					if(res.statusCode == 200) {
+						_this.collectFlag = res.data.body;
+						_this.$apply();
+					}
+				}
+			})
+		}
+
+		getQrCode(){
+			var _this = this;
+			wx.request({
+				url: api.my.myQrCode.url,
+				method: api.my.myQrCode.method,
+				data: {
+					memberId: _this.memberId,
+					userId: _this.loginUId
+				},
+				success: function(res){
+					if (res.statusCode == 200) {
+						_this.layInfo = res.data.body;
+						_this.imgalist[0] = _this.layInfo.memberQrcode;
+						_this.$apply();
+					}
+				}
+			})
+		}
+	}
+</script>

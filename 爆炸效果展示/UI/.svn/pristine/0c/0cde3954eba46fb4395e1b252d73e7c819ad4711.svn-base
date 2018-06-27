@@ -1,0 +1,26 @@
+    const dev={
+          develop:'192.168.1.01/',
+          production:'www.antsoo.com/'
+     }
+    const inject=dev.develop;
+    const conection={
+       book:{
+          getData:{
+               method:'post',
+               url:inject+'booddetail/'
+          }
+      },
+      my:{
+          getData:{
+               method:'post',
+               url:inject+'booddetail/'
+          }
+      },
+      common:{
+          getData:{
+               method:'post',
+               url:inject+'booddetail/'
+          }
+      }
+    }
+   export default conection;

@@ -1,0 +1,788 @@
+<style type="scss">
+page,
+.body {
+    height: 100%;
+    font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+    background-color: #eeeeee;
+    font-size:14px;
+    overflow: hidden;
+    overflow-y:auto;
+    display: flex;
+    flex-direction: column;
+}
+.hasConfirm{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+   background: #FFFFFF;
+   padding:20rpx 30rpx;
+   border-top:1px solid #eeeeee;
+   .antsooLogo{
+      flex:1;
+      padding-right:30rpx;
+      image{
+         width:92rpx;
+         height:102rpx;
+      }
+   }
+   .txt{
+      flex:5;
+      font-size: 28rpx;
+      color: #000000;
+   }
+   .toConfirm{
+      display:inline-block;
+      width:128rpx;
+      height:48rpx;
+      color:#0092FF;
+      border:1px solid #0092FF;
+      border-radius:8rpx;
+      text-align:center;
+      line-height:48rpx;
+      font-size:24rpx;
+   }
+}
+.upload{
+   background: #FFFFFF;
+   padding:30rpx;
+   margin:30rpx 0;
+   display:flex;
+   flex-direction:row;
+   justify-content:space-between;
+   align-items:center;
+   .uploadDl{
+     flex:3;
+      font-size: 32rpx;
+      color: #000000;
+      letter-spacing: 0;
+   }
+   .uploadImg{
+      flex:8;
+      padding-left:40rpx;
+      image{
+         width:116rpx;
+         height:116rpx;
+      }
+   }
+}
+.confirmWraper{
+  position:relative;
+  background:#ffffff;
+  padding-left:20rpx;
+     .confirmDl{
+         position:relative;
+         padding:15rpx 0;
+         border-bottom:1px solid #eeeeee;
+         display:flex;
+         flex-direction:row;
+         justify-content:space-between;
+         align-items:center;
+         .confirmDt{
+           flex:3;
+           font-size: 32rpx;
+           color: #000000;
+           letter-spacing: 0;
+           text-align:left;
+         }
+           picker{
+             flex:8;
+           }
+         .confirmDd{
+            flex:8;
+            input{
+               font-size: 30rpx;
+               color: #888888;
+               letter-spacing: 0;
+               text-align:right;
+               max-height:50rpx;
+            }
+         }
+         .confirmTo{
+            flex:1;
+            text-align:center;
+            image{
+               width:16rpx;
+               height:26rpx;
+               position:relative;
+               top:5rpx;
+            }
+         }
+         .pNameSelect{
+            position:absolute;
+            bottom:62rpx;
+            right:70rpx;
+            width:300rpx;
+            box-shadow:0 2px 5px #ccc;
+            background:#ffffff;
+            z-index:1000;
+            line-height:40rpx;
+            font-size:24rpx;
+            padding:8rpx 0;
+            border-top:1px solid #eee;
+            .pNameOpt{
+                width:299rpx;
+                overflow:hidden;
+                text-overflow:ellipsis;
+                white-space:nowrap;
+                padding:0 8rpx;
+            }
+         }
+  }
+
+  .companyArea{
+     text-align:right;
+     input{
+         display:inline-block;
+         width:130rpx;
+     }
+  }
+  .btn-area{
+    width:100%;
+    position:absolute;
+    bottom:0;
+    left:0;
+    background:#eeeeee;
+    padding:50rpx 0;
+    .btnSub{
+        width:100%;
+        height:94rpx;
+        background:#128EFF;
+        border-radius:0;
+        text-align:center;
+        font-size:36rpx;
+        color:#FFFFFF;
+
+    }
+
+  }
+}
+.view{
+   background:#333333;
+   color:#ffffff;
+   width:270rpx;
+   height:270rpx;
+   position:fixed;
+   z-index:1000000;
+   left:50%;
+   top:50%;
+   border-radius:10rpx;
+   margin-top:-135rpx;
+   margin-left:-135rpx;
+   text-align:center;
+   display:flex;
+   flex-direction:column;
+   justify-content:space-between;
+   align-items:center;
+   .tipPic{
+       flex:1;
+       padding-top:36rpx;
+       image{
+         width:100rpx;
+         height:100rpx;
+       }
+   }
+   text{
+     flex:1;
+     padding:0 15rpx;
+   }
+}
+</style>
+<template>
+    <view class="body" bindtap="hideSearchList">
+       <view>
+           <view class="hasConfirm">
+              <view class="antsooLogo"><image src="../resources/img/materailImg.png"></image></view>
+              <text class="txt">您的个人信息还未认证，请先认证</text>
+           </view>
+       </view>
+       <view>
+           <view class="upload">
+             <text class="uploadDl">*个人名片</text>
+             <view class="uploadImg">
+                 <image src="{{upNameCard}}" bindtap="upLoadCard"></image>
+             </view>
+           </view>
+       </view>
+       <view class="confirmWraper" style="padding-bottom:144rpx;">
+     <form bindsubmit="formSubmit">
+         <view class="confirmDl">
+              <text class="confirmDt">*姓名</text>
+              <view class="confirmDd"><input name="pName" value="{{pName}}" /></view>
+              <view class="confirmTo"></view>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">*邮箱</text>
+              <view class="confirmDd"><input name="pEmail" value="{{pEmail}}" /></view>
+              <view class="confirmTo"></view>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">*名片职位</text>
+              <view class="confirmDd"><input name="cardPosition" value="{{cardPosition}}" /></view>
+              <view class="confirmTo"></view>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">*企业名称</text>
+              <view class="confirmDd"><input name="pCompanyName" value="{{pCompanyName}}" bindinput="filterMname" bindblur="blurEvent"/></view>
+              <view class="confirmTo"></view>
+              <view class="pNameSelect" wx:if="{{showSeachList}}">
+                  <scroll-view scroll-y style="max-height:250rpx;">
+                      <view>
+                            <view class="pNameOpt" wx:for="{{filteredName}}" wx:key="{{index}}" data-v="{{item.name}}" data-d="{{item.enterpriseId}}" data-i="{{index}}" bindtap="selectPname">{{item.name}}</view>
+                        </view>
+                  </scroll-view>
+              </view>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">*企业简称</text>
+              <view class="confirmDd"><input name="pCompanybrief" value="{{pCompanybrief}}" /></view>
+              <view class="confirmTo"></view>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">*企业类型</text>
+              <view class="confirmDd"><input name="companyType" value="{{companyType}}" disabled /></view>
+              <view class="confirmTo" bindtap="toChooseModel"><image src="../resources/icons/chevion.jpg" wx:if="{{!isChange}}" ></image></view>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">*经营模式</text>
+              <view class="confirmDd"><input name="runingWay" value="{{runingWay}}" disabled /></view>
+              <view class="confirmTo"><image src="../resources/icons/chevion.jpg" bindtap="listenerButton" wx:if="{{!isChange}}"></image></view>
+         </view>
+         <view class="confirmDl companyArea">
+              <text class="confirmDt">*企业地区</text>
+              <picker mode="region" bindchange="bindRegionChange" value="{{region}}" disabled="{{isChange}}">
+                <view class="picker">
+                  <view class="confirmDd"><input name="companyP" value="{{companyP}}" placeholder="省"  disabled="true" /><input name="companyC" value="{{companyC}}" placeholder="市" disabled="true" /><input name="companyA" value="{{companyA}}" placeholder="区"  disabled="true" /></view>
+                </view>
+              </picker>
+
+              <view class="confirmTo"><image src="../resources/icons/chevion.jpg" wx:if="{{!isChange}}"></image></view>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">*详细地址</text>
+              <view class="confirmDd"><input name="addressDetail" value="{{addressDetail}}" disabled="{{isChange}}"/></view>
+              <view class="confirmTo"></view>
+         </view>
+         <view class="btn-area" style="padding:50rpx 0 0;">
+            <button class="btnSub" formType="submit">提交</button>
+        </view>
+      </form>
+       </view>
+      </view>
+      <view wx:if="{{opa}}" class="view">
+         <view class="tipPic"><image src="../resources/icons/warning.png"></image></view>
+         <text>{{tip}}</text>
+      </view>
+      <action-sheet hidden="{{actionSheetHidden}}" bindchange="listenerActionSheet" >
+        <view wx:for="{{actionSheetItems}}" wx:key="{{index}}">
+            <action-sheet-item data-v="{{item}}" bindtap="selModel">{{item}}</action-sheet-item>
+        </view>
+        <action-sheet-cancel>取消</action-sheet-cancel>
+    </action-sheet>
+</template>
+
+<script>
+import wepy from 'wepy'
+import { api } from '../config'
+export default class personalInfo extends wepy.page {
+    config = {
+        'navigationBarTitleText': '个人认证',
+        'navigationBarTextStyle': '#FFFFFF',
+        'navigationBarBackgroundColor': '#0386FF'
+    }
+
+    components = {
+    }
+
+    data = {
+       isUpload:-1,
+       upNameCard:"../resources/img/camera.png",
+       opa:false,
+       tip:"",
+       loginUId:-1,
+       pName:'',
+       cardPosition:'',
+       pEmail:'',
+       pCompanyName:'',
+       pCompanybrief:'',
+       companyType:'',
+       runingWay:'',
+       companyP:'',
+       companyC:'',
+       companyA:'',
+       addressDetail:'',
+       showSeachList:false,
+       filteredName:[],
+       searchVal:"",
+       selectIndex:-1,
+       actionSheetHidden: true,
+       actionSheetItems: [],
+       region: [],
+       isOldUser:false,
+       isChange:true,
+       priseId:-1,
+       fromModels:false,
+       blurVal:""
+    }
+
+    methods = {
+    bindRegionChange(e){
+      this.region=e.detail.value;
+      this.companyP=e.detail.value[0];
+      this.companyC=e.detail.value[1];
+      this.companyA=e.detail.value[2];
+    },
+      toConfirmInfo(){
+          wx.navigateTo({
+              url: 'personInfoFill'
+          })
+      },
+      upLoadCard(){
+          this.isUpload=8;
+          var that=this;
+          wx.chooseImage({
+                count: 1, // 默认9
+                sizeType: ['original', 'compressed'],
+                sourceType: ['album', 'camera'],
+                success: function (res) {
+                    that.uploadImg = res.tempFilePaths[0];
+                    if(res.tempFilePaths.length>0){
+                    wx.saveFile({
+                          tempFilePath: res.tempFilePaths[0],
+                          success: function (res) {
+                              that.upNameCard = res.savedFilePath;
+                              that.$apply();
+                            }
+                        })
+                    }
+                    wx.getSavedFileList({
+                          success: function(res) {
+                            console.log(res)
+                            for(var i=0;i<res.fileList.length-1;i++){
+                                for(var j=0;j<res.fileList.length-1-i;j++){
+                                   if(res.fileList[j].createTime>res.fileList[j+1].createTime){
+                                         var tem=res.fileList[j];
+                                          res.fileList[j]=res.fileList[j+1];
+                                          res.fileList[j+1]=tem;
+                                   }
+                                }
+                            }
+                            if(res.fileList.length > 5){
+                                wx.removeSavedFile({
+                                  filePath: res.fileList[0].filePath,
+                                  complete: function(res) {
+                                    console.log(res)
+                                  }
+                                })
+                            }
+                              that.pName="";
+                              that.cardPosition="";
+                              that.pEmail="";
+                              that.pCompanyName="";
+                              that.companyC="";
+                              that.addressDetail="";
+                              that.upNameCard=res.fileList[res.fileList.length-1].filePath;
+                              wx.uploadFile({
+                                url: api.common.nameCard.url, //仅为示例，非真实的接口地址
+                                filePath: that.upNameCard,
+                                  name: 'nameCard',
+                                  header: {
+                                   'content-type': 'multipart/form-data'
+                                  },
+                                success: function(res){
+                                    var getCardInfo=JSON.parse(res.data).body;
+                                    that.pName=getCardInfo.formatted_name[0].item;
+                                    that.cardPosition=getCardInfo.title[0].item;
+                                    that.pEmail=getCardInfo.email[0].item;
+                                    that.pCompanyName=getCardInfo.organization[0].item.name;
+                                    that.companyC=getCardInfo.address[0].item.locality;
+                                    that.addressDetail=getCardInfo.address[0].item.street;
+                                    that.$apply();
+                                }
+                              })
+                            that.$apply();
+                          }
+                      })
+                    that.$apply();
+                }
+            })
+      },
+        filterMname(e){//筛选企业名称
+          if(e.detail.value.length==0){
+             this.showSeachList=false;
+          }else{
+             this.showSeachList=true;
+          }
+            let that=this;
+           wepy.request({
+               url:api.common.getCompanyNameData.url,
+               method:api.common.getCompanyNameData.method,
+               data:{
+                   'searchKey':e.detail.value
+               },
+               success:function(res){
+                  that.filteredName=res.data.body;
+                   that.$apply();
+               }
+           });
+        },
+        selectPname(e){
+          this.selectIndex=e.currentTarget.dataset.i;
+          this.pCompanyName=e.currentTarget.dataset.v;
+          this.showSeachList=false;
+          let that=this;
+         wepy.request({
+             url:api.common.getCompanyNameData.url,
+             method:api.common.getCompanyNameData.method,
+             data:{
+                 'searchKey':that.pCompanyName
+             },
+             success:function(res){
+                   console.log(res)
+                   that.priseId=res.data.body[0].enterpriseId;
+                   console.log(that.priseId)
+                   if(that.priseId>0){
+                         that.isChange=true;
+                   }else if(that.priseId<0||that.priseId==""){
+                       that.isChange=false;
+                   }
+                  that.addressDetail=res.data.body[0].address;
+                  that.runingWay=res.data.body[0].businessMode;
+                  that.companyType=res.data.body[0].type;
+                  that.companyP=res.data.body[0].provinceName;
+                  that.companyC=res.data.body[0].cityName;
+                  that.companyA=res.data.body[0].districtName;
+                  that.pCompanybrief=res.data.body[0].name.slice(0,5);
+                  that.blurVal=that.pCompanyName;
+                  that.$apply();
+             }
+         });
+        },
+        blurEvent(e){
+            this.blurVal=e.detail.value;
+        },
+        hideSearchList(){
+           //if(this.blurVal==""||this.blurVal==null) this.blurVal=this.pCompanyName;
+           console.log(this.blurVal)
+            this.showSeachList=false;
+            if(this.blurVal!=this.pCompanyName){
+               this.priseId=-1;
+               this.isChange=false;
+            }else{
+               this.priseId=2;
+               this.isChange=true;
+            }
+            /*if(this.priseId>0){
+                  this.isChange=false;
+            }else if(this.priseId<0){
+                this.isChange=true;
+            }*/
+            this.$apply();
+        },
+      listenerButton() {
+          this.actionSheetHidden=!this.actionSheetHidden
+      },
+      listenerActionSheet() {
+          this.actionSheetHidden=!this.actionSheetHidden
+      },
+      selModel(e){//选择经营模式
+          this.runingWay=e.currentTarget.dataset.v;
+          this.actionSheetHidden=!this.actionSheetHidden
+      },
+      toChooseModel(){//选择企业类型
+          wx.navigateTo({
+              url: 'companyMode'
+          });
+      },
+      formSubmit(e){
+          if(!this.loginUId){
+              wx.navigateTo({
+                  url: 'login?fromPage=personalInfoFill'
+              });
+              return;
+          }
+          if(this.upNameCard=="../resources/img/camera.png"||this.upNameCard==null){
+              this.warningTip({
+                  msg: '名片不能为空！'
+              });
+              return
+          }
+          if(e.detail.value.pName==""){
+              this.warningTip({
+                  msg: '姓名不能为空！'
+              });
+              return
+            }
+          if(e.detail.value.pEmail==""){
+              this.warningTip({
+                  msg: '邮箱不能为空！'
+              });
+              return
+            }
+          if(e.detail.value.cardPosition==""){
+              this.warningTip({
+                  msg: '职位不能为空！'
+              });
+              return
+            }
+          if(e.detail.value.pCompanyName==""){
+              this.warningTip({
+                  msg: '企业名称不能为空！'
+              });
+              return
+            }
+          if(e.detail.value.pCompanybrief==""){
+              this.warningTip({
+                  msg: '企业简称不能为空！'
+              });
+              return
+            }
+          if(e.detail.value.companyType==""){
+              this.warningTip({
+                  msg: '企业类型不能为空！'
+              });
+              return
+            }
+          if(e.detail.value.runingWay==""){
+              this.warningTip({
+                  msg: '经营模式不能为空！'
+              });
+              return
+            }
+          if(e.detail.value.companyC==""){
+              this.warningTip({
+                  msg: '请选择企业地区！'
+              });
+              return
+            }
+          if(e.detail.value.addressDetail==""){
+              this.warningTip({
+                  msg: '详细地址不能为空！'
+              });
+              return
+            }
+
+          var that=this;
+          var cardInfos=e.detail.value;
+          console.log(cardInfos)
+          wx.getSavedFileList({
+                success: function(res) {
+                  console.log(res)
+                  for(var i=0;i<res.fileList.length-1;i++){
+                      for(var j=0;j<res.fileList.length-1-i;j++){
+                         if(res.fileList[j].createTime>res.fileList[j+1].createTime){
+                               var tem=res.fileList[j];
+                                res.fileList[j]=res.fileList[j+1];
+                                res.fileList[j+1]=tem;
+                         }
+                      }
+                  }
+                  if(res.fileList.length > 5){
+                      wx.removeSavedFile({
+                        filePath: res.fileList[0].filePath,
+                        complete: function(res) {
+                          console.log(res)
+                        }
+                      })
+                  }
+                  that.upNameCard=res.fileList[res.fileList.length-1].filePath;
+                  that.$apply();
+                }
+            })
+            console.log(that.upNameCard)
+            console.log(this.isUpload)
+          if(this.isUpload==8){
+            wx.uploadFile({
+                url: api.common.confirmInfoData.url,
+                filePath: that.upNameCard,
+                name: 'nameCardPhoto',
+                header: {
+                 'content-type': 'multipart/form-data'
+                },
+                formData:{
+                    'userId':that.loginUId,
+                    'name':cardInfos.pName,
+                    'position':cardInfos.cardPosition,
+                    'email':cardInfos.pEmail,
+                    'companyName':cardInfos.pCompanyName,
+                    'companySimpleDesc':cardInfos.pCompanybrief,
+                    'opeIndustry':cardInfos.companyType,
+                    'businessMode':cardInfos.runingWay,
+                    'province':that.companyP,
+                    'city':that.companyC,
+                    'area':that.companyA,
+                    'address':cardInfos.addressDetail,
+                },
+                success:function(res){
+                    let msg=typeof res.data=="string"?JSON.parse(res.data):res.data;
+                   if(msg.isSuccess==1){
+                       wx.redirectTo({
+                           url:'personalInfo?state=confirm'
+                       });
+                   }else{
+                     that.warningTip({
+                         msg: msg.errorMsg
+                     });
+                     return
+                   }
+                }
+            })
+         }else{
+             wepy.request({
+                 url:api.common.confirmInfoData.url,
+                 method:'POST',
+                 header: {
+                   "Content-Type": "application/x-www-form-urlencoded"
+                 },
+                 data:{
+                     'userId':that.loginUId,
+                     'name':cardInfos.pName,
+                     'position':cardInfos.cardPosition,
+                     'email':cardInfos.pEmail,
+                     'companyName':cardInfos.pCompanyName,
+                     'companySimpleDesc':cardInfos.pCompanybrief,
+                     'opeIndustry':cardInfos.companyType,
+                     'businessMode':cardInfos.runingWay,
+                     'province':that.companyP,
+                     'city':that.companyC,
+                     'area':that.companyA,
+                     'address':cardInfos.addressDetail,
+                 },
+                 success:function(res){
+                     let msg=typeof res.data=="string"?JSON.parse(res.data):res.data;
+                    if(msg.isSuccess==1){
+                        wx.redirectTo({
+                            url:'personalInfo?state=confirm'
+                        });
+                    }else{
+                      that.warningTip({
+                          msg: msg.errorMsg
+                      });
+                      return
+                    }
+                 }
+             });
+         }
+      }
+
+    }
+
+    onShow() {
+        var pages = this.getCurrentPages();
+        var currPage = pages[pages.length - 1];//selectTypes
+        let selectedType=currPage.data.seleType;
+        let selectedArr="";
+         for(var key in selectedType){
+              selectedArr+=selectedType[key]+',';
+         }
+         this.companyType=selectedArr.substring(0,selectedArr.length-1)==""?this.companyType:selectedArr.substring(0,selectedArr.length-1);
+    }
+    onLoad(e) {
+        let aaa=e.saved;
+        const confirmInfos = wepy.getStorageSync("confirmInfos");
+        console.log(confirmInfos)
+        this.priseId=parseInt(e.enterpriceId);
+        if(this.priseId>0){
+            this.isChange=true;
+        }
+        this.upNameCard=(e.nameCardUrl=='null'||e.nameCardUrl==null)?'../resources/img/camera.png':e.nameCardUrl;
+        const antsooUserInfo = wepy.getStorageSync("antUserInfo");
+        this.loginUId=antsooUserInfo.userId;
+        const oldUser=antsooUserInfo.user;
+        if(oldUser){
+            this.isOldUser=true;
+        }
+       if(aaa=="true"){
+         this.pName=confirmInfos.name;
+         this.cardPosition=confirmInfos.position;
+         this.pEmail=confirmInfos.email;
+         this.pCompanyName=confirmInfos.companyName;
+         this.pCompanybrief=confirmInfos.companySimpleDesc;
+         this.companyType=confirmInfos.opeIndustry;
+         this.runingWay=confirmInfos.businessMode;
+         this.companyP=confirmInfos.province;
+         this.companyC=confirmInfos.city;
+         this.companyA=confirmInfos.area;
+         this.addressDetail=confirmInfos.address;
+        }else if(aaa=="false"){
+          this.fetchPersonalInfoData();
+        }
+        this.fetchmodelData();
+        this.$apply();
+        aaa="false";
+    }
+    warningTip(obj) {
+          this.opa=true;
+         this.tip=obj.msg;
+         this.$apply();
+         let that=this;
+          setTimeout(function(){
+            that.opa=false;
+            that.$apply();
+          },800)
+      }
+    fetchPersonalInfoData(){
+        var that=this;
+        wepy.request({
+            url:api.common.getPersonalInfoData.url,
+            method:api.common.getPersonalInfoData.method,
+            data:{
+                'userId':that.loginUId
+            },
+            success:function(res){
+               var getPersonalInfoDatas=res.data.body;
+                console.log(res)
+                if(getPersonalInfoDatas.enterpriseId>0){
+                    that.isChange=false;
+                }
+                var getPersonalInfoDatas=res.data.body;
+                that.pName=getPersonalInfoDatas.name;
+                that.cardPosition=getPersonalInfoDatas.position;
+                that.pEmail=getPersonalInfoDatas.email;
+                that.pCompanyName=getPersonalInfoDatas.companyName;
+                that.companyP=getPersonalInfoDatas.province;
+                that.companyC=getPersonalInfoDatas.city;
+                that.companyA=getPersonalInfoDatas.area;
+                that.companyType=getPersonalInfoDatas.businessMode;
+                that.runingWay=getPersonalInfoDatas.opeIndustry;
+                that.addressDetail=getPersonalInfoDatas.address;
+                that.pCompanybrief=getPersonalInfoDatas.companySimpleDesc;
+                that.upNameCard=getPersonalInfoDatas.nameCardUrl==null?'../resources/img/camera.png':getPersonalInfoDatas.nameCardUrl;
+                that.$apply();
+            }
+        });
+    }
+    fetchmodelData(){
+        var that=this;
+        wepy.request({
+            url:api.common.getmodelData.url,
+            method:api.common.getmodelData.method,
+            success:function(res){
+                var runningWay=res.data.body.businessModeList;
+                let modelArr=[];
+                for(var i=0;i<runningWay.length;i++){
+                     modelArr.push(runningWay[i].value)
+                }
+                that.actionSheetItems=modelArr;
+                that.$apply();
+            }
+        });
+    }
+    hideSearchList(){
+       if(this.blurVal==""||this.blurVal==null) this.blurVal=this.pCompanyName;
+       console.log(this.blurVal)
+        this.showSeachList=false;
+        if(this.blurVal!=this.pCompanyName){
+           this.priseId=-1
+        }else{
+           this.priseId=2
+        }
+        if(this.priseId>0){
+              this.isChange=false;
+        }else if(this.priseId<0){
+            this.isChange=true;
+        }
+        this.$apply();
+    }
+}
+</script>

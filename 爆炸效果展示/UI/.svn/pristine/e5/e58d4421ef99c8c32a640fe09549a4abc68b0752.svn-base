@@ -1,0 +1,77 @@
+@charset "UTF-8";
+.connectionUl {
+  /*padding:0 0 0 30rpx;*/ }
+  .connectionUl .connectionList {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 16rpx 0;
+    border-bottom: 1px solid #ECECEC; }
+    .connectionUl .connectionList .headImg {
+      margin-left: 30rpx;
+      flex: 1; }
+      .connectionUl .connectionList .headImg image {
+        width: 60rpx;
+        height: 60rpx;
+        border-radius: 50%; }
+    .connectionUl .connectionList .itemDl {
+      flex: 8; }
+      .connectionUl .connectionList .itemDl .connectionName {
+        font-size: 28rpx;
+        color: #333333;
+        letter-spacing: -0.15px;
+        line-height: 40rpx; }
+        .connectionUl .connectionList .itemDl .connectionName image {
+          width: 80rpx;
+          height: 28rpx;
+          position: relative;
+          top: 4rpx;
+          right: -16rpx; }
+      .connectionUl .connectionList .itemDl .connectionDuty {
+        font-size: 24rpx;
+        color: #333333;
+        letter-spacing: 0.17px;
+        height: 40rpx;
+        line-height: 40rpx; }
+      .connectionUl .connectionList .itemDl .dataServes {
+        font-size: 24rpx;
+        color: #666666;
+        letter-spacing: 0.17px;
+        line-height: 40rpx;
+        /*周边de人距离*/ }
+        .connectionUl .connectionList .itemDl .dataServes .distance-style {
+          display: inline-block;
+          float: right;
+          margin-right: 28rpx; }
+      .connectionUl .connectionList .itemDl .connectionCities {
+        letter-spacing: 0.17px;
+        font-size: 20rpx;
+        color: #999999; }
+
+.refresh-position {
+  height: 52rpx;
+  width: 136rpx;
+  position: fixed;
+  right: 30rpx;
+  bottom: 100rpx; }
+  .refresh-position image {
+    width: 100%;
+    height: 100%; }
+
+.tips {
+  font-size: 28rpx;
+  background: #ffffff;
+  height: 60rpx;
+  line-height: 60rpx; }
+  .tips .loadShow {
+    background: #ffffff;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: center;
+    justify-content: center; }
+    .tips .loadShow icon {
+      position: relative;
+      top: 17rpx;
+      right: 5rpx; }

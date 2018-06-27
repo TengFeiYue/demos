@@ -1,0 +1,90 @@
+
+	<view class="header">
+		<image class="header-bg" src="../resources/img/bg.png"/>
+		<view class="header-con">
+			<image class="header-bgimg" src="../resources/img/bg2.png"/>
+			<view class="header-con-center">
+				<view class="header-img">
+					<image  wx:if="{{comInfo.memberLogoUrl != ''}}" src="{{comInfo.memberLogoUrl}}"/>
+					<image  wx:else src="../resources/img/myImg.png"/>
+				</view>
+				<view class="header-info">
+					<view class="header-info-name">
+						<text>{{comInfo.memberName}}</text>
+						<image src="../resources/icons/confirm.png"/>
+					</view>
+					<view class="header-info-work">{{enterInfo.businessMode}}</view>
+					<view class="header-info-company">{{comInfo.enterpriseName}}</view>
+				</view>
+				<view class="header-title">
+					<scroll-view scroll-x="false" style="">
+						<button size="mini" wx:if="{{labels.length != 0}}" wx:for="{{labels}}" wx:key="{{index}}">{{item}}</button>
+						<button size="mini" bindtap="showokk">+</button>
+					</scroll-view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="main">
+		<view class="main-list">
+			<view class="main-title pad15">
+				<image src="../resources/icons/parallelogram.png"/>
+				<text>联系方式</text>
+			</view>
+			<view class="main-detail pad15">
+				<text class="title">移动电话</text>
+				<text class="con">{{comInfo.phoneNo}}</text>
+			</view>
+			<view class="main-detail pad15">
+				<text class="title">电子邮箱</text>
+				<text class="con">{{comInfo.email}}</text>
+			</view>
+			<view class="main-title pad15">
+				<image src="../resources/icons/parallelogram.png"/>
+				<text>企业概况</text>
+			</view>
+			<view class="main-company pad15">
+				<text>{{comInfo.enterpriseName}}</text>
+			</view>
+			<view class="main-detail-box pad15">
+				<view class="main-detail"  wx:if="{{enterInfo.type}}">
+					<text class="title">产业链</text>
+					<text class="con">{{enterInfo.type}}</text>
+				</view>
+				<view class="main-detail"  wx:if="{{enterInfo.baseFirstCategory}}">
+					<text class="title">分类</text>
+					<text class="con">{{enterInfo.baseFirstCategory}}</text>
+				</view>
+			</view>
+			<view class="main-detail-box pad15" wx:if="{{enterInfo.businessMode}}">
+				<view class="main-detail">
+					<text class="title">经营模式</text>
+					<text class="con">{{enterInfo.businessMode}}</text>
+				</view>
+				<view class="main-detail" wx:if="{{enterInfo.serviceArea}}">
+					<text class="title">服务区域</text>
+					<text class="con">{{enterInfo.serviceArea}}</text>
+				</view>
+			</view>
+			<view class="main-detail-box pad15" wx:if="{{enterInfo.mainProduct}}">
+				<text class="main-detail-box-title">主营行业</text>
+				<text class="main-detail-box-con">{{enterInfo.mainProduct}}</text>
+			</view>
+			<view class="main-detail-box pad15" wx:if="{{enterInfo.profile}}">
+				<text class="main-detail-box-title">主营系列</text>
+				<text class="main-detail-box-con">{{enterInfo.profile}}</text>
+			</view>
+			<view class="main-adress pad15">
+				<text>{{enterInfo.address}}</text>
+				<image src="../resources/icons/scannum.png"/>
+				<text class="scan-num">{{comInfo.browseQty}}</text>
+			</view>
+			<view class="main-title pad15">
+				<image src="../resources/icons/parallelogram.png"/>
+				<text>我的产品</text>
+				<text class="edit" bindtap="showokk">编辑</text>
+			</view>
+			<view class="edit-con pad15">{{comInfo.agencyProduct}}</view>
+		</view>
+		<view class="foot" bindtap="previewImage">我的小程序码</view>
+	</view>

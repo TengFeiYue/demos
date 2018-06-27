@@ -1,0 +1,217 @@
+<style type="scss">
+page,
+.body {
+    height: 100%;
+    font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+    background-color: #eeeeee;
+    font-size:14px;
+    overflow: hidden;
+    overflow-y:auto;
+    display: flex;
+    flex-direction: column;
+}
+.hasConfirm{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+   background: #FFFFFF;
+   padding:20rpx 30rpx;
+   border-top:1px solid #eeeeee;
+   .antsooLogo{
+      flex:1;
+      padding-right:30rpx;
+      image{
+         width:92rpx;
+         height:102rpx;
+      }
+   }
+   .txt{
+      flex:8;
+      font-size: 28rpx;
+      color: #000000;
+   }
+}
+.upload{
+   background: #FFFFFF;
+   padding:30rpx;
+   margin:30rpx 0;
+   display:flex;
+   flex-direction:row;
+   justify-content:space-between;
+   align-items:center;
+   .uploadDl{
+     flex:2;
+      font-size: 32rpx;
+      color: #000000;
+      letter-spacing: 0;
+   }
+   .uploadImg{
+      flex:8;
+      padding-left:40rpx;
+      image{
+         width:116rpx;
+         height:116rpx;
+      }
+   }
+}
+.confirmWraper{
+  position:relative;
+  background:#ffffff;
+  padding-left:20rpx;
+  .confirmDl{
+      padding:15rpx 0;
+      border-bottom:1px solid #eeeeee;
+      display:flex;
+      flex-direction:row;
+      justify-content:space-between;
+      align-items:center;
+      .confirmDt{
+        flex:2;
+        font-size: 32rpx;
+        color: #000000;
+        letter-spacing: 0;
+      }
+      .confirmDd{
+         flex:8;
+         input{
+            font-size: 30rpx;
+            color: #888888;
+            letter-spacing: 0;
+            text-align:right;
+         }
+      }
+      .confirmTo{
+         flex:1;
+         text-align:center;
+         image{
+            width:16rpx;
+            height:26rpx;
+            position:relative;
+            top:5rpx;
+         }
+      }
+  }
+  .btn-area{
+    width:100%;
+    position:absolute;
+    bottom:0;
+    left:0;
+    background:#eeeeee;
+    padding:50rpx 0;
+    button{
+      width:670rpx;
+      height:94rpx;
+      background: #128EFF;
+      border-radius: 10rpx;
+      text-align:center;
+      font-size: 36rpx;
+      color: #FFFFFF;
+    }
+
+  }
+}
+
+
+</style>
+<template>
+    <view class="body">
+       <view>
+           <view class="hasConfirm">
+              <view class="antsooLogo"><image src="../resources/img/materailImg.png"></image></view>
+              <text class="txt">您的个人信息存在错误，请修改后提交</text>
+           </view>
+       </view>
+       <view>
+           <view class="upload">
+             <text class="uploadDl">个人名片</text>
+             <view class="uploadImg"><image src="../resources/img/camera.png"></image></view>
+           </view>
+       </view>
+       <view class="confirmWraper" style="padding-bottom:194rpx;">
+       <form bindsubmit="formSubmit">
+         <view class="confirmDl">
+              <text class="confirmDt">姓名</text>
+              <view class="confirmDd"><input /></view>
+              <view class="confirmTo"></view>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">名片职位</text>
+              <view class="confirmDd"><input /></view>
+              <view class="confirmTo"></view>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">邮箱</text>
+              <view class="confirmDd"><input /></view>
+              <view class="confirmTo"></view>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">企业名称</text>
+              <view class="confirmDd"><input /></view>
+              <view class="confirmTo"></view>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">企业简称</text>
+              <view class="confirmDd"><input /></view>
+              <view class="confirmTo"></view>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">企业类型</text>
+              <view class="confirmDd"><input /></view>
+              <view class="confirmTo"><image src="../resources/icons/chevion.jpg"></image></view>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">经营模式</text>
+              <view class="confirmDd"><input /></view>
+              <view class="confirmTo"><image src="../resources/icons/chevion.jpg"></image></view>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">企业地区</text>
+              <view class="confirmDd"><input /></view>
+              <view class="confirmTo"><image src="../resources/icons/chevion.jpg"></image></view>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">详细地址</text>
+              <view class="confirmDd"><input /></view>
+              <view class="confirmTo"></view>
+         </view>
+         <view class="btn-area" style="padding:50rpx 0;">
+            <button formType="submit">提交</button>
+        </view>
+       </form>
+       </view>
+
+      </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import { api } from '../config'
+export default class failToConfirm extends wepy.page {
+    config = {
+        'navigationBarTitleText': '个人认证',
+        'navigationBarTextStyle': '#FFFFFF',
+        'navigationBarBackgroundColor': '#0386FF'
+    }
+
+    components = {
+    }
+
+    data = {
+
+    }
+
+    methods = {
+
+
+    }
+
+    onShow() {
+
+    }
+    onLoad() {
+
+    }
+
+}
+</script>

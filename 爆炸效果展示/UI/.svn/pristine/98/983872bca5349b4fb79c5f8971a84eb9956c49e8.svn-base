@@ -1,0 +1,554 @@
+*{margin:0;padding:0}
+a{text-decoration: none;}
+ul{list-style: none;}
+.p-0{padding:0}
+.m-0{margin:0}
+.p-t-0{padding-top:0}
+.p-b-0{padding-bottom:0}
+.p-l-0{padding-left:0}
+.p-r-0{padding-right:0}
+.m-t-0{margin-top:0}
+.m-b-0{margin-bottom:0}
+.b-w{background:#fff;}
+.c-w{color:#fff;}
+
+
+
+body{
+	background:#f2f2f2;
+	padding-bottom:7vh;
+}
+/*参会企业*/
+.joinedHeader{	
+	position:relative;
+	background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center;
+	
+}
+.joinedHeader .headUp{
+	/*height: 85%;*/
+    /*width: 100%;*/
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.joinedHeader .back span{
+	vertical-align: middle;
+	font-size:1.6rem;
+	margin-right:2vw;
+}
+.joinedHeader .back span img{
+	width:14%;
+}
+.shareCol{
+	padding-right: 2rem;
+    position: absolute;
+    top: 2vh;
+    right: 26vw;
+    z-index: 1000;
+}
+.shareCol span,.shareCol a{
+	vertical-align: middle;
+	margin-left:-1vw;
+	position:relative;
+}
+.shareCol .collected,.shareCol .collectSuc,.shareCol .collectFail{
+	position: absolute;
+    width: 28vw;
+    bottom: -5vh;
+    left: -45px;
+    letter-spacing: 1vw;
+}
+.shareCol img{
+	width: 18vw;
+}
+
+.reported{
+	width: 27vw;
+	position:absolute;
+	right:0;
+	bottom:0;
+	background:#165d81;
+	line-height:5vh;
+	border-radius: 20px 0 0 0;
+}
+.shanqiTitle{
+	margin-bottom:1.5rem;
+	position:relative;
+}
+.shanqiTitle p{
+    padding-left: 8vw;
+    background: url(../img/clock.png) no-repeat left center;
+    background-size: 5%;
+    font-size: 1.5rem;
+    color: #999;
+}
+
+.shanqiTitle .share{
+	position: absolute;
+    top: 6vh;
+    right: 1vw;
+    text-align: right;
+    padding-top: 1vh;
+    padding-right: 4vw;
+}
+.shanqiTitle .share .shareImg{
+	width:2.2rem;
+}
+
+.activityBg{
+	margin-bottom:1.5rem;
+}
+.shanqiTitle h4{
+	font-size: 1.5rem;
+    color: #333;
+    font-weight: bold;
+}
+.actItems{
+	padding:1rem;
+	padding-bottom:0;
+}
+.actItems ol{
+	padding-left: 5vw;
+    font-size: 1.3rem;
+    line-height:4vh;
+}
+.pading{
+	padding: .5rem;
+    border-bottom: 2px solid #d2d2d2;
+}
+.actBg{
+	color: #239fdb;
+    padding-left: 3rem;
+    background: url(../img/activity_16.png) no-repeat left center;
+    background-size: contain;
+    font-size: 1.8rem;
+    line-height: 1.8rem;
+}
+.actDetail{
+	padding-top:1vh;
+}
+.actDetail img{
+	width:64%;
+}
+/*.itemTitle{
+	display:flex;
+	justify-content: space-around;
+	line-height: 7vh;
+	font-size:1.6rem;
+} 
+.itemTitle li{
+	flex:1;
+	border-bottom: 2px solid #fff;
+}*/
+
+.itemTitle{
+	width:100%;
+	line-height: 7vh;
+	font-size:1.6rem;
+}
+.itemTitle li{
+	width:30%;
+	display:inline-block;
+	border-bottom: 2px solid #fff;
+}
+.itemBorder{
+	border-bottom:2px solid #d2d2d2;
+}
+.fixedTab{
+	position:fixed;
+	left:0;
+	top:0;
+	width:100%;
+	z-index: 1000;
+}
+.fixPadding{
+	padding-top:8vh;
+}
+.itemTitle .target{
+	color: #239fdb;
+    border-bottom: 2px solid #239fdb;
+}
+
+
+.itemTabs .cons{
+	display:none;
+}
+.cons ul li{
+	border-bottom:1px solid #eee;
+}
+.cons ul li:nth-last-child{
+	border-bottom:1px solid #fff;
+}
+.cons h3{
+	font-size: 1.7rem;
+    font-weight: bold;
+    letter-spacing: .5vw;
+}
+.product span{
+	display:inline-block;
+	vertical-align: middle;
+	font-size:1.5rem;
+	color:#666;
+	margin-right:5vw;
+}
+.product span:nth-child(2){
+	color: #239fdb;
+    border: 1px solid #239fdb;
+    line-height: 3vh;
+    padding: 0 4vw;
+    border-radius: 15px;
+}
+.address{
+	font-size:1.5rem;
+	letter-spacing: .5vw;
+	color:#999;
+}
+.entryFooter {
+	width:100%;
+    background: #31b3f6;
+    background-size: cover;
+    color: #fff;
+    position: fixed;
+    bottom:0;
+    left:0;
+}
+.entryFooter a{
+	text-decoration: none;
+}
+.entryFooter .footerWraper{
+	width:100%;
+	position:relative;
+}
+.entryFooter .pull-left {
+	text-align: center;
+	background: url(../img/footerBg_01.png) no-repeat left center;
+	background-size: cover;
+	width: 63vw;
+	position: absolute;
+	top: 0;
+	left: -4vw;
+}
+.entryFooter .h4{
+	line-height:7vh;
+}
+.entryFooter .timeLeft {
+    font-size: 1.3rem;
+    background: url(../img/timeLeft.png) no-repeat 5vw 2vh;
+    background-size: 8%;
+    width: 43vw;
+    line-height:3.6vh;
+    text-align: center;
+    padding-right:0;
+}
+/*走进企业*/
+.actProcess{
+	padding: 2vh 0;
+	border-bottom:1px solid #eee;
+}
+.actProcess img{
+	display: inline-block; 
+}
+.actProcess .list img{
+	height: 6rem;
+    width: 5rem;
+}
+.enterpriseName{
+	color:#333;
+}
+/*跟踪报告*/
+.actProcess .preTitle{
+	padding-top:2vh;
+}
+.preTitle h4{
+	width: 98%;
+    color: #4a4a4a;
+    font-size: 1.6rem;
+    letter-spacing: .2vw;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.reportTime span{
+	display:inline-block;
+	vertical-align: middle;
+	margin-right:2vw;
+	color:#999;
+}
+/*活动背景*/
+
+.actBgHeader{
+	background:#239fdb;
+	padding: 1.5vh 0;
+}
+.actBgHeader .back span{
+	vertical-align: middle;
+	font-size:1.6rem;
+	margin-right:2vw;
+}
+.actBgHeader .back span img{
+	width:14%;
+}
+
+.actSchedule{
+	color: #239fdb;
+    padding-left: 3rem;
+    background: url(../img/actArrange.png) no-repeat left center;
+    background-size: contain;
+    font-size: 1.8rem;
+    line-height: 1.8rem;
+}
+.preSchedule{
+	padding-top:3vh;
+}
+.preSchedule img{
+	width:100%;
+}
+.remark{
+	color:#999;
+	padding:1rem;
+}
+.ScheduleDiv{
+	margin-bottom:2vh;
+}
+.actFees{
+	color: #239fdb;
+    padding-left: 3rem;
+    background: url(../img/wallet_03.png) no-repeat left center;
+    background-size: contain;
+    font-size: 1.8rem;
+    line-height: 1.8rem;
+}
+.holding{
+	line-height:7vh;
+}
+.ing{
+	display:none;
+	line-height: 7vh;
+}
+
+/*个人信息分享*/
+.adjust{
+	padding-bottom:7vh;
+}
+.personBanner{
+	
+    padding: 2vh 0;
+    background: url(../img/bg.png) no-repeat center;
+    background-size: cover;
+    text-align: center;
+    color: #fff;
+}
+.personBanner .headImg img{
+	width:20vw;
+	display:inline-block;
+}
+.personBanner h3{
+	font-size:2rem;
+	margin-top:10px;
+}
+.personBanner .companyName{
+	font-size:1.6rem;
+}
+.personBanner .joinedCompany{
+	font-size: 1.5rem;
+    border: 1px solid #fff;
+    padding: 1vw 3vw;
+    border-radius: 17px;
+}
+.mainProduct,.hisCompany,.comInfo,.icbcInfo{
+	border-bottom: 1px solid #d6d6d6;
+    padding: 1vh 0;
+    background: #fff;
+}
+.mainProduct .pull-left{
+	padding-right: 0;
+    padding-left: 16vw;
+    background: url(../img/mainProduct.png) no-repeat 5vw center;
+    background-size: 15%;
+}
+.mainProduct h3,.hisCompany h3,.comInfo h3,.icbcInfo h3{
+	margin-top: 13px;
+    font-size: 1.6rem;
+    color:#333;
+}
+.productDet{
+	background:#fff;
+	margin-bottom:1rem;
+}
+.productDet h3{
+	font-size: 1.6rem;
+    padding-left: 1.5rem;
+}
+.material{
+	border: 1px solid #239fdb;
+    color: #239fdb;
+    text-align: center;
+    border-radius: 12rem;
+    padding: .3vh 3vw;
+}
+.unitPrice{
+	    color:#999;
+}
+
+.hisCompany .pull-left{
+	padding-right: 0;
+    padding-left: 16vw;
+    background: url(../img/building.png) no-repeat 5vw center;
+    background-size: 15%;
+}
+.companyPrefile{
+  font-size:1.5rem;
+  padding-bottom:2vh;
+}
+.companyPrefile h3{
+	margin-top: 2vh;
+    font-size: 1.3rem;
+    padding-left: 1rem;
+}
+.companyPrefile .runList{
+	font-size: 1.2rem;
+    padding-bottom: 1rem;
+}
+.companyPrefile .infoData{
+	color: #999;
+    width: 7rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.CompanyAddress{
+	line-height: 4vh;
+    background: #f2f2f2;
+    color: #999;
+    margin-bottom: 0;
+    font-size: 1.6rem;
+    padding: 1.5rem;
+    padding-left: 1rem;
+}
+.infoFooter{
+	background: #239fdb;
+    color: #fff;
+    font-size: 2rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+.tel{
+	line-height: 9vh;
+    display: inline-block;
+    padding-left: 7vw;
+    background: url(../img/tel.png) no-repeat left center;
+    background-size: 1.8rem;
+    color: #fff;
+    font-size: 1.5rem;
+}
+.downLoad{
+	position:fixed;
+	bottom:0;
+	left:0;	
+	z-index:1000;
+}
+.downLoad .downNow{
+	position:relative;
+}
+.downLoad .downNow .downLink{
+	position: absolute;
+    bottom: 2vh;
+    right: -37vw;
+}
+.downLoad .downNow .shutDown{
+	text-align: center;
+	position:absolute;
+	top:0;
+	right:0;
+}
+/*企业信息*/
+.companyBanner{
+	height: auto;
+    padding: 2vh 0;
+    background: url(../img/bg.png) no-repeat center;
+    background-size: cover;   
+    color: #fff;
+}
+.companyBanner h3 {
+    font-size: 1.8rem;
+    margin-bottom: 3vh;
+}
+.companyBanner .materialType{
+	padding-left:8vw;
+}
+.materialType span {
+    border: 1px solid #fff;
+    padding: 1px 3vw;
+    border-radius: 12rem;
+    margin-right:1rem;
+}
+.companyBanner .col-xs-3{
+	color:#d6ecf7;
+}
+.ComAdd{
+	background:#fff;
+}
+.icbcInfo{
+	margin:2vh 0;
+}
+.comInfo .pull-left{
+	padding-right: 0;
+    padding-left: 16vw;
+    background: url(../img/neck.png) no-repeat 5vw center;
+    background-size: 18%;
+}
+.icbcInfo .pull-left{
+	padding-right: 0;
+    padding-left: 16vw;
+    background: url(../img/icbc.png) no-repeat 5vw center;
+    background-size: 18%;
+}
+.distance{
+	padding-top:2vh;
+}
+.mainPros{
+	padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+/*邀请函*/
+.conWraper{
+	padding:4rem;
+	
+}
+.conWraper h1{
+	margin-top:0;
+	font-size:2.6rem;
+}
+.registCondition{
+	padding: 1vh 0;
+    font-size: 1.2rem;
+    line-height: 16px;
+}
+.registCondition p{
+	margin-bottom:.5vh;
+}
+.forms form input.form-control{
+	outline: none;
+    box-shadow: none;
+    border: 1px solid #ccc;
+    border-radius:1rem;
+}
+.forms .btn{
+	
+	width: 100%;
+    border-radius: 1rem;
+    background: #f44949;
+    border: 1px solid #f44949;
+    outline: none;
+    color: #fff;
+}
+.conWraper .antsooLogo{
+	margin-top:3vh;
+}
+
+

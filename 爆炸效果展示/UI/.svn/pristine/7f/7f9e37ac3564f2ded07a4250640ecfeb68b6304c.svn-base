@@ -1,0 +1,58 @@
+page,
+.body {
+  height: 100%;
+  font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+  background-color: #eeeeee;
+  font-size: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-item: center;
+  justify-content: center; }
+
+.changeCon {
+  flex: 10;
+  width: 204rpx;
+  height: 256rpx;
+  background: #FFFFFF;
+  border-radius: 8rpx; }
+  .changeCon .changeContent {
+    display: inline-block;
+    padding: 16rpx; }
+    .changeCon .changeContent .h3 {
+      font-size: 36rpx;
+      color: #333333;
+      letter-spacing: -0.43px; }
+    .changeCon .changeContent .duty {
+      border-bottom: 1px solid #eeeeee; }
+    .changeCon .changeContent .changeConDl {
+      padding: 11rpx 0; }
+      .changeCon .changeContent .changeConDl text {
+        font-size: 32rpx;
+        color: #333333;
+        letter-spacing: -0.38px; }
+      .changeCon .changeContent .changeConDl image {
+        width: 140rpx;
+        height: 80rpx; }
+  .changeCon .opButtons {
+    display: flex;
+    flex-direction: row;
+    align-item: center;
+    justify-content: space-between;
+    font-size: 18rpx;
+    color: #FFFFFF;
+    letter-spacing: -0.19px; }
+    .changeCon .opButtons .cancelBtn {
+      flex: 1;
+      display: inline-block;
+      width: 145rpx;
+      height: 48rpx;
+      background: #CCCCCC;
+      border-radius: 8rpx; }
+    .changeCon .opButtons .subBtn {
+      flex: 1;
+      display: inline-block;
+      width: 145rpx;
+      height: 48rpx;
+      background: #0092FF;
+      border-radius: 8rpx; }

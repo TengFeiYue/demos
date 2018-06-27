@@ -1,0 +1,62 @@
+
+	<scroll-view scroll-top="{{scrolltop}}" scroll-y="true" style="height:{{scrollWrapHeight}}px" bindscrolltolower="scrollLoading"  wx:if="{{person.length!=0}}">
+		<view wx:for="{{person}}" wx:key="{{index}}">
+			<!-- 人物卡片 -->
+			<block wx:if="{{item.member != null}}">
+				<navigator hover-class="none" url="connectionDetail?memberId={{item.member.id}}&userId={{loginUId}}">
+					<view class="collect-card">
+						<text class="card-name card-block">{{item.member.memberName}}</text>
+						<image class="card-block" wx:if="{{item.member.bestFlag == 0}}" src=""/>
+						<image class="card-block" wx:if="{{item.member.bestFlag == 1}}" src="../resources/icons/verify.png"/>
+		  				<image class="card-block" wx:if="{{item.member.bestFlag == 2}}" src="../resources/icons/noverify.png"/>
+		  				<image class="card-block" wx:if="{{item.member.bestFlag == 3}}" src="../resources/icons/confirm.png"/>
+		  				<image class="card-block" wx:if="{{item.member.bestFlag == 4}}" src="../resources/icons/noconfirm.png"/>
+						<text class="card-date">{{item.createTimeStr}}</text>
+					</view>
+					<view class="card-identity">{{item.member.title}}-{{item.member.enterpriseName}}</view>
+					<view style="width: 100%;height: 20rpx;background-color: #F2F2F2;"/>
+				</navigator>
+			</block>
+			<!-- 公司卡片 -->
+			<block wx:if="{{item.enterprise != null}}">
+				<view data-id="{{item.enterprise.id}}" bindtap="toCompanyDetail">
+					<view class="collect-card">
+						<text class="card-name card-block">{{item.enterprise.name}}</text>
+						<text class="card-date">{{item.createTimeStr}}</text>
+					</view>
+					<view class="card-company">
+						<view class="company-chain">
+							<text class="chain-name">产业链</text>
+							<text class="chain-content">{{item.enterprise.type}}</text>
+						</view>
+						<view class="company-chain">
+							<text class="chain-name">主营行业</text>
+							<text class="chain-content">{{item.enterprise.mainLines}}</text>
+						</view>
+						<view class="company-chain">
+							<text class="chain-name">经营模式</text>
+							<text class="chain-content">{{item.enterprise.businessMode}}</text>
+						</view>
+					</view>
+					<view class="company-address">企业地址：{{item.enterprise.cityName}}{{item.enterprise.address}}</view>
+					<view style="width: 100%;height: 20rpx;background-color: #F2F2F2;"/>
+				</view>
+			</block>
+		</view>
+		<view class="tips">
+			<view wx:if="{{loadmore}}" class="loadShow">
+				<icon type="waiting" size="16"/><text>玩命加载中...</text>
+			</view>
+			<view wx:else style="text-align:center;"><text>查看更多内容，请前往俺搜APP</text></view>
+		</view>
+	</scroll-view>
+	<view  wx:else>
+		
+	<view>
+		<view class="none-msg">您还没有任何记录哦~</view>
+		<image class="mascot-img" src="../resources/img/mascot.png"/>
+		<view class="goCompany" bindtap="$dataNone$goFindCompany">前往找企业</view>
+		<view class="goCompany" style="margin-top: 30rpx" bindtap="$dataNone$goFindPerson">前往找人脉</view>
+	</view>
+
+	</view>

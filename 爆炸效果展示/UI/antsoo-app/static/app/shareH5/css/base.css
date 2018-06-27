@@ -1,0 +1,81 @@
+* {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	font-size: 12px;
+}
+
+a {
+	color: #999;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #999;
+}
+
+body {
+	background-color: #f2f2f2;
+}
+
+.mag-btm {
+	margin-bottom: .2rem;
+}
+
+.pad-l-r {
+	padding: 0 .34rem;
+	box-sizing: border-box;
+}
+
+.antsooLogo {
+	background: #ececec;
+	padding: .3rem 15px;
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	box-sizing: border-box;
+}
+.antsooLogo span{
+    display: block;
+    width: 50%;
+}
+.antsooLogo img {
+	height: .6rem;
+}
+
+.antsooLogo .pull-right {
+	display: inline-block;
+	background: #fff;
+	border: 1px solid #239fdb;
+	color: #239fdb;
+	line-height: .6rem;
+	width: 30%;
+	border-radius: 4px;
+	text-align: center;
+}
+
+.pull-left {
+	float: left;
+}
+
+.pull-right {
+	float: right;
+}
+
+/*.antsooLogo .open-antsoo {
+    width: 90%;
+    height: .6rem;
+    background: #d0d0ff;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 0;
+    left: 0;
+    margin: auto;
+    line-height: .6rem;
+    border-radius: .5rem;
+    text-align: center;
+}
+.antsooLogo .open-antsoo a{	
+	color: #0092ff;
+	font-size: .24rem;
+}*/

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <title>关于俺搜</title>
+    <script src="../js/vue.js"></script>
+    <script src="../dev.js"></script>
+</head>
+<style type="text/css">
+	p{
+		margin: 1rem 0;
+	}
+	h4{
+		margin: .5rem 0;
+	}
+</style>
+<body class="about-body">
+<div class="about-us about">
+    <div class="con">
+        <div class="info">
+            <div class="pic">
+                <img src="img/antsooHelper.png" alt="" width="60" height="60">
+            </div>
+            <div class="text">
+                <p>俺搜</p>
+                <p>标准版 {{version}}</p>
+            </div>
+        </div>
+        <div class="desc" >
+            <p>“俺搜”是一款针对高分子塑化领域，集客户、产品、塑价查找，老板、采购、销售、工程师人脉对接的商务拓展利器。</p>
+            <h4>找客户：</h4>
+            <p>10万+制品企业认证入驻，LBS定位，精准关联下游客户</p>
+            <h4>找供应商：</h4>
+            <p>5万+材料企业认证入驻，LBS定位，精准查找上游供应商</p>
+            <h4>找人脉：</h4>
+            <p>50万+产业人脉聚合，云端大数据库高效筛选，精确匹配行业人脉</p>
+			<h4>找塑价：</h4>
+			<p>12+材料品类，100+生产厂家，1000+重点牌号，实时掌控价格走势</p>
+        </div>
+    </div>
+    <div class="function" style="display:none">
+        <ul>
+            <li>
+                <a href="javascript:void(0)">去评分<span>&gt;</span></a>
+            </li>
+            <li>
+                <a href="javascript:void(0)">www.antsoo.com <span>&gt;</span></a>
+            </li>
+        </ul>
+    </div>
+</div>
+<script>
+    new Vue({
+        el:".about",
+        data:{
+            version:''
+        },
+        mounted:function () {
+            var _this=this;
+            _this.$nextTick(function () {
+                _this.version=getQueryString('version');
+            })
+        }
+    })
+</script>
+</body>
+</html>

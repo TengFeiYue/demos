@@ -1,0 +1,327 @@
+.bgColor {
+  background-color: #fff;
+}
+.con {
+  width: 100%;
+  background-color: #f2f2f2;
+  position: relative;
+}
+.con .layer {
+  width: 248rpx;
+  height: 140rpx;
+  background: #fff;
+  box-shadow: 3rpx 5rpx 20rpx rgba(0, 0, 0, 0.3);
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+  position: absolute;
+  right: 30rpx;
+  top: 100rpx;
+}
+.con .layer .jiao {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: -20rpx;
+  height: 0px;
+  width: 0px;
+  border-left: 20rpx solid transparent;
+  border-right: 20rpx solid transparent;
+  border-bottom: 20rpx solid #fff;
+}
+.con .layer .layer-list {
+  height: 60rpx;
+  width: 100%;
+}
+.con .layer .layer-list .layer-list-icons {
+  margin-top: 15rpx;
+  height: 30rpx;
+  width: 30rpx;
+  float: left;
+}
+.con .layer .layer-list .layer-list-icons image {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.con .layer .layer-list .layer-list-text {
+  height: 100%;
+  width: 80%;
+  line-height: 60rpx;
+  float: right;
+  font-size: 24rpx;
+  color: #666;
+  border-bottom: 2rpx solid #ececec;
+  text-align: center;
+}
+.con .layer .layer-list:nth-last-of-type(1) .layer-list-text {
+  border-bottom: none;
+}
+.con .list {
+  width: 100%;
+  height: 90rpx;
+  line-height: 90rpx;
+  padding-left: 30rpx;
+  box-sizing: border-box;
+}
+.con .list-bottom:nth-last-of-type(7) {
+  margin-bottom: 20rpx;
+}
+.con .list-bottom:nth-last-of-type(7) .detail {
+  border-bottom: none;
+}
+.con .list-bottom:nth-last-of-type(1) .detail {
+  border-bottom: none;
+}
+.con .con-status {
+  padding-right: 30rpx;
+  box-sizing: border-box;
+  border-bottom: 2rpx solid #0092ff;
+}
+.con .con-status text {
+  float: left;
+  font-size: 28rpx;
+  color: #4a4a4a;
+}
+.con .con-status image {
+  margin-top: 17rpx;
+  width: 156rpx;
+  height: 56rpx;
+  float: right;
+}
+.con .detail {
+  width: 100%;
+  height: 100%;
+  border-bottom: 2rpx solid #ececec;
+  padding-right: 30rpx;
+  box-sizing: border-box;
+}
+.con .detail .list-icons {
+  margin: 21rpx 20rpx 0 0;
+  width: 48rpx;
+  height: 48rpx;
+  float: left;
+}
+.con .detail .list-icons image {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.con .detail .list-title {
+  width: 142rpx;
+  height: 100%;
+  float: left;
+  font-size: 28rpx;
+  color: #4a4a4a;
+}
+.con .detail .list-text {
+  width: 65%;
+  height: 100%;
+  float: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 24rpx;
+  color: #999;
+  text-align: right;
+}
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.changeInfoLayer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  opacity: .6;
+  z-index: 100;
+}
+.changeInfoLayerCon {
+  position: fixed;
+  top: 130rpx;
+  right: 30rpx;
+  width: 252rpx;
+  background: #ffffff;
+  border-radius: 4px;
+  font-size: 24rpx;
+  color: #999999;
+  letter-spacing: 0;
+  padding: 12rpx;
+  z-index: 1000;
+}
+.changeInfoLayerCon image {
+  width: 30rpx;
+  height: 20rpx;
+  position: absolute;
+  top: -16rpx;
+  right: 40rpx;
+}
+.OperateLayerCon {
+  position: fixed;
+  width: 100%;
+  top: 25%;
+  z-index: 1000;
+  text-align: center;
+}
+.OperateLayerCon .ConDetail {
+  display: inline-block;
+  width: 80%;
+  background: #ffffff;
+  border-radius: 8rpx;
+  padding: 30rpx;
+}
+.OperateLayerCon .ConDetail .layerTitle {
+  font-size: 36rpx;
+  color: #333333;
+  letter-spacing: -0.43px;
+  padding-bottom: 20rpx;
+}
+.OperateLayerCon .ConDetail .layerDl {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 32rpx;
+  color: #333333;
+  letter-spacing: -0.38px;
+  border-bottom: 1px solid #ECECEC;
+  padding: 20rpx 0;
+}
+.OperateLayerCon .ConDetail .layerDl .layerDt {
+  flex: 3;
+  text-align: left;
+}
+.OperateLayerCon .ConDetail .layerDl picker {
+  flex: 8;
+}
+.OperateLayerCon .ConDetail .layerDl .layerDd {
+  flex: 6;
+}
+.OperateLayerCon .ConDetail .layerDl .layerDd .pClass {
+  font-size: 32rpx;
+  color: #999999;
+  letter-spacing: -0.38px;
+  text-align: left;
+}
+.OperateLayerCon .ConDetail .auditRes {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 32rpx;
+  color: #333333;
+  letter-spacing: -0.38px;
+  border-bottom: 1px solid #ECECEC;
+  padding: 20rpx 0;
+}
+.OperateLayerCon .ConDetail .auditRes .layerDt {
+  flex: 3;
+  text-align: left;
+}
+.OperateLayerCon .ConDetail .auditRes .layerDd {
+  flex: 6;
+  font-size: 32rpx;
+  color: #999999;
+  letter-spacing: -0.38px;
+  text-align: left;
+}
+.OperateLayerCon .ConDetail .upload {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 32rpx;
+  color: #333333;
+  letter-spacing: -0.38px;
+  padding: 30rpx 0;
+}
+.OperateLayerCon .ConDetail .upload .uploadDl {
+  flex: 1;
+  text-align: left;
+}
+.OperateLayerCon .ConDetail .upload .uploadImg {
+  flex: 6;
+}
+.OperateLayerCon .ConDetail .upload .uploadImg image {
+  width: 260rpx;
+  height: 150rpx;
+}
+.OperateLayerCon .ConDetail .operateBtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 30rpx;
+  font-size: 36rpx;
+  color: #FFFFFF;
+  letter-spacing: -0.19px;
+}
+.OperateLayerCon .ConDetail .operateBtn .opCancel {
+  flex: 3;
+  display: inline-block;
+  height: 88rpx;
+  background: #CCCCCC;
+  border-radius: 8rpx;
+  text-align: center;
+  line-height: 88rpx;
+}
+.OperateLayerCon .ConDetail .operateBtn .gap {
+  flex: 1;
+}
+.OperateLayerCon .ConDetail .operateBtn .opSubmit {
+  flex: 3;
+  display: inline-block;
+  height: 88rpx;
+  background: #0092FF;
+  border-radius: 8rpx;
+  text-align: center;
+  line-height: 88rpx;
+}
+.OperateLayerCon .ConDetail .layercontent {
+  font-size: 32rpx;
+  color: #999999;
+  letter-spacing: -0.38px;
+  line-height: 48rpx;
+  text-align: center;
+  padding-bottom: 20rpx;
+}
+.OperateLayerCon .ConDetail .layerFooter {
+  font-size: 36rpx;
+  color: #0092FF;
+  letter-spacing: -0.43px;
+  border-top: 1px solid #ECECEC;
+  padding-top: 30rpx;
+}
+.view {
+  background: #333333;
+  color: #ffffff;
+  width: 270rpx;
+  height: 270rpx;
+  position: fixed;
+  z-index: 1000000;
+  left: 50%;
+  top: 50%;
+  border-radius: 10rpx;
+  margin-top: -135rpx;
+  margin-left: -135rpx;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.view .tipPic {
+  flex: 1;
+  padding-top: 36rpx;
+}
+.view .tipPic image {
+  width: 100rpx;
+  height: 100rpx;
+}
+.view text {
+  flex: 1;
+  padding: 0 15rpx;
+}

@@ -1,0 +1,83 @@
+@import "./../../connectionSearch.wxss";
+.connectionHeader {
+  width: 100%;
+  height: 190rpx;
+  padding-bottom: 22rpx;
+  display: flex;
+  flex-direction: column; }
+  .connectionHeader .connectionUp {
+    flex: 3;
+    background: #0092FF; }
+  .connectionHeader .connectionDown {
+    flex: 3;
+    background: #ffffff; }
+  .connectionHeader .connectionPannal {
+    width: 90%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -45%;
+    z-index: 1000; }
+
+.connectionScrollBody .connectionUl {
+  padding: 0 0 0 30rpx; }
+  .connectionScrollBody .connectionUl .connectionList {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 16rpx 0;
+    border-bottom: 1px solid #ECECEC; }
+    .connectionScrollBody .connectionUl .connectionList .headImg {
+      flex: 1; }
+      .connectionScrollBody .connectionUl .connectionList .headImg image {
+        width: 60rpx;
+        height: 60rpx;
+        border-radius: 50%; }
+    .connectionScrollBody .connectionUl .connectionList .itemDl {
+      flex: 8; }
+      .connectionScrollBody .connectionUl .connectionList .itemDl .connectionName {
+        font-size: 28rpx;
+        color: #333333;
+        letter-spacing: -0.15px;
+        line-height: 40rpx; }
+        .connectionScrollBody .connectionUl .connectionList .itemDl .connectionName image {
+          width: 80rpx;
+          height: 28rpx;
+          position: relative;
+          top: 4rpx;
+          right: -16rpx; }
+      .connectionScrollBody .connectionUl .connectionList .itemDl .connectionDuty {
+        font-size: 24rpx;
+        color: #333333;
+        letter-spacing: 0.17px;
+        height: 40rpx;
+        line-height: 40rpx; }
+        .connectionScrollBody .connectionUl .connectionList .itemDl .connectionDuty text:nth-child(1) {
+          margin-right: 20rpx; }
+      .connectionScrollBody .connectionUl .connectionList .itemDl .dataServes {
+        font-size: 24rpx;
+        color: #666666;
+        letter-spacing: 0.17px;
+        line-height: 40rpx; }
+      .connectionScrollBody .connectionUl .connectionList .itemDl .connectionCities {
+        font-size: 20rpx;
+        color: #999999;
+        letter-spacing: 0.17px; }
+
+.connectionScrollBody .tips {
+  font-size: 28rpx;
+  background: #ffffff;
+  height: 60rpx;
+  line-height: 60rpx; }
+  .connectionScrollBody .tips .loadShow {
+    background: #ffffff;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: center;
+    justify-content: center; }
+    .connectionScrollBody .tips .loadShow icon {
+      position: relative;
+      top: 17rpx;
+      right: 5rpx; }

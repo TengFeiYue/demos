@@ -1,0 +1,67 @@
+page,
+.body {
+  height: 100%;
+  font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+  background-color: #eeeeee;
+  font-size: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column; }
+  page .teasingBanner,
+  .body .teasingBanner {
+    padding: 30rpx; }
+    page .teasingBanner .textWrapper,
+    .body .teasingBanner .textWrapper {
+      width: 93%;
+      height: 300rpx;
+      background: #ffffff;
+      padding: 20rpx;
+      margin: 0 auto; }
+    page .teasingBanner textarea,
+    .body .teasingBanner textarea {
+      background: #ffffff; }
+    page .teasingBanner .placeholderClass,
+    .body .teasingBanner .placeholderClass {
+      font-size: 32rpx;
+      color: #B2B2B2;
+      letter-spacing: 0; }
+    page .teasingBanner .btn_sub,
+    .body .teasingBanner .btn_sub {
+      padding-top: 50rpx;
+      width: 96%;
+      margin: 0 auto; }
+      page .teasingBanner .btn_sub button,
+      .body .teasingBanner .btn_sub button {
+        background: #128EFF;
+        border-radius: 10rpx;
+        ont-size: 36rpx;
+        color: #FFFFFF; }
+  page .view,
+  .body .view {
+    background: #333333;
+    color: #ffffff;
+    width: 270rpx;
+    height: 270rpx;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    border-radius: 10rpx;
+    margin-top: -135rpx;
+    margin-left: -135rpx;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center; }
+    page .view .tipPic,
+    .body .view .tipPic {
+      flex: 1;
+      padding-top: 36rpx; }
+      page .view .tipPic image,
+      .body .view .tipPic image {
+        width: 100rpx;
+        height: 100rpx; }
+    page .view text,
+    .body .view text {
+      flex: 1;
+      padding: 0 15rpx; }

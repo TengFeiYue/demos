@@ -1,0 +1,354 @@
+@charset "UTF-8";
+view {
+  width: 100%; }
+
+.pad30 {
+  padding: 0 30rpx;
+  box-sizing: border-box; }
+
+.con {
+  background-color: #f2f2f2; }
+  .con .head {
+    height: 420rpx;
+    position: relative; }
+    .con .head .head-bg, .con .head .head-info {
+      width: 100%;
+      height: 100%; }
+    .con .head .head-info {
+      position: absolute;
+      left: 0;
+      top: 0; }
+      .con .head .head-info .head-userimg {
+        height: 132rpx;
+        text-align: center;
+        padding: 20rpx 0; }
+        .con .head .head-info .head-userimg image {
+          width: 132rpx;
+          height: 132rpx; }
+      .con .head .head-info .head-title {
+        height: 40rpx;
+        line-height: 40rpx;
+        font-size: 32rpx;
+        color: #fff;
+        text-align: center; }
+        .con .head .head-info .head-title image {
+          height: 26rpx;
+          width: 26rpx;
+          margin-left: 20rpx; }
+      .con .head .head-info .head-type {
+        text-align: center;
+        height: 50rpx;
+        overflow: hidden; }
+        .con .head .head-info .head-type text {
+          height: 34rpx;
+          border: 1rpx solid #fff;
+          color: #fff;
+          font-size: 24rpx;
+          margin-right: 20rpx;
+          padding: 0 10rpx;
+          box-sizing: border-box;
+          border-radius: 8rpx; }
+      .con .head .head-info .head-list {
+        height: 48rpx;
+        line-height: 48rpx;
+        font-size: 12px; }
+        .con .head .head-info .head-list .head-list-half {
+          width: 48%;
+          height: 48rpx;
+          float: left; }
+        .con .head .head-info .head-list text {
+          display: block;
+          float: left;
+          color: #fff;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap; }
+        .con .head .head-info .head-list text:nth-child(1) {
+          width: 110rpx;
+          height: 48rpx; }
+        .con .head .head-info .head-list text:nth-child(2) {
+          width: 65%;
+          height: 48rpx;
+          color: #ddd; }
+        .con .head .head-info .head-list .head-list-half:nth-child(2) {
+          float: right; }
+    .con .head .code {
+      display: block;
+      height: 140rpx;
+      width: 140rpx;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      transform: rotateZ(90deg); }
+  .con .main .adress {
+    height: 80rpx;
+    line-height: 80rpx;
+    font-size: 28rpx;
+    color: #666;
+    padding: 0 30rpx;
+    box-sizing: border-box;
+    background-color: #fff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+  .con .main .main-list {
+    overflow: hidden;
+    background-color: #fff;
+    margin-top: 20rpx; }
+    .con .main .main-list .main-title {
+      height: 70rpx;
+      line-height: 70rpx;
+      border-bottom: 1rpx solid #ececec;
+      font-size: 28rpx;
+      color: #4a4a4a; }
+      .con .main .main-list .main-title .icons {
+        margin-top: 5rpx;
+        height: 32rpx;
+        width: 8rpx;
+        margin-right: 20rpx;
+        float: left; }
+        .con .main .main-list .main-title .icons image {
+          width: 100%;
+          height: 100%; }
+    .con .main .main-list .main-detail {
+      overflow: hidden; }
+      .con .main .main-list .main-detail .detail {
+        width: 250rpx;
+        height: 150rpx;
+        float: left; }
+        .con .main .main-list .main-detail .detail .icons {
+          width: 100%;
+          height: 36rpx;
+          text-align: center;
+          margin: 20rpx 0; }
+          .con .main .main-list .main-detail .detail .icons image {
+            height: 36rpx;
+            width: 36rpx; }
+        .con .main .main-list .main-detail .detail .txts {
+          line-height: 36rpx;
+          color: #4a4a4a;
+          font-size: 24rpx;
+          text-align: center; }
+      .con .main .main-list .main-detail .products {
+        line-height: 80rpx;
+        font-size: 24rpx;
+        position: relative;
+        overflow: hidden; }
+        .con .main .main-list .main-detail .products text {
+          display: block; }
+        .con .main .main-list .main-detail .products text:nth-child(1) {
+          height: 80rpx;
+          width: 200rpx;
+          color: #4a4a4a;
+          float: left;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap; }
+        .con .main .main-list .main-detail .products text:nth-child(2) {
+          width: 430rpx;
+          color: #999;
+          float: right; }
+        .con .main .main-list .main-detail .products image {
+          width: 20rpx;
+          height: 30rpx;
+          position: absolute;
+          right: 0;
+          top: 25rpx; }
+  .con .main .main-list:nth-last-of-type(1) .main-detail .products:nth-last-child(1) {
+    margin-bottom: 100rpx; }
+
+.foot {
+  height: 100rpx;
+  background-color: #fcfcfc;
+  border-top: 2rpx solid #ececec;
+  position: fixed;
+  left: 0;
+  bottom: 0; }
+  .foot .foot-list {
+    height: 100%;
+    width: 50%;
+    float: left;
+    text-align: center;
+    display: flex;
+    box-sizing: border-box; }
+    .foot .foot-list .icons {
+      width: 40rpx;
+      height: 48rpx;
+      margin-left: 30%;
+      margin-right: 20rpx;
+      margin-top: 26rpx; }
+      .foot .foot-list .icons image {
+        width: 100%;
+        height: 100%; }
+    .foot .foot-list .texts {
+      line-height: 100rpx;
+      color: #0092ff;
+      font-size: 32rpx; }
+  .foot .foot-list:nth-child(1) {
+    border-right: 2rpx solid #ececec; }
+
+.scan {
+  width: 80rpx;
+  height: 150rpx;
+  position: fixed;
+  right: 30rpx;
+  bottom: 120rpx; }
+  .scan .scan-list {
+    width: 100%;
+    height: 50%;
+    position: relative; }
+    .scan .scan-list image {
+      width: 60rpx;
+      height: 60rpx; }
+    .scan .scan-list text {
+      display: block;
+      height: 28rpx;
+      line-height: 28rpx;
+      padding: 0 6rpx;
+      border-radius: 14rpx;
+      font-size: 20rpx;
+      color: #fff;
+      background-color: #0092ff;
+      position: absolute;
+      right: 0;
+      top: 0; }
+
+/*联系人弹框*/
+.modal-mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.5;
+  overflow: hidden;
+  z-index: 9000;
+  color: #fff; }
+
+.modal-dialog {
+  width: 100%;
+  height: 680rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  background: #f9f9f9;
+  transform: translateY(100%);
+  overflow: hidden; }
+  .modal-dialog .modal-title {
+    width: 100%;
+    height: 86rpx;
+    line-height: 86rpx;
+    padding: 0 0 0 30rpx;
+    font-size: 28rpx;
+    color: #4A4A4A;
+    background-color: #E5F4FF; }
+  .modal-dialog .user-box {
+    width: 100%;
+    height: 500rpx; }
+    .modal-dialog .user-box .modal-user {
+      width: 95%;
+      height: 94rpx;
+      float: right;
+      border-bottom: 1rpx solid #ECECEC; }
+      .modal-dialog .user-box .modal-user .user-name {
+        width: auto;
+        font-size: 28rpx;
+        color: #4A4A4A;
+        line-height: 94rpx;
+        float: left; }
+      .modal-dialog .user-box .modal-user image {
+        display: block; }
+      .modal-dialog .user-box .modal-user .imageOne {
+        width: 80rpx;
+        height: 30rpx;
+        margin-top: 35rpx;
+        margin-left: 18rpx;
+        float: left; }
+      .modal-dialog .user-box .modal-user .user-job {
+        width: auto;
+        font-size: 24rpx;
+        color: #666;
+        line-height: 94rpx;
+        float: left;
+        margin-left: 20rpx; }
+      .modal-dialog .user-box .modal-user .imageTwo {
+        width: 20rpx;
+        height: 28rpx;
+        float: right;
+        margin: 35rpx 30rpx 0 0; }
+  .modal-dialog .modal-foot {
+    width: 100%;
+    height: 94rpx;
+    line-height: 94rpx;
+    text-align: center;
+    font-size: 32rpx;
+    background-color: #0092FF;
+    color: white; }
+
+.layer {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0; }
+  .layer .layer-con {
+    width: 690rpx;
+    height: 680rpx;
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    border-radius: 16rpx;
+    overflow: hidden; }
+    .layer .layer-con .layer-con-bg {
+      width: 690rpx;
+      height: 470rpx; }
+      .layer .layer-con .layer-con-bg image {
+        display: block;
+        width: 100%;
+        height: 100%; }
+    .layer .layer-con .laycon {
+      width: 690rpx;
+      height: 680rpx;
+      position: absolute;
+      left: 0;
+      top: 0; }
+      .layer .layer-con .laycon .laycon-img {
+        width: 132rpx;
+        height: 132rpx;
+        padding: 20rpx 0;
+        margin: 0 auto; }
+        .layer .layer-con .laycon .laycon-img image {
+          display: block;
+          width: 100%;
+          height: 100%; }
+      .layer .layer-con .laycon .laycon-name {
+        font-size: 36rpx;
+        color: #fff;
+        text-align: center; }
+      .layer .layer-con .laycon .laycon-code {
+        height: 280rpx;
+        width: 320rpx;
+        background: #fff;
+        box-shadow: 0 1px 2px 0 #CFCFCF;
+        margin: 30rpx auto; }
+        .layer .layer-con .laycon .laycon-code image {
+          display: block;
+          width: 280rpx;
+          height: 280rpx;
+          margin: 0 auto; }
+      .layer .layer-con .laycon .laycon-op {
+        width: 320rpx;
+        height: 60rpx;
+        line-height: 60rpx;
+        text-align: center;
+        border: 2rpx solid #ececec;
+        font-size: 24rpx;
+        color: #333;
+        margin: 0 auto;
+        border-radius: 6rpx; }

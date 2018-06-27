@@ -1,0 +1,123 @@
+page,
+.body {
+  height: 100%;
+  font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+  background-color: #ffffff;
+  font-size: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column; }
+
+.loginBanner {
+  padding-top: 40rpx;
+  padding-bottom: 52rpx;
+  text-align: center;
+  font-size: 20rpx;
+  color: #666666;
+  letter-spacing: -0.15px; }
+  .loginBanner image {
+    width: 329rpx;
+    height: 64rpx; }
+  .loginBanner .tips {
+    padding-top: 15rpx;
+    font-size: 25rpx;
+    letter-spacing: 2rpx; }
+
+.login {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  padding: 0 40rpx;
+  font-size: 32rpx;
+  color: #000000;
+  letter-spacing: 0; }
+  .login .userName {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid #f0eff5;
+    height: 45px; }
+    .login .userName .name {
+      width: 120rpx;
+      padding-right: 6rpx;
+      text-align: justify;
+      text-align-last: justify; }
+    .login .userName .value {
+      flex: 1;
+      padding-left: 20rpx; }
+  .login .password {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-direction: row;
+    height: 45px;
+    border-bottom: 1px solid #f0eff5; }
+    .login .password .name {
+      width: 120rpx;
+      padding-right: 6rpx;
+      text-align: justify;
+      text-align-last: justify; }
+    .login .password .value {
+      flex: 1;
+      padding-left: 10px; }
+    .login .password .validateCode {
+      padding: 5px; }
+      .login .password .validateCode .btn {
+        font-size: 32rpx;
+        color: #0386FF;
+        letter-spacing: 0;
+        line-height: 46rpx; }
+      .login .password .validateCode .btndisable {
+        color: #b1b0b6;
+        border: 1px solid #b1b0b6;
+        font-size: 13px;
+        padding: 5px;
+        border-radius: 2px; }
+
+.btnLogin {
+  justify-content: center;
+  display: flex;
+  text-align: center;
+  padding-top: 50rpx; }
+  .btnLogin .btn {
+    width: 670rpx;
+    height: 94rpx;
+    background: #128EFF;
+    border-radius: 10rpx;
+    font-size: 36rpx;
+    color: #FFFFFF;
+    line-height: 94rpx; }
+
+.loginTab {
+  padding: 30rpx 40rpx;
+  text-align: right;
+  font-size: 32rpx;
+  color: #0386FF;
+  letter-spacing: 0;
+  line-height: 46rpx; }
+
+.view {
+  background: #333333;
+  color: #ffffff;
+  width: 270rpx;
+  height: 270rpx;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  border-radius: 10rpx;
+  margin-top: -135rpx;
+  margin-left: -135rpx;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center; }
+  .view .tipPic {
+    flex: 1;
+    padding-top: 36rpx; }
+    .view .tipPic image {
+      width: 100rpx;
+      height: 100rpx; }
+  .view text {
+    flex: 1;
+    padding: 0 15rpx; }

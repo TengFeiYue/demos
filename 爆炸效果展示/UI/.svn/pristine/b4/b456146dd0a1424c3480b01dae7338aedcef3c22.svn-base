@@ -1,0 +1,42 @@
+
+    <view class="noDatas"  wx:if="{{!hasDatas}}">
+      <view class="noDatasTip">
+          <image src="../resources/img/noPriceRecord.png"/>
+          <view class="noDatasTipTxt">您还没有任何记录哦～</view>
+      </view>
+      <view class="checkedBtn">
+          <text bindtap="toIndexPage">前往查看</text>
+      </view>
+    </view>
+    <view class="body"  wx:if="{{hasDatas}}">
+        <view class="myCollectList">
+        <scroll-view class="container-body" scroll-top="{{scrolltop}}" scroll-y="true" style="height:{{scrollHeight}}px" bindscrolltoupper="onPullDownRefresh" bindscrolltolower="scrollLoading">
+          <view>
+            <view class="myCollectUl" wx:for="{{CollectionList}}" wx:key="{{index}}">
+                  <view class="myCollectPersonLi" wx:if="{{item.type==2&&item.userDto!=null}}" data-id="{{item.userDto.userId}}" bindtap="toMarketDetail">
+                     <view class="myCollectHeadImg"><image src="{{item.userDto.userLogo}}"/></view>
+                     <view class="myCollectDes">
+                         <view><text class="h3">{{item.userDto.name}}</text><text class="runningWay">{{item.userDto.businessMode}}</text></view>
+                         <view class="myCollectComName"><text>{{item.userDto.enterpriseName}}</text><image src="../resources/img/zhu.png"/></view>
+                         <view class="myCollectLinks"><text class="orange">{{item.userDto.productCount}}</text>款产品<text class="linkNum">{{item.userDto.linkManCount}}</text>人联系</view>
+                     </view>
+                     <view class="myCollectDate">{{item.collectTime}}</view>
+                  </view>
+                  <view class="myCollectMaterialLi" wx:if="{{item.type==1&&item.dailyBaseProductResponse!=null}}" data-id="{{item.dailyBaseProductResponse.id}}" bindtap="toMaterialDetail">
+                     <view class="myCollectMaterial">
+                         <view class="h3">{{item.dailyBaseProductResponse.productName}}</view>
+                         <view class="orange">{{item.dailyBaseProductResponse.priceString}}</view>
+                         <view class="tradeMsg"><text class="tradeAreas">交货地：{{item.dailyBaseProductResponse.deliveryPlace}}</text></view>
+                     </view>
+                     <view class="myCollectDate">{{item.collectTime}}</view>
+                  </view>
+             </view>
+             <view class="tips">
+                <view wx:if="{{loadmore}}" class="loadShow">
+                <icon type="waiting" size="16"/><text>玩命的加载中...</text></view>
+                <view wx:else style="text-align:center;"><text>没有更多内容了</text></view>
+             </view>
+           </view>
+          </scroll-view>
+        </view>
+    </view>

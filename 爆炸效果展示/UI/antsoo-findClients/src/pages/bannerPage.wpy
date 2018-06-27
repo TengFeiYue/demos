@@ -1,0 +1,29 @@
+<style lang="less">
+
+</style>
+<template>
+	<web-view src="{{goUrl}}"></web-view>
+</template>
+
+<script>
+	import wepy from 'wepy';
+	import { api } from '../config';
+	export default class bannerPage extends wepy.page {
+		config = {
+			'navigationBarTitleText': '俺搜.找客户',
+			'navigationBarTextStyle': '#FFFFFF',
+			'navigationBarBackgroundColor': '#0092FF'
+		}
+
+		data = {
+			goUrl: ''
+		}
+
+		onLoad(e) {
+			var banner = wx.getStorageSync('goBanner');
+			var urlId = e.bannerId;
+			this.goUrl = banner[urlId].goUrl;
+			console.log(this.goUrl);
+		}
+	}
+</script>

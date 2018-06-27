@@ -1,0 +1,196 @@
+<style type="scss">
+page,
+.body {
+    height: 100%;
+    font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+    background-color: #ffffff;
+    font-size:14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+   .ulWraper{
+       padding:30rpx;
+       text-align:center;
+       .modelItems{
+          display:inline-block;
+          width:200rpx;
+          line-height:60rpx;
+          border:none;
+          border-radius:8rpx;
+          margin-right:26rpx;
+          margin-top:26rpx;
+          text{
+              display:inline-block;
+              width:120rpx;
+          }
+       }
+       .modelItemsAct{
+          display:inline-block;
+          width:200rpx;
+          line-height:60rpx;
+          border:1px solid #0386FF;
+          color:#0386FF;
+          border-radius:8rpx;
+          margin-right:26rpx;
+          margin-top:26rpx;
+       }
+        checkbox .wx-checkbox-input{
+           border-radius: 50%;
+           width: 30rpx;
+           height: 30rpx;
+        }
+        checkbox .wx-checkbox-input.wx-checkbox-input-checked{
+           border: 1px solid #eeeeee;
+           background: #ffffff;
+        }
+        checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
+           border-radius: 50%;
+           width: 30rpx;
+           height: 30rpx;
+           line-height: 26rpx;
+           text-align: center;
+           font-size:22rpx;
+           color:#128EFF;
+           border:1px solid #128EFF;
+           background: #ffffff;
+           transform:translate(-50%, -50%) scale(1);
+           -webkit-transform:translate(-50%, -50%) scale(1);
+        }
+   }
+   .btn_sub{
+     padding-top:50rpx;
+     width:96%;
+     margin:0 auto;
+     text-align:center;
+     text{
+       display:inline-block;
+       width:300rpx;
+       line-height:74rpx;
+       background: #128EFF;
+       border-radius: 10rpx;
+       font-size: 36rpx;
+       color: #FFFFFF;
+     }
+
+   }
+ .view{
+    background:#333333;
+    color:#ffffff;
+    width:270rpx;
+    height:270rpx;
+    position:fixed;
+    left:50%;
+    top:50%;
+    border-radius:10rpx;
+    margin-top:-135rpx;
+    margin-left:-135rpx;
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    align-items:center;
+    .tipPic{
+        flex:1;
+        padding-top:36rpx;
+        image{
+          width:100rpx;
+          height:100rpx;
+        }
+    }
+    text{
+      flex:1;
+      padding:0 15rpx;
+    }
+ }
+}
+</style>
+<template>
+    <view class="body">
+         <view class="ulWraper">
+            <checkbox-group bindchange="checkboxChange">
+              <block wx:for="{{itemArr}}" wx:key="{{index}}">
+                 <label class="modelItems">
+                     <checkbox value="{{item.industryRole}}" />
+                     <text>{{item.industryRole}}</text>
+                 </label>
+              </block>
+            </checkbox-group>
+         </view>
+         <view class="btn_sub"><text bindtap="backPrev">提交</text></view>
+         <view wx:if="{{opa}}" wx:key="{{index}}" class="view">
+            <view class="tipPic"><image src="../resources/icons/warning.png"></image></view>
+            <text>{{tip}}</text>
+         </view>
+    </view>
+
+</template>
+
+<script>
+import wepy from 'wepy'
+import { api } from '../config'
+export default class companyMode extends wepy.page {
+    config = {
+        'navigationBarTitleText': '企业类型',
+        'navigationBarTextStyle': '#FFFFFF',
+        'navigationBarBackgroundColor': '#0386FF'
+    }
+    components = {
+
+    }
+    data = {
+      loginUId:-1,
+      opa:false,
+      tip:"内容不能为空!",
+      itemArr:[],
+      selected:false,
+      selectedModel:[]
+    }
+
+    methods = {
+          checkboxChange(e) {
+              this.selectedModel=e.detail.value
+            },
+           backPrev(){
+               var pages = this.getCurrentPages();
+               var currPage = pages[pages.length - 1];   //当前页面
+               var prevPage = pages[pages.length - 2];  //上一个页面
+               prevPage.setData({
+                 seleType: this.selectedModel,
+                 fromModel:true
+               })
+                wx.navigateBack();
+           }
+        }
+
+    onShow() {
+
+    }
+    onLoad() {
+        const antsooUserInfo = wepy.getStorageSync("antUserInfo");
+        this.loginUId=antsooUserInfo.userId;
+        this.fetchmodelData();
+    }
+    warningTip() {
+         let that=this;
+          this.opa=true;
+          this.$apply();
+          setTimeout(function(){
+            that.opa=false;
+            that.$apply();
+          },800)
+      }
+      fetchmodelData(){
+          var that=this;
+          wepy.request({
+              url:api.common.getmodelData.url,
+              method:api.common.getmodelData.method,
+              success:function(res){
+                  that.itemArr=res.data.body.industryRoleDtoList;
+                  that.$apply();
+              }
+          });
+      }
+
+
+}
+</script>

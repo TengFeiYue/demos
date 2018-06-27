@@ -1,0 +1,68 @@
+<style type="scss">
+	.mascot-img{
+		width: 272rpx;
+		height: 516rpx;
+		margin: 88rpx 0 0 220rpx;
+	}
+
+	.none-msg{
+		width: 100%;
+		position: absolute;
+		margin-top: 432rpx;
+		text-align: center;
+		font-size: 24rpx;
+		color: #666666;
+	}
+
+	.goCompany{
+		width: 560rpx;
+		height: 60rpx;
+		line-height: 60rpx;
+		background-color: #CCE9FF;
+		text-align: center;
+		font-size: 24rpx;
+		margin: 0 auto;
+		margin-top: 10rpx;
+		border-radius: 16rpx;
+		color: #0092FF;
+	}
+</style>
+<template>
+	<view>
+		<view class="none-msg">您还没有任何记录哦~</view>
+		<image class="mascot-img" src="../resources/img/mascot.png" />
+		<view class="goCompany" bindtap="goFindCompany">前往找企业</view>
+		<view class="goCompany" style="margin-top: 30rpx" bindtap="goFindPerson">前往找人脉</view>
+	</view>
+</template>
+<script>
+	import wepy from 'wepy'
+	import { api } from '../config'
+	export default class dataNone extends wepy.component {
+		data = {
+			
+		}
+		events = {
+
+		}
+		methods = {
+			goFindCompany() {
+				wx.reLaunch({  
+			      	url: 'index?goFindId=2'  
+			    }); 
+			},
+			goFindPerson() {
+				wx.reLaunch({  
+			      	url: 'index?goFindId=1'  
+			    }); 
+			}
+		}
+
+		onLoad() {
+		}
+		
+		onShow(){
+
+		}
+	}
+</script>

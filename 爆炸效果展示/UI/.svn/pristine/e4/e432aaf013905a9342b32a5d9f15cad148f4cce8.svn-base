@@ -1,0 +1,35 @@
+.con {
+  padding: 60rpx;
+  box-sizing: border-box; }
+  .con .title-list {
+    width: 100%;
+    overflow: hidden; }
+  .con .title-save {
+    width: 560rpx;
+    height: 96rpx;
+    margin: 0 auto;
+    background-color: #0092ff;
+    color: #fff;
+    font-size: 32rpx;
+    border-radius: 8rpx;
+    line-height: 96rpx;
+    text-align: center;
+    margin-top: 80rpx; }
+  .con label {
+    display: block;
+    float: left;
+    width: 160rpx;
+    height: 64rpx;
+    border: 2rpx solid #ececec;
+    border-radius: 8rpx;
+    font-size: 24rpx;
+    color: #999;
+    line-height: 64rpx;
+    text-align: center;
+    margin-right: 69rpx;
+    margin-bottom: 20rpx; }
+  .con label:nth-child(3n) {
+    margin-right: 0; }
+  .con label.active {
+    border-color: #0092ff;
+    color: #0092ff; }

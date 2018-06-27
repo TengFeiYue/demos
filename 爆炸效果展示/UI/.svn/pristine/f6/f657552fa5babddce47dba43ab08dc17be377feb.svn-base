@@ -1,0 +1,86 @@
+.joinState{
+   background:#fff;
+   padding:9px 16px;
+}
+.joinStateHead{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+}
+.h3{
+   display:inline-block;
+   font-family: PingFangSC-Medium;
+    font-size: 15px;
+    color: #333333;
+    letter-spacing: -0.18px;
+    font-weight: bold;
+}
+.joinStatus{
+   display:inline-block;
+   width:86px;
+   height:24px;
+   line-height:24px;
+   text-align: center;
+   font-size: 14px;
+   color: #FFFFFF;
+   letter-spacing: 0;
+   background: #0092FF;
+   border-radius: 4px;
+}
+.joinStateDes{
+  font-size: 12px;
+  color: #4A4A4A;
+  letter-spacing: -0.14px;
+  padding-top:5px;
+}
+.confilters{
+  background: #F2F2F2;
+  padding:10px 23.5px;
+}
+.bookList{
+    background:#ffffff;
+    padding-left:13px;
+}
+.bookList li{
+  padding:10px 0;
+  border-bottom: 1px solid #ECECEC;
+}
+.bookItems{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.bookItems .userImg{
+   flex:1;
+   width:30px;
+}
+.bookItems .userInfo{
+  flex:8;
+   text-align: left;
+   line-height: 20px;
+   font-size: 12px;
+   color: #4A4A4A;
+   letter-spacing: 0.17px;
+}
+.userImg img{
+  width:30px;
+  height:30px;
+}
+.bookItems .userName{
+  font-size: 14px;
+  color: #333333;
+  letter-spacing: -0.15px;
+  font-weight: bold;
+}
+.status img{
+    width:40px;
+    height:15px;
+    position:relative;
+    top:3px;
+    left:5px;
+}
+.bookItems .userAddress{
+  font-size: 10px;
+  color: #666666;
+}

@@ -1,0 +1,171 @@
+
+	<view class="con" style="height: {{sh}}px;">
+		<!--<view class="list con-status bgColor" wx:if="{{applyStatus==1}}">-->
+		<view class="list con-status bgColor">
+			<text bindtap="modalcnt">您的信息已认证</text>
+			<image src="../resources/icons/infochange.png" bindtap="swLayer"/>
+		</view>
+		<view class="layer"  wx:if="{{layerFlag}}">
+			<view class="jiao"/>
+			<view class="layer-list" bindtap="posterDutyChange">
+				<view class="layer-list-icons">
+					<image src="../resources/icons/icon-workchange.png"/>
+				</view>
+				<view class="layer-list-text">名片职位变更</view>
+			</view>
+			<view class="layer-list" bindtap="offCompany">
+				<view class="layer-list-icons">
+					<image src="../resources/icons/icon-comchange.png"/>
+				</view>
+				<view class="layer-list-text">脱离企业</view>
+			</view>
+		</view>
+		<view class="list list-bottom bgColor">
+			<view class="detail">
+				<view class="list-icons">
+					<image src="../resources/icons/icon-name.png"/>
+				</view>
+				<view class="list-title">姓名</view>
+				<view class="list-text">{{info.name}}</view>
+			</view>
+		</view>
+		<view class="list list-bottom bgColor">
+			<view class="detail">
+				<view class="list-icons">
+					<image src="../resources/icons/icon-email.png"/>
+				</view>
+				<view class="list-title">邮箱</view>
+				<view class="list-text">{{info.email}}</view>
+			</view>
+		</view>
+		<view class="list list-bottom bgColor">
+			<view class="detail">
+				<view class="list-icons">
+					<image src="../resources/icons/icon-card.png"/>
+				</view>
+				<view class="list-title">名片职位</view>
+				<view class="list-text">{{info.position}}</view>
+			</view>
+		</view>
+		<view class="list list-bottom bgColor">
+			<view class="detail">
+				<view class="list-icons">
+					<image src="../resources/icons/icon-comname.png"/>
+				</view>
+				<view class="list-title">企业名称</view>
+				<view class="list-text">{{info.companyName}}</view>
+			</view>
+		</view>
+		<view class="list list-bottom bgColor">
+			<view class="detail">
+				<view class="list-icons">
+					<image src="../resources/icons/icon-type.png"/>
+				</view>
+				<view class="list-title">企业类型</view>
+				<view class="list-text">{{info.opeIndustry}}</view>
+			</view>
+		</view>
+		<view class="list list-bottom bgColor">
+			<view class="detail">
+				<view class="list-icons">
+					<image src="../resources/icons/icon-model.png"/>
+				</view>
+				<view class="list-title">经营模式</view>
+				<view class="list-text">{{info.businessMode}}</view>
+			</view>
+		</view>
+		<view class="list list-bottom bgColor">
+			<view class="detail">
+				<view class="list-icons">
+					<image src="../resources/icons/icon-area.png"/>
+				</view>
+				<view class="list-title">企业地区</view>
+				<view class="list-text">{{info.province}}{{info.city}}{{info.area}}</view>
+			</view>
+		</view>
+		<view class="list list-bottom bgColor">
+			<view class="detail">
+				<view class="list-icons">
+					<image src="../resources/icons/icon-adress.png"/>
+				</view>
+				<view class="list-title">详细地址</view>
+				<view class="list-text">{{info.address}}</view>
+			</view>
+		</view>
+	</view>
+	<view class="changeInfoLayer"  wx:if="{{hideOperateLayer}}" bindtap="closeLayer"/>
+	<view class="OperateLayerCon"  wx:if="{{hideOperateLayer}}">
+		<view class="ConDetail">
+			<view class="layerTitle">名片职位变更</view>
+			<view class="layerDl">
+				<view class="layerDt">*名片职位</view>
+				<view class="layerDd"><input placeholder="请输入新名片职位" value="{{cardDuty}}" placeholder-class="pClass" bindblur="getVal"/></view>
+			</view>
+			<view class="upload">
+				<text class="uploadDl">*名片</text>
+				<view class="uploadImg">
+					<image src="{{changeNameCard}}" bindtap="upLoadCard"/>
+				</view>
+			</view>
+			<view class="operateBtn">
+				<text class="opCancel" bindtap="closeLayer">取消</text>
+				<text class="gap"/>
+				<text class="opSubmit" catchtap="subChangedInfo">提交</text>
+			</view>
+		</view>
+	</view>
+	<view class="changeInfoLayer"  wx:if="{{unPassedOperateLayer}}" bindtap="closeLayer"/>
+	<view class="OperateLayerCon"  wx:if="{{unPassedOperateLayer}}">
+		<view class="ConDetail">
+			<view class="layerTitle">名片职位变更</view>
+			<view class="layerDl">
+				<view class="layerDt">*名片职位</view>
+				<view class="layerDd"><input placeholder="请输入新名片职位" value="{{cardDuty}}" placeholder-class="pClass" bindblur="getVal"/></view>
+			</view>
+			<view class="upload">
+				<text class="uploadDl">*名片</text>
+				<view class="uploadImg">
+					<image src="{{changeNameCard}}" bindtap="upLoadCard"/>
+				</view>
+			</view>
+			<view class="auditRes">
+				<text class="layerDt">审核结果</text>
+				<view class="layerDd">
+					{{rejectReason}}
+				</view>
+			</view>
+			<view class="operateBtn" style="padding-top:40rpx;">
+				<text class="opCancel" bindtap="closeLayer">取消</text>
+				<text class="gap"/>
+				<text class="opSubmit" catchtap="subChangedInfo">提交</text>
+			</view>
+		</view>
+	</view>
+	<view class="changeInfoLayer"  wx:if="{{verifyingOperateLayer}}" bindtap="closeLayer"/>
+	<view class="OperateLayerCon"  wx:if="{{verifyingOperateLayer}}">
+		<view class="ConDetail">
+			<view class="layerTitle">名片职位变更</view>
+			<view class="layercontent">您的名片职位变更已提交，俺搜将在48小时内核实。核实期间将不影响您的身份认证。请勿多次提交</view>
+			<view class="layerFooter" bindtap="closeLayer">知道了</view>
+		</view>
+	</view>
+
+	<view class="changeInfoLayer"  wx:if="{{offCompanyLayer}}" bindtap="closeLayer"/>
+	<view class="OperateLayerCon"  wx:if="{{offCompanyLayer}}">
+		<view class="ConDetail">
+			<view class="layerTitle">脱离企业</view>
+			<view class="layercontent">选择确定后，您将于原企业脱离任何关系，重新获得认证身份需再次提交认证信息</view>
+			<view class="operateBtn" style="padding-top:40rpx;">
+				<text class="opCancel" bindtap="closeLayer">取消</text>
+				<text class="gap"/>
+				<text class="opSubmit" catchtap="offCompanySub">提交</text>
+			</view>
+		</view>
+	</view>
+
+	<view  wx:if="{{opa}}" class="view">
+		<view class="tipPic">
+			<image src="../resources/icons/warning.png"/>
+		</view>
+		<text>{{tip}}</text>
+	</view>

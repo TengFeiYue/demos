@@ -1,0 +1,41 @@
+page,
+.body {
+  height: 100%;
+  font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+  background-color: #eeeeee;
+  font-size: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column; }
+
+.exitBanner {
+  text-align: center;
+  padding: 40rpx; }
+  .exitBanner image {
+    width: 156rpx;
+    height: 168rpx; }
+  .exitBanner .exitTips {
+    width: 432rpx;
+    padding-top: 60rpx;
+    padding-bottom: 234rpx;
+    font-size: 36rpx;
+    color: #128EFF;
+    margin: 0 auto;
+    line-height: 50rpx; }
+    .exitBanner .exitTips text {
+      display: block; }
+
+.exitBtn {
+  padding: 0 40rpx;
+  width: 90%;
+  margin: 0 auto; }
+  .exitBtn button {
+    width: 670rpx;
+    height: 94rpx;
+    text-align: center;
+    line-height: 94rpx;
+    background: #E64340;
+    border: 2rpx solid rgba(5, 5, 5, 0.08);
+    border-radius: 10rpx;
+    font-size: 36rpx;
+    color: #FFFFFF; }

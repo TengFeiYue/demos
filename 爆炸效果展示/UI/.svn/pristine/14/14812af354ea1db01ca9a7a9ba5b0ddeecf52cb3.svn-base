@@ -1,0 +1,82 @@
+
+    .thead{
+       display:flex;
+       flex-direction:row;
+       justify-content:space-around;
+       item-align:center;
+       text-align:center;
+       background: #EFEFEF;
+       box-shadow: inset 0 -1px 0 0 #DADADA;
+       line-height:60rpx;
+       color: #353535;
+       font-size:30rpx;
+    }
+    .thead text{
+       flex:1;
+    }
+    .productList{
+        display:flex;
+        flex-direction:row;
+        justify-content:space-between;
+        align-items:center;
+        text-align:center;
+        font-size: 28rpx;
+        color: #999999;
+        line-height:108rpx;
+        background:#ffffff;
+    }
+    .productList text{
+        flex:1;
+        border-bottom:1px solid #eeeeee;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+    }
+    .price text{
+        /*width:120rpx;*/
+        width:90rpx;
+        color:#0386FF;
+        border:2rpx solid #0386FF;
+        border-radius:6rpx;
+        font-size:26rpx;
+        display:inline-block;
+        line-height:48rpx;
+        padding:0 10rpx;
+        position:relative;
+        top:16rpx;
+    }
+    .test-item{
+      padding: 20rpx;
+      border-bottom: 1rpx solid #ddd;
+    }
+    .tips{
+       background:#ffffff;
+       line-height:60rpx;
+    }
+    .loadShow{
+          background:#ffffff;
+          text-align:center;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          align-self: center;
+          justify-content: center;
+    }
+    .loadShow icon{
+        position:relative;
+        top:17rpx;
+        right:5rpx;
+    }
+    .gototop{
+    	position: fixed;
+    	bottom: 140rpx;
+    	right: 20rpx;
+    	transition: all 0.3s;
+    	opacity: 0;
+        z-index:12;
+    	transform: translateY(200rpx) rotate(180deg);
+    }
+    .gototop.active{
+    	opacity: 0.9;
+    	transform: translateY(0) rotate(180deg);
+    }

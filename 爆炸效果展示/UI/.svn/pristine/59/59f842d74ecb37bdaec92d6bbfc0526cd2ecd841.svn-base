@@ -1,0 +1,217 @@
+
+	<view class="con">
+		<view class="head">
+			<image class="head-bg" src="../resources/img/bg.png"/>
+			<view class="head-info pad30">
+				<view class="head-userimg">
+					<image  wx:if="{{info.enterpriseLogo != null}}" src="{{info.enterpriseLogo}}" bindtap="previewImage"/>
+					<image  wx:else src="../resources/img/myImg.png"/>
+				</view>
+				<view class="head-title">
+					<text>{{info.name}}</text>
+					<image wx:if="{{info.companyId > 0}}" src="../resources/icons/zhu.png"/>
+				</view>
+				<view class="head-type">
+					<text wx:for="{{labels}}" wx:key="{{index}}">{{item}}</text>
+				</view>
+				<view class="head-list">
+					<view class="head-list-half">
+						<text>产业链</text>
+						<text>{{info.type}}</text>
+					</view>
+					<view class="head-list-half">
+						<text>经营模式</text>
+						<text>{{info.businessMode}}</text>
+					</view>
+				</view>
+				<view class="head-list">
+					<text>服务区域</text>
+					<text>{{info.serviceArea}}</text>
+				</view>
+			</view>
+			<image class="code" src="../resources/img/code.png" wx:if="{{info.companyId > 0}}" bindtap="showLay"/>
+		</view>
+		<view class="main">
+			<view class="adress">{{info.cityName}}{{info.districtName}}{{info.address}}</view>
+			<view class="main-list">
+				<view class="main-title pad30">
+					<view class="icons">
+						<image src="../resources/icons/parallelogram.png"/>
+					</view>
+					<view class="text">基本信息</view>
+				</view>
+				<view class="main-detail">
+					<navigator class="detail" hover-class="none" url="information?company={{info.name}}&iconId=0">
+						<view class="icons">
+							<image src="../resources/icons/icon-gs.png"/>
+						</view>
+						<view class="txts">工商信息</view>
+					</navigator>
+					<navigator class="detail" hover-class="none" url="information?company={{info.name}}&iconId=1">
+						<view class="icons">
+							<image src="../resources/icons/{{qccInst.length!=0 ? 'icon-gd':'icon-gdB'}}.png"/>
+						</view>
+						<view class="txts">股东信息</view>
+					</navigator>
+					<navigator class="detail" hover-class="none" url="information?company={{info.name}}&iconId=2">
+						<view class="icons">
+							<image src="../resources/icons/{{qccPand!=null||qccTaxo!=null ? 'icon-jy':'icon-jyB'}}.png"/>
+						</view>
+						<view class="txts">经营状况</view>
+					</navigator>
+					<navigator class="detail" hover-class="none" url="information?company={{info.name}}&iconId=3">
+						<view class="icons">
+							<image src="../resources/icons/{{qccList.length!=0 ? 'icon-invest':'icon-investB'}}.png"/>
+						</view>
+						<view class="txts">对外投资</view>
+					</navigator>
+					<navigator class="detail" hover-class="none" url="information?company={{info.name}}&iconId=4">
+						<view class="icons">
+							<image src="../resources/icons/icon-branchB.png"/>
+						</view>
+						<view class="txts">分支机构</view>
+					</navigator>
+					<navigator class="detail" hover-class="none" url="information?company={{info.name}}&iconId=5">
+						<view class="icons">
+							<image src="../resources/icons/icon-officeB.png"/>
+						</view>
+						<view class="txts">办事处</view>
+					</navigator>
+				</view>
+			</view>
+			<view class="main-list" wx:if="{{info.mainLines != '' && info.mainProduct != ''}}">
+				<view class="main-title pad30">
+					<view class="icons">
+						<image src="../resources/icons/parallelogram.png"/>
+					</view>
+					<view class="text">产品信息</view>
+				</view>
+				<view class="main-detail pad30">
+					<view class="products" wx:if="{{info.mainLines != ''}}">
+						<text>主营行业/系列</text>
+						<text>{{info.mainLines}}</text>
+					</view>
+					<view class="products" bindtap="productDetails" wx:if="{{info.mainProductList != null}}">
+						<text>主营产品</text>
+						<text>{{mainProductOne.commodityName}}/{{mainProductOne.producer}}/{{mainProductOne.productSign}}</text>
+						<image wx:if="{{info.mainProductList.length != 1}}" src="../resources/icons/righticon.png"/>
+					</view>
+				</view>
+			</view>
+			<view class="main-list">
+				<view class="main-title pad30">
+					<view class="icons">
+						<image src="../resources/icons/parallelogram.png"/>
+					</view>
+					<view class="text">经营信息</view>
+				</view>
+				<view class="main-detail pad30">
+					<view class="products" wx:if="{{info.customerGroup != ''}}">
+						<text>主要客户群体</text>
+						<text>{{info.customerGroup}}</text>
+					</view>
+					<view class="products">
+						<text>是否提供加工/定制服务</text>
+						<text wx:if="{{info.isProcess == 0}}">否</text>
+						<text wx:if="{{info.isProcess == 1}}">是</text>
+					</view>
+					<view class="products" wx:if="{{info.processingMethod != ''}}">
+						<text>加工方式</text>
+						<text>{{info.processingMethod}}</text>
+					</view>
+					<view class="products" wx:if="{{info.craft != ''}}">
+						<text>工艺</text>
+						<text>{{info.craft}}</text>
+					</view>
+					<view class="products" wx:if="{{info.managementSystemCertification != ''}}">
+						<text>管理体系认证</text>
+						<text>{{info.managementSystemCertification}}</text>
+					</view>
+					<view class="products" wx:if="{{info.productQualityCertification != ''}}">
+						<text>产品质量认证</text>
+						<text>{{info.productQualityCertification}}</text>
+					</view>
+					<view class="products" wx:if="{{info.plantArea != ''}}">
+						<text>厂房面积</text>
+						<text>{{info.plantArea}}</text>
+					</view>
+					<view class="products" wx:if="{{info.employeeNum != ''}}">
+						<text>员工人数</text>
+						<text>{{info.employeeNum}}</text>
+					</view>
+					<view class="products" wx:if="{{info.monthlyOutput != ''}}">
+						<text>月产量</text>
+						<text>{{info.monthlyOutput}}</text>
+					</view>
+					<view class="products" wx:if="{{info.yearSalesVolume != ''}}">
+						<text>年营业额</text>
+						<text>{{info.yearSalesVolume}}</text>
+					</view>
+					<view class="products" wx:if="{{info.yearExportVolume != ''}}">
+						<text>年出口额</text>
+						<text>{{info.yearExportVolume}}</text>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="foot">
+		<view class="foot-list" bindtap="showFun">
+			<view class="icons">
+				<image src="../resources/icons/{{contacts.length!=0?'icon-lxr':'icon-lxr-h'}}.png"/>
+			</view>
+			<text class="texts" style="color: {{contacts.length!=0?'':'#ccc'}};">联系人</text>
+		</view>
+		<navigator class="foot-list" url="comRoundCom?cityName={{info.cityName}}&gdlatitude={{info.gdlatitude}}&gdlongitude={{info.gdlongitude}}">
+			<view class="icons">
+				<image src="../resources/icons/icon-zbqy.png"/>
+			</view>
+			<text class="texts">周边企业</text>
+		</navigator>
+	</view>
+	<view class="scan">
+		<view class="scan-list">
+			<image src="../resources/icons/scannum.png"/>
+			<text>{{info.browseQty}}</text>
+		</view>
+		<view class="scan-list" bindtap="isCollect">
+			<image src="../resources/icons/icon-collect.png"/>
+			<text>{{num}}</text>
+		</view>
+	</view>
+	<!--联系人弹框-->
+	<view class="modal-mask"  wx:if="{{showModal}}" catchtouchmove="preventTouchMove" bindtap="hideModal"/>
+	<view class="modal-dialog"  wx:if="{{showModal}}" animation="{{animationData}}">
+  		<view class="modal-title">联系方式</view>
+  		<scroll-view scroll-y="true" class="user-box">
+
+  			<view class="modal-user" wx:for="{{contacts}}" wx:key="{{index}}" data-id="{{item.id}}" bindtap="toPersonDetail">
+  				<view class="user-name">{{item.memberName}}</view>
+  				<image class="imageOne" wx:if="{{item.bestFlag == 2}}" src="../resources/icons/verify.png"/>
+  				<image class="imageOne" wx:if="{{item.bestFlag == 1}}" src="../resources/icons/noverify.png"/>
+  				<image class="imageOne" wx:if="{{item.bestFlag == 3}}" src="../resources/icons/confirm.png"/>
+  				<view class="user-job">{{item.title}}</view>
+  				<image class="imageTwo" src="../resources/icons/righticon.png"/>
+
+  			</view>
+  		</scroll-view>
+  		<view class="modal-foot" bindtap="hideModal">取消</view>
+	</view>
+
+	<view class="layer" style="height: {{sh}}px;"  wx:if="{{layFlag}}" bindtap="closeLayer">
+		<view class="layer-con">
+			<view class="layer-con-bg">
+				<image src="../resources/img/bg.png"/>
+			</view>
+			<view class="laycon">
+				<view class="laycon-img">
+					<image src="{{layInfo.enterpriseLogo}}"/>
+				</view>
+				<view class="laycon-name">{{info.name}}</view>
+				<view class="laycon-code" bindtap="previewQrCode">
+					<image src="{{layInfo.enterpriseQrcode}}"/>
+				</view>
+				<view class="laycon-op">微信长按识别/查看企业名片</view>
+			</view>
+		</view>
+	</view>

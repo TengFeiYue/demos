@@ -1,0 +1,59 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _wepy = require('./../npm/wepy/lib/wepy.js');
+
+var _wepy2 = _interopRequireDefault(_wepy);
+
+var _interfaces = require('./../interfaces/index.js');
+
+var _interfaces2 = _interopRequireDefault(_interfaces);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+exports.default = function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(options) {
+    var response;
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return _wepy2.default.request(options);
+
+          case 2:
+            response = _context.sent;
+
+
+            // if (response.statusCode === 401) {
+            //   await interfaces.login()
+            //   return await request(options)
+            // } else if (response.statusCode === 500) {
+            //   wepy.showModal({
+            //     title: '提示',
+            //     content: `服务器错误，请截图本提示，并联系深大汪峰。${response.data.errmsg}`
+            //   })
+            // } else {
+            console.log("response:" + response);
+            return _context.abrupt('return', response);
+
+          case 5:
+          case 'end':
+            return _context.stop();
+        }
+      }
+    }, _callee, this);
+  }));
+
+  function request(_x) {
+    return _ref.apply(this, arguments);
+  }
+
+  return request;
+}();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInJlcXVlc3QuanMiXSwibmFtZXMiOlsib3B0aW9ucyIsIndlcHkiLCJyZXF1ZXN0IiwicmVzcG9uc2UiLCJjb25zb2xlIiwibG9nIl0sIm1hcHBpbmdzIjoiOzs7Ozs7QUFBQTs7OztBQUNBOzs7Ozs7Ozs7cUVBRWUsaUJBQXdCQSxPQUF4QjtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBLG1CQVNRQyxlQUFLQyxPQUFMLENBQWFGLE9BQWIsQ0FUUjs7QUFBQTtBQVNURyxvQkFUUzs7O0FBV2I7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0VDLG9CQUFRQyxHQUFSLENBQVksY0FBY0YsUUFBMUI7QUFwQlcsNkNBcUJKQSxRQXJCSTs7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQSxHOztXQUFlRCxPOzs7O1NBQUFBLE8iLCJmaWxlIjoicmVxdWVzdC5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB3ZXB5IGZyb20gJ3dlcHknXG5pbXBvcnQgaW50ZXJmYWNlcyBmcm9tICcuLi9pbnRlcmZhY2VzJ1xuXG5leHBvcnQgZGVmYXVsdCBhc3luYyBmdW5jdGlvbiByZXF1ZXN0IChvcHRpb25zKSB7XG4gIC8vIGlmIChvcHRpb25zLmhlYWRlcikge1xuICAvLyAgIG9wdGlvbnMuaGVhZGVyWyd4LXdlY2hhdC1zZXNzaW9uJ10gPSB3ZXB5LmdldFN0b3JhZ2VTeW5jKCdfc2Vzc2lvbicpXG4gIC8vIH0gZWxzZSB7XG4gIC8vICAgb3B0aW9ucy5oZWFkZXIgPSB7XG4gIC8vICAgICAneC13ZWNoYXQtc2Vzc2lvbic6IHdlcHkuZ2V0U3RvcmFnZVN5bmMoJ19zZXNzaW9uJylcbiAgLy8gICB9XG4gIC8vIH1cblxuICBsZXQgcmVzcG9uc2UgPSBhd2FpdCB3ZXB5LnJlcXVlc3Qob3B0aW9ucylcblxuICAvLyBpZiAocmVzcG9uc2Uuc3RhdHVzQ29kZSA9PT0gNDAxKSB7XG4gIC8vICAgYXdhaXQgaW50ZXJmYWNlcy5sb2dpbigpXG4gIC8vICAgcmV0dXJuIGF3YWl0IHJlcXVlc3Qob3B0aW9ucylcbiAgLy8gfSBlbHNlIGlmIChyZXNwb25zZS5zdGF0dXNDb2RlID09PSA1MDApIHtcbiAgLy8gICB3ZXB5LnNob3dNb2RhbCh7XG4gIC8vICAgICB0aXRsZTogJ+aPkOekuicsXG4gIC8vICAgICBjb250ZW50OiBg5pyN5Yqh5Zmo6ZSZ6K+v77yM6K+35oiq5Zu+5pys5o+Q56S677yM5bm26IGU57O75rex5aSn5rGq5bOw44CCJHtyZXNwb25zZS5kYXRhLmVycm1zZ31gXG4gIC8vICAgfSlcbiAgLy8gfSBlbHNlIHtcbiAgICBjb25zb2xlLmxvZyhcInJlc3BvbnNlOlwiICsgcmVzcG9uc2UpO1xuICAgIHJldHVybiByZXNwb25zZVxuICAvLyB9XG59XG4iXX0=

@@ -1,0 +1,56 @@
+<template>
+  <div class="footer">
+    <ul>
+       <router-link tag="li" active-class='active' to="/book">通讯录</router-link>
+       <router-link tag="li" active-class='active' to="/my">我的</router-link>
+        <!-- <router-link tag="li" active-class='active' to="/login">我的</router-link> -->
+    </ul>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'FooterBar',
+  data () {
+    return {
+      msg: ''
+    }
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+h1, h2 {
+  font-weight: normal;
+}
+ul {
+	height: 50px;
+  background-color:#fff;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  line-height: 1rem;
+  margin:0;
+  padding:0;
+  border-top: 1px solid #E3DAB5;
+  box-shadow: 0 3px 8px 2px rgba(0,0,0,0.54);
+}
+li {
+  flex:1;
+  color:#333333;
+  text-decoration:none;
+  font-size: 15px;
+}
+.active{
+  color:#42b983;;
+}
+.footer{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+</style>

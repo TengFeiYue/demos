@@ -1,0 +1,96 @@
+page,
+.body {
+  height: 100%;
+  font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+  background-color: #eeeeee;
+  font-size: 14px;
+  overflow: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column; }
+
+.hasConfirm {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: #FFFFFF;
+  padding: 20rpx 30rpx;
+  border-top: 1px solid #eeeeee; }
+  .hasConfirm .antsooLogo {
+    flex: 1;
+    padding-right: 30rpx; }
+    .hasConfirm .antsooLogo image {
+      width: 92rpx;
+      height: 102rpx; }
+  .hasConfirm .txt {
+    flex: 8;
+    font-size: 28rpx;
+    color: #000000; }
+
+.upload {
+  background: #FFFFFF;
+  padding: 30rpx;
+  margin: 30rpx 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center; }
+  .upload .uploadDl {
+    flex: 2;
+    font-size: 32rpx;
+    color: #000000;
+    letter-spacing: 0; }
+  .upload .uploadImg {
+    flex: 8;
+    padding-left: 40rpx; }
+    .upload .uploadImg image {
+      width: 116rpx;
+      height: 116rpx; }
+
+.confirmWraper {
+  position: relative;
+  background: #ffffff;
+  padding-left: 20rpx; }
+  .confirmWraper .confirmDl {
+    padding: 15rpx 0;
+    border-bottom: 1px solid #eeeeee;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; }
+    .confirmWraper .confirmDl .confirmDt {
+      flex: 2;
+      font-size: 32rpx;
+      color: #000000;
+      letter-spacing: 0; }
+    .confirmWraper .confirmDl .confirmDd {
+      flex: 8; }
+      .confirmWraper .confirmDl .confirmDd input {
+        font-size: 30rpx;
+        color: #888888;
+        letter-spacing: 0;
+        text-align: right; }
+    .confirmWraper .confirmDl .confirmTo {
+      flex: 1;
+      text-align: center; }
+      .confirmWraper .confirmDl .confirmTo image {
+        width: 16rpx;
+        height: 26rpx;
+        position: relative;
+        top: 5rpx; }
+  .confirmWraper .btn-area {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #eeeeee;
+    padding: 50rpx 0; }
+    .confirmWraper .btn-area button {
+      width: 670rpx;
+      height: 94rpx;
+      background: #128EFF;
+      border-radius: 10rpx;
+      text-align: center;
+      font-size: 36rpx;
+      color: #FFFFFF; }

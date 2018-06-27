@@ -1,0 +1,244 @@
+<style lang="scss">
+.indexPage {
+    background-color: white;
+}
+.filter-flex{
+    width:100%;
+}
+.filter-tab{
+	display: flex;
+	width: 100%;
+	line-height: 80rpx;
+	border-bottom: 1rpx solid #ddd;
+	position: relative;
+	z-index: 2;
+	background: #fff;
+    font-size:26rpx;
+}
+.filter-tab text{
+	flex: 1;
+	text-align: center;
+}
+.filter-tab text:after{
+	content: '';
+	display: inline-block;
+	vertical-align: 4rpx;
+	width: 0;
+	height: 0;
+	border-left: 12rpx solid transparent;
+	border-right: 12rpx solid transparent;
+	border-top: 12rpx solid #bbb;
+  margin-left:33rpx;
+}
+.filter-tab text.active{
+	color: #0386ff;
+}
+.filter-tab:not(.sort-tab) text.active:after{
+	border-top: 0;
+	border-bottom: 12rpx solid #0386ff;
+}
+.filter-tab.sort-tab text.active:after{
+	border-top: 12rpx solid #3399FF;
+}
+.filter-panel{
+	display: flex;
+	background: #ffffff;
+	position: absolute;
+	width: 100%;
+	z-index: 13;
+	overflow: hidden;
+    font-size:13px;
+}
+.filter-panel-left,.filter-panel-right{
+	flex: 1;
+	line-height: 80rpx;
+	text-align: center;
+	//max-height: 300px;
+	overflow-y: auto;
+}
+.filter-panel-left .active{
+	background: #fff;
+    color:#0386ff;
+}
+.filter-panel-left view{
+    border-bottom:1px solid #eeeeee;
+}
+.filter-panel-right .active{
+	color: #0386ff;
+}
+.filter-panel-right{
+	background: #fff;
+}
+.filter-panel-right:empty{
+	display: none;
+}
+.filter-shadow{
+  position:absolute;
+  width:100%;
+  top:100px;
+  bottom:0;
+  z-index:1;
+  background:rgba(0,0,0,0.5);
+}
+
+
+.price_rep{
+   position:fixed;
+   bottom:98rpx;
+   right:5rpx;
+   z-index:111111;
+}
+.price_rep .img{
+   width:128rpx;
+   height:128rpx;
+}
+</style>
+<template>
+
+    <view class="indexPage">
+        <view>
+            <search />
+        </view>
+    </view>
+   <view class="midContent">
+      <view wx:if="{{selectTabIndex==0}}">
+          <material />
+      </view>
+      <view wx:if="{{selectTabIndex==1}}">
+          <betterMaterial />
+      </view>
+      <view wx:if="{{selectTabIndex==2}}">
+          <accessories />
+      </view>
+      <view wx:if="{{selectTabIndex==3}}">
+          <recirculatMaterial />
+      </view>
+
+   </view>
+   <view class="price_rep" bindtap="toPropaganda" style="bottom:{{ballBottom}}px;right:{{ballRight}}px;">
+            <image class="img"  src="../../../resources/img/price_rep.png"></image>
+       </view>
+<!--<view class="price_rep" bindtap="toPropaganda" style="bottom:{{ballBottom}}px;right:{{ballRight}}px;" bindtouchmove="ballMoveEvent">
+         <image class="img"  src="../../../resources/img/price_rep.png"></image>
+    </view>-->
+
+</template>
+<script>
+import wepy from 'wepy'
+import { api } from '../../../config'
+import search from '../../index/search'
+import material from '../../queryPage/material'
+import betterMaterial from '../../queryPage/betterMaterial'
+import accessories from '../../queryPage/accessories'
+import recirculatMaterial from '../../queryPage/recirculatMaterial'
+export default class homeList extends wepy.component {
+
+    components = {
+        search,
+        material,
+        betterMaterial,
+        accessories,
+        recirculatMaterial
+    }
+    data = {
+        ballBottom: 98,
+        ballRight: 5,
+        screenHeight: 0,
+        screenWidth: 0,
+        selectTabIndex:0,
+        joinFlag:'',
+        loginUId:-1
+    }
+    events = {
+        'some-event': (arg) => {
+            this.selectTabIndex=arg;
+       },
+       'hasUserInfo': (arg) => {
+           this.joinFlag=arg.joinFlag;
+       },
+
+    }
+    methods = {
+        gotoProductDetail(e){
+            const antsooUserInfo = wepy.getStorageSync("antUserInfo");
+            if(antsooUserInfo == ''){
+                wx.showModal({
+                    title: '提示',
+                    content: '查看更多信息请先登录',
+                    confirmText:'去登录',
+                    confirmColor:'#239FDB',
+                    success: function(res) {
+                        if (res.confirm) {
+                            console.log('用户点击确定')
+                            wx.navigateTo({
+                                url: 'login'
+                            })
+                        } else if (res.cancel) {
+                            console.log('用户点击取消')
+                        }
+                    }
+                });
+            }else{
+                const id = e.currentTarget.dataset.id;
+                wx.navigateTo({
+                    url: 'productDetail?id=' + id
+                })
+            }
+        },
+        setFilterPanel(e){ //展开筛选面板
+            var i = e.currentTarget.dataset.findex;
+            if(this.showfilterindex == i){
+                this.showfilter = false;
+                this.showfilterindex = null;
+            }else{
+                this.showfilter = true;
+                this.showfilterindex = i;
+            }
+        },
+
+        hideFilter(){ //关闭筛选面板
+            this.showfilter = false,
+            this.showfilterindex = null
+        },
+        toPropaganda(){
+            console.log(this.loginUId)
+            if(this.loginUId==undefined||this.loginUId==""){
+                wx.navigateTo({
+                    url: 'login?fromPage=propaganda'
+                });
+                return;
+            }
+            if(this.joinFlag=="noappliy"||this.joinFlag=="unpassed"||this.joinFlag=="applied"||this.joinFlag==undefined||this.joinFlag=="leaveoffice"){
+                  wx.navigateTo({
+                      url: 'propaganda?redirect=index&userId='+this.loginUId
+                  })
+            }
+            if(this.joinFlag=="passed"){
+                  wx.navigateTo({
+                      url: 'subPrice?pUnit=元/吨&deliverway=自提&picList=../resources/img/imgUpload.jpg'
+                  })
+            }
+           this.$apply();
+        }
+
+    }
+    onShow(){
+      const antsooUserInfo = wepy.getStorageSync("antUserInfo");
+      this.loginUId=antsooUserInfo.userId;
+      this.$apply();
+    }
+    onLoad() {
+        var _this = this;
+        wx.getSystemInfo({
+         success: function (res) {
+             _this.screenHeight=res.windowHeight;
+             _this.screenWidth=res.windowWidth;
+         }
+        });
+
+
+
+    }
+
+}
+</script>

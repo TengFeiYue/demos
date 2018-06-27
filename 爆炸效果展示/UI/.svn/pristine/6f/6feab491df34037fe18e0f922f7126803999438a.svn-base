@@ -1,0 +1,129 @@
+
+    <view class="body">
+        <view class="detailInfo">
+            <view class="left">
+                <image src="{{companyInfo.photoUrl}}">
+
+                </image>
+            </view>
+            <view class="right">
+                <view class="title">
+                    {{companyInfo.companyName}}
+                </view>
+                <view class="serviceList">
+                    <block  wx:for="{{companyInfo.serviceImgUrlArr}}" wx:key="{{index}}">
+                        <view class="serviceImg">
+                            <image src="{{item}}">
+                            </image>
+                        </view>
+                    </block>
+                </view>
+            </view>
+        </view>
+        <scroll-view class="container-body" scroll-top="{{scrolltop}}" scroll-y="true" style="height:{{scrollHeight}}px" bindscrolltoupper="onPullDownRefresh" bindscrolltolower="scrollLoading">
+
+            <view class="productList">
+                <block  wx:for="{{productList}}" wx:key="{{index}}">
+                    <view class="item" bindtap="gotoProductDetail" data-id="{{item.id}}">
+                        <view class="title">
+                            {{item.commodityName}}/{{item.productSign}}
+                            <view class="subTitle">
+                                {{item.specialNames}}/{{item.useNames}}
+                            </view>
+                        </view>
+                        <view class="price">
+                            {{item.price}}元/{{item.unit}}
+                            <view class="delivery">
+                                {{item.deliveryArea}}
+                            </view>
+                        </view>
+                        <view class="img">
+                            <image src="{{item.photoUrl}}">
+
+                            </image>
+                        </view>
+                    </view>
+                </block>
+            </view>
+	    </scroll-view>
+        <view class="bottom">
+            <view class="browse">
+                <image src="../resources/img/eyes_14.png"/>
+                <view>{{companyInfo.browseNums}}</view>
+            </view>
+            <!-- <view class="favorite">
+                <image src="../resources/img/collect.png"></image>
+                <view>收藏</view>
+            </view> -->
+            <view class="contact" bindtap="contactUs">
+                <view class="text">联系我们</view>
+            </view>
+        </view>
+        <view class="contactInfo" wx:if="{{showContact}}">
+            <view class="title">
+                <view class="text">
+                    {{companyInfo.companyName}}
+                </view>
+                <view class="btn" bindtap="hideContact">
+                    取消
+                </view>
+            </view>
+             <view class="list">
+                    <view class="row">
+                        <image src="../resources/img/user_03.png" style="width:16px;height:18px;margin-right:12px">
+
+                        </image>
+                        <view class="name">
+                            联系人
+                        </view>
+                        <view class="value">
+                            {{dailyCompanyInfo.linkman_name}}
+                        </view>
+                    </view>
+                    <view class="row">
+                        <image src="../resources/img/weixinIcon_06.png" style="width:25px;height:19px">
+
+                        </image>
+                        <view class="name">
+                            微信
+                        </view>
+                        <view class="value price">
+                            {{dailyCompanyInfo.linkman_wx}}
+                        </view>
+                    </view>
+                    <view class="row">
+                        <image src="../resources/img/phone_09.png" style="width:21px;height:19px">
+
+                        </image>
+                        <view class="name">
+                            手    机
+                        </view>
+                        <view class="value">
+                            {{dailyCompanyInfo.linkman_mobile}}
+                        </view>
+                        <view style="width:60px" bindtap="callTel" data-phoneno="{{dailyCompanyInfo.linkman_mobile}}">
+                            <image src="../resources/img/dial.png" data-phoneno="{{dailyCompanyInfo.linkman_mobile}}" bindtap="callTel" style="width:25px;height:25px">
+                            </image>
+                        </view>
+                    </view>
+                    <view class="row">
+                        <image src="../resources/img/tel_11.png" style="width:21px;height:18px">
+
+                        </image>
+                        <view class="name">
+                            座    机
+                        </view>
+                        <view class="value">
+                           {{dailyCompanyInfo.linkman_phone}}
+                        </view>
+                        <view style="width:60px" bindtap="callTel" data-phoneno="{{dailyCompanyInfo.linkman_phone}}">
+                        <image src="../resources/img/dial.png" data-phoneno="{{dailyCompanyInfo.linkman_phone}}" bindtap="callTel" style="width:25px;height:25px">
+                        </image>
+                        </view>
+                    </view>
+                </view>
+        </view>
+        <view class="shadow" wx:if="{{showContact}}" bindtap="hideContact">
+
+        </view>
+    </view>

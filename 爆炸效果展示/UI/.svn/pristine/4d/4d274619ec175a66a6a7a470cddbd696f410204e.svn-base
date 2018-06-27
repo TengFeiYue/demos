@@ -1,0 +1,13 @@
+
+    <view class="body">
+        <view class="exitBanner">
+            <image src="../resources/img/tips.png"/>
+            <view class="exitTips">
+              <text>报价功能需先登录!</text>
+              <text>退出后，您将无法进行报价</text>
+            </view>
+        </view>
+         <view class="exitBtn">
+            <button bindtap="exitLogin"> 退出</button>
+         </view>
+    </view>

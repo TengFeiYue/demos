@@ -1,0 +1,21 @@
+import Vue from 'vue'
+import Router from 'vue-router'
+import Book from '@/components/Book'
+import My from '@/components/My'
+import MyElecCard from '@/components/myTrunks/myElecCard'
+import bookDetail from '@/components/bookDetail/bookDetail'
+Vue.use(Router)
+
+export default new Router({
+  routes: [
+    {path: '/',name: 'book',redirect:'/book'},
+    {path: '/book',name: 'book',component: Book},
+    {path: '/my',name: 'my',component: My},
+    {path: '/myElecCard',name: 'myElecCard',component: MyElecCard},
+    {path: '/bookDetail',name: 'bookDetail',component: bookDetail},
+
+
+
+    {path:'*',redirect:'/book'}
+  ]
+})

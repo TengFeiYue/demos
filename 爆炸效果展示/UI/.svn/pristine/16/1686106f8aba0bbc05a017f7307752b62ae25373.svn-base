@@ -1,0 +1,42 @@
+
+	<scroll-view scroll-top="{{scrolltop}}" scroll-y="true" style="height:{{scrollWrapHeight}}px" bindscrolltolower="scrollLoading"  wx:if="{{disLock.length!=0}}">
+		<view wx:for="{{disLock}}" wx:key="{{index}}">
+			<view style="width: 100%;height: 125rpx;background-color: #F2F2F2;">
+				<navigator class="collect-card" hover-class="none" url="connectionDetail?memberId={{item.unlockedMemberId}}&userId={{loginUId}}">
+					<text class="card-name card-block" bindtap="changers">{{item.memberName}}</text>
+					<image class="card-block" wx:if="{{item.bestFlag == 1}}" src="../resources/icons/verify.png"/>
+	  				<image class="card-block" wx:if="{{item.bestFlag == 2}}" src="../resources/icons/noverify.png"/>
+	  				<image class="card-block" wx:if="{{item.bestFlag == 3}}" src="../resources/icons/confirm.png"/>
+	  				<image class="card-block" wx:if="{{item.bestFlag == 4}}" src="../resources/icons/noconfirm.png"/>
+					<text class="card-date">{{item.createTimeStr}}</text>
+				</navigator>
+				<view class="card-identity">
+					<view class="user-company">{{item.memberPosition==null?'':item.memberPosition}}-{{item.enterpriseName}}</view>
+					<view class="call-this" bindtap="showDialogBtn" data-usertel="{{item.memberPhone}}">
+						<image src="../resources/icons/call.png"/>
+						<text style="margin-left: 10rpx;">一键拨号</text>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="tips">
+			<view wx:if="{{loadmore}}" class="loadShow">
+				<icon type="waiting" size="16"/><text>玩命加载中...</text>
+			</view>
+			<view wx:else style="text-align:center;"><text>查看更多内容，请前往俺搜APP</text></view>
+		</view>
+	</scroll-view>
+	<!--电话弹窗-->
+	<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove"  wx:if="{{showModal}}"/>
+	<view class="modal-dialog"  wx:if="{{showModal}}">
+	  	<view class="modal-content">确认拨打？</view>
+	  	<view class="modal-footer">
+	    	<view class="btn-cancel" bindtap="onCancel">取消</view>
+	    	<view class="btn-confirm" bindtap="onConfirm">拨打</view>
+	  	</view>
+	</view>
+	<!-- 无数据提醒 -->
+	<view  wx:if="{{disLock.length==0}}">
+		<image class="mascot-style" src="../resources/img/mascot.png"/>
+		<view class="mascot-text">您没有解锁人脉哦，请前往俺搜APP解锁关键人脉</view>
+	</view>

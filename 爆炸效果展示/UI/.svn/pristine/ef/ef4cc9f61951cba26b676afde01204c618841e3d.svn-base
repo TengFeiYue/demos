@@ -1,0 +1,298 @@
+﻿*{margin:0;padding:0}
+a{text-decoration: none;}
+ul{list-style: none;}
+.p-0{padding:0}
+.m-0{margin:0}
+.p-t-0{padding-top:0}
+.p-b-0{padding-bottom:0}
+.p-l-0{padding-left:0}
+.p-r-0{padding-right:0}
+.m-t-0{margin-top:0}
+.m-b-0{margin-bottom:0}
+.b-w{background:#fff;}
+.c-w{color:#fff;}
+
+body{
+	background: #ed4835;
+}
+    
+header{
+	position: relative;
+}
+.explosive{
+	display: inline-block;
+    position: absolute;
+    bottom: 20px;
+    left: -52%;
+    transform: translateX(100%);
+}
+.explosive img{
+	width:22rem;
+}
+.startTest{
+	height: 1rem;
+	position:relative;
+	text-align: center;
+}
+.startTest a{
+	padding-left:.5rem;
+}
+.startTest a img{
+	width:3rem;
+}
+.man{
+	position: absolute;
+    left: .5rem;
+    top: -.8rem;
+}
+.man img{
+	width:1.9rem;
+}
+.rangeList{
+	margin:1.1rem 0;
+}
+.centerPos{
+	width: 87%;
+    margin: 0 auto;
+    border: 1px solid #f49681;
+    border-radius: 1rem;
+    color: #e5d6d5;
+    font-size: 12px;
+    padding-bottom: .5rem;
+}
+.centerPos h3{
+	margin:.1rem 0;
+}
+.centerPos h3 img{
+	width:2.5rem;
+}
+.ulWraper{
+	position: relative;
+    line-height: .45rem;
+    height: 1.3rem;
+    overflow: hidden;
+}
+.ulWraper ul{
+	position: absolute;
+    left: .6rem;
+    top: 0;
+}
+.ulWraper li{
+	height:.4rem;
+}
+.ulWraper li span{
+	display:inline-block;
+	margin-right:.2rem;
+}
+//统一测试
+
+
+.passBtn{
+	margin-right:.6rem;
+}
+.fillDuty input{
+	background: url(../NewYearimages/fillBg.png) no-repeat center;
+    background-size: contain;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    height: .9rem;
+    width: 5rem;
+    padding-left: .5rem;
+    color: #370613;
+    font-size: 16px;
+}
+
+footer{
+	position:relative;
+}
+footer .logo{
+    position: fixed;
+    top: .2rem;
+    left: .2rem;
+}
+footer .logo img{
+	width:1.6rem;
+}
+footer .sharefriend{
+	position: absolute;
+    top: -.4rem;
+    left: .6rem;
+}
+footer .downloadapp{
+	position: absolute;
+    top: -.4rem;
+    right: .6rem;
+    z-index: 10;
+}
+footer .sharefriend img,footer .downloadapp img{
+	width:2.8rem;
+}
+.lantern{
+       	    display: inline-block;
+		    width: 1.5rem;
+		    position: absolute;
+		    top: -.2rem;
+		    right: 1rem;		   
+       	  animation:shake 5s infinite linear;
+        -webkit-animation:shake 5s infinite linear;		    
+		    
+       }
+//测试题
+
+
+#imgArea .honors{
+	position: absolute;
+	bottom:0;
+	height: 6rem;;
+}
+.honorsBg{
+	width:100%;
+	position: absolute;
+	top:0;
+	left:0;
+}
+.midSection{
+	height: 8.9rem;
+}
+.weixinImg{
+	display:inline-block;
+	width:1.6rem;
+	height:1.6rem;
+}
+
+.headImgArea span{
+	text-align: center;
+	position:absolute;
+	color:#f7f6f5;
+}
+.headImgArea .weixinImg{
+	position: relative;
+    padding-top: 1.3rem;
+}
+.headImgArea .weixinImg img {
+    position: absolute;
+    left: 0;
+    z-index: 10;
+}
+.headImgArea .weixinImg .wheat{
+	left: -.35rem;
+    bottom: -1.4rem;
+    width: 2rem;
+    z-index: 1;
+}
+.headImgArea .firstTag{
+    top: 2.3rem;
+    left: .6rem;
+    font-size: 16px;
+}
+.headImgArea .secondTag{
+	top: 3rem;
+    left: .6rem;
+    font-size: 24px;
+}
+.headImgArea .thirdTag{
+	top: 4.1rem;
+    left: 1.8rem;
+    font-size: 13px;
+}
+.headImgArea .fourthTag{
+	top: 1.8rem;
+    right: 1.3rem;
+    font-size: 24px;
+}
+.headImgArea .fifthTag{
+	top: 2.9rem;
+    right: 1.3rem;
+    font-size: 15px;
+}
+.headImgArea .sixthTag{
+	top: 1.6rem;
+    left: 1.5rem;
+    font-size: 20px;
+}
+.headImgArea .seventhTag{
+	top: 3.9rem;
+    right: 1.6rem;
+    font-size: 20px;
+}
+.name_company{
+	position: absolute;
+    text-align: center;
+    width: 100%;
+    bottom: -.2rem;
+    color:#ec7067;
+}
+.honorDetail{
+	position: absolute;
+    top: 1.2rem;
+    left: .6rem;
+}
+.honorDetail h5{
+	color: #512522;
+    font-weight: bold;
+    font-size: 15px;
+}
+.honorDetail h5 .score{
+	color: #dd5540;
+    display: inline-block;
+    padding-left: .1rem;
+}
+.scoreunit{
+	position: relative;
+	color: #dd5540;
+}
+.scoreunit img{
+	position: absolute;
+    bottom: -.1rem;
+    right: -.4rem;
+    width: .5rem;
+}
+.honorDetail .mota{
+	color:#7e6254;
+    height: .7rem;
+    width: 3.3rem;
+}
+.bage img{
+	width:1.5rem;
+}
+.scancode {
+	font-size: 12px;
+}
+.scancode span{
+	display:inline-block;
+}
+.pressTips{
+	padding-top:.1rem;
+}
+.scancode img{
+	width:1.5rem;
+}
+@keyframes shake{
+       	0%{
+       		
+       		transform: translate(0,0);
+       	}
+       	25%{
+       		transform: translate(-.2rem,-.2rem);
+       	}
+       	50%{
+       		transform: translate(0,0);
+       	}
+       	75%{
+       		transform: translate(-.2rem,-.2rem);
+       	}
+       	100%{
+       		transform: translate(0,0);
+       	}
+      
+   }
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,13 @@
+
+    <view class="body">
+        <view class="teasingBanner">
+          <form bindsubmit="bindFormSubmit">
+              <view class="textWrapper"><textarea value="{{desVal}}" placeholder-class="placeholderClass" name="textarea"/></view>
+              <view class="btn_sub"><button formType="submit">提交</button></view>
+          </form>
+        </view>
+        <view  wx:if="{{opa}}" class="view">
+           <view class="tipPic"><image src="../resources/icons/warning.png"/></view>
+           <text>{{tip}}</text>
+        </view>
+    </view>

@@ -1,0 +1,483 @@
+<style >
+page,.body {
+    height: 100%;
+    font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+    background-color:#EEEEEE;
+    font-size:14px;
+    overflow: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+   .head{
+      background: #F0EFF5;
+      display:flex;
+      flex-direction:row;
+      justify-content:space-between;
+      align-items:center;
+      height:44rpx;
+      line-height:44rpx;
+      padding:22rpx 20rpx;
+   }
+   .cityPos{
+      flex:2;
+      font-size: 32rpx;
+      color: #0386FF;
+      position:relative;
+      padding-left:40rpx;
+   }
+   .cityPos image{
+      width:30rpx;
+      height:36rpx;
+      position:absolute;
+      top:5rpx;
+      left:0;
+   }
+   .cares{
+      flex:3;
+      text-align:right;
+      font-size: 32rpx;
+      color: #0386FF;
+      display:flex;
+   }
+   .cares .eye{
+       flex:2;
+      display:inline-block;
+      padding-left:40rpx;
+      position:relative;
+
+   }
+    .collect{
+       flex:1;
+      display:inline-block;
+      padding-left:40rpx;
+      position:relative;
+   }
+   .eye image{
+      width:40rpx;
+      height:32rpx;
+      position:absolute;
+      right:50rpx;
+      top:3rpx;
+
+   }
+   .collect image{
+      width:33rpx;
+      height:30rpx;
+      position:absolute;
+      left:42rpx;
+      top:8rpx;
+   }
+   .materialInfos{
+     background: #FFFFFF;
+     height:158rpx;
+     padding:30rpx;
+     display:flex;
+     flex-direction:row;
+     justify-content:space-between;
+     align-items:center;
+   }
+   .materialPic{
+     flex:1
+   }
+   .materialPic image{
+     width:80rpx;
+     height:80rpx;
+   }
+   .materialInfo{
+     flex:5
+   }
+   .h3{
+        font-size:34rpx;
+        color:#222222;
+        line-height:48rpx;
+        display:inline-block;
+        padding-right:20rpx;
+
+   }
+   .price_display{
+       font-size: 28rpx;
+       color: #FE9900;
+       line-height:40rpx;
+       padding:15rpx 0;
+   }
+   .tradeAdd,.otherMaterialAdd{
+      font-size: 26rpx;
+      color: #333333;
+      line-height:36rpx;
+      display:flex;
+      flex-direction:row;
+      justify-content:space-between;
+      align-items:center;
+   }
+   .address{
+       flex:3;
+   }
+   .time{
+       font-size: 26rpx;
+      color: #999999;
+   }
+   .descriptionTitle{
+     height:40rpx;
+     padding:10rpx 30rpx;
+      font-size: 30rpx;
+      color: #353535;
+      letter-spacing: 0;
+   }
+   .descriptions{
+      padding:30rpx;
+      background:#ffffff;
+   }
+   .desPic image{
+      width:690rpx;
+      height:264rpx;
+   }
+   .desWords{
+      font-size: 28rpx;
+      color: #999999;
+      line-height: 42rpx;
+      padding:22rpx 0 4rpx;
+   }
+   .li{
+      background:#ffffff;
+     display:flex;
+     flex-direction:row;
+     justify-content:space-between;
+     align-items:center;
+      padding:30rpx;
+      border-bottom:1px solid #eeeeee;
+   }
+   .otherMaterialPic{
+      flex:1;
+   }
+   .otherMaterialPic image{
+      height:80rpx;
+      width:80rpx;
+   }
+   .otherMaterialInfo{
+      flex:5;
+   }
+   .otherMaterialDes{
+      font-size: 28rpx;
+      color: #999999;
+      line-height: 42rpx;
+      padding:14rpx 0;
+   }
+   .scrollWrap{
+      padding-bottom:180rpx;
+   }
+   .fixedBottom{
+      width:100%;
+      position:fixed;
+      bottom:0;
+      left:0;
+      z-index:10;
+      display:flex;
+      flex-direction:row;
+      justify-content:space-between;
+      align-items:center;
+      background: #FFFFFF;
+      padding:30rpx;
+      box-shadow:0 -1px 5px #97cdff;
+   }
+   .companyLogo{
+      flex:1;
+   }
+   .linkName{
+     flex:3
+   }
+   .linkBtn{
+     flex:2;
+     text-align:right;
+     padding-right:60rpx;
+
+   }
+   .companyLogo image{
+      width:92rpx;
+      height:102rpx;
+   }
+   .name{
+        display:inline-block;
+        line-height:56rpx;
+        font-size:34rpx;
+        color:#222222;
+        vertical-align:middle;
+        padding-right:20rpx;
+   }
+   .runingWays{
+       font-size: 26rpx;
+       color: #333333;
+   }
+   .comName{
+       font-size: 26rpx;
+       color: #333333;
+   }
+   .linkBtn text{
+      display:inline-block;
+      width:146rpx;
+      height:58rpx;
+      border:2rpx solid #0386FF;
+      border-radius:6rpx;
+      font-size:26rpx;
+      color:#0386FF;
+      text-align:center;
+      line-height:58rpx;
+
+   }
+   .proDes{
+    font-size:28rpx;
+    color:#999999;
+    line-height:42rpx;
+    padding:7.5rpx 0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+    width-space:nowrap;
+   }
+</style>
+<template>
+  <view class="wraper">
+    <view class="head">
+        <view class="cityPos"><image class="pos" src="../resources/icons/position.png"></image>{{currentCityName}}</view>
+        <view class="cares">
+            <view class="eye"><image  src="../resources/img/eye.png"></image>{{productDto.dailyBrowseNum}}</view>
+            <view class="collect" bindtap="collection">
+            <image  src="../resources/img/share.png" wx:if="{{!hasCollected}}"></image>
+            <image  src="../resources/img/shared.png" wx:if="{{hasCollected}}"></image>收藏</view>
+        </view>
+    </view>
+    </view>
+    <view class="wraper">
+        <view class="materialInfos">
+         <view class="materialPic">
+                <view wx:if="{{productDto.productType=='原料'}}"><image src="../resources/img/materialPic.png"></image></view>
+                <view wx:if="{{productDto.productType=='改性料'}}"><image src="../resources/img/betterMaterial.png"></image></view>
+                <view wx:if="{{productDto.productType=='辅料'}}"><image src="../resources/img/accessory.png"></image></view>
+                <view wx:if="{{productDto.productType=='回料'}}"><image src="../resources/img/recirculatMaterial.png"></image></view>
+         </view>
+         <view class="materialInfo">
+              <view class="h3">{{productDto.productName}}</view>
+              <view class="price_display">{{productDto.priceString}}</view>
+              <view class="tradeAdd"><text class="address">交货地：{{productDto.deliveryPlace}}</text></view>
+         </view>
+       </view>
+    </view>
+
+
+   <view class="descriptionTitle">详细描述</view>
+   <view class="descriptions">
+       <view class="desPic">
+         <image  src="{{(productDto.photoList==null||productDto.photoList.length==0)?'../resources/img/noMaterialPic.png':productDto.photoList[0]}}"></image>
+       </view>
+       <view class="desWords">
+           {{productDto.remark}}
+       </view>
+   </view>
+   <view class="descriptionTitle" wx:if="{{MaterialDetailList.length!=0}}">其他报价信息</view>
+  <view class="scrollWrap">
+  <view  class="container-body">
+   <view class="ul">
+             <view class="li" wx:for="{{MaterialDetailList}}" wx:key="{{index}}" data-id="{{item.id}}" bindtap="toOtherPriceInfo">
+                <view class="otherMaterialPic">
+                    <view wx:if="{{item.productType=='原料'}}"><image src="../resources/img/materialPic.png"></image></view>
+                    <view wx:if="{{item.productType=='改性料'}}"><image src="../resources/img/betterMaterial.png"></image></view>
+                    <view wx:if="{{item.productType=='辅料'}}"><image src="../resources/img/accessory.png"></image></view>
+                    <view wx:if="{{item.productType=='回料'}}"><image src="../resources/img/recirculatMaterial.png"></image></view>
+                </view>
+                <view class="otherMaterialInfo">
+                    <view class="otherMaterialName">
+                       <text class="h3">{{item.productName}}</text>
+                        <view class="proDes">{{item.remark}}</view>
+                       <text class="price_display">{{item.priceString}}</text>
+                    </view>
+                    <view class="otherMaterialDes">
+                    </view>
+                    <view class="otherMaterialAdd">
+                        <text class="address">交货地：{{item.deliveryPlace}}</text>
+                        <text class="time">{{item.timeAgo}}</text>
+                    </view>
+                </view>
+             </view>
+   </view>
+</view>
+</view>
+<view class="fixedBottom" data-uid="{{userDto.userId}}" bindtap="toMarketingDetail" >
+    <view class="companyLogo"><image src="{{userDto.userLogo}}"></image></view>
+    <view class="linkName">
+          <view style="padding-bottom:25rpx;"><text class="name">{{userDto.name}}</text><text class="runingWays">{{userDto.businessMode}}</text></view>
+          <view class="comName">{{userDto.enterpriseName}}</view>
+    </view>
+    <view class="linkBtn" data-tel="{{userDto.phone}}" data-uid="{{userDto.userId}}" catchtap="startCall">
+          <text>一键联系</text>
+    </view>
+</view>
+</template>
+<script>
+import wepy from 'wepy'
+import { api } from '../config'
+import QQMapWX from '../utils/qqmap-wx-jssdk'
+export default class materialDetail extends wepy.page {
+    config={
+        'navigationBarTitleText': '材料详情',
+        'navigationBarTextStyle': '#FFFFFF',
+        'navigationBarBackgroundColor': '#0386FF'
+    }
+    data = {
+      opa:false,
+      tip:"",
+      currentCityName:"",
+      productDto:{},
+      userDto:{},
+      MaterialDetailList:[],
+      loadNum: 0,
+      wait: true,
+      loadmore:true,
+      scrolltop:0, //滚动位置
+      scrollHeight:0,
+      pageIndex: 1,  //分页
+      showTopBtn:false,
+      productId:-1,
+      loginUId:-1,
+      isCollect:false,
+      hasCollected:false
+    }
+    methods = {
+
+          collection(){
+              if(!this.loginUId){
+                this.warningTip({
+                    msg:'请先登录！'
+                });
+                return;
+              }
+             var that=this;
+                   console.log(that.productId)
+                  wepy.request({
+                      url:api.common.collection.url,
+                      method:api.common.collection.method,
+                      data:{
+                          'loginUserId':that.loginUId,
+                          'collectId':that.productId,
+                          'type':1
+                      },
+                      success:function(res){
+                        var collectRes=res.data;
+                        if(collectRes.isSuccess==1){
+                          that.hasCollected=true;
+                            wx.showToast({
+                                title: collectRes.errorMsg,
+                                icon: 'success'
+                            });
+                        }else if(collectRes.isSuccess==0){
+                              that.warningTip({
+                                  msg: collectRes.errorMsg
+                              });
+                        }
+                        that.$apply();
+                      }
+                  });
+          },
+          startCall(e){//一键拨号
+              var telNumber=e.currentTarget.dataset.tel;
+              var toUId=e.currentTarget.dataset.uid
+              wx.makePhoneCall({
+                   phoneNumber: telNumber
+                })
+                var that=this;
+                wepy.request({
+                    url:api.common.callLinkers.url,
+                    method:api.common.callLinkers.method,
+                    data:{
+                        'toUserId':toUId,
+                        'userId':that.loginUId,
+                    },
+                    success:function(res){
+                      console.log(res)
+                    }
+                });
+          },
+          toOtherPriceInfo(e){
+            var productsId=e.currentTarget.dataset.id;
+            wx.navigateTo({
+                url: 'materialDetail?proId='+productsId
+            })
+          },
+          toMarketingDetail(e){
+             var userId=e.currentTarget.dataset.uid;
+              wx.navigateTo({
+                  url: 'marketingDetail?userId='+userId
+              })
+          }
+    }
+    onLoad(e) {
+        const antsooUserInfo = wepy.getStorageSync("antUserInfo");
+        this.loginUId=antsooUserInfo.userId;
+        this.productId=e.proId;
+        this.scrollHeight = wx.getSystemInfoSync().windowHeight * 0.91-160;
+        console.log('height'+this.scrollHeight)
+        this.fetchMaterialDetailData();
+        var that=this;
+        var qqmapsdk = new QQMapWX({
+          key: 'BFYBZ-FF73Q-FNK5G-GUK2J-5DUSO-6QBDJ' // 必填
+        });
+        wx.getLocation({
+          type: 'wgs84',
+          success: function (res) {
+            qqmapsdk.reverseGeocoder({
+              location: {
+                latitude: res.latitude,
+                longitude: res.longitude
+              },
+              success: function (addressRes) {
+                  that.currentCityName=addressRes.result.address_component.city;
+                  that.$apply();
+              }
+            })
+          }
+        })
+    }
+    warningTip(obj) {
+          this.opa=true;
+         this.tip=obj.msg;
+         this.$apply();
+         let that=this;
+          setTimeout(function(){
+            that.opa=false;
+            that.$apply();
+          },800)
+      }
+    fetchMaterialDetailData(){  //获取材料详情列表
+        wx.showLoading({
+            title: '加载中',
+        })
+        let that = this;
+        const pageSize = 20;
+        wepy.request({
+            url:api.product.otherMaterialDetailLists.url,
+            method:api.product.otherMaterialDetailLists.method,
+            data:{
+                'dailyBaseProductId':that.productId,
+                'userId':that.loginUId,
+                'pageInfo2':{
+                    'pSize': pageSize,
+                    'pIndex':that.pageIndex
+                }
+            },
+            success:function(res){
+                that.hasCollected=res.data.body.isCollected;
+                that.isCollect=res.data.body.isCollected;
+                that.productDto=res.data.body.productDto;
+                that.userDto=res.data.body.userDto;
+                var materialDetailData=res.data.body.otherProductList;
+                that.MaterialDetailList = materialDetailData;
+
+                that.$apply();
+                wx.hideLoading()
+            }
+        });
+    }
+
+}
+</script>

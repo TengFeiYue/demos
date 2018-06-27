@@ -1,0 +1,744 @@
+<style lang="less">
+	.header {
+		width: 100%;
+		height: 380rpx;
+		padding-bottom: 22rpx;
+		display: flex;
+		flex-direction: column;
+		.up {
+			flex: 4;
+			background: #0092FF;
+		}
+		.down {
+			flex: 5;
+			background: #ffffff;
+		}
+		.pannal {
+			background: #FFFFFF;
+			border: 1px solid #C2E6F7;
+			box-shadow: 0 4rpx 8rpx 0 rgba(153, 153, 153, 0.50);
+			border-radius: 16rpx 16rpx 0 0;
+			width: 90%;
+			position: absolute;
+			top: 0;
+			left: 50%;
+			margin-left: -45%;
+		}
+	}
+
+	.banner {
+		.swiper-box {
+			height: 200rpx;
+			.wx-swiper-dots.wx-swiper-dots-horizontal {
+				margin-bottom: 5rpx;
+			}
+			.wx-swiper-dot {
+				width: 12rpx;
+				height: 12rpx;
+				border-radius: 50%;
+				display: inline-flex;
+				margin-left: 20rpx;
+				justify-content: space-between;
+			}
+			.wx-swiper-dot::before {
+				content: '';
+				flex-grow: 1;
+				background: rgba(255, 255, 255, 0);
+				border: 1px solid rgba(255, 255, 255, 0.8);
+				border-radius: 50%;
+			}
+			.wx-swiper-dot-active::before {
+				background: rgba(255, 255, 255, 0.8);
+			}
+		}
+	}
+
+	.content {
+		.around {
+			text-align: center;
+			.subTitle {
+				padding: 20rpx 0;
+				text {
+					font-size: 32rpx;
+					color: #333333;
+					letter-spacing: -0.38px;
+					display: inline-block;
+					padding: 0 20rpx;
+					border-right: 46rpx solid #0092FF;
+					border-left: 46rpx solid #0092FF;
+					height: 3rpx;
+					line-height: 1rpx;
+				}
+				.subTitleIcon {
+					width: 48rpx;
+					height: 48rpx;
+					position: relative;
+					right: -20rpx;
+					top: 12rpx;
+				}
+			}
+			.aboutAround {
+				padding: 2rpx 28rpx;
+				border: 2rpx solid #ECECEC;
+				border-left: none;
+				border-right: none;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				.robot{
+					height: 124rpx;
+					width: 100%;
+					.robot-bg{
+						height: 124rpx;
+						width: 100%;
+						font-size: 24rpx;
+						color: #4a4a4a;
+						position: relative;
+						.robot-bg{
+							display: block;
+							width: 100%;
+							height: 80rpx;
+						}
+						.robot-robot{
+							display: block;
+							width: 40%;
+							height: 100%;
+							position: absolute;
+							left: 0;
+							right: 0;
+							margin: auto;
+							top: 0;
+						}
+						.robot-back{
+							display: block;
+							height: 44rpx;
+							width: 150rpx;
+							position: absolute;
+							bottom: 0;
+						}
+						.robot-back.left{
+							left: -28rpx;
+						}
+						.robot-back.right{
+							right: -28rpx;
+							transform: rotateZ(180deg);
+						}
+						text{
+							line-height: 2;
+							padding: 0 40rpx;
+							border-right: 2rpx solid #ececed;
+							border-left: 2rpx solid #ececed;
+						}
+					}
+				}
+				.aroundImg {
+					width: 156rpx;
+					height: 104rpx;
+				}
+				.aroundCompany {
+					flex: 1;
+					display: flex;
+					flex-direction: row;
+					justify-content: between;
+					align-items: center;
+					text-align: center;
+					padding: 10rpx 20rpx 10rpx 0;
+					border-right: 1px solid #ECECEC;
+					.aroundData {
+						position: relative;
+						flex: 1;
+						text-align: left;
+						.aroundText {
+							padding-left: 15rpx;
+							font-size: 28rpx;
+							color: #4A4A4A;
+							letter-spacing: -0.16px;
+						}
+						.aroundTxt {
+							padding-left: 15rpx;
+							font-size: 20rpx;
+							color: #666666;
+							letter-spacing: -0.13px;
+						}
+					}
+					.aroundData:after {
+						content: "";
+						display: inline-block;
+						width: 2rpx;
+						height: 60rpx;
+						background: #ECECEC;
+						position: absolute;
+						top: 5rpx;
+						right: 28rpx;
+					}
+					.aroundPic {
+						flex: 1;
+						display: flex;
+						flex-direction: row;
+						align-items: center;
+					}
+				}
+				.aroundCompany:nth-last-of-type(1) {
+					border-right: none;
+				}
+				/*.aroundMan {
+					flex: 1;
+					display: flex;
+					flex-direction: row;
+					justify-content: between;
+					align-items: center;
+					text-align: center;
+					padding: 10rpx 0rpx 10rpx 20rpx;
+					.aroundData {
+						position: relative;
+						flex: 1;
+						text-align: left;
+						.aroundText {
+							font-size: 28rpx;
+							color: #4A4A4A;
+							letter-spacing: -0.16px;
+						}
+						.aroundTxt {
+							font-size: 20rpx;
+							color: #666666;
+							letter-spacing: -0.13px;
+						}
+					}
+					.aroundData:after {
+						content: "";
+						display: inline-block;
+						width: 2rpx;
+						height: 60rpx;
+						background: #ECECEC;
+						position: absolute;
+						top: 5rpx;
+						right: 28rpx;
+					}
+					.aroundPic {
+						flex: 1;
+						display: flex;
+						flex-direction: row;
+						align-items: center;
+					}
+				}*/
+			}
+		}
+		.recommand {
+			text-align: center;
+			.subTitle {
+				position: relative;
+				padding: 20rpx 0;
+				border-bottom: 2rpx solid #ECECEC;
+				text {
+					font-size: 32rpx;
+					color: #333333;
+					letter-spacing: -0.38px;
+					display: inline-block;
+					padding: 0 20rpx;
+					border-right: 46rpx solid #0092FF;
+					border-left: 46rpx solid #0092FF;
+					height: 3rpx;
+					line-height: 1rpx;
+				}
+				.subTitleIcon {
+					width: 48rpx;
+					height: 48rpx;
+					position: relative;
+					right: -20rpx;
+					top: 12rpx;
+				}
+				.changeOthers {
+					width: 120rpx;
+					height: 52rpx;
+					position: absolute;
+					right: 40rpx;
+					top: 30rpx;
+				}
+			}
+			.scrollBody {
+				.ul {
+					padding: 14rpx 0rpx 110rpx 30rpx;
+					box-sizing: border-box;
+					.recommandList {
+						.companyName {
+							text-align: left;
+							font-size: 28rpx;
+							color: #333333;
+							letter-spacing: 0.17px;
+							image {
+								width: 25.2rpx;
+								height: 26.8rpx;
+								position: relative;
+								right: -14rpx;
+							}
+						}
+						.applies {
+							padding-top: 16rpx;
+							font-size: 20rpx;
+							.typesW {
+								display: inline-block;
+								width: 36rpx;
+								height: 36rpx;
+								line-height: 36rpx;
+								font-size: 20rpx;
+								margin-right: 16rpx;
+								text-align: center;
+								border-radius: 50%;
+								background: #9FDBF7;
+								color: #ffffff;
+								float: left;
+							}
+							.types {
+								display: inline-block;
+								height: 36rpx;
+								margin-right: 16rpx;
+								text-align: center;
+								border: 2rpx solid #C2E6F7;
+								border-radius: 8rpx;
+								width: 114rpx;
+								line-height: 36rpx;
+								float: left;
+								background-color: #FFF;
+								color: #333;
+							}
+						}
+						.otherDataService {
+							font-size: 20rpx;
+							display: flex;
+							flex-direction: row;
+							justify-content: between;
+							align-items: center;
+							.otherserve {
+								flex: 1.7;
+								text-align: left;
+								overflow: hidden;
+								text-overflow: ellipsis;
+								white-space: nowrap;
+							}
+							.distance {
+								flex: 0.3;
+								text-align: right;
+							}
+						}
+						.companySite {
+							font-size: 20rpx;
+							text-align: left;
+							padding: 14rpx 0;
+						}
+					}
+					.tips {
+						font-size: 28rpx;
+						background: #ffffff;
+						height: 60rpx;
+						line-height: 60rpx;
+						margin-bottom: 50rpx;
+						.loadShow {
+							background: #ffffff;
+							text-align: center;
+							display: flex;
+							flex-direction: row;
+							align-items: center;
+							align-self: center;
+							justify-content: center;
+							icon {
+								position: relative;
+								top: 17rpx;
+								right: 5rpx;
+							}
+						}
+					}
+				}
+			}
+			.status {
+				width: 100%;
+				position: fixed;
+				bottom: 9vh;
+				left: 0;
+				padding: 18rpx 0;
+				background: rgba(0, 0, 0, 0.50);
+				display: flex;
+				align-items: center;
+				justify-content: between;
+				.statusDes {
+					padding-left: 30rpx;
+					flex: 3;
+					display: inline-block;
+					font-size: 28rpx;
+					color: #FFFFFF;
+					letter-spacing: 0.2px;
+					text-align: left;
+					text {
+						background: rgba(0, 0, 0, 0.2);
+						color: rgba(255, 255, 255, 0.8);
+						display: inline-block;
+						height: 50rpx;
+						line-height: 50rpx;
+						padding: 0 10rpx;
+					}
+				}
+				.statusBtn {
+					padding-right: 30rpx;
+					flex: 1;
+					display: inline-block;
+					font-size: 28rpx;
+					color: #FFFFFF;
+					letter-spacing: 0.2px;
+					text-align: right;
+					.btn {
+						background: rgba(0, 0, 0, 0.2);
+						color: rgba(255, 255, 255, 0.8);
+						display: inline-block;
+						height: 50rpx;
+						line-height: 50rpx;
+						padding: 0 10rpx;
+						position: relative;
+						right: 10rpx;
+					}
+					.shutDown {
+						font-size: 40rpx;
+					}
+				}
+			}
+		}
+	}
+</style>
+<template>
+	<view class="header">
+		<view class="up"></view>
+		<view class="down"></view>
+		<view class="pannal">
+			<search />
+		</view>
+	</view>
+
+	<view class="banner">
+		<swiper class="swiper-box" indicator-dots="true" indicator-color="rgba(225, 225, 225, 0)" indicator-active-color="rgba(225, 225, 225, 1)" autoplay="true" circular="true" interval="{{interval}}" duration="{{duration}}" bindchange="swiperChange">
+			<block wx:for="{{bannerImgUrls}}" wx:key="{{index}}">
+				<swiper-item>
+					<image src="{{item.imgUrl}}" class="slide-image" style="width:100%;height:206rpx;" bindtap="bannerTap" />
+				</swiper-item>
+			</block>
+		</swiper>
+	</view>
+	<view class="content">
+		<view class="around">
+			<view class="subTitle">
+				<text>周边雷达</text>
+				<image src="../../../resources/icons/radar.png" class="subTitleIcon" />
+			</view>
+			<view class="aboutAround">
+				<view class="robot" wx:if="{{statisticData.length == 0}}">
+					<view class="robot-bg">
+						<image src="../../../resources/img/robot.gif" class="robot-robot"></image>
+						<image src="../../../resources/img/robot-bg.png" class="robot-bg"></image>
+						<image src="../../../resources/img/robot-back.png" class="robot-back left"></image>
+						<image src="../../../resources/img/robot-back.png" class="robot-back right"></image>
+						<text>俺搜正在为您匹配50km以内的数据</text>
+					</view>
+				</view>
+				<view class="aroundCompany" wx:if="{{statisticData.length != 0}}" wx:for="{{statisticData}}" wx:key="{{index}}" data-i="{{index}}" bindtap="toDetails">
+					<view class="aroundData">
+						<view class="aroundText">{{item.nameStr}}</view>
+						<view class="aroundTxt">{{item.numStr}}</view>
+					</view>
+					<view class="aroundPic">
+						<image src="{{item.imgUrl}}" class="aroundImg" />
+					</view>
+				</view>
+			</view>
+		</view>
+
+		<view class="recommand">
+			<view class="subTitle">
+				<text>俺搜推荐</text>
+				<image src="../../../resources/icons/recommand.png" class="subTitleIcon" />
+				<image src="../../../resources/img/changeAnother.png" class="changeOthers" bindtap="changeOther" />
+			</view>
+			<scroll-view class="scrollBody" scroll-y="true">
+				<view class="ul">
+					<view class="recommandList" wx:for="{{recommandList}}" wx:key="{{index}}" data-id="{{item.id}}" bindtap="toCompanyDetail">
+						<view class="companyName">
+							<text>{{item.name}}</text>
+							<image src="../../../resources/icons/zhu.png" wx:if="{{item.companyId > 0}}" />
+						</view>
+						<view class="applies">
+							<view class="typesW" wx:for="{{item.typeArr}}" wx:key="">{{item}}</view>
+							<view class="types" wx:for="{{item.baseSecondCategoryArr}}" wx:key="">{{item}}</view>
+						</view>
+						<view class="otherDataService">
+							<view class="otherserve">{{item.mainLines}}</view>
+							<view class="distance">{{item.distance}}</view>
+						</view>
+						<view class="companySite">
+							<text>{{item.provinceName}}{{item.districtName}}{{item.address}}</text>
+						</view>
+					</view>
+					<view class="tips">
+						<view wx:if="{{loadmore}}" class="loadShow">
+							<icon type="waiting" size="16" /><text>玩命的加载中...</text>
+						</view>
+						<view wx:else style="text-align:center;"><text>查看更多内容，请前往俺搜APP</text></view>
+					</view>
+				</view>
+			</scroll-view>
+			<view class="status" wx:if="{{showStatus}}">
+				<view class="statusDes">
+					<text>{{confirmInfos}}</text>
+				</view>
+				<view class="statusBtn">
+					<text class="btn" catchtap="{{toUrl}}">{{confirmBtn}}</text>
+					<text class="shutDown" bindtap="ShowStatus">×</text>
+				</view>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	import wepy from 'wepy'
+	import { api } from '../../../config'
+	import location from '../../../utils/location'
+	import search from '../../search'
+	export default class index extends wepy.component {
+		components = {
+			search
+		}
+		data = {
+			loginUId: -1,
+			showStatus: true,
+			bannerImgUrls: [],
+			statisticData: [], //首页-周边的人/周边的企业接受组件传递过来的数组；
+			recommandList: [],
+			interval: 3000,
+			duration: 1000,
+			loadmore: false,
+			scrollWrapHeight: 0,
+			long: -1,
+			lat: -1,
+			currentCityName: '',
+			pageIndex: 1,
+			confirmInfos: '',
+			confirmBtn: '',
+			toUrl: '',
+			bannerId: 0,
+			bindCity: '',
+			showStatusInt:0
+		}
+		events = {
+			'getBannerData': function(arg) {
+				this.bannerImgUrls = arg;
+				wx.setStorageSync('goBanner',this.bannerImgUrls);
+			},
+			'getAntsooUserInfo': function(param) {
+				this.showStatusInt = param;
+				switch(param) {
+					case -1:
+						this.confirmInfos = '登录可查看所有人脉、企业信息';
+						this.confirmBtn = '立即登录';
+						this.toUrl = "toLogin";
+						break;
+					case 0:
+						this.showStatus = false;
+						break;
+					case 1:
+					console.log(wx.getStorageSync("hasClose"))
+						if(wx.getStorageSync("hasClose") == 1){
+							 this.showStatus = false;
+						}else{
+							this.confirmInfos = '您的身份已认证成功，请前往查看';
+							this.confirmBtn = '立即查看';
+							this.toUrl = "confirmChange";
+						}
+						break;
+					case 2:
+						this.showStatus = true;
+						this.confirmInfos = '您的认证未通过，请前往查看';
+						this.confirmBtn = '立即查看';
+						this.toUrl = "confirmNow";
+						break;
+					case 3:
+					  this.showStatus = true;
+						this.confirmInfos = '一键认证，不错过任何重要商机';
+						this.confirmBtn = '立即认证';
+						this.toUrl = "confirmNow";
+						break;
+					case 4:
+					  this.showStatus = true;
+						this.confirmInfos = '一键认证，不错过任何重要商机';
+						this.confirmBtn = '立即认证';
+						this.toUrl = "confirmNow";
+						break;
+				}
+			},
+			'selectCity': function(parmas){
+				//var lasthistory = wx.getStorageSync('historyCityList')==''?[{cityName:this.currentCityName}]:wx.getStorageSync('historyCityList');
+				this.currentCityName =parmas;
+				this.bindCity = parmas;
+				this.fetchRecommandData();
+			}
+		}
+		methods = {
+			ShowStatus() {
+				this.showStatus = false;
+				if(this.showStatusInt == 1){
+						wx.setStorageSync("hasClose",1);
+				}
+			},
+			changeOther() { //换一批
+				this.pageIndex++;
+				if(this.pageIndex<6){
+					this.fetchRecommandData();
+				}else{
+					wx.showModal({
+						title: '',
+						content: '更多内容请前往按搜app',
+						showCancel: true,
+						confirmText: '确定',
+						confirmColor: '#0092ff',
+						success: function (res) {
+							if (res.confirm) {
+								if(wx.getSystemInfoSync().system.toLowerCase().indexOf('andr')!=-1){
+										console.log('android')
+										wx.navigateTo({
+												url:'downLoad'
+										})
+								}else{
+									console.log('iso')
+									wx.navigateTo({
+											url:'downLoad'
+									})
+								}
+							} else if (res.cancel) {
+								console.log('用户点击取消')
+							}
+						}
+					})
+					return;
+				}
+			},
+			confirmNow() {
+				wx.navigateTo({
+					url: 'antsooConfirm'
+				});
+			},
+			toLogin() {
+				wx.redirectTo({
+					url: 'login?formPage=index'
+				});
+			},
+			confirmChange() {
+				if(this.showStatusInt == 1){
+						wx.setStorageSync("hasClose",1);
+				}
+				wx.navigateTo({
+					url: 'attestationChange'
+				});
+			},
+			toDetails(e) {
+				if(e.currentTarget.dataset.i == 0) {
+					wx.navigateTo({
+						url: 'roundCompany?city='+this.currentCityName
+					});
+				} else if(e.currentTarget.dataset.i == 1) {
+					wx.navigateTo({
+						url: 'roundPerson?city='+this.currentCityName
+					});
+				}
+			},
+			swiperChange(e) {
+				this.bannerId = e.detail.current;
+			},
+			bannerTap() {
+				wx.navigateTo({
+					url: 'bannerPage?bannerId='+this.bannerId
+				});
+			},
+			toCompanyDetail(e){
+				if(!this.loginUId) {
+					wx.navigateTo({
+						url: '../../../pages/login?fromPage=company'
+
+					});
+					return;
+				}
+				let memberId=e.currentTarget.dataset.id;
+				wx.navigateTo({
+					url:'../../../pages/comDetailInfo?companyId='+memberId+'&userId='+this.loginUId
+				})
+			}
+		}
+
+		onShow() {
+			this.pageIndex=1;
+		}
+
+		onLoad() {
+			const antUserInfo = wx.getStorageSync('antUserInfo');
+		   	this.loginUId = antUserInfo.userId;
+			var _this = this;
+			this.scrollWrapHeight = wx.getSystemInfoSync().windowHeight * 0.91 - 130;
+			location.getLocation().then(function(res){
+					_this.long = res.lng;
+					_this.lat = res.lat;
+					_this.currentCityName = res.city;
+					_this.fetchRecommandData();
+					_this.fetchCompanyOrRelationsData()
+				_this.$apply();
+			})
+		}
+
+		fetchRecommandData() { //获取俺搜推荐
+			let that = this;
+			wepy.request({
+				url: api.index.antsooRecommand.url,
+				method: api.index.antsooRecommand.method,
+				data: {
+					cityName: this.currentCityName,
+					pageInfo2: {
+						pSize: 5,
+						pIndex: that.pageIndex
+					}
+				},
+				success: function(res) {
+					var recommandListData = res.data.body;
+					that.recommandList = recommandListData;
+					that.$apply();
+				}
+			});
+		}
+		unique1(array){ // 数组去重
+			var allArr = [];//新数组
+			for(var i=0;i<array.length;i++){
+				var flag = true;
+			　　for(var j=0;j<allArr.length;j++){
+					if(array[i].cityId == allArr[j].cityId){
+			　　　　　	flag = false;
+			　　　　};
+			　　};
+			　　if(flag){
+			　　　　allArr.push(array[i]);
+			　　};
+			};
+			return allArr;
+		}
+		fetchCompanyOrRelationsData() { //获取企业和人脉数量
+			let that = this;
+			wepy.request({
+				url: api.index.companyOrRelationsNum.url,
+				method: api.index.companyOrRelationsNum.method,
+				data: {
+					cityName:that.currentCityName,
+					longitude: that.long,
+					latitude: that.lat,
+					startKm: 0,
+					endKm: 50
+				},
+				success: function(res) {
+					that.statisticData=res.data.body;
+					that.$apply();
+				}
+			});
+		}
+
+	}
+</script>

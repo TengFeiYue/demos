@@ -1,0 +1,42 @@
+
+  <view class="head">
+      <view class="cityPos"><image class="pos" src="../resources/icons/position.png"/>{{currentCityName}}</view>
+      <view class="cares">
+          <!--<view class="eye"><image  src="../resources/img/eye.png"></image>{{productInfoDetail.dailyBrowseNum}}</view>
+          <view class="collect"><image  src="../resources/img/share.png"></image>收藏</view>-->
+      </view>
+  </view>
+      <view class="materialInfos" data-id="{{productInfoDetail.id}}">
+       <view class="materialPic"><image src="../resources/img/materialPic.png"/></view>
+       <view class="materialInfo">
+            <view class="h3">{{productInfoDetail.productName}}</view>
+            <view class="price_display">{{productInfoDetail.priceScope}}</view>
+            <view class="tradeAdd"><text class="address">交货地：{{productInfoDetail.deliveryPlace}}</text><text class="price_num">{{productInfoDetail.priceCount}}人报价</text></view>
+       </view>
+     </view>
+       <view class="ul">
+          <view class="scrollWraper">
+           <view class="priceList"  wx:for="{{MaterialDetailList}}" wx:key="{{index}}" data-id="{{item.dailyBaseProductId}}" bindtap="toMaterialDetail">
+               <view class="priceItemPic"><image src="{{item.userLogo}}"/></view>
+               <view class="priceItemInfo">
+                    <view>
+                      <text class="name">{{item.name}}</text>
+                      <text class="sellType">{{item.businessMode}}</text>
+                    </view>
+                    <view class="company">
+                      <text class="companyName">{{item.enterpriseName}}</text>
+                      <image class="settled" src="../resources/img/zhu.png"/>
+                    </view>
+                    <view>
+                      <text class="reportedPrice">{{item.priceString}}</text>
+                      <text class="hastex">{{item.containTaxFlag}}</text>
+                      <text class="where">{{item.deliveryPlace}}</text>
+                    </view>
+                </view>
+                <view class="priceContact">
+                     <view class="times">{{item.timeAgo}}</view>
+                     <view class="contactBtn" data-tel="{{item.phone}}" data-uid="{{item.userId}}" catchtap="startCall">一键联系</view>
+                </view>
+           </view>
+         </view>
+       </view>

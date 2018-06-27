@@ -1,0 +1,10 @@
+
+	<view class="con">
+		<view class="img">
+			<image src="../resources/img/mascot.png"/>
+			<text class="active">审核中</text>
+			<text>您的信息已提交</text>
+			<text>俺搜会在48小时内审核并联系您</text>
+		</view>
+		<view class="back" bindtap="toIndex">返回首页</view>
+	</view>

@@ -1,0 +1,155 @@
+
+	.searchTabs {
+		display: flex;
+		flex-direction: row;
+		justify-content: between;
+		align-items: center;
+		background: #0092FF;
+		box-shadow: 0 1px 4px 0 rgba(153, 153, 153, 0.60);
+		border-radius: 16rpx 16rpx 0 0;
+		color: #ffffff;
+	}
+
+	.searchTabsAct {
+		display: flex;
+		flex-direction: row;
+		justify-content: between;
+		align-items: center;
+		background: #ffffff;
+		box-shadow: 0 1px 4px 0 rgba(153, 153, 153, 0.60);
+		border-radius: 16rpx 16rpx 0 0;
+		color: #0092FF;
+	}
+
+	.searchTabs .tabCom {
+		flex: 8;
+		text-align: center;
+		position: relative;
+		height: 88rpx;
+		color: #0092FF;
+	}
+
+	.searchTabsAct .tabCom {
+		flex: 8;
+		text-align: center;
+		position: relative;
+		height: 88rpx;
+		color: #ffffff;
+	}
+
+	.tabCom image {
+		width: 100%;
+		height: 100%;
+	}
+
+	.tabCom .tabComTxt {
+		display: inline-block;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		text-align: center;
+		line-height: 88rpx;
+	}
+
+	.tabCon {
+		flex: 7;
+		text-align: center;
+		height: 88rpx;
+		line-height: 88rpx;
+		border-radius: 0 16rpx 0 0;
+		position: relative;
+	}
+
+	.tabCon .bottomLine,
+	.tabCom .bottomLine {
+		background: #ffffff;
+		display: inline-block;
+		width: 140rpx;
+		height: 4rpx;
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		z-index: 100;
+		margin-left: -70rpx;
+	}
+
+	.searchSelects {
+		padding-top: 20rpx;
+	}
+
+	.query {
+		background: #F9F9F9;
+		border: 1px solid #0092FF;
+		border-radius: 16rpx;
+		width: 95%;
+		height: 72rpx;
+		display: flex;
+		flex-direction: row;
+		justify-content: between;
+		align-items: center;
+		margin: 0 auto;
+		margin-top: 20rpx;
+	}
+
+	.query image {
+		width: 28rpx;
+		height: 28rpx;
+		margin-top: 25rpx;
+	}
+
+	.query .icon {
+		flex: 1;
+		text-align: center;
+		height: 100%;
+	}
+
+	.query .searchIpt {
+		flex: 8;
+	}
+
+	.select_com {
+		display: inline-block;
+		width: 190rpx;
+		height: 64rpx;
+		text-align: center;
+		line-height: 64rpx;
+		margin-left: 25rpx;
+		margin-top: 20rpx;
+		border: 1rpx solid #ECECEC;
+		border-radius: 8rpx;
+		font-size: 24rpx;
+		color: #666666;
+		font-weight: 100;
+	}
+
+	.cityBox {
+		position: absolute;
+		z-index: 3;
+	}
+
+	.thisCity {
+		width: 92rpx;
+		height: 45rpx;
+		position: absolute;
+	}
+
+	._city {
+		display: block;
+		position: relative;
+		margin-left: 30rpx;
+		width: 65rpx;
+		height: 45rpx;
+		line-height: 45rpx;
+		font-size: 20rpx;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
+	::-webkit-scrollbar {
+		width: 0;
+		height: 0;
+		color: transparent;
+	}

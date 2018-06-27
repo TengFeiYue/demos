@@ -1,0 +1,27 @@
+<template>
+	<div>
+		{{msg}}
+	</div>
+</template>
+
+<script>
+	export default {
+//		name: 'myElecCard',
+		data() {
+			return {
+				msg: '我的电子名片'
+			}
+		}
+	}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+	ul li {
+		font-size: .3rem;
+		float: left;
+		margin: .3rem .1rem;
+		width: 2rem;
+		text-align: center;
+	}
+</style>

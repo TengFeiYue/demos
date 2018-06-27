@@ -1,0 +1,14 @@
+
+	<view class="body" bindtap="hideSearchList">
+		<view class="con">
+			<view class="confirmDd"><input placeholder="{{pValue}}" placeholder-class="pClass" value="{{pCompanyName}}" disabled="{{otherIpt}}" bindinput="filterMname" bindblur="blurEvent"/></view>
+			<view class="pNameSelect"  wx:if="{{showSeachList}}">
+				<scroll-view scroll-y style="height:550rpx;">
+					<view>
+						<view class="pNameOpt" wx:for="{{searchData}}" wx:key="{{index}}" data-v="{{item.name}}" data-i="{{index}}" data-d="{{item.address}}" data-p="{{item.provinceName}}" data-c="{{item.cityName}}" data-a="{{item.districtName}}" data-t="{{item.type}}" data-b="{{item.businessMode}}" catchtap="selectPname">{{item.name}}</view>
+					</view>
+				</scroll-view>
+			</view>
+		</view>
+		<view class="saveCompanyName" bindtap="saveCompanyName">保存</view>
+	</view>

@@ -1,0 +1,29 @@
+.tab {
+  box-sizing: border-box;
+  color: #7b7b7b;
+  position: fixed;
+  bottom: 0;
+  height: 9vh;
+  width: 100%;
+  border-top: 1px solid #eeeeee;
+  background-color: #f7f7f7;
+  font-size: 24rpx;
+  white-space: nowrap;
+  display: flex; }
+  .tab .tab_item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 33.3333%;
+    flex: 1; }
+    .tab .tab_item.active {
+      color: #0386ff; }
+  .tab .icon {
+    width: 50rpx;
+    height: 50rpx;
+    display: block;
+    margin: auto; }
+  .tab .title {
+    padding-top: 0rpx;
+    display: block; }

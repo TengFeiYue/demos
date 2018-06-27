@@ -1,0 +1,562 @@
+<style type="scss">
+.componentWrper{
+  padding-bottom:198rpx;
+  .noPriceRecord{
+     background:#ffffff;
+     padding:60rpx;
+     .noRecords{
+        text-align:center;
+        padding-bottom:156rpx;
+        image{
+          width:206rpx;
+          height:206rpx;
+        }
+        .noRecordsTips{
+           padding-top:26rpx;
+          font-size: 28rpx;
+          color: #3FB5E9;
+          letter-spacing: -0.11px;
+        }
+     }
+     .priceReportBtn{
+       text-align:center;
+       text{
+           display:inline-block;
+           width:360rpx;
+           height:70rpx;
+           line-height:70rpx;
+           text-align:center;
+           font-size: 32rpx;
+           color: #0688FF;
+           border: 2rpx solid #0688FF;
+           border-radius: 10rpx;
+       }
+     }
+  }
+ .mySubpriceUl{
+    background:#ffffff;
+    padding-left:30rpx;
+    .mySubpriceLi{
+        position:relative;
+        padding:30rpx 30rpx 34rpx 0;
+        display:flex;
+        flex-direction:row;
+        justify-content:space-between;
+        align-items:center;
+        border-bottom:1px solid #eeeeee;
+        .mysubPriceImg{
+           flex:1;
+           padding-right:20rpx;
+           image{
+              width:80rpx;
+              height:80rpx;
+           }
+        }
+        .mysubPriceInfo{
+           flex:8;
+          .myMaterialMsg{
+             padding-bottom:16rpx;
+             .h3{
+              font-size: 34rpx;
+              color: #222222;
+             }
+             .orange{
+               font-size: 28rpx;
+               color: #FF9A00;
+               margin-left:14rpx;
+             }
+          }
+          .myTradeMsg{
+              display:flex;
+              flex-direction:row;
+              justify-content:space-between;
+              align-items:center;
+              .myTradeAdd{
+                 flex:3;
+                 font-size: 26rpx;
+                 color: #333333;
+              }
+              .myTradeTime{
+                  text-align:right;
+                  font-size: 26rpx;
+                  color: #999999;
+                  text{
+                    display:inlie-block;
+                    vertical-align:middle;
+                  }
+              }
+          }
+        }
+        .showOperation{
+           flex:1;
+           display:inline-block;
+           height:80rpx;
+           position:relative;
+            top:25rpx;
+            line-height:80rpx;
+           image{
+             width:26rpx;
+             height:6rpx;
+             margin-left:28rpx;
+             display:inline-block;
+           }
+        }
+        .ListOperate{
+            width:510rpx;
+            padding:25rpx 25rpx;
+            background: #FFFFFF;
+            box-shadow: 0 2px 6px 0 rgba(3,134,255,0.50);
+            border-radius: 8px 8px 8px 8px 0 0 0;
+            display:flex;
+            flex-direction:row;
+            justify-content:space-between;
+            align-items:center;
+            position:absolute;
+            bottom:-122rpx;
+            right:27rpx;
+            z-index:100;
+            .upPointer{
+                width:20rpx;
+                height:20rpx;
+                position:absolute;
+                top:-20rpx;
+                right:10rpx;
+            }
+           .operateOpt{
+             flex:1;
+             text-align:center;
+             image{
+                width:32rpx;
+                height:36rpx;
+             }
+             .optTex{
+               font-size: 24rpx;
+               color: #0386FF;
+               padding-top:10rpx;
+             }
+           }
+        }
+    }
+ }
+ .fixedButton{
+   width:100%;
+   position:fixed;
+   bottom:0;
+   left:0;
+   text-align:center;
+ .refreshTip{
+   text-align:center;
+   position:relative;
+   display:inline-block;
+   .tipTxt{
+      position:absolute;
+      font-size: 26rpx;
+      color: #FFFFFF;
+      width:100%;
+      line-height:83rpx;
+   }
+   image{
+     width:500rpx;
+     height:104rpx;
+   }
+ }
+.refreshBtn{
+  width:100%;
+  height:94rpx;
+  line-height:94rpx;
+  text-align:center;
+  background: #128EFF;
+  font-size: 36rpx;
+  color: #FFFFFF;
+}
+ }
+    .gototop{
+      position: fixed;
+      bottom: 140rpx;
+      right: 20rpx;
+      transition: all 0.3s;
+      opacity: 0;
+        z-index:12;
+      transform: translateY(200rpx) rotate(180deg);
+    }
+    .gototop.active{
+      opacity: 0.9;
+      transform: translateY(0) rotate(180deg);
+    }
+}
+.layer{
+    background:#333333;
+    opacity:.6;
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    bottom:0;
+    z-index:10000;
+}
+.layerCon{
+    background:#FFFFFF;
+    padding:50rpx 0rpx;
+    border-radius:8rpx;
+    position:absolute;
+    top:20%;
+    left:10%;
+    z-index:11000;
+    width:80%;
+  .layerClose{
+     position:absolute;
+     top:30rpx;
+     right:30rpx;
+     image{
+       width:34rpx;
+       height:34rpx;
+     }
+  }
+  .modelHead{
+      font-size: 36rpx;
+      color: #000000;
+      padding:22rpx 70rpx;
+      border-bottom:1px solid #eeeeee;
+  }
+  .layerList{
+    text-align:center;
+    .layerli{
+      line-height:70rpx;
+      display:flex;
+      flex-direction:row;
+      justify-content:space-between;
+      align-items:center;
+      text{
+        flex:1;
+      }
+    }
+  }
+}
+</style>
+<template>
+<view class="componentWrper">
+<!--无报价记录-->
+  <view class="noPriceRecord" wx:if="{{mySubPriceLists.length==0}}">
+      <view class="noRecords">
+        <image src="../resources/img/noPriceRecord.png"></image>
+        <view class="noRecordsTips">您还没有任何记录哦～</view>
+      </view>
+      <view class="priceReportBtn" bindtap="toSubPrice">
+        <text>前往报价</text>
+      </view>
+  </view>
+  <!--有报价记录-->
+  <view class="mySubpriceList" wx:if="{{mySubPriceLists.length!=0}}">
+  <view class="container-body">
+     <view class="mySubpriceUl" >
+           <view class="mySubpriceLi" wx:for="{{mySubPriceLists}}" wx:key="{{index}}" data-id="{{item.id}}" bindtap="toMaterialDetail">
+              <view class="mysubPriceImg">
+                 <view wx:if="{{item.productType=='原料'}}"><image src="../resources/img/materialPic.png"></image></view>
+                 <view wx:if="{{item.productType=='改性料'}}"><image src="../resources/img/betterMaterial.png"></image></view>
+                 <view wx:if="{{item.productType=='辅料'}}"><image src="../resources/img/accessory.png"></image></view>
+                 <view wx:if="{{item.productType=='回料'}}"><image src="../resources/img/recirculatMaterial.png"></image></view>
+              </view>
+              <view class="mysubPriceInfo">
+                   <view class="myMaterialMsg">
+                      <text class="h3">{{item.productName}}</text>
+                      <text class="orange">{{item.priceString}}</text>
+                   </view>
+                   <view class="myTradeMsg">
+                      <view class="myTradeAdd">交货地：{{item.deliveryPlace}}</view>
+                      <view class="myTradeTime"><text>{{item.timeAgo}}</text></view>
+                   </view>
+              </view>
+              <view class="showOperation" data-i="{{index}}" data-id="{{item.id}}" data-name="{{item.productName}}" catchtap="showOperation"><image src="../resources/img/showOperate.jpg"></image></view>
+              <view class="ListOperate" wx:if="{{showIndex==index}}">
+                 <image class="upPointer" src="../resources/img/pointer.png"></image>
+                  <view class="operateOpt" catchtap="editList">
+                      <view><image src="../resources/img/edit.png"></image></view>
+                      <view class="optTex">编辑</view>
+                  </view>
+                  <view class="operateOpt" catchtap="copyList">
+                      <view><image src="../resources/img/copy.png"></image></view>
+                      <view class="optTex">复制</view>
+                  </view>
+                  <view class="operateOpt" catchtap="historyPiceModel">
+                      <view><image src="../resources/img/historyPrice.png"></image></view>
+                      <view class="optTex">历史价格</view>
+                  </view>
+                  <view class="operateOpt" data-i="{{index}}" catchtap="deletList">
+                      <view><image src="../resources/img/del.png"></image></view>
+                      <view class="optTex">删除</view>
+                  </view>
+              </view>
+           </view>
+     </view>
+  </view>
+  </view>
+  <view class="fixedButton" style="background:#{{hasPriceRecord?'eeeeee':'ffffff'}}">
+      <view class="refreshTip" wx:if="{{hasRefreshed}}">
+         <view class="tipTxt">每天刷新价格，让你的报价排名靠前</view>
+         <image src="../resources/img/pointer2.png"></image>
+      </view>
+      <view class="refreshBtn" bindtap="refresh">
+           <text>一键刷新价格</text>
+      </view>
+ </view>
+ </view>
+ <view class="layer" wx:if="{{showPriceRecordModel}}"></view>
+ <view class="layerCon" wx:if="{{showPriceRecordModel}}">
+    <view class="layerClose" bindtap="hideLayer"><image src="../resources/img/layerClose.jpg"></image></view>
+    <view class="modelHead">
+        {{historyPriceName}}
+    </view>
+    <view class="modelCon">
+    <scroll-view  scroll-y="true"  style="height:360rpx" >
+       <view class="layerList">
+           <view class="layerli" wx:for="{{historyPriceLists}}" wx:key="{{index}}" >
+             <text class="historyDate">{{item.createDate}}</text>
+             <text>{{item.priceString}}</text>
+           </view>
+       </view>
+    </scroll-view>
+    </view>
+ </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import { api } from '../config'
+export default class mySubPrice extends wepy.page {
+    data = {
+        loginUId:0,
+        scrolltop:0,
+        mySubPriceLists:[],
+        historyPriceLists:[],
+        typesPic:'materialPic',
+        historyPriceName:'',
+        showIndex:-1,
+        showId:-1,
+        loadNum: 0,
+        wait: true,
+        loadmore:true,
+        scrollWrapHeight:0,
+        pageIndex: 1,  //分页
+        fscrolltop:null,
+        showTopBtn:false,
+        hasPriceRecord: true,
+        showListOperate: false,
+        showPriceRecordModel: false,
+        hasRefreshed:true
+    }
+    events={
+        'hideOperation':(params)=>{
+            this.showIndex=params;
+        },
+        'refreshed':(params)=>{
+            this.hasRefreshed=params;
+        }
+      }
+    methods = {
+          toSubPrice(){
+            wx.redirectTo({
+                url: 'subPrice?redirect=edit'
+                })
+          },
+          toMaterialDetail(e){
+            var productsId=e.currentTarget.dataset.id;
+            wx.navigateTo({
+                url: 'materialDetail?proId='+productsId
+            })
+          },
+          showOperation(e){
+             this.showIndex=e.currentTarget.dataset.i;
+             this.showId=e.currentTarget.dataset.id;
+             this.historyPriceName=e.currentTarget.dataset.name;
+          },
+
+          historyPiceModel () {
+              this.showPriceRecordModel=true;
+              let that = this;
+              wepy.request({
+                  url:api.product.getHistoryPriceData.url,
+                  method:api.product.getHistoryPriceData.method,
+                  data:{
+                      'dailyBaseProductId':that.showId
+                  },
+                  success:function(res){
+                       console.log(res.data.body)
+                       that.historyPriceLists=res.data.body;
+                       that.$apply();
+                  }
+              });
+          },
+          editList(){//编辑我的报价
+              this.showIndex=-1;
+              let that = this;
+              wepy.request({
+                  url:api.product.copyMysubpriceItem.url,
+                  method:api.product.copyMysubpriceItem.method,
+                  data:{
+                      'dailyBaseProductId':that.showId
+                  },
+                  success:function(res){
+                      console.log(res.data.body)
+                      var tName=res.data.body.tempName;
+                      var getPrice=0;
+                      var getUnit="面议";
+                      var showDelete=false;
+                       var returnData=res.data.body;
+                       if(returnData.price==0){
+                           getPrice="";
+                           getUnit=returnData.priceString;
+                       }else{
+                          getPrice=returnData.price;
+                          getUnit=returnData.priceUnit;
+                       }
+                       let photoes=returnData.photoList==null?"../resources/img/imgUpload.jpg":returnData.photoList[0].photoAddress;
+                        if(returnData.photoList!=null){
+                              showDelete=true;
+                        }else if(returnData.photoList==null){
+                              showDelete=false;
+                        }
+                       var hastax=parseInt(returnData.containTaxFlag);
+                       var type;
+                          switch (returnData.productType){
+                              case '原料':
+                                  type=0;
+                                  break;
+                              case '改性料':
+                                  type=1;
+                                  break;
+                              case '辅料':
+                                  type=2;
+                                  break;
+                              case '回料':
+                                  type=3;
+                                  break;
+                          }
+                       wx.redirectTo({
+                           url: 'subPrice?redirect=edit&edit=5&mType='+type+'&id='+returnData.id+'&tName='+tName+'&mName='+returnData.commodityName+'&producer='+returnData.producer+'&deliverway='+returnData.deliveryType+'&brandNum='+returnData.productSign+'&price='+getPrice+'&pUnit='+getUnit+'&hastax='+hastax+'&model='+returnData.model+'&deliversite='+returnData.deliveryPlace+'&remark='+returnData.remark+'&picList='+photoes+'&showDel='+showDelete+'&getType='+returnData.productType
+                       })
+                  }
+              });
+          },
+          copyList(){//复制我的报价
+             this.showIndex=-1;
+              let that = this;
+              wepy.request({
+                  url:api.product.copyMysubpriceItem.url,
+                  method:api.product.copyMysubpriceItem.method,
+                  data:{
+                      'dailyBaseProductId':that.showId
+                  },
+                  success:function(res){
+                      console.log(res)
+                       var tName=res.data.body.tempName;
+                       var getPrice=0;
+                       var getUnit="面议";
+                       var showDelete=false;
+                       var returnData=res.data.body;
+                        if(returnData.price==0){
+                            getPrice="";
+                            getUnit=returnData.priceString;
+                        }else{
+                           getPrice=returnData.price;
+                           getUnit=returnData.priceUnit;
+                        }
+                       let photoes=returnData.photoList==null?"../resources/img/imgUpload.jpg":returnData.photoList[0].photoAddress;
+                       if(returnData.photoList!=null){
+                             showDelete=true;
+                       }else if(returnData.photoList==null){
+                             showDelete=false;
+                       }
+                       var hastax=parseInt(returnData.containTaxFlag);
+                       var type;
+                          switch (returnData.productType){
+                              case '原料':
+                                  type=0;
+                                  break;
+                              case '改性料':
+                                  type=1;
+                                  break;
+                              case '辅料':
+                                  type=2;
+                                  break;
+                              case '回料':
+                                  type=3;
+                                  break;
+                          }
+                       wx.redirectTo({
+                           url: 'subPrice?redirect=edit&up=9&mType='+type+'&id='+returnData.id+'&tName='+tName+'&mName='+returnData.commodityName+'&producer='+returnData.producer+'&deliverway='+returnData.deliveryType+'&brandNum='+returnData.productSign+'&price='+getPrice+'&pUnit='+getUnit+'&hastax='+hastax+'&model='+returnData.model+'&deliversite='+returnData.deliveryPlace+'&remark='+returnData.remark+'&picList='+photoes+'&showDel='+showDelete+'&getType='+returnData.productType
+                       })
+                  }
+              });
+          },
+          deletList(e){//删除我的报价
+            this.showIndex=-1;
+            var delIndex=e.currentTarget.dataset.i;
+            this.mySubPriceLists.splice(delIndex,1);
+            let that = this;
+            wepy.request({
+                url:api.product.deletMysubpriceItem.url,
+                method:api.product.deletMysubpriceItem.method,
+                data:{
+                    'dailyBaseProductId':that.showId
+                },
+                success:function(res){
+                     console.log(res)
+                }
+            });
+          },
+          hideLayer () {
+              this.showPriceRecordModel=false
+          },
+        refresh(){//一键刷新
+            let that = this;
+            wepy.request({
+                url:api.product.refreshData.url,
+                method:api.product.refreshData.method,
+                data:{
+                    'userId':that.loginUId,
+                },
+                success:function(res){
+                          wx.redirectTo({
+                              url: 'subPrice?redirect=my&hasRefresh=yes&pUnit=元/吨&deliverway=自提&picList=../resources/img/imgUpload.jpg'
+                          })
+                     console.log(res)
+                }
+            });
+        }
+    }
+    onLoad() {
+        const antsooUserInfo = wepy.getStorageSync("antUserInfo");
+        this.loginUId=antsooUserInfo.userId;
+        this.$emit('hidOperation',this.loginUId);
+        this.scrollWrapHeight = wx.getSystemInfoSync().windowHeight * 0.91 - 100;
+        this.fetchMysubpriceData();
+    }
+    fetchMysubpriceData(){
+         wx.showLoading({
+            title: '加载中',
+        })
+        let that = this;
+        const pageSize = 20;
+        wepy.request({
+            url:api.product.getmysubpriceData.url,
+            method:api.product.getmysubpriceData.method,
+            data:{
+                'userId':that.loginUId,
+            },
+            success:function(res){
+                console.log(res)
+                var mysubpriceData=res.data.body;
+                if(mysubpriceData.length==0){
+                    that.hasPriceRecord=false;
+                }
+                if(mysubpriceData){
+                        that.mySubPriceLists = mysubpriceData;
+                }
+                that.$apply();
+                wx.hideLoading()
+            }
+        });
+    }
+
+}
+</script>

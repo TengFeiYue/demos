@@ -1,0 +1,15 @@
+
+    <view class="propagandaWraper">
+        <!--<view class="propaganda" >
+          <image src="../resources/img/propagada_01.jpg"></image>
+        </view>
+        <view class="propaganda" >
+          <image src="../resources/img/propagada_03.jpg"></image>
+        </view>
+        <view class="parterner" >
+          <image src="../resources/img/propagada_05.jpg"></image>
+        </view>-->
+        <web-view src="{{url}}"/>
+         <!--<view class="priceFunctionBtn" bindtap="toSubPrice">
+            <text>立即开通</text>-->
+         </view>

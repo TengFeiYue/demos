@@ -1,0 +1,67 @@
+
+	<view class="con">
+		<view class="search-box">
+			<view class="search">
+				<view class="icons" bindtap="gotoquery">
+					<image src="../resources/icons/comSearch.png"/>
+				</view>
+				<input type="text" bindconfirm="gotoquery" value="{{searchvalue}}" bindinput="insertkey" confirm-type="search"/>
+				<view class="icons-del" bindtap="cancelSearch">
+					<image src="../resources/icons/delete.png"  wx:if="{{show_hide}}"/>
+				</view>
+			</view>
+			<view class="cancel" bindtap="cancelSearch">取消</view>
+		</view>
+		<view class="search-list"  wx:if="{{searchList.length == 0}}">
+			<view class="list-op">
+				<view class="icons">
+					<image src="../resources/icons/icon-history.png"/>
+				</view>
+				<view class="text">搜索历史</view>
+				<view class="del" bindtap="clearHistoryList">
+					<image src="../resources/icons/icon-history.png"/>
+				</view>
+			</view>
+			<view class="list-detail">
+				<text wx:for="{{historyList}}" wx:key="{{index}}" wx:if="{{item != ''}}" bindtap="bindhistory" data-wpybindhistory-a="{{index}}">{{item}}</text>
+			</view>
+		</view>
+	</view>
+	<view class="emptyRes" style="height:{{scrollWrapHeight/2}}px"  wx:if="{{searchList.length==0 && searchHistory}}">
+		<view class="emptyIcon">
+			<image src="../resources/img/advice.png"/>
+		</view>
+		<view class="emptyTip">
+			<view>找不到您想要的？</view>
+			<view>请选择反馈，我们将在第一时间联系您</view>
+		</view>
+		<view class="subAdvice"><text bindtap="subAdvice">前往反馈</text></view>
+	</view>
+	<scroll-view class="scrollBody" scroll-top="{{scrolltop}}" scroll-y="true" style="height:{{scrollWrapHeight}}px" bindscrolltolower="scrollLoading">
+		<view class="ul"  wx:if="{{searchList.length!=0}}">
+			<view class="searchList" wx:for="{{searchList}}" wx:key="{{index}}" data-id="{{item.id}}" bindtap="toPersonDetail">
+				<view class="personName">
+					<view class="headerImg">
+						<image style="border-radius: 50%;" src="{{item.userLogo}}"/>
+					</view>
+					<text style="margin-left: 15rpx;">{{item.name}}</text>
+					<image class="confirmed" src="../resources/icons/confirm.png" wx:if="{{item.enterpriseId>0}}"/>
+				</view>
+				<view class="cName">
+					<view class="duty"><text>{{item.job}}</text><text>{{item.companyName}}</text></view>
+				</view>
+				<view class="otherDataService">
+					<view class="otherserve">{{item.secondCategory}}</view>
+				</view>
+				<view class="companySite">
+					<text>{{item.city}}{{item.firstCategory}}</text>
+				</view>
+			</view>
+			<view class="tips">
+				<view wx:if="{{loadmore}}" class="loadShow">
+					<icon type="waiting" size="16"/><text>玩命的加载中...</text>
+				</view>
+				<view wx:else style="text-align:center;"><text>查看更多内容，请前往俺搜APP</text></view>
+			</view>
+		</view>
+	</scroll-view>

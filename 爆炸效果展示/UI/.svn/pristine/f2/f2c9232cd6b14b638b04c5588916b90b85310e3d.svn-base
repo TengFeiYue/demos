@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="format-detection" content="telephone=no"/>		
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta charset="utf-8">
+		<title>测试题</title>
+		<link rel="stylesheet" href="bootstrap/bootstrap.min.css" />
+		<link rel="stylesheet" href="NewYearcss/base.css" />
+		<link rel="stylesheet" href="NewYearcss/media.css" />
+		<script src="js/jquery-2.1.0.min.js"></script>
+		<script src="js/html2canvas.min.js"></script>
+		<script src="js/canvas2image.js"></script>
+		<script src="js/bscroll.min.js"></script>
+		<script src="js/axios.js"></script>
+		<script src="js/vue.js"></script>
+		<script src="js/vue-resource.min.js"></script>
+		<script src="js/vue-router.js"></script>
+		<script src="dev.js"></script>
+		 <script type="text/javascript">
+		 	window.onload=window.onresize=function(){
+		 		console.log($(window).height())
+		 		$(document.body).css('height',$(window).height()+'px');
+		 		var deviceWidth = document.documentElement.clientWidth;
+				if(deviceWidth > 750) deviceWidth = 750;
+				document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';
+		 	}
+		 </script>
+		 <style>
+		 	#selectDuty{
+				padding-bottom:1.6rem;
+			}
+			#selectDuty .letters{
+				display: inline-block;
+				padding-right:.2rem;
+			}
+		 	#selectDuty ul li{
+				margin:.5rem 0;
+			}
+		 	#selectDuty .letters img{
+				  width: .7rem;
+			}
+			.parts img{
+				width:1.4rem;
+			}
+			.boss img{
+				  width: 4.5rem;
+			}
+		 </style>
+	</head>
+	<body>
+	  <div id="app">	
+		<div class="container-fluid p-0">			
+			<header class="col-xs-12 p-0">
+				<img src="NewYearimages/questionHaad_03.png" alt="" class="img-responsive" />				
+			</header>			
+			<section class="col-xs-12 fillDuty text-center" id="selectDuty">				
+				<ul>
+					<li>
+						<a :href="'bosstest1.html?duty=10'" class="letters"><img src="NewYearimages/a_06.png" alt="" /></a>
+						<a :href="'bosstest1.html?duty=10'" class="boss"><img src="NewYearimages/bossSel_03.png" alt="" /></a>
+					</li>
+					<li>
+						<a :href="'saletest1.html?duty=10'" class="letters"><img src="NewYearimages/b_17.png" alt="" /></a>
+						<a :href="'saletest1.html?duty=6'" class="parts"><img src="NewYearimages/sellistSel_11.png" alt="" /></a>
+						<a :href="'saletest1.html?duty=8'" class="parts"><img src="NewYearimages/selManager_13.png" alt="" /></a>
+						<a :href="'saletest1.html?duty=10'" class="parts"><img src="NewYearimages/sellSupviser_15.png" alt="" /></a>
+					</li>
+					<li>
+						<a :href="'buyertest1.html?duty=10'" class="letters"><img src="NewYearimages/c_26.png" alt="" /></a>
+						<a :href="'buyertest1.html?duty=6'" class="parts"><img src="NewYearimages/buyer_22.png" alt="" /></a>
+						<a :href="'buyertest1.html?duty=8'" class="parts"><img src="NewYearimages/buyerManager_23.png" alt="" /></a>
+						<a :href="'buyertest1.html?duty=10'" class="parts"><img src="NewYearimages/buyerSupervise_25.png" alt="" /></a>
+					</li>
+					<li>
+						<a :href="'techtest1.html?duty=10'" class="letters"><img src="NewYearimages/d_33.png" alt="" /></a>
+						<a :href="'techtest1.html?duty=10'" class="boss"><img src="NewYearimages/techSel_31.png" alt="" /></a>
+					</li>
+				</ul>
+				
+			</section>
+			<footer class="col-xs-12 p-0">
+				<a href="" class="logo"><img src="NewYearimages/logo_03.png"/></a>
+				<img src="NewYearimages/lantern.png" class="lantern" alt="" />
+				<img src="NewYearimages/indexfooter.png" alt="" class="img-responsive" />
+			</footer>
+		</div>
+	  </div>
+		
+		<script type="text/javascript">
+		    new  Vue({
+				el:'#app',
+				data:{
+					companyName:null,
+					hasCompany:0
+				},
+				mounted(){			
+				var _this=this;		   	 	
+				 this.$nextTick(function(){
+					_this.companyName=decodeURI(getQuery('companyName'));					
+					_this.getCompany();
+				})
+				},
+				methods:{
+					getCompany:function(){
+						if(this.companyName==null||this.companyName==""){
+							this.hasCompany=0;
+						}else{
+							this.hasCompany=5;
+						}
+					}
+					
+				}
+			})
+		</script>
+		<script>
+                var _mtac = {};
+                (function() {
+                    var mta = document.createElement("script");
+                    mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";
+                    mta.setAttribute("name", "MTAH5");
+                    mta.setAttribute("sid", "500566864");
+                    var s = document.getElementsByTagName("script")[0];
+                    s.parentNode.insertBefore(mta, s);
+                })();
+         </script>
+	</body>
+</html>
+

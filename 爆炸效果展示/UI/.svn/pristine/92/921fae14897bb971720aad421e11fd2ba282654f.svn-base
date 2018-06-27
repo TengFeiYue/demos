@@ -1,0 +1,746 @@
+<style>
+	.connectionSearchSelects {
+		padding-top: 20rpx;
+	}
+
+	.queries {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.connectionQuery {
+		flex: 10;
+		background: #F9F9F9;
+		border: 1px solid #0092FF;
+		border-radius: 16rpx;
+		height: 48rpx;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.connectionQuery image {
+		width: 24rpx;
+		height: 26rpx;
+	}
+
+	.connectionQuery .icon {
+		flex: 1;
+		text-align: center;
+	}
+
+	.connectionQuery .searchIpt {
+		flex: 8;
+	}
+
+	.searchIpt input,
+	.searchIpt .pStyle {
+		font-size: 24rpx;
+		color: #666666;
+		letter-spacing: -0.34px;
+	}
+
+	.sorting {
+		flex: 3;
+		text-align: right;
+		height: 48rpx;
+		line-height: 20rpx;
+	}
+
+	.sorting text {
+		display: inline-block;
+		font-size: 24rpx;
+		color: #FFFFFF;
+		letter-spacing: -0.29px;
+		width: 94rpx;
+		height: 44rpx;
+		line-height: 44rpx;
+		padding-right: 20rpx;
+	}
+
+	.sorting image {
+		width: 16rpx;
+		height: 20rpx;
+	}
+
+	.editPannel {
+		background: #FFFFFF;
+		border: 1px solid #C2E6F7;
+		box-shadow: 0 4rpx 8rpx 0 rgba(153, 153, 153, 0.50);
+		border-radius: 16rpx;
+		min-height: 112rpx;
+		overflow-y: scroll;
+		padding: 0 0 10rpx;
+	}
+
+	.editTips {
+		/*height: auto;*/
+		width: 100%;
+		padding: 15rpx 30rpx;
+		box-sizing: border-box;
+		font-size: 24rpx;
+		color: #0092FF;
+		letter-spacing: -0.29px;
+		text-align: left;
+		overflow-x: scroll;
+	}
+
+	.editTips .preTips {
+		display: inline-block;
+		width: 100%;
+		text-align: center;
+	}
+
+	.editTips .selectedItems {
+		display: inline-block;
+		width: 196rpx;
+		height: 64rpx;
+		padding: 0 22rpx;
+		line-height: 64rpx;
+		border: 1px solid #ECECEC;
+		border-radius: 8rpx;
+		font-size: 24rpx;
+		color: #666666;
+		letter-spacing: -0.29px;
+		margin-right: 45rpx;
+		margin-top: 10rpx;
+		float: left;
+	}
+
+	.editTips .selectedItems:nth-child(2n) {
+		margin-right: 0;
+	}
+
+	.selectedItems .wraper {
+		height: 64rpx;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.selectedItems .wraper text {
+		height: 64rpx;
+		flex: 10;
+		text-align: left;
+		overflow: hidden;
+		text-overflow:ellipsis;
+		white-space: nowrap;
+	}
+
+	.selectedItems .wraper image {
+		flex: 1;
+		width: 16rpx;
+		height: 18rpx;
+	}
+
+	.chooseOptions {
+		border-top: 1px solid #ECECEC;
+	}
+
+	.optionsTitle {
+		text-align: left;
+		font-size: 28rpx;
+		color: #4A4A4A;
+		letter-spacing: 0.17px;
+	}
+
+	.optionsTitle image {
+		width: 8rpx;
+		height: 32rpx;
+		position: relative;
+		top: 6rpx;
+	}
+
+	.optionsTitle text {
+		display: inline-block;
+		padding-left: 22rpx;
+	}
+
+	.optionsUl {
+		padding: 14rpx 40rpx 0;
+	}
+
+	.optionsUl label {
+		margin-right: 70rpx;
+	}
+
+	.optionsUl .optionsLi {
+		display: inline-block;
+		font-size: 24rpx;
+		color: #666666;
+		letter-spacing: 0.14px;
+		min-width: 146rpx;
+		height: 56rpx;
+		line-height: 56rpx;
+		border: 1px solid #ECECEC;
+		border-radius: 8rpx;
+		text-align: center;
+		margin-bottom: 20rpx;
+	}
+
+	.optionsUl .optionsLiAct {
+		display: inline-block;
+		font-size: 24rpx;
+		color: #0092FF;
+		letter-spacing: 0.14px;
+		min-width: 146rpx;
+		height: 56rpx;
+		line-height: 56rpx;
+		border: 1px solid #0092FF;
+		border-radius: 8rpx;
+		text-align: center;
+		margin-bottom: 20rpx;
+	}
+
+	.optionsUl label:nth-child(3n) {
+		margin-right: 0;
+	}
+
+	.editOper {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: center;
+		padding: 0 20rpx;
+	}
+
+	.editOper .editResults {
+		flex: 2;
+		font-size: 20rpx;
+		color: #999999;
+		letter-spacing: -0.29px;
+	}
+
+	.editOper .editResults .resNum {
+		color: #0092FF;
+	}
+
+	.editOper .closeAll {
+		flex: 2;
+		font-size: 20rpx;
+		color: #999999;
+		letter-spacing: -0.29px;
+	}
+
+	.editOper .startEdit {
+		flex: 2;
+		font-size: 20rpx;
+		color: #0092FF;
+		letter-spacing: -0.29px;
+		text-align: right;
+	}
+
+	.filterMask {
+		position: fixed;
+		width: 100%;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		z-index: 1000;
+		background: rgba(0, 0, 0, 0.5);
+	}
+
+	.filterCon {
+		position: fixed;
+		width: 80%;
+		padding: 30rpx;
+		height: 310rpx;
+		background: #FFFFFF;
+		border-radius: 16rpx;
+		top: 50%;
+		left: 50%;
+		margin-top: -180rpx;
+		margin-left: -44%;
+		z-index: 10000;
+	}
+
+	.conH3,
+	.conItem {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	.conLeft,
+	.itemLeft {
+		flex: 3;
+	}
+
+	.itemLeftAct {
+		color: #0092FF;
+	}
+
+	.conH3 {
+		font-size: 36rpx;
+		color: #333333;
+		letter-spacing: -0.43px;
+		font-weight: bold;
+	}
+
+	.conItem {
+		font-size: 32rpx;
+		color: #4A4A4A;
+		letter-spacing: -0.38px;
+		line-height: 96rpx;
+		border-bottom: 1px solid #ECECEC;
+	}
+
+	.conItem:last-child {
+		border: none;
+	}
+
+	.conRight,
+	.itemRight {
+		flex: 1;
+	}
+
+	.conRight,
+	.itemRight {
+		text-align: right;
+	}
+
+	.conRight image {
+		width: 36rpx;
+		height: 36rpx;
+	}
+
+	.itemRight image {
+		width: 26rpx;
+		height: 20rpx;
+	}
+</style>
+<template>
+	<view class="connectionSearchSelects">
+		<view class="queries">
+			<view class="connectionQuery">
+				<view class="icon">
+					<image src="../../resources/icons/search.png" wx:if="{{show_hide}}"></image>
+				</view>
+				<view class="searchIpt" bindtap="toSearchPer">
+					<input type="text"  value='{{searchvalue}}' placeholder="搜索企业名称/人脉名称" placeholder-class="pStyle" confirm-type="search" />
+				</view>
+			</view>
+			<view class="sorting" bindtap="showFiler"><text>{{choosedSort}}</text>
+				<image src="../../resources/icons/sorting.png"></image>
+			</view>
+		</view>
+		<view style="padding-top:10rpx;">
+			<view class="editPannel" style="max-height: {{second_height}}px;">
+				<view class="editTips">
+					<text wx:if="{{(getArr.length==0)&&(getDutyArr.length==0)&&(getDisArr.length==0)&&(getRuningArr.length==0)}}" class="preTips">请点击编辑选项，添加筛选条件</text>
+					<view class="selectedItems" wx:if="{{getArr !=''}}">
+						<view class="wraper">
+							<text>{{getArr}}</text>
+							<image src="../../resources/icons/delete.png" data-i="{{index}}" catchtap="deleteSelected"></image>
+						</view>
+					</view>
+					<!--担任职位-->
+					<view class="selectedItems" wx:if="{{getDutyArr != ''}}">
+						<view class="wraper">
+							<text>{{getDutyArr}}</text>
+							<image src="../../resources/icons/delete.png" data-i="{{index}}" catchtap="deleteDuty"></image>
+						</view>
+					</view>
+					<!--距离-->
+					<view class="selectedItems" wx:if="{{getDisArr != ''}}">
+						<view class="wraper">
+							<text wx:for="{{nearSite}}" wx:key="{{index}}" wx:if="{{item.id == getDisArr}}">{{item.name}}</text>
+							<image src="../../resources/icons/delete.png" catchtap="deleteSite"></image>
+						</view>
+					</view>
+					<!--经营模式-->
+					<view class="selectedItems" wx:if="{{getRuningArr != ''}}">
+						<view class="wraper">
+							<text wx:for="{{runingModel}}" wx:key="{{index}}" wx:if="{{item.id == getRuningArr}}">{{item.name}}</text>
+							<image src="../../resources/icons/delete.png" catchtap="deleteModel"></image>
+						</view>
+					</view>
+				</view>
+				<view class="chooseOptions" wx:if="{{closeAll}}">
+					<view class="optionsTitle">
+						<image src="../../resources/icons/parallelogram.png"></image>
+						<text>产业链</text>
+					</view>
+					<checkbox-group bindchange="selectIndustryChain">
+						<view class="optionsUl">
+							<block wx:for="{{materialType}}" wx:key="{{index}}" data-v="{{item.name}}">
+								<label class="optionsLi{{item.checked?'Act':''}}">
+                              		<checkbox value="{{item.name}}" checked="{{item.checked}}" style="display:none;" />{{item.name}}
+                        		</label>
+							</block>
+						</view>
+					</checkbox-group>
+					<view class="optionsTitle">
+						<image src="../../resources/icons/parallelogram.png"></image>
+						<text>担任职务</text>
+					</view>
+
+					<checkbox-group bindchange="selectDuties">
+						<view class="optionsUl">
+							<block wx:for="{{dutyType}}" wx:key="{{index}}">
+								<label class="optionsLi{{item.checked?'Act':''}}">
+                  	<checkbox value="{{item.name}}" checked="{{item.checked}}" style="display:none;" />{{item.name}}
+            		</label>
+							</block>
+						</view>
+					</checkbox-group>
+
+					<view class="optionsTitle">
+						<image src="../../resources/icons/parallelogram.png"></image>
+						<text>地理位置(单选)</text>
+					</view>
+
+					<radio-group bindchange="selectSite">
+						<view class="optionsUl">
+							<block wx:for="{{nearSite}}" wx:key="{{index}}">
+								<label class="optionsLi{{item.checked?'Act':''}}">
+                                <radio value="{{item.id}}" checked="{{item.checked}}" style="display:none;" />{{item.name}}
+                          </label>
+							</block>
+						</view>
+					</radio-group>
+
+					<view class="optionsTitle">
+						<image src="../../resources/icons/parallelogram.png"></image>
+						<text>经营模式(单选)</text>
+					</view>
+
+					<radio-group bindchange="selectModels">
+						<view class="optionsUl">
+							<block wx:for="{{runingModel}}" wx:key="{{index}}">
+								<label class="optionsLi{{item.checked?'Act':''}}">
+                                <radio value="{{item.id}}" checked="{{item.checked}}" style="display:none;" />{{item.name}}
+                          </label>
+							</block>
+						</view>
+					</radio-group>
+				</view>
+				<view class="editOper">
+					<view class="editResults">共找到<text class="resNum">{{relationNum}}</text>条结果</view>
+					<view class="closeAll" wx:if="{{closeAll}}" bindtap="closeAll">收起全部</view>
+					<view class="startEdit" bindtap="editOptions" wx:if="{{!closeAll}}">编辑选项</view>
+				</view>
+			</view>
+
+
+		</view>
+	</view>
+	<view wx:if="{{filterShow}}" class="filterMask"></view>
+	<view wx:if="{{filterShow}}" class="filterCon">
+		<view class="conH3">
+			<view class="conLeft">选择排序方式</view>
+			<view class="conRight" bindtap="closeLayer">
+				<image src="../../resources/icons/delete.png"></image>
+			</view>
+		</view>
+		<view class="conList">
+			<view class="conItem" wx:for="{{autoSorting}}" wx:key="{{index}}" data-i="{{index}}" data-id="{{item.id}}" data-v="{{item.name}}" bindtap="chooseCondition">
+				<view class="itemLeft{{choosedItem==index?'Act':''}}">{{item.name}}</view>
+				<view class="itemRight">
+					<image src="../../resources/icons/checked.png" wx:if="{{choosedItem==index}}"></image>
+				</view>
+			</view>
+
+		</view>
+	</view>
+</template>
+<script>
+	import wepy from 'wepy'
+	import { api } from '../config'
+	import location from '../utils/location'
+	export default class connectionSearch extends wepy.component {
+		data = {
+			materialType: [],
+			dutyType: [],	// 后台返回的职位列表
+			getDutyArr: '',	// 点击当前职位获取到的职位id：string
+			nearSite: [],	// 后台返回地理位置列表
+			getDisArr: '',	// 点击当前的地理位置获取到的距离id：string
+			runingModel: [], // 后台返回的经营模式列表
+			getRuningArr: '', //点击当前的经营模式获取到的id：string
+			second_height: 0,
+			getMaterial: [], //chanyelian
+			getDuty: [], //zhiwei
+			getSite: [],
+			getModel: [],
+			chooseArr: [],
+			getArr: '',
+			autoSorting: [],
+			choosedSort: '智能排序',
+			itemId:0,
+			selIndex: -1,
+			choosedItem: -1,
+			closeAll: false,
+			tabComAct: false,
+			searchvalue: "",
+			show_hide: true,
+			filterShow: false,
+			relationNum: 0,
+		}
+		events = {
+			'getNum': function(param) {
+				this.relationNum = param;
+			}
+		}
+		methods = {
+			toSearchPer() {
+				wx.navigateTo({
+					url: 'searchPer'
+				})
+			},
+			//显示智能排序
+			showFiler() {
+				this.filterShow = true;
+			},
+			closeLayer() {
+				this.filterShow = false;
+			},
+			//编辑选项
+			editOptions() {
+				this.closeAll = true;
+			},
+			closeAll() {
+				this.closeAll = false;
+
+			},
+			chooseCondition(e) {
+				this.choosedItem = e.currentTarget.dataset.i;
+				this.choosedSort = e.currentTarget.dataset.v;
+        		this.itemId= Number(e.currentTarget.dataset.id);
+				this.$emit('personFilter', {
+					mType: this.getArr,
+					duty: this.getDutyArr,
+					distance: this.getDisArr,
+					model: this.getRuningArr,
+					name:this.itemId
+				})
+				this.filterShow = false;
+			},
+			selectIndustryChain(e) {
+				//产业链
+				let materialType = this.materialType;
+				let checkArr = e.detail.value;
+				for(var i = 0; i < materialType.length; i++) {
+					if(checkArr.indexOf(materialType[i].name) != -1) {
+						materialType[i].checked = true;
+					} else {
+						materialType[i].checked = false;
+					}
+				}
+				this.getArr = checkArr.join(',');
+				this.$emit('personFilter', {
+					mType: this.getArr,
+					duty: this.getDutyArr,
+					distance: this.getDisArr,
+					model: this.getRuningArr,
+					name:this.itemId
+				})
+			},
+			selectDuties(e) {
+				//担任职位
+				let dutyType = this.dutyType;
+				let checkDutyArr = e.detail.value;
+				for(var i = 0; i < dutyType.length; i++) {
+					if(checkDutyArr.indexOf(dutyType[i].name) != -1) {
+						dutyType[i].checked = true;
+					} else {
+						dutyType[i].checked = false;
+					};
+				}
+				this.getDutyArr = checkDutyArr.join(',');
+				this.$emit('personFilter', {
+					mType: this.getArr,
+					duty: this.getDutyArr,
+					distance: this.getDisArr,
+					model: this.getRuningArr,
+					name:this.itemId
+				})
+
+			},
+			selectSite(e) {
+				//选择地理位置
+				let nearSite = this.nearSite;
+				let checkSite = e.detail.value;
+				for(var i = 0; i < nearSite.length; i++) {
+					if(checkSite.indexOf(nearSite[i].id) != -1) {
+						nearSite[i].checked = true;
+					} else {
+						nearSite[i].checked = false;
+					}
+				}
+				this.getDisArr = checkSite;
+				this.$emit('personFilter', {
+					mType: this.getArr,
+					duty: this.getDutyArr,
+					distance: this.getDisArr,
+					model: this.getRuningArr,
+					name:this.itemId
+				})
+
+			},
+			selectModels(e) {
+				//选择经营模式
+				let runingModel = this.runingModel;
+				let checkModel = e.detail.value;
+				for(var i = 0; i < runingModel.length; i++) {
+					if(checkModel.indexOf(runingModel[i].id) != -1) {
+						runingModel[i].checked = true;
+					} else {
+						runingModel[i].checked = false;
+					}
+				}
+				this.getRuningArr = checkModel;
+				this.$emit('personFilter', {
+					mType: this.getArr,
+					duty: this.getDutyArr,
+					distance: this.getDisArr,
+					model: this.getRuningArr,
+					name:this.itemId
+				})
+
+			},
+			/*删除选择项*/
+			deleteSelected(e) {
+				let materialType = this.materialType;
+				for(var i = 0; i < materialType.length; i++) {
+					materialType[i].checked = false;
+				}
+				this.getArr = '';
+				this.$emit('personFilter', {
+					mType: this.getArr,
+					duty: this.getDutyArr,
+					distance: this.getDisArr,
+					model: this.getRuningArr,
+					name:this.itemId
+				})
+			},
+			deleteDuty(e) {
+				let dutyType = this.dutyType;
+				let Index = e.currentTarget.dataset.i;
+				for(var i = 0; i < dutyType.length; i++) {
+					dutyType[i].checked = false;
+				}
+				this.getDutyArr = '';
+				this.$emit('personFilter', {
+					mType: this.getArr,
+					duty: this.getDutyArr,
+					distance: this.getDisArr,
+					model: this.getRuningArr,
+					name:this.itemId
+				})
+			},
+			deleteSite(e) {
+				let nearSite = this.nearSite;
+				for(var i = 0; i < nearSite.length; i++) {
+					if(nearSite[i].id == this.getDisArr) {
+						nearSite[i].checked = false;
+					}
+				}
+				this.getDisArr = '';
+				this.$emit('personFilter', {
+					mType: this.getArr,
+					duty: this.getDutyArr,
+					distance: this.getDisArr,
+					model: this.getRuningArr,
+					name:this.itemId
+				})
+			},
+			deleteModel(e) {
+				let runingModel = this.runingModel;
+				for(var i = 0; i < runingModel.length; i++) {
+					if(runingModel[i].id == this.getRuningArr) {
+						runingModel[i].checked = false;
+					}
+				}
+				this.getRuningArr = '';
+				this.$emit('personFilter', {
+					mType: this.getArr,
+					duty: this.getDutyArr,
+					distance: this.getDisArr,
+					model: this.getRuningArr,
+					name:this.itemId
+				})
+			}
+
+		}
+
+		onLoad() {
+			var that = this
+    		// 获取系统信息
+    		wx.getSystemInfo({
+      			success: function (res) {
+        			that.second_height=(res.windowHeight - res.windowWidth / 750 * 300) + 40
+      			}
+    		})
+			this.fetchAutoSortData();
+			this.fetchpersonDutyData();
+			this.fetchDistanceData();
+			this.fetchMainLinesData();
+			this.fetchruningModelData();
+		}
+		fetchAutoSortData() { //智能排序
+			let that = this;
+			wepy.request({
+				url: api.relations.autoSort.url,
+				method: api.relations.autoSort.method,
+				data: {},
+				success: function(res) {
+					that.autoSorting = res.data.body;
+					that.$apply();
+				}
+			});
+		}
+		fetchpersonDutyData() { //选择职位
+			let that = this;
+			wepy.request({
+				url: api.relations.personDuty.url,
+				method: api.relations.personDuty.method,
+				data: {},
+				success: function(res) {
+					that.dutyType = res.data.body;
+					that.$apply();
+				}
+			});
+		}
+		fetchDistanceData() { //选择距离
+			let that = this;
+			wepy.request({
+				url: api.relations.distance.url,
+				method: api.relations.distance.method,
+				data: {},
+				success: function(res) {
+					that.nearSite = res.data.body;
+					that.$apply();
+				}
+			});
+		}
+		fetchMainLinesData() { //选择行业
+			let that = this;
+			wepy.request({
+				url: api.relations.mainLines.url,
+				method: api.relations.mainLines.method,
+				data: {},
+				success: function(res) {
+					that.materialType = res.data.body;
+					that.$apply();
+				}
+			});
+		}
+		fetchruningModelData() { //选择经营模式
+			let that = this;
+			wepy.request({
+				url: api.relations.runningModel.url,
+				method: api.relations.runningModel.method,
+				data: {},
+				success: function(res) {
+					that.runingModel = res.data.body;
+					that.$apply();
+				}
+			});
+		}
+
+	}
+</script>

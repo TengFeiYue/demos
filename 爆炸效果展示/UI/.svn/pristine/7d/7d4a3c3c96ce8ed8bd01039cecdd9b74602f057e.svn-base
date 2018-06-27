@@ -1,0 +1,20 @@
+<template>
+	<div class="app-container">
+		<textarea class="edit" name="" rows="" cols="">1233</textarea>
+	</div>
+</template>
+
+<script>
+</script>
+
+<style lang="less" scoped>
+	.app-container{
+		width: 100%;
+		.edit{
+			display: block;
+			height: 200px;
+			width: 100%;
+			background: #fff;
+		}
+	}
+</style>

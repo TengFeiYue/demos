@@ -1,0 +1,320 @@
+
+<style >
+.indexPage {
+    background-color: white;
+}
+.price_rep{
+   position:fixed;
+   bottom:98rpx;
+   right:5rpx;
+   z-index:111111;
+}
+.price_rep .img{
+   width:128rpx;
+   height:128rpx;
+}
+.findList{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+    background: #FFFFFF;
+    padding:30rpx 30rpx 34rpx;
+    border-bottom:1px solid #eeeeee;
+}
+.tips{
+   background:#ffffff;
+   line-height:60rpx;
+}
+.loadShow{
+      background:#ffffff;
+      text-align:center;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      align-self: center;
+      justify-content: center;
+}
+.loadShow icon{
+    position:relative;
+    top:17rpx;
+    right:5rpx;
+}
+.materialPic{
+   flex:1;
+}
+.companyInfo{
+   flex:8;
+   padding-left:30rpx;
+}
+.toDetail{
+    flex:1;
+    text-align:right;
+}
+.materialPic image{
+    width:92rpx;
+    height:102rpx;
+}
+.name{
+    display:inline-block;
+    line-height:56rpx;
+    font-size:34rpx;
+    color:#222222;
+    padding-right:30rpx;
+}
+.runingWays{
+  font-size: 26rpx;
+  color: #333333;
+}
+.companyName{
+  padding:15rpx 0;
+}
+.comName{
+    font-size: 26rpx;
+    color: #333333;
+}
+.settled{
+    width:28rpx;
+    height:33rpx;
+    position:relative;
+    top:5rpx;
+    left:10rpx;
+}
+.contacts{
+    font-size: 26rpx;
+    color: #999999;
+    line-height: 37rpx;
+}
+.contacts text{
+   display:inline-block;
+   vertical-align:top;
+}
+.contacts .orange{
+    font-size: 26rpx;
+    color: #fe9900;
+    line-height: 37rpx;
+}
+.toDetail image{
+   width:16rpx;
+   height:26rpx;
+}
+.pro{
+  padding-right:20rpx;
+}
+</style>
+<template>
+  <view class="indexPage">
+      <view>
+          <findmeSearch />
+      </view>
+  </view>
+  <scroll-view class="container-body" scroll-top="{{scrolltop}}" scroll-y="true"  style="height:{{scrollWrapHeight}}px" bindscrolltoupper="onPullDownRefresh"  bindscrolltolower="scrollLoading">
+     <view class="ul">
+           <view class="findList" wx:for="{{linkerList}}" wx:key="{{index}}"  data-uid="{{item.userId}}" data-type="{{item.productType}}" bindtap="toMarketDetail">
+                <view class="materialPic"><image  src="{{item.userLogo}}"></image></view>
+                <view class="companyInfo">
+                   <view>
+                      <text class="name">{{item.name}}</text>
+                      <text class="runingWays">{{item.businessMode}}</text>
+                   </view>
+                   <view class="companyName">
+                       <text class="comName">{{item.enterpriseName}}</text>
+                       <image class="settled"  src="../../../resources/img/zhu.png"></image>
+                   </view>
+                   <view class="contacts">
+                     <text class="pro"><text class="orange">{{item.productCount}}</text>款产品</text>
+                     <text><text class="orange">{{item.linkManCount}}</text>人联系</text>
+                   </view>
+                </view>
+                <view class="toDetail">
+                    <image src="../../../resources/icons/chevion.jpg"></image>
+                </view>
+           </view>
+           <view class="tips">
+            <view wx:if="{{loadmore}}" class="loadShow">
+            <icon type="waiting" size="16"/><text>玩命的加载中...</text></view>
+            <view wx:else style="text-align:center;"><text>没有更多内容了</text></view>
+           </view>
+     </view>
+	</scroll-view>
+  <view class="price_rep" bindtap="toPropaganda" style="bottom:{{ballBottom}}px;right:{{ballRight}}px;">
+           <image class="img"  src="../../../resources/img/price_rep.png"></image>
+      </view>
+<!--<view class="price_rep" bindtap="toPropaganda" style="bottom:{{ballBottom}}px;right:{{ballRight}}px;" bindtouchmove="ballMoveEvent">
+        <image class="img"  src="../../../resources/img/price_rep.png"></image>
+   </view>-->
+</template>
+
+
+<script>
+import wepy from 'wepy'
+import { api } from '../../../config'
+import findmeSearch from '../../index/findmeSearch'
+export default class findmeBuyMaterial extends wepy.component {
+    components = {
+      findmeSearch
+    }
+    data = {
+        ballBottom: 98,
+        ballRight: 5,
+        screenHeight: 0,
+        screenWidth: 0,
+        scrolltop:0,
+        linkerList:[],
+        loadNum: 0,
+        wait: true,
+        loadmore:true,
+        scrollWrapHeight:0,
+        pageIndex: 1,  //分页
+        fscrolltop:null,
+        showTopBtn:false,
+        proType:'原料',
+        sType:'',
+        autoOrder:'',
+        sKey:'',
+        dPlace:'',
+        joinFlag:'',
+        loginUId:-1
+    }
+    events={
+       'selectCity':($event)=>{
+           this.dPlace=$event;
+           this.$apply();
+           this.fetchlinkersData()
+       },
+       'sendFilterDatas':(filterParam)=>{
+            this.proType=filterParam.pType;
+            this.sType=filterParam.seriesType;
+            this.autoOrder=filterParam.order;
+            this.sKey=filterParam.searchKey;
+            this.fetchlinkersData();
+       },
+       'hasUserInfo': (arg) => {
+           this.joinFlag=arg.joinFlag;
+      },
+    }
+    methods = {
+        toMarketDetail(e){
+         var userId=e.currentTarget.dataset.uid;
+         var pType=e.currentTarget.dataset.type;
+         wx.navigateTo({
+             url: 'marketingDetail?userId='+userId+'&productType='+pType
+         })
+        },
+        gotoCompanyDetail(e){
+            const antsooUserInfo = wepy.getStorageSync("antUserInfo");
+            if(antsooUserInfo == ''){
+                wx.showModal({
+                    title: '提示',
+                    content: '查看更多信息请先登录',
+                    confirmText:'去登录',
+                    confirmColor:'#239FDB',
+                    success: function(res) {
+                        if (res.confirm) {
+                            console.log('用户点击确定')
+                            wx.navigateTo({
+                                url: 'login'
+                            })
+                        } else if (res.cancel) {
+                            console.log('用户点击取消')
+                        }
+                    }
+                });
+            }else{
+                const id = e.currentTarget.dataset.companyid;
+                wx.navigateTo({
+                    url: 'companyDetailInfo?id=' + id
+                })
+            }
+        },
+        scrollLoading(){ //滚动加载
+            console.log("loadMore:" + this.loadmore)
+              if(this.loadmore){
+                  this.pageIndex++;
+                  this.fetchlinkersData();
+              }else{
+                return false;
+              }
+        },
+        goToTop(){ //回到顶部
+            this.scrolltop = 0;
+        },
+        onPullDownRefresh(){
+           console.log('上拉刷新')
+        },
+        toPropaganda(){
+            if(this.loginUId==undefined||this.loginUId==""){
+                wx.navigateTo({
+                    url: 'login?fromPage=propaganda'
+                });
+                return;
+            }
+            if(this.joinFlag=="noappliy"||this.joinFlag=="unpassed"||this.joinFlag=="applied"||this.joinFlag==undefined||this.joinFlag=="leaveoffice"){
+                  wx.navigateTo({
+                      url: 'propaganda?redirect=index&userId='+this.loginUId
+                  })
+            }
+            if(this.joinFlag=="passed"){
+                  wx.navigateTo({
+                      url: 'subPrice?pUnit=元/吨&deliverway=自提&picList=../resources/img/imgUpload.jpg'
+                  })
+            }
+           this.$apply();
+
+        }
+    }
+    onShow(){
+      const antsooUserInfo = wepy.getStorageSync("antUserInfo");
+      this.loginUId=antsooUserInfo.userId;
+      this.$apply();
+    }
+    onLoad() {
+        var _this = this;
+        wx.getSystemInfo({
+         success: function (res) {
+             _this.screenHeight=res.windowHeight;
+             _this.screenWidth=res.windowWidth;
+         }
+        });
+        this.scrollWrapHeight = wx.getSystemInfoSync().windowHeight * 0.91 - 130;
+        this.fetchlinkersData();
+    }
+    fetchlinkersData(){
+         wx.showLoading({
+            title: '加载中',
+        })
+        let that = this;
+        const pageSize = 20;
+        wepy.request({
+            url:api.findMeBuyMaterial.linkerList.url,
+            method:api.findMeBuyMaterial.linkerList.method,
+            data:{
+                'productType':that.proType,
+                'seriesType':that.sType,
+                'order':that.autoOrder,
+                'searchKey':that.sKey,
+                'deliveryPlace':that.dPlace,
+                'pageInfo2':{
+                    'pSize': pageSize,
+                    'pIndex':that.pageIndex
+                }
+            },
+            success:function(res){
+                var materialData=res.data.body.userDtoList;
+                const tPages=res.data.page.tCount;
+                const pages =materialData.length/20;
+                var isInt=tPages/(that.pageIndex*20);
+                that.loadmore = (pages==1&&isInt!=1) ? true : false;
+                if(that.pageIndex > 1){
+                    that.linkerList = that.linkerList.concat(materialData);
+                }else{
+                    that.linkerList = materialData;
+                }
+                that.$apply();
+                wx.hideLoading()
+            }
+        });
+    }
+
+}
+</script>

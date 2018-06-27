@@ -1,0 +1,25 @@
+
+    <!--<view class="body">
+        <view class="changeCon">
+            <view class="changeContent">
+                 <view class="h3">名片职位变更</view>
+                 <view class="changeConItem">
+                    <view class="changeConDl duty">
+                      <text>名片职位</text>
+                      <input placeholder="请输入新名片职位" />
+                    </view>
+                    <view class="changeConDl>
+                    <text>名片</text>
+                    <!--<image src=""></image>-->
+                    
+                 
+                 <view class="opButtons">
+                      <text class="cancelBtn">取消</text>
+                      <text class="subBtn">提交</text>
+                 </view>
+            
+
+
+        
+    -->
+

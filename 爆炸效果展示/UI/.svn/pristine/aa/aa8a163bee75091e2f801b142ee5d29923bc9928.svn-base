@@ -1,0 +1,64 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _wepy = require('./../npm/wepy/lib/wepy.js');
+
+var _wepy2 = _interopRequireDefault(_wepy);
+
+var _config = require('./../config.js');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var dataNone = function (_wepy$component) {
+	_inherits(dataNone, _wepy$component);
+
+	function dataNone() {
+		var _ref;
+
+		var _temp, _this, _ret;
+
+		_classCallCheck(this, dataNone);
+
+		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+			args[_key] = arguments[_key];
+		}
+
+		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = dataNone.__proto__ || Object.getPrototypeOf(dataNone)).call.apply(_ref, [this].concat(args))), _this), _this.data = {}, _this.events = {}, _this.methods = {
+			goFindCompany: function goFindCompany() {
+				wx.reLaunch({
+					url: 'index?goFindId=2'
+				});
+			},
+			goFindPerson: function goFindPerson() {
+				wx.reLaunch({
+					url: 'index?goFindId=1'
+				});
+			}
+		}, _temp), _possibleConstructorReturn(_this, _ret);
+	}
+
+	_createClass(dataNone, [{
+		key: 'onLoad',
+		value: function onLoad() {}
+	}, {
+		key: 'onShow',
+		value: function onShow() {}
+	}]);
+
+	return dataNone;
+}(_wepy2.default.component);
+
+exports.default = dataNone;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRhdGFOb25lLmpzIl0sIm5hbWVzIjpbImRhdGFOb25lIiwiZGF0YSIsImV2ZW50cyIsIm1ldGhvZHMiLCJnb0ZpbmRDb21wYW55Iiwid3giLCJyZUxhdW5jaCIsInVybCIsImdvRmluZFBlcnNvbiIsIndlcHkiLCJjb21wb25lbnQiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7OztBQUNDOzs7O0FBQ0E7Ozs7Ozs7Ozs7SUFDcUJBLFE7Ozs7Ozs7Ozs7Ozs7O3dMQUNwQkMsSSxHQUFPLEUsUUFHUEMsTSxHQUFTLEUsUUFHVEMsTyxHQUFVO0FBQ1RDLGdCQURTLDJCQUNPO0FBQ2ZDLE9BQUdDLFFBQUgsQ0FBWTtBQUNOQyxVQUFLO0FBREMsS0FBWjtBQUdBLElBTFE7QUFNVEMsZUFOUywwQkFNTTtBQUNkSCxPQUFHQyxRQUFILENBQVk7QUFDTkMsVUFBSztBQURDLEtBQVo7QUFHQTtBQVZRLEc7Ozs7OzJCQWFELENBQ1I7OzsyQkFFTyxDQUVQOzs7O0VBekJvQ0UsZUFBS0MsUzs7a0JBQXRCVixRIiwiZmlsZSI6ImRhdGFOb25lLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcblx0aW1wb3J0IHdlcHkgZnJvbSAnd2VweSdcclxuXHRpbXBvcnQgeyBhcGkgfSBmcm9tICcuLi9jb25maWcnXHJcblx0ZXhwb3J0IGRlZmF1bHQgY2xhc3MgZGF0YU5vbmUgZXh0ZW5kcyB3ZXB5LmNvbXBvbmVudCB7XHJcblx0XHRkYXRhID0ge1xyXG5cdFx0XHRcclxuXHRcdH1cclxuXHRcdGV2ZW50cyA9IHtcclxuXHJcblx0XHR9XHJcblx0XHRtZXRob2RzID0ge1xyXG5cdFx0XHRnb0ZpbmRDb21wYW55KCkge1xyXG5cdFx0XHRcdHd4LnJlTGF1bmNoKHsgIFxyXG5cdFx0XHQgICAgICBcdHVybDogJ2luZGV4P2dvRmluZElkPTInICBcclxuXHRcdFx0ICAgIH0pOyBcclxuXHRcdFx0fSxcclxuXHRcdFx0Z29GaW5kUGVyc29uKCkge1xyXG5cdFx0XHRcdHd4LnJlTGF1bmNoKHsgIFxyXG5cdFx0XHQgICAgICBcdHVybDogJ2luZGV4P2dvRmluZElkPTEnICBcclxuXHRcdFx0ICAgIH0pOyBcclxuXHRcdFx0fVxyXG5cdFx0fVxyXG5cclxuXHRcdG9uTG9hZCgpIHtcclxuXHRcdH1cclxuXHRcdFxyXG5cdFx0b25TaG93KCl7XHJcblxyXG5cdFx0fVxyXG5cdH1cclxuIl19

@@ -1,0 +1,35 @@
+
+	<view class="con">
+		<view class="con-logo">
+			<image src="../resources/img/logo.png"/>
+		</view>
+		<view class="con-list">
+			<view class="con-list-title">找客户、找供应商</view>
+			<view class="con-list-txt"><text class="font-big font-cl">15</text><text class="font-cl">万+</text>企业，LBS定位，关联产业上下游</view>
+		</view>
+		<view class="con-list">
+			<view class="con-list-title">找人脉</view>
+			<view class="con-list-txt"><text class="font-big font-cl">50</text><text class="font-cl">万+</text>产业人脉聚合，云端大数据，智能匹配</view>
+		</view>
+		<view class="con-list">
+			<view class="con-list-title">找塑价</view>
+			<view class="con-list-txt"><text class="font-cl">15+</text>品类，<text class="font-cl">100+</text>品牌<text class="font-cl">1000+</text>牌号，塑价免费看</view>
+		</view>
+		<view class="con-tips"><text>俺搜:</text>是一款材料领域的商务拓展利器，专为材料人提供客户、供应商、材料、塑价查找，老板、采购、销售、工程师人脉关系搭建服务</view>
+		<view class="con-foot">
+			<view class="con-qrCode">
+				<image bindtap="previewImage" src="{{imgalist[0]}}"/>
+			</view>
+			<view class="con-intr">
+				<view class="con-intr-title">下载APP,一手掌握最完整的客户资源</view>
+				<view class="con-intr-con">
+					<image class="border" src="../resources/icons/border.png"/>
+					<view class="con-intr-list">下载方式1:点击二维码图片，保存至相册，使用微信扫一扫功能，即可下载;</view>
+					<view class="con-intr-list">下载方式2:前往应用市场，搜索“俺搜”即可立即下载</view>
+				</view>
+			</view>
+		</view>
+		<view class="phone">
+			<image src="../resources/img/phone.png"/>
+		</view>
+	</view>

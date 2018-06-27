@@ -1,0 +1,130 @@
+
+	<view class="header">
+		<image class="header-bg" src="../resources/img/bg.png"/>
+		<view class="header-con">
+			<image class="header-bgimg" src="../resources/img/bg2.png"/>
+			<view class="header-con-center">
+				<view class="header-img">
+					<image  wx:if="{{info.companyMember.memberLogoUrl == ''}}" src="../resources/img/myImg.png"/>
+					<image  wx:else src="{{info.companyMember.memberLogoUrl}}"/>
+				</view>
+				<view class="header-info">
+					<view class="header-info-name">
+						<text>{{info.companyMember.memberName}}</text>
+						<image class="imageOne" wx:if="{{info.companyMember.bestFlag == 2}}" src="../resources/icons/verify.png"/>
+						<image class="imageOne" wx:if="{{info.companyMember.bestFlag == 1}}" src="../resources/icons/noverify.png"/>
+						<image class="imageOne" wx:if="{{info.companyMember.bestFlag == 3}}" src="../resources/icons/confirm.png"/>
+					</view>
+					<view class="header-info-work">{{info.companyMember.title}}</view>
+					<view class="header-info-company">{{info.companyMember.enterpriseName}}</view>
+				</view>
+				<view class="header-title">
+					<scroll-view scroll-x="false" style="">
+						<button size="mini" wx:if="{{labels.length != 0}}" wx:for="{{labels}}" wx:key="{{index}}">{{item}}</button>
+						<button size="mini" bindtap="showokk">+</button>
+					</scroll-view>
+				</view>
+			</view>
+			<view class="header-con-code" bindtap="showLay" wx:if="{{info.companyMember.bestFlag == 3}}">
+				<image src="../resources/img/code.png"/>
+			</view>
+		</view>
+	</view>
+	<view class="main">
+		<view class="main-list">
+			<view class="main-title pad15">
+				<image src="../resources/icons/parallelogram.png"/>
+				<text>联系方式</text>
+			</view>
+			<view class="main-detail pad15">
+				<text class="title">移动电话</text>
+				<text class="con"  wx:if="{{info.companyMember.isUnlocked == 0}}">解锁后才能查看</text>
+				<text class="con"  wx:if="{{info.companyMember.isUnlocked == 1}}">{{info.companyMember.phoneNo}}</text>
+			</view>
+			<view class="main-detail pad15">
+				<text class="title">电子邮箱</text>
+				<text class="con">{{info.companyMember.email}}</text>
+			</view>
+			<view class="main-title pad15">
+				<image src="../resources/icons/parallelogram.png"/>
+				<text>企业概况</text>
+			</view>
+			<view class="main-company pad15">
+				<text>{{info.companyMember.enterpriseName}}</text>
+			</view>
+			<view class="main-detail-box pad15">
+				<view class="main-detail">
+					<text class="title">产业链</text>
+					<text class="con">{{info.enterpriseInfoDto.type}}</text>
+				</view>
+				<view class="main-detail">
+					<text class="title">经营分类</text>
+					<text class="con">{{info.enterpriseInfoDto.baseSecondCategory}}</text>
+				</view>
+			</view>
+			<view class="main-detail-box pad15">
+				<view class="main-detail">
+					<text class="title">经营模式</text>
+					<text class="con">{{info.enterpriseInfoDto.businessMode}}</text>
+				</view>
+				<view class="main-detail">
+					<text class="title">服务区域</text>
+					<text class="con">{{info.enterpriseInfoDto.serviceArea}}</text>
+				</view>
+			</view>
+			<view class="main-detail-box pad15">
+				<text class="main-detail-box-title">主营行业</text>
+				<text class="main-detail-box-con">{{info.enterpriseInfoDto.mainLines}}</text>
+			</view>
+			<view class="main-detail-box pad15">
+				<text class="main-detail-box-title">主营系列</text>
+				<text class="main-detail-box-con">{{info.enterpriseInfoDto.mainProduct}}</text>
+			</view>
+			<view class="main-adress pad15">
+				<text>{{info.enterpriseInfoDto.cityName}}{{info.enterpriseInfoDto.districtName}}{{info.enterpriseInfoDto.address}}</text>
+			</view>
+			<view class="main-title pad15">
+				<image src="../resources/icons/parallelogram.png"/>
+				<text>我的产品</text>
+			</view>
+			<view class="edit-con pad15">{{info.companyMember.agencyProduct}}</view>
+		</view>
+		<view class="foot" wx:if="{{info.companyMember.isUnlocked == 0}}" bindtap="showIsClock">
+			<view class="icon">
+				<image src="../resources/icons/icon-clock.png"/>
+			</view>
+			<view class="text">
+				<text>解锁联系方式</text>
+			</view>
+		</view>
+		<view class="footclock" wx:if="{{info.companyMember.isUnlocked == 1}}" bindtap="callPhone">一键拨号</view>
+		<view class="scan">
+			<!--浏览量-->
+			<view class="scan-list">
+				<image src="../resources/icons/scannum.png"/>
+				<text>{{info.companyMember.browseQty}}</text>
+			</view>
+			<!--收藏量-->
+			<view class="scan-list" bindtap="isCollect">
+				<image src="../resources/icons/icon-collect.png"/>
+				<text>{{num}}</text>
+			</view>
+		</view>
+	</view>
+	<view class="layer" style="height: {{sh}}px;"  wx:if="{{layFlag}}" bindtap="closeLayer">
+		<view class="layer-con">
+			<view class="layer-con-bg">
+				<image src="../resources/img/bg.png"/>
+			</view>
+			<view class="laycon">
+				<view class="laycon-img">
+					<image src="{{layInfo.userLogo}}"/>
+				</view>
+				<view class="laycon-name">{{info.companyMember.memberName}}</view>
+				<view class="laycon-code" bindtap="previewImage">
+					<image src="{{imgalist}}"/>
+				</view>
+				<view class="laycon-op">微信长按识别/查看我的名片</view>
+			</view>
+		</view>
+	</view>

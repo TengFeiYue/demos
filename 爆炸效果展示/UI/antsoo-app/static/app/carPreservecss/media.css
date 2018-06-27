@@ -1,0 +1,67 @@
+/*针对不同屏幕分辨率*/
+
+@media screen and ( min-width: 412px ){
+	
+.startMake {
+    display: inline-block;
+    background: #46ebff;
+    width: 27rem;
+    line-height: 3rem;
+    font-size: 1.6rem;
+    }
+ .forms .form-group {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.footerSection {
+    text-align: center;
+    padding-top: 0rem;
+    padding-bottom: 0;
+    color: #fff;
+}
+.scanCode img {
+    width: 10rem;
+}
+.operateTip {
+    color: #46ebff;
+    text-align: center;
+    font-size: 2rem;
+    line-height: 0rem;
+    height: 5rem;
+    padding-bottom: 17rem;
+}
+.bottomPointer {
+    position: absolute;
+    bottom: 14rem;
+    right: 0rem;
+}
+}
+/*调试iphone6s*/
+@media only screen and ( min-device-width: 375px )and (max-device-width:412px){
+  
+}
+@media screen and ( max-width: 322px ){
+	
+	.forms .form-group input {
+    background: #2c97b8;
+    width: 16rem;
+}
+.startMake {
+    display: inline-block;
+    width: 23rem;
+    
+}
+
+.footerSection {
+    text-align: center;
+    padding-top: 0rem;
+    padding-bottom: 0;
+    color: #fff;
+}
+
+.bottomPointer {
+    position: absolute;
+    bottom: 8rem;
+    right: -3.5rem;
+}	
+}

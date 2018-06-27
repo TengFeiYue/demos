@@ -1,0 +1,96 @@
+.con {
+  width: 100%;
+  background-color: #0092ff;
+  padding: 0 100rpx;
+  box-sizing: border-box; }
+  .con .first-title {
+    width: 100%;
+    color: #fff;
+    font-size: 38rpx;
+    line-height: 3;
+    text-align: center; }
+  .con .second-title {
+    width: 100%;
+    height: 44rpx;
+    line-height: 44rpx;
+    font-size: 32rpx;
+    color: #fff;
+    text-align: center;
+    position: relative; }
+    .con .second-title image {
+      width: 100%;
+      height: 2rpx; }
+    .con .second-title text {
+      width: 300rpx;
+      background-color: #0092ff;
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: auto;
+      top: 10rpx; }
+  .con .qrcode-box {
+    width: 550rpx;
+    height: 696rpx;
+    background-color: #fff;
+    border-radius: 16rpx;
+    margin-top: 100rpx;
+    padding: 50rpx 0 0 0;
+    box-sizing: border-box;
+    position: relative; }
+    .con .qrcode-box .userImg {
+      height: 132rpx;
+      width: 100%;
+      text-align: center; }
+      .con .qrcode-box .userImg image {
+        width: 132rpx;
+        height: 132rpx; }
+    .con .qrcode-box .qrcode-con {
+      width: 280rpx;
+      height: 330rpx;
+      margin: 50rpx auto;
+      overflow: scroll; }
+      .con .qrcode-box .qrcode-con .qrcode-title {
+        height: 50rpx;
+        line-height: 50rpx;
+        width: 100%;
+        font-size: 36rpx;
+        color: #333;
+        text-align: center;
+        background-color: #fff; }
+      .con .qrcode-box .qrcode-con view {
+        height: 330rpx;
+        width: 280rpx;
+        float: left; }
+      .con .qrcode-box .qrcode-con scroll-view {
+        background-color: #f2f2f2;
+        width: 560rpx;
+        height: 330rpx; }
+      .con .qrcode-box .qrcode-con image {
+        width: 280rpx;
+        height: 280rpx; }
+    .con .qrcode-box .sw {
+      width: 40rpx;
+      height: 60rpx;
+      position: absolute;
+      right: 50rpx;
+      top: 300rpx; }
+      .con .qrcode-box .sw image {
+        width: 100%;
+        height: 100%; }
+    .con .qrcode-box .qrcode-tips {
+      font-size: 24rpx;
+      color: #333;
+      text-align: center; }
+  .con .con-tips {
+    padding: 40rpx 0;
+    color: #fff;
+    font-size: 36rpx;
+    text-align: center;
+    line-height: 1.5; }
+    .con .con-tips text {
+      display: block; }
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent; }

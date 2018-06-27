@@ -1,0 +1,84 @@
+
+<view class="componentWrper">
+<!--无报价记录-->
+  <view class="noPriceRecord"  wx:if="{{mySubPriceLists.length==0}}">
+      <view class="noRecords">
+        <image src="../resources/img/noPriceRecord.png"/>
+        <view class="noRecordsTips">您还没有任何记录哦～</view>
+      </view>
+      <view class="priceReportBtn" bindtap="toSubPrice">
+        <text>前往报价</text>
+      </view>
+  </view>
+  <!--有报价记录-->
+  <view class="mySubpriceList"  wx:if="{{mySubPriceLists.length!=0}}">
+  <view class="container-body">
+     <view class="mySubpriceUl">
+           <view class="mySubpriceLi" wx:for="{{mySubPriceLists}}" wx:key="{{index}}" data-id="{{item.id}}" bindtap="toMaterialDetail">
+              <view class="mysubPriceImg">
+                 <view wx:if="{{item.productType=='原料'}}"><image src="../resources/img/materialPic.png"/></view>
+                 <view wx:if="{{item.productType=='改性料'}}"><image src="../resources/img/betterMaterial.png"/></view>
+                 <view wx:if="{{item.productType=='辅料'}}"><image src="../resources/img/accessory.png"/></view>
+                 <view wx:if="{{item.productType=='回料'}}"><image src="../resources/img/recirculatMaterial.png"/></view>
+              </view>
+              <view class="mysubPriceInfo">
+                   <view class="myMaterialMsg">
+                      <text class="h3">{{item.productName}}</text>
+                      <text class="orange">{{item.priceString}}</text>
+                   </view>
+                   <view class="myTradeMsg">
+                      <view class="myTradeAdd">交货地：{{item.deliveryPlace}}</view>
+                      <view class="myTradeTime"><text>{{item.timeAgo}}</text></view>
+                   </view>
+              </view>
+              <view class="showOperation" data-i="{{index}}" data-id="{{item.id}}" data-name="{{item.productName}}" catchtap="showOperation"><image src="../resources/img/showOperate.jpg"/></view>
+              <view class="ListOperate" wx:if="{{showIndex==index}}">
+                 <image class="upPointer" src="../resources/img/pointer.png"/>
+                  <view class="operateOpt" catchtap="editList">
+                      <view><image src="../resources/img/edit.png"/></view>
+                      <view class="optTex">编辑</view>
+                  </view>
+                  <view class="operateOpt" catchtap="copyList">
+                      <view><image src="../resources/img/copy.png"/></view>
+                      <view class="optTex">复制</view>
+                  </view>
+                  <view class="operateOpt" catchtap="historyPiceModel">
+                      <view><image src="../resources/img/historyPrice.png"/></view>
+                      <view class="optTex">历史价格</view>
+                  </view>
+                  <view class="operateOpt" data-i="{{index}}" catchtap="deletList">
+                      <view><image src="../resources/img/del.png"/></view>
+                      <view class="optTex">删除</view>
+                  </view>
+              </view>
+           </view>
+     </view>
+  </view>
+  </view>
+  <view class="fixedButton" style="background:#{{hasPriceRecord?'eeeeee':'ffffff'}}">
+      <view class="refreshTip" wx:if="{{hasRefreshed}}">
+         <view class="tipTxt">每天刷新价格，让你的报价排名靠前</view>
+         <image src="../resources/img/pointer2.png"/>
+      </view>
+      <view class="refreshBtn" bindtap="refresh">
+           <text>一键刷新价格</text>
+      </view>
+ </view>
+ </view>
+ <view class="layer"  wx:if="{{showPriceRecordModel}}"/>
+ <view class="layerCon"  wx:if="{{showPriceRecordModel}}">
+    <view class="layerClose" bindtap="hideLayer"><image src="../resources/img/layerClose.jpg"/></view>
+    <view class="modelHead">
+        {{historyPriceName}}
+    </view>
+    <view class="modelCon">
+    <scroll-view scroll-y="true" style="height:360rpx">
+       <view class="layerList">
+           <view class="layerli" wx:for="{{historyPriceLists}}" wx:key="{{index}}">
+             <text class="historyDate">{{item.createDate}}</text>
+             <text>{{item.priceString}}</text>
+           </view>
+       </view>
+    </scroll-view>
+    </view>
+ </view>

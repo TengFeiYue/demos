@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>会通·创新材料 成就客户_俺搜</title>
+	</head>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	div{
+		margin-top: -5px;
+	}
+		div img{
+			width: 100%;
+		}
+	</style>
+	<body>
+		<div>
+			<img src="huiTong/huiTong01.jpg" />
+		</div>
+		<div>
+			<img src="huiTong/huiTong02.jpg" />
+		</div>
+		<div>
+			<img src="huiTong/huiTong03.jpg" />
+		</div>
+		<div>
+			<img src="huiTong/huiTong04.jpg" />
+		</div>
+		<div>
+			<img src="huiTong/huiTong05.jpg" />
+		</div>
+		<div>
+			<img src="huiTong/huiTong06.jpg" />
+		</div>
+	</body>
+</html>

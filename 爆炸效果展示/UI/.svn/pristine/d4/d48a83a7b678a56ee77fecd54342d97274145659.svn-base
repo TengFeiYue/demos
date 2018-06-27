@@ -1,0 +1,18 @@
+
+    <view class="body">
+         <view class="ulWraper">
+            <checkbox-group bindchange="checkboxChange">
+              <block  wx:for="{{itemArr}}" wx:key="{{index}}">
+                 <label class="modelItems">
+                     <checkbox value="{{item.industryRole}}"/>
+                     <text>{{item.industryRole}}</text>
+                 </label>
+              </block>
+            </checkbox-group>
+         </view>
+         <view class="btn_sub"><text bindtap="backPrev">提交</text></view>
+         <view  wx:if="{{opa}}" wx:key="{{index}}" class="view">
+            <view class="tipPic"><image src="../resources/icons/warning.png"/></view>
+            <text>{{tip}}</text>
+         </view>
+    </view>

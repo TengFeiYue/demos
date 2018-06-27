@@ -1,0 +1,102 @@
+
+<style lang="scss">
+    $fontcolor: #7b7b7b;
+    $activecolor: #0386ff;
+    .tab {
+        box-sizing: border-box;
+        color: $fontcolor;
+        position: fixed;
+        bottom: 0;
+        height: 9vh;
+        width: 100%;
+        border-top: 1px solid #eeeeee;
+        background-color: #f7f7f7;
+        font-size: 24rpx;
+        white-space: nowrap;
+        display: flex;
+
+        .tab_item {
+            &.active {
+                color: $activecolor;
+            }
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           flex-direction: column;
+            width: 33.3333%;
+            flex: 1;
+
+        }
+        .icon {
+            width: 50rpx;
+            height: 50rpx;
+            display: block;
+            margin: auto;
+        }
+        .title {
+            padding-top: 0rpx;
+            display: block;
+        }
+    }
+</style>
+<template>
+    <view class="tab">
+        <view class="tab_item tab_message{{active == 0 ? ' active' : ''}}" @tap="change(0)">
+            <image class="icon" src="../../resources/icons/cargo{{active == 0 ? 'Act' : ''}}.png"></image>
+            <text class="title">现货</text>
+        </view>
+        <view class="tab_item tab_contact{{active == 1 ? ' active' : ''}}" @tap="change(1)">
+            <image class="icon" src="../../resources/icons/find{{active == 1 ? 'Act' : ''}}.png"></image>
+            <text class="title">卖家</text>
+        </view>
+        <view class="tab_item tab_me{{active == 2 ? ' active' : ''}}" @tap="change(2)">
+            <image class="icon" src="../../resources/icons/my{{active == 2 ? 'Act' : ''}}.png"></image>
+            <text class="title">我的</text>
+        </view>
+    </view>
+</template>
+<script>
+    import wepy from 'wepy'
+
+    export default class Tab extends wepy.component {
+
+        props = {
+            active: {
+                type:Number,
+                default:0,
+                twoWay: true
+            }
+        }
+         data = {
+            active:0
+         }
+        events={
+           'tabPosition':(params)=>{
+               this.active=params;
+           }
+        }
+        methods = {
+            change (idx, evt) {
+                const antsooUserInfo = wepy.getStorageSync("antUserInfo");
+                if(!antsooUserInfo && idx == 2){
+                    wx.navigateTo({
+                        url: 'login'
+                    })
+                    return;
+                }
+                this.active = idx;
+                this.$apply();
+                this.$emit('tabChange',idx);
+
+                console.log("parent currentTab:"+ this.$parent.currentTab);
+                //this.$emit('tabChange',idx);
+              //  console.log('this.active:' + this.active);
+            }
+        }
+
+        onLoad () {
+            console.log('tabBar')
+            this.active = 0;
+        }
+    }
+</script>

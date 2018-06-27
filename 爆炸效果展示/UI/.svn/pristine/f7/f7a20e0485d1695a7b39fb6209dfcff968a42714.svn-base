@@ -1,0 +1,45 @@
+page,
+.body {
+  height: 100%;
+  font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+  background-color: #ffffff;
+  font-size: 14px;
+  overflow: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+.con {
+  padding-left: 30rpx;
+  box-sizing: border-box;
+}
+.con .confirmDd {
+  border-bottom: 1px solid #ECECEC;
+  padding: 15rpx 0;
+}
+.con .confirmDd input,
+.con .confirmDd .pClass {
+  font-size: 32rpx;
+  color: #4A4A4A;
+  letter-spacing: 0;
+}
+.con .pNameOpt {
+  border-bottom: 1px solid #ECECEC;
+  font-size: 28rpx;
+  color: #666666;
+  letter-spacing: 0;
+  padding: 16rpx 0;
+}
+.saveCompanyName {
+  width: 100%;
+  background: #0092FF;
+  height: 96rpx;
+  line-height: 96rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #FFFFFF;
+  letter-spacing: -0.19px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}

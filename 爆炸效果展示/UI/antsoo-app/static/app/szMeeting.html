@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="format-detection" content="telephone=no"/>
+		
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta charset="utf-8">
+		<title>2017全国汽车材料与涂装技术暨工业大数据应用交流会</title>
+		<link rel="stylesheet" href="../bootstrap/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/media.css" />
+		<link rel="stylesheet" href="css/swiper.min.css">
+		<script src="../js/jquery-2.1.0.min.js"></script>
+		<script src="../js/bscroll.min.js"></script>		
+		<script src="../js/vue.js"></script>
+		<script src="../js/vue-resource.min.js"></script>
+		<script src="../js/vue-router.js"></script>
+		<script src="../dev.js"></script>
+		
+	    <style>
+	    html, body {
+	        position: relative;
+	        height: 100%;
+	    }
+	    body {
+	        background: #eee;
+	        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	        font-size: 14px;
+	        color:#000;
+	        margin: 0;
+	        padding: 0;
+	    }
+	    .swiper-container {
+	        width: 100%;
+	        height: 100%;
+	    }
+	    .swiper-slide {	     
+		    font-size: 18px;
+		    background: #fff;		  
+		    display: -ms-flexbox;		   
+		    -ms-flex-pack: center;		   
+		    -ms-flex-align: center;		  
+	    }
+	 .wrap .up{
+	    	    position: fixed;
+			    bottom: 3vh;
+			    left: 45vw;
+			    z-index: 100;
+			    animation: up 1.5s infinite linear;
+	    }
+	    
+	    @keyframes up{
+		from{transform: translateY(0px) scale(.5);}
+		to{transform: translateY(-20px) scale(.8);}
+	   }
+	  .conWraper{
+	  	/*height:120vh!important;*/
+	  	background:url(images/reportBg.jpg) no-repeat center;
+	    background-size:cover;
+	  }	 
+	    </style>
+	</head>
+<body>
+    <div class="wrap">
+     	<img src="img/units-icons_07.png" class="up" alt="" />
+     </div>
+  	<div class="swiper-container" id="app">
+        <div class="swiper-wrapper pos">
+            <div class="swiper-slide">
+                  <img src="images/suzhou1.jpg" width="100%" height="100%" alt="">
+            </div>          
+            <div class="swiper-slide">
+                  <img src="images/suzhou2.jpg" width="100%" height="100%" alt="">
+            </div>
+            <div class="swiper-slide">
+                  <img src="images/suzhou1.gif" width="100%" height="100%" alt="">
+            </div>
+            <div class="swiper-slide">
+                  <img src="images/suzhou3.jpg" width="100%" height="100%" alt="">
+            </div>
+            <div class="swiper-slide">
+                  <img src="images/suzhou4.jpg" width="100%" height="100%" alt="">
+            </div>
+            <div class="swiper-slide">
+                  <img src="images/suzhou5.jpg" width="100%" height="100%" alt="">
+            </div>
+            
+            <div class="swiper-slide conWraper">
+            
+                   <h1>参会报名</h1>
+	                 <section class="forms">
+	                   <form action="">
+	                   	   <div class="form-group">						   
+						    <input type="text" class="companyName form-control" placeholder="公司名称" v-model="companyName">						    	
+						  </div>
+						   <div class="form-group">						    
+						    <input type="text" class="name form-control" placeholder="姓名" v-model="name">
+						  </div>
+						   <div class="form-group">						    
+						    <input type="text" class="duty form-control" placeholder="职位" v-model="duty">
+						  </div>						   
+						 <div class="form-group">						    
+						    <input id="phone" type="number" class="checkPhone form-control" placeholder="电话" v-model="mobile" @blur="checkPhone">						  
+						  </div>
+						  <div class="form-group">						    
+						    <input type="email" class="email form-control" placeholder="邮箱" v-model="email">
+						  </div>
+						 						  						  
+						  <p id="btn" type="button" class="btn"  @click="regSubmit">提交</p>
+	                   
+	                   </form>
+	                 
+	                 </section>
+	                 <section class="text-center">
+	                 	<p class="antsooLogo"><img src="img/antsooLogin-logo.png" width="40%" alt="" /></p>
+	                 </section>
+	                 </div>
+            
+        </div>
+        <!-- Add Pagination -->
+       
+    </div>
+    <section class='container-fluid p-0 downLoad'>
+ 		<div class="col-xs-12 p-0 downNow">
+ 			
+ 			<img src="img/alert.png" width="100%" alt="" />
+ 			
+ 			<a href="http://www.antsoo.com/appdownload.shtml" class="downLink"><img src="img/downLoadNow.png" width="30%" alt="" /></a>
+ 			<span class="shutDown" onclick="shutDown()"><img src="img/shutDown.png" width="40%" alt="" /></span>
+ 		
+ 		</div>
+ 	</section>
+    <script src="js/swiper.min.js"></script>
+    <script>
+     	//关闭弹框
+   	 	function shutDown(){
+   	 		document.getElementsByClassName('downLoad')[0].style.display="none";
+   	 	};
+    new Vue({
+    	el:'#app',
+    	data:{
+    		companyName:'',
+    		mobile:'',
+    		type:'',
+    		name:'',   		
+    		duty:'',
+    		email:''
+    		
+    	},
+    	mounted:function(){    		
+    		var swiper = new Swiper('.swiper-container', {
+	        pagination: '.swiper-pagination',
+	        paginationClickable: true,
+	        direction: 'vertical',
+	        onTouchEnd: function(swiper){
+     
+		      if(swiper.activeIndex>=5){
+		      	 document.getElementsByClassName('wrap')[0].style.display='none';
+		      }else{
+		      	document.getElementsByClassName('wrap')[0].style.display='block';
+		      }
+		    }
+	        });
+	        var _this=this;	       	       	       	    	       	       
+	   	 	_this.userId=getQueryString('userId');
+	   	 	_this.activityId=getQueryString('activityId');	
+	   	 	
+	   	 
+    	},
+    	methods:{   
+ 			
+ 			//验证手机号
+    		checkPhone:function(){
+	    			 var phone = document.getElementById('phone').value;
+				    if(!(/^1(3|4|5|7|8)\d{9}$/.test(phone))){ 
+				        alert("手机号码有误，请重填");  
+				        return false; 
+				    } 
+    		},
+    		 		  		 		   		
+    		regSubmit:function(){
+    			   			   			   			   			
+    			var _this=this;
+    			if($('.companyName').val()==''){
+    				 alert('请填写企业名称!')
+    			}else if($('.name').val()==''){
+    				alert('请填写姓名!')
+    			}else if($('.checkPhone').val()==''){
+    				alert('请填写手机号!')
+    			}else if($('.duty').val()==''){
+    				alert('请填写职位!')
+    			}else if($('.email').val()==''){
+    				alert('请填写邮箱!')
+    			}else{
+    			if(!(/^1(3|4|5|7|8)\d{9}$/.test(_this.mobile))){ 
+						        alert("手机号码有误，请重填");  
+						        return false; 
+				 }else{
+				 	
+    			_this.$http.get(appUrl+"/factoryActivityEnroll/addEnroll?activityId="+_this.activityId+"&companyName="+_this.companyName+"&mobile="+_this.mobile+"&name="+_this.name+"&titlePosition="+_this.duty+"&email="+_this.email).then(function(response){  				
+    				if(response.body.isSuccess==1){    					
+    						 alert("提交成功"); 
+    						_this.companyName="";
+			    			_this.mobile="";
+			    			_this.name="";
+			    			_this.titlePosition="";
+			    			_this.email="";
+			    			_this.duty=""
+    						 //$('.conWraper').hide()
+    				}else{
+    					alert("不能重复提交");
+    					_this.companyName="";
+		    			_this.mobile="";
+		    			_this.name="";
+		    			_this.titlePosition="";
+		    			_this.email="";
+		    			_this.duty=""
+    					//$('.conWraper').hide()
+    				}
+    			
+    			});
+    			
+    			}
+			  }
+    			
+    			
+    		}
+    	}
+    })
+    </script>
+  	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

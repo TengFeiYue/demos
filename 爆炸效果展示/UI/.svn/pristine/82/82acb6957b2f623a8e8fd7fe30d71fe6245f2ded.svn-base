@@ -1,0 +1,204 @@
+.release {
+  background: #ffffff;
+  padding: 0 30rpx;
+  padding-right: 0;
+  position: relative;
+  padding-bottom: 194rpx; }
+
+.releaseInfos {
+  padding: 21rpx 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eeeeee; }
+  .releaseInfos .releaseDt {
+    flex: 2;
+    text-align: left; }
+  .releaseInfos .releaseDd {
+    display: flex;
+    flex: 6;
+    position: relative; }
+    .releaseInfos .releaseDd input {
+      height: 45rpx;
+      min-height: 45rpx; }
+    .releaseInfos .releaseDd .radio {
+      padding-right: 20rpx;
+      font-size: 24rpx; }
+      .releaseInfos .releaseDd .radio image {
+        width: 32rpx;
+        height: 32rpx;
+        position: relative;
+        top: 6rpx; }
+      .releaseInfos .releaseDd .radio checkbox {
+        opacity: 0;
+        width: 20rpx;
+        height: 20rpx; }
+    .releaseInfos .releaseDd .pNameSelect {
+      position: absolute;
+      left: -14rpx;
+      top: 60rpx;
+      width: 200rpx;
+      padding: 10rpx 0 10rpx;
+      font-size: 25rpx;
+      line-height: 37rpx;
+      box-shadow: 0 2px 5px #cccccc;
+      background: #ffffff;
+      z-index: 1000; }
+      .releaseInfos .releaseDd .pNameSelect .pNameOpt {
+        padding: 0 15rpx; }
+    .releaseInfos .releaseDd .placeholderCon {
+      width: 301rpx;
+      height: 46rpx;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap; }
+  .releaseInfos .priceSelect {
+    position: relative; }
+    .releaseInfos .priceSelect .showSel {
+      display: inline-block;
+      position: absolute;
+      right: 0;
+      padding-right: 85rpx;
+      top: 0rpx;
+      font-size: 24rpx; }
+      .releaseInfos .priceSelect .showSel image {
+        position: absolute;
+        top: 12rpx;
+        right: 50rpx;
+        width: 16rpx;
+        height: 10rpx; }
+    .releaseInfos .priceSelect .select {
+      display: inline-block;
+      font-size: 30rpx;
+      color: #353535;
+      letter-spacing: 0;
+      position: absolute;
+      width: 150rpx;
+      right: 20rpx;
+      top: 44rpx;
+      z-index: 999;
+      box-shadow: 0 2rpx 5rpx #cccccc; }
+      .releaseInfos .priceSelect .select .options {
+        padding: 12rpx 0;
+        background: #ffffff;
+        padding-left: 15rpx;
+        border-top: 1px solid #eeeeee; }
+        .releaseInfos .priceSelect .select .options .option {
+          background: #ffffff;
+          text-align: left;
+          line-height: 43rpx;
+          font-size: 24rpx; }
+  .releaseInfos .subArea {
+    position: relative; }
+    .releaseInfos .subArea .showAdd {
+      display: inline-block;
+      width: 47rpx;
+      height: 44rpx;
+      line-height: 38rpx;
+      text-align: center;
+      border: 1px solid #CCCCCC;
+      color: #cccccc;
+      font-size: 50rpx;
+      position: absolute;
+      right: 20rpx;
+      top: 0rpx; }
+  .releaseInfos .imgList {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; }
+    .releaseInfos .imgList .imgItem, .releaseInfos .imgList .imgItem2, .releaseInfos .imgList .imgItem3 {
+      position: relative;
+      flex: 1;
+      padding-right: 30rpx; }
+      .releaseInfos .imgList .imgItem .delImg, .releaseInfos .imgList .imgItem2 .delImg, .releaseInfos .imgList .imgItem3 .delImg {
+        position: absolute;
+        top: -10rpx;
+        right: 10rpx; }
+        .releaseInfos .imgList .imgItem .delImg image, .releaseInfos .imgList .imgItem2 .delImg image, .releaseInfos .imgList .imgItem3 .delImg image {
+          width: 40rpx;
+          height: 40rpx; }
+      .releaseInfos .imgList .imgItem image, .releaseInfos .imgList .imgItem2 image, .releaseInfos .imgList .imgItem3 image {
+        width: 116rpx;
+        height: 116rpx; }
+
+.descriptionDetail {
+  background: #ffffff;
+  padding: 20rpx 0;
+  border-bottom: 1px solid #eeeeee; }
+  .descriptionDetail .descriptionDt {
+    font-size: 32rpx;
+    color: #000000;
+    letter-spacing: 0; }
+  .descriptionDetail .descriptionDd {
+    padding-top: 22rpx; }
+    .descriptionDetail .descriptionDd textarea {
+      position: static;
+      background: #FFFFFF;
+      border: 1px solid #eeeeee;
+      height: 150rpx;
+      width: 660rpx;
+      padding: 14rpx; }
+    .descriptionDetail .descriptionDd .pClass {
+      font-size: 32rpx;
+      color: #B2B2B2;
+      letter-spacing: 0; }
+
+.warmTip {
+  background: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 22rpx; }
+  .warmTip .warmDt {
+    flex: 1; }
+  .warmTip .warmDd {
+    flex: 6;
+    font-size: 28rpx;
+    color: #999999;
+    line-height: 42rpx; }
+
+.subButton {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 50rpx 0;
+  background: #eeeeee; }
+  .subButton button {
+    width: 670rpx;
+    height: 94rpx;
+    text-align: center;
+    line-height: 94rpx;
+    background: #128EFF;
+    border-radius: 10rpx;
+    font-size: 36rpx;
+    color: #FFFFFF; }
+
+.view {
+  background: #333333;
+  color: #ffffff;
+  width: 270rpx;
+  height: 270rpx;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  border-radius: 10rpx;
+  margin-top: -135rpx;
+  margin-left: -135rpx;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center; }
+  .view .tipPic {
+    flex: 1;
+    padding-top: 36rpx; }
+    .view .tipPic image {
+      width: 100rpx;
+      height: 100rpx; }
+  .view text {
+    flex: 1;
+    padding: 0 15rpx; }

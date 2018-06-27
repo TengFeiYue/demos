@@ -1,0 +1,24 @@
+<template>
+	<div class="container">
+		<router-link :to="{path:'/demo',query: {name: id, age: age}}">			
+			<h1>这是首页</h1>
+		</router-link>
+		<footComponent :idx='0'></footComponent>
+	</div>
+</template>
+<script>
+	export default {
+		data() {
+			return {
+				id: '55555',
+				age: '16岁'
+			}
+		},
+		components: {
+			
+		},
+		mounted(){
+			
+		}
+	}
+</script>

@@ -1,0 +1,138 @@
+@charset "UTF-8";
+.collect-card {
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin: 0 auto;
+  margin-top: 22rpx;
+  background-color: #fff; }
+  .collect-card .card-name {
+    font-size: 28rpx;
+    color: #4A4A4A;
+    margin-left: 5%; }
+  .collect-card image {
+    width: 80rpx;
+    height: 28rpx;
+    margin-left: 18rpx;
+    position: relative;
+    bottom: -11rpx; }
+  .collect-card .card-date {
+    display: block;
+    float: right;
+    font-size: 20rpx;
+    color: #666666;
+    margin-right: 5%; }
+  .collect-card .card-block {
+    display: block;
+    float: left; }
+
+.card-identity {
+  width: 100%;
+  height: 60rpx;
+  margin: 0 auto;
+  line-height: 60rpx;
+  font-size: 20rpx;
+  background-color: #fff; }
+  .card-identity .user-company {
+    width: 60%;
+    color: #666666;
+    float: left;
+    margin-left: 5%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; }
+  .card-identity .call-this {
+    width: 20%;
+    float: right;
+    line-height: 60rpx;
+    text-align: right;
+    margin-right: 5%; }
+    .card-identity .call-this image {
+      width: 36rpx;
+      height: 36rpx;
+      position: relative;
+      top: 10rpx; }
+
+/*模态框*/
+.modal-mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.5;
+  overflow: hidden;
+  z-index: 9000;
+  color: #fff; }
+
+.modal-dialog {
+  width: 540rpx;
+  overflow: hidden;
+  position: fixed;
+  top: 50%;
+  left: 0;
+  z-index: 9999;
+  background: #f9f9f9;
+  margin: -180rpx 105rpx;
+  border-radius: 36rpx; }
+
+.modal-content {
+  padding: 50rpx 32rpx;
+  text-align: center; }
+
+.modal-footer {
+  display: flex;
+  flex-direction: row;
+  height: 86rpx;
+  border-top: 1px solid #dedede;
+  font-size: 34rpx;
+  line-height: 86rpx; }
+
+.btn-cancel {
+  width: 50%;
+  color: #666;
+  text-align: center;
+  border-right: 1px solid #dedede; }
+
+.btn-confirm {
+  width: 50%;
+  color: #ec5300;
+  text-align: center; }
+
+.mascot-style {
+  width: 272rpx;
+  height: 516rpx;
+  margin: 0 auto;
+  margin-top: 88rpx;
+  margin-left: 222rpx; }
+
+.mascot-text {
+  width: 100%;
+  text-align: center;
+  margin-top: -180rpx;
+  font-size: 24rpx;
+  color: #666666; }
+
+.tips {
+  font-size: 28rpx;
+  background: #ffffff;
+  height: 60rpx;
+  line-height: 60rpx; }
+  .tips .loadShow {
+    background: #ffffff;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: center;
+    justify-content: center; }
+    .tips .loadShow icon {
+      position: relative;
+      top: 17rpx;
+      right: 5rpx; }
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent; }

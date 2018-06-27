@@ -1,0 +1,9 @@
+
+	<view class="product-box"  wx:for="{{product}}" wx:key="{{index}}">
+		<view class="product-name">{{item.commodityName}}/{{item.producer}}/{{item.productSign}}</view>
+		<view>
+			<text class="label-block block-left">{{item.bigType}}</text>
+			<text class="label-block block-left">{{item.productType}}</text>
+			<text class="label-block block-right">面议</text><!-- {{item.price}} -->
+		</view>
+	</view>

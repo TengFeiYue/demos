@@ -1,0 +1,10 @@
+
+	<view class="con" style="height: {{sh}}px;">
+		<form bindsubmit="bindFormSubmit">
+			<view class="sub-text">
+				<textarea placeholder="请输入您要找的信息" maxlength="-1" name="textarea"/>
+			</view>
+			<view class="sub-user">{{phone}}</view>
+			<button class="sure" formType="submit">提交</button>
+		</form>
+	</view>

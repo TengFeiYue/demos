@@ -1,0 +1,107 @@
+<style type="scss">
+.tab_item {
+    height: 91%;
+}
+
+page,
+.body {
+    height: 100%;
+    font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+    background-color: #f0eff5;
+}
+</style>
+<template>
+    <view class="body">
+        <view class="tab_item tab_message" wx:if="{{currentTab == 0}}">
+          <index  />
+        </view>
+        <view class="tab_item tab_contact" wx:if="{{currentTab == 1}}">
+            <findmeBuyMaterial  />
+        </view>
+        <view class="tab_item tab_me" wx:if="{{currentTab == 2}}">
+            <my  />
+        </view>
+        <!-- <tab :active="currentTab"  /> -->
+        <tab />
+    </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import tab from '../components/tab/tabBar'
+import index from '../components/tab/tabPages/index'
+import findmeBuyMaterial from '../components/tab/tabPages/findmeBuyMaterial'
+import my from '../components/tab/tabPages/my'
+import interfaces from '../interfaces/index'
+export default class Index extends wepy.page {
+    config = {
+        'navigationBarTitleText': '现货商城',
+        'navigationBarTextStyle': '#FFFFFF',
+        'navigationBarBackgroundColor': '#0386FF'
+    }
+    events = {
+        'tabChange': (p1) => {
+            this.currentTab = parseInt(p1);
+            this.$apply();
+            switch (this.currentTab) {
+                case 0:
+                    wx.setNavigationBarTitle({
+                        title: '现货'
+                    })
+                    break;
+                case 1:
+                    wx.setNavigationBarTitle({
+                        title: '卖家'
+                    })
+                    break;
+                case 2:
+                    wx.setNavigationBarTitle({
+                        title: '我的'
+                    })
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    components = {
+        tab,
+        index,
+        findmeBuyMaterial,
+        my
+    }
+
+    data = {
+        currentTab: 0,
+    }
+
+    methods = {
+    }
+
+    async onShow() {
+        const antUserInfo = wx.getStorageSync('antUserInfo');
+        this.$invoke('my','onLoad');
+        var pages = this.getCurrentPages();
+        var currPage = pages[pages.length - 1];
+        this.$broadcast('selectCity',currPage.data.seleCity);//向子组件传递城市数据
+        this.$broadcast('hasUserInfo',antUserInfo);//向子组件传递城市数据
+    }
+    onLoad(params) {
+      this.$broadcast('outParams',{
+           type:params.type,
+           cate:params.cate
+      })
+      if(params.showCon=="sellerList"){
+            this.currentTab = 1;
+            this.$broadcast('tabPosition',1);
+      }else{
+          if(typeof params.tab !== 'undefined'){
+                this.currentTab = params.tab
+          }else{
+              this.currentTab = 0;
+          }
+      }
+    }
+
+}
+</script>

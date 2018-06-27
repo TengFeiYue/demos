@@ -1,0 +1,469 @@
+<style >
+.search {
+    opacity: 0.81;
+    background: #0386FF;
+    padding:15rpx 20rpx;
+    display:flex;
+    justify-content:center;
+    box-sizing:border-box;
+}
+.search .all {
+    flex:3;
+    padding-left:50rpx;
+    vertical-align:middle;
+    font-family: PingFangSC-Regular;
+    font-size: 32rpx;
+    color: #FFFFFF;
+    line-height:56rpx;
+    position:relative;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+.search .all .pos{
+    width:30rpx;
+    height:36rpx;
+    position:absolute;
+    left:8rpx;
+    top:10rpx;
+}
+.header-query {
+    flex:12;
+    background-color: white;
+    border-radius: 5px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+.header-query .icon {
+    position:absolute;
+    width:30rpx;
+    height:30rpx;
+    left:210rpx;
+    top:16rpx;
+
+}
+.header-query input{
+    color:#b2b2b2;
+    font-size:12px;
+    text-align:center;
+    height:56rpx;
+    min-height:56rpx;
+}
+.filterconditions{
+    background:#ffffff;
+}
+.filterconditions .filterTabs{
+   display:flex;
+   flex-direction:row;
+   justify-content:center;
+   align-items:center;
+   text-align:center;
+   border-bottom:1px solid #EEEEEE;
+}
+.filterconditions .filterTabs text{
+    flex:1;
+    line-height:94rpx;
+}
+.filterconditions .filterTabs .cur{
+   color:#0386ff;
+   position:relative;
+}
+.filterconditions .filterTabs .cur:after{
+  content:"";
+  background:#0386ff;
+  height:4rpx;
+  width:100rpx;
+  position:absolute;
+  bottom:0;
+  left:42rpx;
+}
+.filterconditions .filter-tab{
+    display:inline-block;
+    text-align:left;
+    background:#fafafa;
+    border-bottom:1px solid #dadada;
+}
+.filterconditions .filter-tab text{
+    text-align:center;
+    padding-left:66rpx;
+}
+
+</style>
+<template>
+    <view class="search">
+        <view class="all" bindtap="chooseCity"><image class="pos" src="../../resources/icons/positionIndex.png"></image>{{seleCity}}</view>
+        <view class="header-query">
+            <image class="icon" src="../../resources/icons/searchIcon.png" wx:if="{{show_hide}}"></image>
+            <input type="text" bindinput="hideSearchIcon" bindblur="showSearchIcon"  bindconfirm="gotoquery" value='{{searchvalue}}' placeholder="搜索" confirm-type="search" />
+        </view>
+    </view>
+
+    <view class="filterconditions">
+          <view class="filterTabs">
+              <text wx:for="{{filterTabs}}" wx:key="{{index}}" data-i="{{index}}" data-type="{{item}}" bindtap="selectTab" class="{{selectItem==index?'cur':''}}">{{item}}</text>
+          </view>
+          <view class="filterSel">
+               <view class="filter-tab" style="background:#ffffff">
+                    <text bindtap="setFilterPanel" data-findex="1" class="{{showfilterindex==1?'active':''}}">{{classify}}</text>
+                    <text bindtap="setFilterPanel" data-findex="2" class="{{showfilterindex==2?'active':''}}">{{autoarrange}}</text>
+               </view>
+               <view class="filter-content" wx:if="{{showfilter}}">
+
+                           <view class="filter-panel" wx:if="{{showfilterindex==1}}">
+
+                               <view class="filter-panel-left">
+                               <scroll-view style="max-height:300px;width:100%;z-index:13;" scroll-y="true">
+                                   <view wx:for="{{sortsArr}}" wx:key="{{index}}" bindtap="selectMaterialCate" data-sorts="{{item}}" data-index="{{index}}" class="{{cateindex==index?'active':''}}">{{item}}</view>
+                               </scroll-view>
+                               </view>
+
+                           </view>
+                           <view class="filter-panel" wx:if="{{showfilterindex==2}}">
+                               <view class="filter-panel-left">
+                                <scroll-view style="max-height:300px;width:100%;z-index:13;" scroll-y="true">
+                                   <view wx:for="{{autoarrangeItem}}" wx:key="{{index}}" bindtap="selectSecondCate" data-autosort="{{item}}" data-index="{{index}}" class="{{secondcateindex==index?'active':''}}">{{item}}</view>
+                                </scroll-view>
+                               </view>
+                           </view>
+               </view>
+       		    <view class="filter-shadow" wx:if="{{showfilter}}" bindtap="hideFilter"></view>
+          </view>
+    </view>
+</template>
+<script>
+import wepy from 'wepy'
+import { api } from '../../config'
+export default class search extends wepy.component {
+    data = {
+        seleCity:"全国",
+        show_hide:true,
+        searchvalue:'',
+        filterTabs:['原料','改性料','辅料','回料'],
+        classify:"分类",
+        autoarrange:"智能排序",
+        autoarrangeItem:['按最新报价','按浏览次数','按报价次数'],
+        secondcateindex:-1,
+        cateindex:-1,
+        showfilter:false,
+        selectItem:0,
+        filterdata:{},  //筛选条件数据
+        showfilterindex:null,
+        selectType:"原料",  //分类索引
+        sType:"",
+        sKey:"",
+        autoOrder:"",
+        deliveryPlace:"",
+        cateid:0, //分类id
+        sortsArr:[]
+    }
+    events={
+           'selectCity':($event)=>{
+               this.seleCity=$event;
+           },
+           'outParams':(param)=>{
+               console.log(param)
+               this.selectItem=param.type;
+               switch (param.type) {
+                 case '0':
+                   this.selectType='原料';
+                   break;
+                 case '1':
+                   this.selectType='改性料';
+                   break;
+                 case '2':
+                   this.selectType='辅料';
+                   break;
+                 case '3':
+                   this.selectType='回料';
+                   break;
+               }
+               this.sType=param.cate;
+             this.$invoke('../material', 'getSelectTabData',{
+                 pType:this.selectType,
+                 searchKey:this.sKey,
+                 seriesType:this.sType,
+                 order:this.autoOrder
+             });//向组件material 的getSelectTabData传数据
+             this.$invoke('../betterMaterial', 'getSelectTabData',{
+                pType:this.selectType,
+                searchKey:this.sKey,
+                seriesType:this.sType,
+                order:this.autoOrder
+             });//向组件betterMaterial 的getSelectTabData传数据
+             this.$invoke('../accessories', 'getSelectTabData',{
+                pType:this.selectType,
+                searchKey:this.sKey,
+                seriesType:this.sType,
+                order:this.autoOrder
+             });//向组件AccessoriesMaterial 的getSelectTabData传数据
+             this.$invoke('../recirculatMaterial', 'getSelectTabData',{
+                pType:this.selectType,
+                searchKey:this.sKey,
+                seriesType:this.sType,
+                order:this.autoOrder
+             });//向组件RecirculatMaterial 的getSelectTabData传数据
+             this.$invoke('../material','fetchMaterialData');
+             this.$invoke('../betterMaterial','fetchBetterMaterialData');
+             this.$invoke('../accessories','fetchAccessoriesMaterialData');
+             this.$invoke('../recirculatMaterial','fetchRecirculatMaterialData');
+           }
+    }
+    methods = {
+        chooseCity(){
+            wx.navigateTo({
+                url: 'cityposition'
+            })
+        },
+    //搜索框设置
+
+        hideSearchIcon(e){
+          this.searchvalue=e.detail.value;
+        if(e.detail.value!=""){
+           this.show_hide=false;
+           }else{
+           this.show_hide=true;
+           }
+        },
+        showSearchIcon(e){
+           if(e.detail.value==""){
+              this.show_hide=true;
+              this.sKey="";
+              this.$invoke('../material', 'getSelectTabData',{
+                  pType:this.selectType,
+                  searchKey:this.sKey,
+                  seriesType:this.sType,
+                  order:this.autoOrder
+              });//向组件material 的getSelectTabData传数据
+              this.$invoke('../material','fetchMaterialData');
+              this.$invoke('../betterMaterial', 'getSelectTabData',{
+                  pType:this.selectType,
+                  searchKey:this.sKey,
+                  seriesType:this.sType,
+                  order:this.autoOrder
+              });//向组件betterMaterial 的getSelectTabData传数据
+              this.$invoke('../betterMaterial','fetchBetterMaterialData');
+              this.$invoke('../accessories', 'getSelectTabData',{
+                  pType:this.selectType,
+                  searchKey:this.sKey,
+                  seriesType:this.sType,
+                  order:this.autoOrder
+              });//向组件accessories 的getSelectTabData传数据
+              this.$invoke('../accessories','fetchAccessoriesMaterialData');
+              this.$invoke('../recirculatMaterial', 'getSelectTabData',{
+                  pType:this.selectType,
+                  searchKey:this.sKey,
+                  seriesType:this.sType,
+                  order:this.autoOrder
+              });//向组件RecirculatMaterial 的getSelectTabData传数据
+              this.$invoke('../recirculatMaterial','fetchRecirculatMaterialData');
+           }
+
+        },
+        gotoquery(e) {
+            this.sKey="";
+            this.sKey=e.detail.value.trim();
+            if(this.sKey==""||this.sKey==null) return false;
+              this.sType="全部";
+              this.classify="分类";
+              this.autoOrder="";
+              this.autoarrange="智能排序";
+              this.secondcateindex=-1;
+              this.cateindex =-1;
+              this.showfilter = false;
+              this.showfilterindex = null;
+            this.$invoke('../material', 'getSelectTabData',{
+                pType:this.selectType,
+                searchKey:this.sKey,
+                seriesType:this.sType,
+                order:this.autoOrder
+            });//向组件material 的getSelectTabData传数据
+            this.$invoke('../material','fetchMaterialData');
+            this.$invoke('../betterMaterial', 'getSelectTabData',{
+                pType:this.selectType,
+                searchKey:this.sKey,
+                seriesType:this.sType,
+                order:this.autoOrder
+            });//向组件betterMaterial 的getSelectTabData传数据
+            this.$invoke('../betterMaterial','fetchBetterMaterialData');
+            this.$invoke('../accessories', 'getSelectTabData',{
+                pType:this.selectType,
+                searchKey:this.sKey,
+                seriesType:this.sType,
+                order:this.autoOrder
+            });//向组件AccessoriesMaterial 的getSelectTabData传数据
+            this.$invoke('../accessories','fetchAccessoriesMaterialData');
+            this.$invoke('../recirculatMaterial', 'getSelectTabData',{
+                pType:this.selectType,
+                searchKey:this.sKey,
+                seriesType:this.sType,
+                order:this.autoOrder
+            });//向组件RecirculatMaterial 的getSelectTabData传数据
+            this.$invoke('../recirculatMaterial','fetchRecirculatMaterialData');
+        },
+        //选项卡
+        selectTab(e) {
+            this.sKey="";
+            this.searchvalue="";
+            this.show_hide=true;
+            this.sType="全部";
+            this.classify="分类";
+            this.autoOrder="";
+            this.autoarrange="智能排序";
+            this.secondcateindex=-1;
+            this.cateindex =-1;
+            this.showfilter = false;
+            this.showfilterindex = null;
+            this.selectItem=e.target.dataset.i;
+            this.$emit('some-event', e.target.dataset.i);
+            this.selectType=e.target.dataset.type;
+           if(this.selectType!="原料"){
+              this.autoarrangeItem=['按最新报价','按浏览次数'];
+           }else{
+              this.autoarrangeItem=['按最新报价','按浏览次数','按报价次数'];
+           }
+           this.fetchFilterData();
+           this.$invoke('../material', 'getSelectTabData',{
+               pType:this.selectType,
+               searchKey:this.sKey,
+               seriesType:this.sType,
+               order:this.autoOrder
+           });//向组件material 的getSelectTabData传数据
+           this.$invoke('../betterMaterial', 'getSelectTabData',{
+              pType:this.selectType,
+              searchKey:this.sKey,
+              seriesType:this.sType,
+              order:this.autoOrder
+           });//向组件betterMaterial 的getSelectTabData传数据
+           this.$invoke('../accessories', 'getSelectTabData',{
+              pType:this.selectType,
+              searchKey:this.sKey,
+              seriesType:this.sType,
+              order:this.autoOrder
+           });//向组件AccessoriesMaterial 的getSelectTabData传数据
+           this.$invoke('../recirculatMaterial', 'getSelectTabData',{
+              pType:this.selectType,
+              searchKey:this.sKey,
+              seriesType:this.sType,
+              order:this.autoOrder
+           });//向组件RecirculatMaterial 的getSelectTabData传数据
+           this.$invoke('../material','fetchMaterialData');
+           this.$invoke('../betterMaterial','fetchBetterMaterialData');
+           this.$invoke('../accessories','fetchAccessoriesMaterialData');
+           this.$invoke('../recirculatMaterial','fetchRecirculatMaterialData');
+        },
+        //下拉筛选
+        setFilterPanel(e){
+          this.showfilter=!this.showfilter;
+          if(this.showfilter){
+           this.showfilterindex=e.target.dataset.findex;
+          }else{
+           this.showfilterindex=0;
+          }
+        },
+        hideFilter(){
+            this.secondcateindex=-1;
+            this.showfilter = false;
+            this.showfilterindex = null;
+        },
+        selectMaterialCate(e){ //分类筛选
+            this.cateindex = e.currentTarget.dataset.index;
+            this.cateid = e.currentTarget.dataset.cateid;
+            this.sType=e.currentTarget.dataset.sorts;
+            this.classify=e.currentTarget.dataset.sorts;
+            this.showfilter = false;
+            this.showfilterindex = null;
+
+            this.$invoke('../material', 'getSelectTabData',{
+                pType:this.selectType,
+                searchKey:this.sKey,
+                seriesType:this.sType,
+                order:this.autoOrder
+            });
+            this.$invoke('../material','fetchMaterialData');
+
+            this.$invoke('../betterMaterial', 'getSelectTabData',{
+                  pType:this.selectType,
+                  searchKey:this.sKey,
+                  seriesType:this.sType,
+                  order:this.autoOrder
+            });
+            this.$invoke('../betterMaterial','fetchBetterMaterialData');
+
+            this.$invoke('../accessories', 'getSelectTabData',{
+                pType:this.selectType,
+                searchKey:this.sKey,
+                seriesType:this.sType,
+                order:this.autoOrder
+            });
+            this.$invoke('../accessories','fetchAccessoriesMaterialData');
+
+            this.$invoke('../recirculatMaterial', 'getSelectTabData',{
+                  pType:this.selectType,
+                  searchKey:this.sKey,
+                  seriesType:this.sType,
+                  order:this.autoOrder
+            });
+            this.$invoke('../recirculatMaterial','fetchRecirculatMaterialData');
+        },
+        selectSecondCate(e){
+            this.secondcateindex=e.target.dataset.index;
+            this.autoOrder=e.target.dataset.autosort;
+            this.autoarrange=e.target.dataset.autosort;
+            this.showfilter = false;
+            this.showfilterindex = null;
+            this.$invoke('../material', 'getSelectTabData',{
+                pType:this.selectType,
+                searchKey:this.sKey,
+                seriesType:this.sType,
+                order:this.autoOrder
+            });
+            this.$invoke('../material','fetchMaterialData');
+
+            this.$invoke('../betterMaterial', 'getSelectTabData',{
+                pType:this.selectType,
+                searchKey:this.sKey,
+                seriesType:this.sType,
+                order:this.autoOrder
+            });
+            this.$invoke('../betterMaterial','fetchBetterMaterialData');
+
+            this.$invoke('../accessories', 'getSelectTabData',{
+                pType:this.selectType,
+                searchKey:this.sKey,
+                seriesType:this.sType,
+                order:this.autoOrder
+            });
+            this.$invoke('../accessories','fetchAccessoriesMaterialData');
+
+            this.$invoke('../recirculatMaterial', 'getSelectTabData',{
+                pType:this.selectType,
+                searchKey:this.sKey,
+                seriesType:this.sType,
+                order:this.autoOrder
+            });
+            this.$invoke('../recirculatMaterial','fetchRecirculatMaterialData');
+        }
+    }
+
+    onLoad() {
+        this.seleCity='全国';
+        this.$emit('indexLoadComplete', true)
+        this.fetchFilterData();
+    }
+    fetchFilterData(){ //获取筛选条件
+        let that = this;
+        wepy.request({
+            url:api.common.productCates.url,
+            method:api.common.productCates.method,
+            data:{
+                'productType':that.selectType,
+            },
+            success:function(res){
+                that.sortsArr = res.data.body.seriesTypeList;
+                that.$apply()
+            }
+        });
+    }
+}
+</script>

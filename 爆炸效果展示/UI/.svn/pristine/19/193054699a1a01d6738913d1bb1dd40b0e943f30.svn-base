@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<title>圆融新材料科技有限公司_科技,时尚,环保,健康</title>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/myComponent.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../dev.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload = function() {
+				var deviceWidth = document.documentElement.clientWidth;
+				if(deviceWidth > 750) deviceWidth = 750;
+				document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';
+			}
+		</script>
+	</head>
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+			list-style: none;
+		}
+		
+		.container {
+			width: 100%;
+			height: 45.5rem;
+			background-image: url(yuanRongImgs/bg.png);
+			background-size: 100%;
+			background-position: top center;
+			background-repeat: no-repeat;
+		}
+		
+		.header img {
+			width: 100%;
+		}
+		
+		.list {
+			margin-top: 0.4rem;
+			padding: 0 0.58rem;
+			box-sizing: border-box;
+		}
+		
+		.list img {
+			width: 100%;
+		}
+		
+		.antsooLogo {
+			width: 100%;
+			height: 1rem;
+			background: #fff;
+			padding:0 .3rem;
+			box-sizing: border-box;
+			position: fixed;
+			bottom: 0;
+			box-shadow: 0 3px 8px 2px #8C8C8C;
+			text-align: center;
+		}
+		
+		.antsooLogo .logo,
+		.antsooLogo .down{
+			height: 100%;
+			width: 50%;
+			float: left;
+			font-size: .28rem;
+		}
+		
+		.antsooLogo .logo .img{
+			height: .72rem;
+			width: .72rem;
+			float: left;
+			margin-top: .14rem;
+		}
+		
+		.antsooLogo .logo .img img{
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+		
+		.antsooLogo .logo .title{
+			height: 100%;
+			line-height: 1rem;
+		}
+		
+		.antsooLogo .down a{
+			display: block;
+			height: 100%;
+			width: 100%;
+		}
+		
+		.antsooLogo .down a img{
+			display: block;
+			width: 1.4rem;
+			float: right;
+			margin-top: 0.24rem;
+		}
+	</style>
+
+	<body>
+		<div class="container" id="app">
+			<div class="header">
+				<img src="yuanRongImgs/hd.png" />
+			</div>
+			<ul class="list">
+				<li><img src="yuanRongImgs/intr.png" /></li>
+				<li><img src="yuanRongImgs/pro.png" /></li>
+				<li><img src="yuanRongImgs/info.png" /></li>
+				<li><img src="yuanRongImgs/rCode.png" /></li>
+			</ul>
+			<footer-download v-if="showToward"></footer-download>
+		</div>
+		<script type="text/javascript">
+			new Vue({
+				el: '#app',
+				data: {
+					fromSys: '',
+					showToward: true
+				},
+				methods: {
+					isShare() {
+						if(this.fromSys == 'appnew') {
+							this.showToward = false;
+						} else {
+							document.body.style.paddingBottom = '0px';
+						}
+					}
+				},
+				mounted() {
+					var _this = this;
+					this.$nextTick(function() {
+						_this.fromSys = getQueryString('fromSys');
+						console.log(_this.fromSys);
+						_this.isShare();
+					})
+				},
+			})
+		</script>
+	</body>
+
+</html>

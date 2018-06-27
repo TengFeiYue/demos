@@ -1,0 +1,234 @@
+
+<style lang="scss">
+page,
+.body {
+    height: 100%;
+    font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+    background-color: #eeeeee;
+    font-size:14px;
+    overflow: hidden;
+}
+.myBannner{
+   background:#ffffff;
+   padding:20rpx 20rpx 33rpx;
+   text-align:center;
+   position:relative;
+   image{
+     width:120rpx;
+     height:120rpx;
+     border-radius:50%;
+   }
+   .username{
+     padding-top:13rpx;
+     font-size: 28rpx;
+     color: #0688FF;
+   }
+   .helloname{
+       padding-top:13rpx;
+       font-size: 28rpx;
+       color: #000000;
+   }
+   .login{
+      width:108rpx;
+      height:58rpx;
+      line-height:58rpx;
+      text-align:center;
+      border: 2rpx solid #0386FF;
+      border-radius: 6rpx;
+      font-size: 26rpx;
+      color: #0386FF;
+      position:absolute;
+      top:76rpx;
+      right:30rpx;
+   }
+}
+.aboutMe{
+   padding-bottom:20rpx;
+   .aboutMeUl{
+      background:#ffffff;
+      padding-left:30rpx;
+      .aboutMeLi{
+         background:#ffffff;
+         padding:22rpx 31rpx 22rpx 0;
+         border-bottom:1px solid #eeeeee;
+         display: flex;
+         flex-direction: row;
+         justify-content: center;
+         align-items: center;
+        .aboutItem{
+           flex:8;
+           font-size: 32rpx;
+            color: #000000;
+            letter-spacing: 0;
+        }
+        .toItemDetail{
+           flex:1;
+           text-align:right;
+           image{
+              width:16rpx;
+              height:26rpx;
+           }
+        }
+      }
+   }
+}
+.hotLine{
+    position:fixed;
+    bottom:120rpx;
+    right:25rpx;
+    text-align:center;
+    image{
+        width:120rpx;
+        height:120rpx;
+    }
+    .txt{
+       color:#0092ff;
+    }
+}
+</style>
+<template>
+   <view class="body">
+      <view class="myBannner">
+          <image src="{{logoUrl}}"></image>
+          <view class="username">{{name}}</view>
+      </view>
+   <view class="aboutMe" style="padding-top:30rpx;">
+        <view class="aboutMeUl">
+            <view class="aboutMeLi" bindtap="myCollect">
+                 <view class="aboutItem">我的收藏</view>
+                 <view class="toItemDetail"><image  src="../../../resources/icons/toDetail.jpg"></image></view>
+            </view>
+            <view class="aboutMeLi" bindtap="linkedSeller">
+                 <view class="aboutItem">我联系过的销售</view>
+                 <view class="toItemDetail"><image  src="../../../resources/icons/toDetail.jpg"></image></view>
+            </view>
+        </view>
+   </view>
+   <view class="aboutMe">
+        <view class="aboutMeUl">
+            <view class="aboutMeLi" bindtap="personalInfo">
+                 <view class="aboutItem">个人信息</view>
+                 <view class="toItemDetail"><image  src="../../../resources/icons/toDetail.jpg"></image></view>
+            </view>
+            <view class="aboutMeLi" bindtap="mySubPrice">
+                 <view class="aboutItem">我的报价</view>
+                 <view class="toItemDetail"><image  src="../../../resources/icons/toDetail.jpg"></image></view>
+            </view>
+        </view>
+   </view>
+   <view class="aboutMe">
+        <view class="aboutMeUl">
+            <view class="aboutMeLi" bindtap="teasing">
+                 <view class="aboutItem">吐个槽</view>
+                 <view class="toItemDetail"><image  src="../../../resources/icons/toDetail.jpg"></image></view>
+            </view>
+            <view class="aboutMeLi" bindtap="exitLogin">
+                 <view class="aboutItem">退出登录</view>
+                 <view class="toItemDetail"><image  src="../../../resources/icons/toDetail.jpg"></image></view>
+            </view>
+        </view>
+   </view>
+
+   <view class="hotLine" bindtap="callingUs">
+     <view><image  src="../../../resources/img/linkUs.png"></view>
+     <view class="txt">人工热线</view>
+   </view>
+  </view>
+</template>
+
+
+<script>
+import wepy from 'wepy'
+import { api } from '../../../config'
+export default class my extends wepy.component {
+    components = {
+    }
+    data = {
+        name:'',
+        mobile:'',
+        logoUrl:'',
+        userId:0,
+        joinFlag:""
+    }
+    events = {
+
+    }
+    methods = {
+         toLogin(){
+             wx.navigateTo({
+                url: "login"
+             })
+         },
+        exitLogin(){
+            wx.navigateTo({
+                url: 'exit'
+            })
+        },
+        myCollect(){
+          wx.navigateTo({
+                  url: "myCollect"
+          })
+        },
+        linkedSeller(){
+            wx.navigateTo({
+                    url: "linkedSeller"
+            })
+        },
+        personalInfo(){
+            wx.navigateTo({
+                    url: "personalInfo"
+            })
+        },
+        mySubPrice(){
+          if(this.joinFlag=="noappliy"||this.joinFlag=="unpassed"||this.joinFlag=="applied"||this.joinFlag=="leaveoffice"){
+                wx.navigateTo({
+                    url: 'propaganda?redirect=my&userId='+this.loginUId
+                })
+          }
+          if(this.joinFlag=="passed"){
+                wx.navigateTo({
+                    url: 'subPrice?redirect=my&pUnit=元/吨&deliverway=自提&picList=../resources/img/imgUpload.jpg'
+                })
+          }
+         this.$apply();
+        },
+        teasing(){
+            wx.navigateTo({
+                    url: "teasing"
+            })
+        },
+        callingUs(){
+         wx.makePhoneCall({
+            phoneNumber:"17717928001"
+          })
+        }
+    }
+    onLoad(e) {
+        const wechatUserInfo = wx.getStorageSync('wechatUserInfo');
+        const antUserInfo = wx.getStorageSync('antUserInfo');
+        this.loginUId=antUserInfo.userId;
+        if(wechatUserInfo){
+            this.logoUrl = wechatUserInfo.avatarUrl;
+            this.name=wechatUserInfo.nickName;
+        }else{
+            this.logoUrl = wechatUserInfo.photo;
+        }
+        this.confirmStatusquery();
+        this.$apply();
+    }
+    confirmStatusquery(){
+        var that=this;
+        wepy.request({
+            url:api.common.confirmStatusquery.url,
+            method:api.common.confirmStatusquery.method,
+            data:{
+                'userId':this.loginUId
+            },
+            success:function(res){
+              that.joinFlag=res.data.body;
+              that.$apply()
+            }
+        });
+    }
+}
+</script>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="format-detection" content="telephone=no"/>		
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<title>第三十二届中国国际塑料橡胶工业展览会</title>
+		<script type="text/javascript">
+			window.onload = function(){
+				var deviceWidth = document.documentElement.clientWidth;
+				if(deviceWidth > 750) deviceWidth = 750;
+				document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';				
+			}
+		</script>
+	</head>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+			list-style: none;
+		}
+		.container{
+			width: 100%;
+		}
+		
+		.container img{
+			display: block;
+			width: 100%;
+		}
+	</style>
+	<body>
+		<div class="container">
+			<img src="chinaplas/head.png"/>
+			<img src="chinaplas/body.png"/>
+			<img src="chinaplas/footer.png"/>
+		</div>
+	</body>
+</html>

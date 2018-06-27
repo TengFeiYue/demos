@@ -1,0 +1,316 @@
+<style type="scss">
+	.connectionHeader{
+		width:100%;
+		height:190rpx;
+		padding-bottom:22rpx;
+		display:flex;
+		flex-direction:column;
+		.connectionUp{
+			flex:3;
+			background:#0092FF;
+		}
+		.connectionDown{
+			flex:3;
+			background:#ffffff;
+		}
+		.connectionPannal{
+			width:90%;
+			position:absolute;
+			top:0; left:50%;
+			margin-left:-45%;
+			z-index:1000;
+		}
+	}
+	.connectionScrollBody{
+		.connectionUl{
+			padding:0 0 0 30rpx;
+			.connectionList{
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				padding:16rpx 0;
+				border-bottom:1px solid #ECECEC;
+				.headImg{
+					flex:1;
+					image{
+						width:60rpx;
+						height:60rpx;
+						border-radius: 50%;
+					}
+				}
+				.itemDl{
+					flex:8;
+					.connectionName{
+						font-size: 28rpx;
+						color: #333333;
+						letter-spacing: -0.15px;
+						line-height: 40rpx;
+						image{
+							width:80rpx;
+							height:28rpx;
+							position:relative;
+							top:4rpx; right:-16rpx;
+						}
+					}
+					.connectionDuty{
+						font-size: 24rpx;
+						color: #333333;
+						letter-spacing: 0.17px;
+						height:40rpx;
+						line-height: 40rpx;
+						text:nth-child(1){
+							margin-right: 20rpx;
+						}
+					}
+					.dataServes{
+						font-size: 24rpx;
+						color: #666666;
+						letter-spacing: 0.17px;
+						line-height: 40rpx;
+					}
+					.connectionCities{
+						font-size: 20rpx;
+						color: #999999;
+						letter-spacing: 0.17px;
+					}
+				}
+			}
+		}
+		.tips{
+			font-size:28rpx;
+			background:#ffffff;
+			height:60rpx;
+			line-height:60rpx;
+			.loadShow{
+				background:#ffffff;
+				text-align:center;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				align-self: center;
+				justify-content: center;
+				icon{
+					position:relative;
+					top:17rpx;
+					right:5rpx;
+				}
+			}
+		}
+	}
+</style>
+<template>
+	<view class="connectionHeader">
+		<view class="connectionUp"></view>
+		<view class="connectionDown"></view>
+		<view class="connectionPannal">
+			<connectionSearch />
+		</view>
+	</view>
+	<view style="margin-top: 40rpx;">
+		<scroll-view class="connectionScrollBody" scroll-y="true" style="max-height:{{scrollWrapHeight}}px" bindscrolltolower="scrollLoading">
+			<view class="connectionUl">
+				<view class="connectionList" wx:for="{{info}}" wx:key="{{index}}" data-id="{{item.id}}" bindtap="toPersonDetail">
+					<view class="headImg">
+						<image src="{{item.userLogo}}"></image>
+					</view>
+					<view class="itemDl">
+						<view class="connectionName">
+							<text>{{item.name}}</text>
+							<image wx:if="{{item.bestFlag == 2}}" src="../../../resources/icons/verify.png" />
+  							<image  wx:if="{{item.bestFlag == 1}}" src="../../../resources/icons/noverify.png" />
+  							<image wx:if="{{item.bestFlag == 3}}" src="../../../resources/icons/confirm.png" />
+						</view>
+						<view class="connectionDuty">
+							<text>{{item.job}}</text>
+							<text>{{item.companyName}}</text>
+						</view>
+						<view class="dataServes">
+							<text>{{item.firstCategory}}</text>
+						</view>
+						<view class="connectionCities">
+							<text>{{item.city}}</text>
+						</view>
+					</view>
+				</view>
+				<view class="tips">
+					<view wx:if="{{loadmore}}" class="loadShow">
+						<icon type="waiting" size="16" /><text>玩命的加载中...</text>
+					</view>
+					<view wx:else style="text-align:center;"><text>查看更多内容，请前往俺搜APP</text></view>
+				</view>
+			</view>
+		</scroll-view>
+	</view>
+</template>
+
+<script>
+	import wepy from 'wepy'
+	import { api } from '../../../config'
+  import location from '../../../utils/location'
+	import connectionSearch from '../../connectionSearch'
+	export default class index extends wepy.component {
+		components = {
+			connectionSearch
+		}
+		data = {
+			loadmore: false,
+			scrollWrapHeight: 0,
+			loginUId: -1,
+			info: [],
+			param: '',
+		  	pageIndex:1,
+			mType:"",
+			pDuty:"",
+      		pDistance:"",
+			Position:"",
+      		pModel:"",
+			name:-0,
+			connectionList: [],
+		}
+		events = {
+			'personFilter':function(arg){
+					this.pageIndex=1;
+	        this.mType=arg.mType;
+	        this.pDuty=arg.duty;
+			    this.pDistance=arg.distance;
+			    this.pModel=arg.model;
+			    this.fetchRelationNumData();
+			    this.info = [];
+					this.name=Number(arg.name);
+	            this.getInfo();
+							this.fetchRelationNumData();
+            },
+       'personRole': function(parmas){
+        	this.mType= '';
+        	this.pDuty = parmas.findtItem;
+        	this.pDistance= '';
+        	this.pModel= '';
+        	this.getInfo();
+					this.fetchRelationNumData();
+        }
+		}
+		methods = {
+			scrollLoading() { //滚动加载
+				if(this.loadmore) {
+					this.pageIndex++;
+					if(this.pageIndex<6){
+						this.getInfo();
+					}else{
+						this.loadmore = false;
+						wx.showModal({
+							title: '',
+							content: '更多内容请前往按搜app',
+							showCancel: true,
+							confirmText: '确定',
+							confirmColor: '#0092ff',
+							success: function (res) {
+								if (res.confirm) {
+									if(wx.getSystemInfoSync().system.toLowerCase().indexOf('andr')!=-1){
+											console.log('android')
+											wx.navigateTo({
+													url:'downLoad'
+											})
+									}else{
+										console.log('iso')
+										wx.navigateTo({
+												url:'downLoad'
+										})
+									}
+								} else if (res.cancel) {
+									console.log('用户点击取消')
+								}
+							}
+						})
+					}
+				}
+			},
+			toPersonDetail(e){
+				if(!this.loginUId) {
+					wx.navigateTo({
+						url: 'login?fromPage=personDetail'
+					});
+					return;
+				}
+				let memberId=e.currentTarget.dataset.id;
+				wx.navigateTo({
+					url:'connectionDetail?memberId='+memberId+'&userId='+this.loginUId
+				})
+			}
+		}
+		onShow() {
+		}
+		onLoad(e) {
+			var _this = this;
+			const antsooUserInfo = wepy.getStorageSync("antUserInfo");
+
+			location.getLocation().then(function(res){
+					console.log(res);
+				_this.seleCity = res.city;
+				_this.loginUId = antsooUserInfo.userId;
+ 	 			_this.scrollWrapHeight = wx.getSystemInfoSync().windowHeight * 0.91 - 130;
+				_this.Position=res.lat+','+res.lng+'|'+res.province+'|'+res.city+'|'+res.area;
+ 	 	    _this.fetchRelationNumData();
+ 	 			_this.getInfo();
+				_this.$apply();
+			})
+		}
+
+		getInfo(){ // 获取人脉列表
+			var that = this;
+			wx.request({
+				method: api.relations.relationList.method,
+				url: api.relations.relationList.url,
+				data: {
+					userId:this.loginUId,
+					position:this.Position,
+				  firstCategory:this.mType,
+					job:this.pDuty,
+		      distance:this.pDistance,
+					companyModel:this.pModel,
+					order:this.name,
+					pageInfo2:{
+					  pIndex:this.pageIndex,
+						pSize:20
+					}
+
+				},
+				success: function(res){
+					if (res.statusCode == 200) {
+						var info = res.data.body;
+						const tpages = res.data.page.tCount;
+	            		const pages = info.length/20;
+	            		var isInt=tpages/(that.pageIndex*20);
+	            		that.loadmore = (pages==1&&isInt!=1) ? true : false;
+
+	            		if(that.pageIndex>1){
+	            			that.info = that.info.concat(info);
+	            		}else{
+	            			that.info = info;
+	            		}
+						that.$apply();
+					}
+				}
+			})
+		}
+
+		fetchRelationNumData(){  //获取人脉数量
+	        let that = this;
+	        wepy.request({
+	            url:api.relations.relationNum.url,
+	            method:api.relations.relationNum.method,
+	            data:{
+                firstCategory:this.mType,
+					      job:this.pDuty,
+		            distance:this.pDistance,
+		            companyModel:this.pModel,
+								position:this.Position
+	            },
+	            success:function(res){
+	                that.$broadcast('getNum',res.data.body);
+	                that.$apply();
+	            }
+	        });
+       	}
+
+	}
+</script>

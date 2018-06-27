@@ -1,0 +1,38 @@
+.con {
+  width: 100%;
+  background-color: #fff;
+  padding: 100rpx 30rpx 0 30rpx;
+  box-sizing: border-box; }
+  .con .img {
+    width: 60%;
+    height: 590rpx;
+    font-size: 24rpx;
+    color: #666;
+    line-height: 1.5;
+    text-align: center;
+    margin: 0 auto;
+    position: relative; }
+    .con .img image {
+      display: block;
+      margin: 0 auto;
+      width: 60%; }
+    .con .img text {
+      display: block; }
+    .con .img .active {
+      color: #0092ff; }
+  .con .back {
+    background-color: #0092ff;
+    color: #fff;
+    font-size: 32rpx;
+    width: 560rpx;
+    height: 96rpx;
+    line-height: 96rpx;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 16rpx;
+    margin-top: 100rpx; }
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent; }

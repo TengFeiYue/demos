@@ -1,0 +1,94 @@
+@import "./../components/dataNone.wxss";
+.collect-card {
+  width: 90%;
+  height: 72rpx;
+  line-height: 50rpx;
+  margin: 0 auto;
+  margin-top: 22rpx; }
+  .collect-card .card-name {
+    font-size: 28rpx;
+    color: #4A4A4A; }
+  .collect-card image {
+    width: 80rpx;
+    height: 28rpx;
+    margin-left: 18rpx;
+    position: relative;
+    bottom: -11rpx; }
+  .collect-card .card-date {
+    display: block;
+    float: right;
+    font-size: 20rpx;
+    color: #666666; }
+  .collect-card .card-block {
+    display: block;
+    float: left; }
+
+.card-identity {
+  width: 90%;
+  height: 60rpx;
+  margin: 0 auto;
+  line-height: 60rpx;
+  font-size: 24rpx;
+  color: #666666;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; }
+
+.card-company {
+  width: 90%;
+  height: 140rpx;
+  margin: 0 auto;
+  font-size: 24rpx; }
+  .card-company .company-chain {
+    width: 50%;
+    float: left; }
+    .card-company .company-chain text {
+      display: inline-block;
+      height: 68rpx;
+      line-height: 68rpx;
+      padding-right: 10rpx;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis; }
+    .card-company .company-chain .chain-name {
+      width: 30%;
+      color: #4A4A4A; }
+    .card-company .company-chain .chain-content {
+      width: 63%;
+      color: #999999; }
+
+.company-address {
+  clear: both;
+  width: 90%;
+  height: 88rpx;
+  line-height: 88rpx;
+  margin: 0 auto;
+  font-size: 24rpx;
+  border-top: 1rpx solid #ECECEC;
+  color: #666666;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; }
+
+.tips {
+  font-size: 28rpx;
+  background: #ffffff;
+  height: 60rpx;
+  line-height: 60rpx; }
+  .tips .loadShow {
+    background: #ffffff;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: center;
+    justify-content: center; }
+    .tips .loadShow icon {
+      position: relative;
+      top: 17rpx;
+      right: 5rpx; }
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent; }

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>分享页面</title>
+		<link rel="stylesheet" type="text/css" href="css/base.css" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+
+	</head>
+
+	<body>
+		<div class="con" id="app">
+			<div class="con-head">
+				<div class="user-img">
+					<img src="images/Group21.png" />
+				</div>
+				<p class="title">{{info.name}}</p>
+				<div class="con-btn">
+					<span v-for="i in titleText">{{i}}</span>
+				</div>
+				<ul class="con-intr">
+					<li>
+						<p>
+							<span>产业链</span>
+							<span>{{info.baseFirstCategory}}</span>
+						</p>
+						<p>
+							<span>经营模式</span>
+							<span>{{info.businessMode}}</span>
+						</p>
+					</li>
+					<li>
+						<p>
+							<span>服务区域</span>
+							<span>{{info.serviceArea}}</span>
+						</p>
+					</li>
+				</ul>
+			</div>
+			<div class="con-adress mag-btm pad-l-r">{{info.cityName}}{{info.districtName}}{{info.address}}</div>
+			<div class="con-list mag-btm">
+				<p class="list-title pad-l-r"><span>&ensp;&ensp;基本信息</span></p>
+				<ul class="base-detail">
+					<li>
+						<img src="images/gs.png" />
+						<p>工商信息</p>
+					</li>
+					<li>
+						<img src="images/gd.png" />
+						<p>股东信息</p>
+					</li>
+					<li>
+						<img src="images/jy.png" />
+						<p>经营状况</p>
+					</li>
+					<li>
+						<img src="images/dw.png" />
+						<p>对外投资</p>
+					</li>
+					<li>
+						<img src="images/fz.png" />
+						<p>分支机构</p>
+					</li>
+					<li>
+						<img src="images/bs.png" />
+						<p>办事处</p>
+					</li>
+				</ul>
+			</div>
+
+			<div class="con-list mag-btm">
+				<p class="list-title pad-l-r"><span>&ensp;&ensp;产品信息</span></p>
+				<ul class="pro-detail pad-l-r">
+					<li>
+						<span>主营行业/系列</span>
+						<span>{{info.mainLines}}</span>
+					</li>
+				</ul>
+			</div>
+			<div class="con-list mag-btm">
+				<p class="list-title pad-l-r"><span>&ensp;&ensp;经营信息</span></p>
+				<ul class="pro-detail pad-l-r">
+					<li>
+						<span>主要客户群体</span>
+						<span>{{info.customerGroup}}</span>
+					</li>
+					<li>
+						<span>是否提供加工/定制服务</span>
+						<span v-if="info.isProcess == '1'">是</span>
+						<span v-else="info.isProcess == '0'">否</span>
+					</li>
+					<li v-if="info.processingMethod == ''?false:true">
+						<span>加工方式</span>
+						<span>{{info.processingMethod}}</span>
+					</li>
+					<li>
+						<span v-if="info.craft == ''?false:true">工艺</span>
+						<span>{{info.craft}}</span>
+					</li>
+					<li v-if="info.managementSystemCertification == ''?false:true">
+						<span>管理体系认证</span>
+						<span>{{info.managementSystemCertification}}</span>
+					</li>
+					<li v-if="info.productQualityCertification == ''?false:true">
+						<span>产品质量认证</span>
+						<span>{{info.productQualityCertification}}</span>
+					</li>
+					<li v-if="info.plantArea == ''?false:true">
+						<span>厂房面积</span>
+						<span>{{info.plantArea}}</span>
+					</li>
+					<li v-if="info.employeeNum == ''?false:true">
+						<span>员工人数</span>
+						<span>{{info.employeeNum}}</span>
+					</li>
+					<li v-if="info.monthlyOutput == ''?false:true">
+						<span>月产量</span>
+						<span>{{info.monthlyOutput}}</span>
+					</li>
+					<li v-if="info.yearSalesVolume == ''?false:true">
+						<span>年营业额</span>
+						<span>{{info.yearSalesVolume}}</span>
+					</li>
+					<li v-if="info.yearExportVolume == ''?false:true">
+						<span>年出口额</span>
+						<span>{{info.yearExportVolume}}</span>
+					</li>
+				</ul>
+			</div>
+			<section class="antsooLogo" v-if="!showToward">
+				<!--<div class="open-antsoo">
+					<a href="http://www.antsoo.com/appdownload.shtml">打开俺搜，下载最新干货</a>
+				</div>-->
+				<span class="pull-left"><img src="../shareHotImg/newLogo.png" alt="" /></span>
+				<a class="pull-right" href="http://www.antsoo.com/appdownload.shtml">下载APP</a>
+			</section>
+		</div>
+		<script type="text/javascript">
+			var deviceWidth = document.documentElement.clientWidth;
+			if(deviceWidth > 750) deviceWidth = 750;
+			document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';
+		</script>
+		<script src="../../dev.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<!--<script src="../../js/myComponent.js" type="text/javascript" charset="utf-8"></script>-->
+		<script src="../../js/axios.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/vue-resource.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			new Vue({
+				el: '#app',
+				data: {
+					// 请求借口参数
+					params: {
+						enterpriseId: -1,
+						userId: -1
+					},
+					info: {},
+					titleText: [],
+					fromSys: '',
+					showToward: true,
+				},
+				mounted() {
+					var _this = this;
+					this.$nextTick(function() {
+						//?enterpriseId=51&memberId=0&userId=2580•
+						_this.params.enterpriseId = getQueryString('enterpriseId');
+						_this.params.userId = getQueryString('userId');
+						_this.fromSys = getQueryString('fromSys');
+						_this.getData();
+						_this.getCompayInfo();
+					})
+
+				},
+				methods: {
+					getCompayInfo: function() {
+						let _this = this;
+						_this.$http.post(appUrl + '/enterprise/baseInfo', {
+							"enterpriseId": _this.params.enterpriseId,
+							"userId": _this.params.userId
+						}).then(function(res) {
+							if(res.status == 200) {
+								_this.info = res.body.body;
+								_this.titleText = res.body.body.baseSecondCategory.split(',');
+								document.title = _this.info.name + '_俺搜';
+							}
+						}).catch(function(err) {
+							console.log(err);
+						})
+					},
+					//请求数据
+					getData() {
+						if(this.fromSys == 'app') {
+							this.showToward = false;
+						}
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>

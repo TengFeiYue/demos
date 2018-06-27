@@ -1,0 +1,13 @@
+
+	<view class="con">
+	   <checkbox-group bindchange="selectIndustryChain">
+			<view class="title-list">
+				<block  wx:for="{{titleList}}" wx:key="" data-v="{{item.name}}" bindtap="getVal">
+					<label class="{{item.checked?'active':''}}">
+                      <checkbox value="{{item.name}}" checked="{{item.checked}}" style="display:none;"/>{{item.name}}
+                    </label>
+				</block>
+			</view>
+		</checkbox-group>
+		<view class="title-save" bindtap="saveBtn">保存</view>
+	</view>

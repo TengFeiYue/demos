@@ -1,0 +1,324 @@
+<style type="scss">
+page,
+.body {
+    height: 100%;
+    font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+    background-color: #eeeeee;
+    font-size:28rpx;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.myCollectUl{
+   background:#ffffff;
+   padding-left:30rpx;
+   .myCollectPersonLi{
+     padding:40rpx 28rpx 34rpx 0;
+     display:flex;
+     flex-direction:row;
+     justify-content:space-between;
+     align-items:center;
+     border-bottom:1px solid #eeeeee;
+     .myCollectHeadImg{
+        flex:1;
+        image{
+            width:92rpx;
+            height:102rpx;
+        }
+     }
+     .myCollectDes{
+         flex:6;
+         padding-left:30rpx;
+        .h3{
+          font-size: 34rpx;
+          color: #222222;
+          padding-right:40rpx;
+        }
+        .runningWay{
+          font-size: 26rpx;
+          color: #333333;
+        }
+        .myCollectComName{
+          font-size: 26rpx;
+          color: #333333;
+          padding:12rpx 0;
+          image{
+            width:28rpx;
+            height:33rpx;
+            position:relative;
+            left:3rpx;
+            top:5rpx;
+          }
+        }
+        .myCollectLinks{
+            font-size: 26rpx;
+            color: #3F3F3F;
+            line-height: 37rpx;
+            .orange{
+               color: #FE9900;
+               padding-right:3rpx;
+            }
+            .linkNum{
+               color: #FE9900;
+               padding-left:50rpx;
+            }
+        }
+     }
+     .myCollectDate{
+         flex:1;
+         font-size: 26rpx;
+         color: #999999;
+         .linkedDate{
+            padding-bottom:27rpx;
+            text-align:right;
+         }
+         .linkButton{
+           width:146rpx;
+           height:58rpx;
+           line-height:58rpx;
+           text-align:center;
+           border: 2rpx solid #0386FF;
+           border-radius: 6rpx;
+           font-size: 26rpx;
+           color: #0386FF;
+         }
+     }
+   }
+   .tips{
+      background:#ffffff;
+      line-height:60rpx;
+   }
+   .loadShow{
+         background:#ffffff;
+         text-align:center;
+         display: flex;
+         flex-direction: row;
+         align-items: center;
+         align-self: center;
+         justify-content: center;
+   }
+   .loadShow icon{
+       position:relative;
+       top:17rpx;
+       right:5rpx;
+   }
+}
+.noDatas{
+    height: 100%;
+    font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+    background-color: #ffffff;
+    font-size:28rpx;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+    .noDatasTip{
+        flex:6;
+        padding-top:300rpx;
+        text-align:center;
+        image{
+           width:206rpx;
+           height:206rpx;
+        }
+        .noDatasTipTxt{
+          padding-top:27rpx;
+          font-size: 28rpx;
+          color: #3FB5E9;
+          letter-spacing: -0.11px;
+        }
+    }
+    .checkedBtn{
+      flex:3;
+       text{
+          display:inline-block;
+          width:360rpx;
+          height:70rpx;
+          line-height:70rpx;
+          text-align:center;
+          border: 2rpx solid #0688FF;
+          border-radius: 10rpx;
+          font-size: 32rpx;
+          color: #0688FF;
+       }
+    }
+}
+    .gototop{
+      position: fixed;
+      bottom: 140rpx;
+      right: 20rpx;
+      transition: all 0.3s;
+      opacity: 0;
+        z-index:12;
+      transform: translateY(200rpx) rotate(180deg);
+    }
+    .gototop.active{
+      opacity: 0.9;
+      transform: translateY(0) rotate(180deg);
+    }
+</style>
+<template>
+    <view class="noDatas" wx:if="{{!hasDatas}}">
+      <view class="noDatasTip">
+          <image src="../resources/img/noPriceRecord.png"></image>
+          <view class="noDatasTipTxt">您还没有任何记录哦～</view>
+      </view>
+      <view class="checkedBtn">
+          <text bindtap="toSellerList">前往查看</text>
+      </view>
+    </view>
+    <view class="body" wx:if="{{hasDatas}}">
+        <view class="myCollectList">
+        <scroll-view  scroll-top="{{scrolltop}}"  scroll-y="true"  style="height:{{scrollWrapHeight}}px" bindscrolltoupper="onPullDownRefresh"  bindscrolltolower="scrollLoading">
+            <view class="myCollectUl">
+                <view class="myCollectPersonLi" wx:for="{{linkedManList}}" wx:key="{{index}}" data-uid="{{item.userDto.userId}}" bindtap="toMarketingDetail">
+                   <view class="myCollectHeadImg"><image src="{{item.userDto.userLogo}}"></image></view>
+                   <view class="myCollectDes">
+                       <view><text class="h3">{{item.userDto.name}}</text><text class="runningWay">{{item.userDto.businessMode}}</text></view>
+                       <view class="myCollectComName"><text>{{item.userDto.enterpriseName}}</text><image src="../resources/img/zhu.png"></image></view>
+                       <view class="myCollectLinks"><text class="orange">{{item.userDto.productCount}}</text>款产品<text class="linkNum">{{item.userDto.linkManCount}}</text>人联系</view>
+                   </view>
+                   <view class="myCollectDate">
+                         <view class="linkedDate">{{item.createDate}}</view>
+                         <view class="linkButton" data-tel="{{item.userDto.phone}}" data-uid="{{item.userDto.userId}}" catchtap="startCall">一键联系</view>
+                   </view>
+                </view>
+                <view class="tips">
+                  <view wx:if="{{loadmore}}" class="loadShow">
+                   <icon type="waiting" size="16"/><text>玩命的加载中...</text></view>
+                   <view wx:else style="text-align:center;"><text>没有更多内容了</text></view>
+                </view>
+             </view>
+             </scroll-view>
+        </view>
+    </view>
+
+</template>
+
+<script>
+import wepy from 'wepy'
+import { api } from '../config'
+export default class linkedSeller extends wepy.page {
+    config = {
+        'navigationBarTitleText': '我联系过的销售',
+        'navigationBarTextStyle': '#FFFFFF',
+        'navigationBarBackgroundColor': '#0386FF'
+    }
+
+    components = {
+    }
+    data = {
+      hasDatas:false,
+      linkedManList:[],
+      loadNum: 0,
+      wait: true,
+      loadmore:true,
+      scrolltop:0, //滚动位置
+      scrollWrapHeight:0,
+      pageIndex: 1,  //分页
+      fscrolltop:null,
+      showTopBtn:false,
+      loginUId:-1
+    }
+    methods = {
+          toSellerList(){
+            wx.navigateTo({
+                url: 'index?showCon=sellerList'
+            })
+          },
+          scrollFilterContent(e){
+              this.fscrolltop = 0;
+          },
+          goToTop(){ //回到顶部
+              this.scrolltop = 0;
+          },
+          scrollLoading(){ //滚动加载
+                  console.log("loadMore:" + this.loadmore)
+                  if(this.loadmore){
+                      this.pageIndex++;
+                      this.fetchLinkedManData();
+                  }else{
+                    return false;
+                  }
+          },
+          onPullDownRefresh(){ //下拉刷新
+            //  this.page = 0;
+            //  this.productList = [];
+            //  this.fetchLinkedManData();
+          },
+          toMarketingDetail(e){
+             var userId=e.currentTarget.dataset.uid;
+              wx.navigateTo({
+                  url: 'marketingDetail?userId='+userId
+              })
+          },
+          startCall(e){//一键拨号
+              var telNumber=e.currentTarget.dataset.tel;
+              var toUId=e.currentTarget.dataset.uid
+              wx.makePhoneCall({
+                phoneNumber: telNumber
+                })
+                var that=this;
+                wepy.request({
+                    url:api.common.callLinkers.url,
+                    method:api.common.callLinkers.method,
+                    data:{
+                        'toUserId':toUId,
+                        'userId':that.uId,
+                    },
+                    success:function(res){
+                      console.log(res)
+                    }
+                });
+          }
+    }
+    onLoad() {
+        const antsooUserInfo = wepy.getStorageSync("antUserInfo");
+        this.loginUId=antsooUserInfo.userId;
+        this.scrollWrapHeight = wx.getSystemInfoSync().windowHeight * 0.99;
+        console.log('height'+this.scrollHeight)
+        this.fetchLinkedManData();
+    }
+    fetchLinkedManData(){  //获取材料详情列表
+        wx.showLoading({
+            title: '加载中',
+        })
+        let that = this;
+        const pageSize = 20;
+        wepy.request({
+            url:api.common.linkedSellerList.url,
+            method:api.common.linkedSellerList.method,
+            data:{
+                'userId':that.loginUId,
+                'pageInfo2':{
+                    'pSize': pageSize,
+                    'pIndex':that.pageIndex
+                }
+            },
+            success:function(res){
+                if(res.data.isSuccess==1){
+                    if(res.data.body){
+                      that.hasDatas=true;
+                    }else{
+                       that.hasDatas=false;
+                    }
+                }
+                console.log(res.data.body)
+                var linkManData=res.data.body;
+                if(linkManData){
+                    const pages =linkManData.length/20;
+                    that.loadmore = (pages==1) ? true : false;
+                    if(that.pageIndex > 1){
+                        that.linkedManList = that.linkedManList.concat(linkManData);
+                    }else{
+                        that.linkedManList = linkManData;
+                    }
+                }
+                that.$apply();
+                wx.hideLoading()
+            }
+        });
+    }
+
+}
+</script>

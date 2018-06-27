@@ -1,0 +1,27 @@
+
+	<scroll-view class="con" scroll-top="{{scrolltop}}" scroll-y="{{true}}" style="height:{{scrollWrapHeight}}px" bindscrolltolower="scrollLoading">
+		<view class="con-list"  wx:for="{{roundfirm}}" wx:key="{{index}}" data-id="{{item.id}}" bindtap="toCompanyDetail">
+			<view class="list-title">
+				<text>{{item.name}}</text>
+				<image src="../resources/icons/zhu.png" wx:if="{{item.companyId>0}}"/>
+			</view>
+			<view class="list-type">
+				<view class="list-icons" wx:for="{{item.typeArr}}" wx:for-item="i" wx:key="{{i}}">{{i}}</view>
+				<view class="list-text" wx:for="{{item.baseSecondCategoryArr}}" wx:for-item="j" wx:key="{{j}}" wx:if="{{item.baseSecondCategoryArr.length != 0}}">{{j}}</view>
+			</view>
+			<view class="list-other" wx:if="{{item.mainLines != ''}}">
+				<text>{{item.mainLines}}</text>
+			</view>
+			<view class="list-address">{{item.cityName}}{{item.districtName}}{{item.address}}</view>
+			<view class="distance">{{item.distance}}</view>
+		</view>
+		<view class="tips">
+			<view  wx:if="{{loadmore}}" class="loadShow">
+				<icon type="waiting" size="16"/><text>玩命加载中...</text>
+			</view>
+			<view wx:else style="text-align:center;"><text>查看更多内容，请前往俺搜APP</text></view>
+		</view>
+	</scroll-view>
+	<view class="refresh-position" bindtap="refush">
+		<image src="../resources/icons/refreshPositon.png"/>
+	</view>

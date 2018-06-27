@@ -1,0 +1,90 @@
+/*$border-color: rgba(0,146,255,0.10);*/
+view {
+  width: 100%; }
+
+.con {
+  overflow: hidden; }
+  .con .con-logo {
+    padding: 30rpx;
+    box-sizing: border-box; }
+    .con .con-logo image {
+      width: 120rpx;
+      height: 120rpx; }
+  .con .con-list {
+    height: 120rpx;
+    width: 500rpx;
+    border: 2rpx solid rgba(0, 146, 255, 0.1);
+    border-top-right-radius: 120rpx;
+    padding: 0 30rpx;
+    box-sizing: border-box;
+    margin-top: 80rpx; }
+    .con .con-list .con-list-title {
+      font-size: 32rpx;
+      color: #4a4a4a;
+      line-height: 2; }
+    .con .con-list .con-list-txt {
+      font-size: 20rpx;
+      line-height: 1.5; }
+      .con .con-list .con-list-txt .font-big {
+        font-size: 28rpx; }
+      .con .con-list .con-list-txt .font-cl {
+        color: #e79733; }
+  .con .con-tips {
+    padding: 0 30rpx;
+    box-sizing: border-box;
+    font-size: 20rpx;
+    color: #0092ff;
+    line-height: 2;
+    margin-top: 60rpx;
+    margin-bottom: 220rpx; }
+    .con .con-tips text {
+      font-size: 28rpx; }
+  .con .con-foot {
+    height: 220rpx;
+    background-color: #0092ff;
+    padding: 20rpx 30rpx;
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 0; }
+    .con .con-foot .con-qrCode {
+      width: 180rpx;
+      height: 180rpx;
+      float: left; }
+      .con .con-foot .con-qrCode image {
+        display: block;
+        width: 100%;
+        height: 100%; }
+    .con .con-foot .con-intr {
+      width: 500rpx;
+      height: 180rpx;
+      float: right; }
+      .con .con-foot .con-intr .con-intr-title {
+        color: #f8e71c;
+        font-size: 28rpx;
+        text-align: center; }
+      .con .con-foot .con-intr .con-intr-con {
+        position: relative;
+        height: 140rpx;
+        width: 500rpx; }
+        .con .con-foot .con-intr .con-intr-con image {
+          display: block;
+          width: 100%;
+          height: 100%;
+          position: absolute; }
+      .con .con-foot .con-intr .con-intr-list {
+        color: #f1f1f1;
+        font-size: 20rpx;
+        line-height: 1.8;
+        text-align: center;
+        padding: 6rpx 3rpx;
+        box-sizing: border-box; }
+  .con .phone {
+    width: 348rpx;
+    height: 480rpx;
+    position: absolute;
+    right: 30rpx;
+    top: 120rpx; }
+    .con .phone image {
+      display: block;
+      width: 100%;
+      height: 100%; }

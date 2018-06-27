@@ -1,0 +1,61 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _wepy = require('./../npm/wepy/lib/wepy.js');
+
+var _wepy2 = _interopRequireDefault(_wepy);
+
+var _config = require('./../config.js');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var dowloadApp = function (_wepy$page) {
+    _inherits(dowloadApp, _wepy$page);
+
+    function dowloadApp() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
+        _classCallCheck(this, dowloadApp);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = dowloadApp.__proto__ || Object.getPrototypeOf(dowloadApp)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
+            'navigationBarTitleText': '下载app',
+            'navigationBarTextStyle': '#FFFFFF',
+            'navigationBarBackgroundColor': '#0092FF'
+        }, _this.components = {}, _this.data = {
+            downLoadUrl: 'https://wxapp.antsoo.com/download.html '
+        }, _this.methods = {}, _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    _createClass(dowloadApp, [{
+        key: 'onShow',
+        value: function onShow() {}
+    }, {
+        key: 'onLoad',
+        value: function onLoad() {}
+    }]);
+
+    return dowloadApp;
+}(_wepy2.default.page);
+
+
+Page(require('./../npm/wepy/lib/wepy.js').default.$createPage(dowloadApp , 'pages/downloadApp'));
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRvd25sb2FkQXBwLmpzIl0sIm5hbWVzIjpbImRvd2xvYWRBcHAiLCJjb25maWciLCJjb21wb25lbnRzIiwiZGF0YSIsImRvd25Mb2FkVXJsIiwibWV0aG9kcyIsIndlcHkiLCJwYWdlIl0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7QUFDQTs7OztBQUNBOzs7Ozs7Ozs7O0lBQ3FCQSxVOzs7Ozs7Ozs7Ozs7OztrTUFDakJDLE0sR0FBUztBQUNMLHNDQUEwQixPQURyQjtBQUVMLHNDQUEwQixTQUZyQjtBQUdMLDRDQUFnQztBQUgzQixTLFFBTVRDLFUsR0FBYSxFLFFBR2JDLEksR0FBTztBQUNOQyx5QkFBWTtBQUROLFMsUUFJUEMsTyxHQUFVLEU7Ozs7O2lDQUlELENBQ1I7OztpQ0FDUSxDQUVSOzs7O0VBdEJtQ0MsZUFBS0MsSTs7a0JBQXhCUCxVIiwiZmlsZSI6ImRvd25sb2FkQXBwLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcbmltcG9ydCB3ZXB5IGZyb20gJ3dlcHknXHJcbmltcG9ydCB7IGFwaSB9IGZyb20gJy4uL2NvbmZpZydcclxuZXhwb3J0IGRlZmF1bHQgY2xhc3MgZG93bG9hZEFwcCBleHRlbmRzIHdlcHkucGFnZSB7XHJcbiAgICBjb25maWcgPSB7XHJcbiAgICAgICAgJ25hdmlnYXRpb25CYXJUaXRsZVRleHQnOiAn5LiL6L29YXBwJyxcclxuICAgICAgICAnbmF2aWdhdGlvbkJhclRleHRTdHlsZSc6ICcjRkZGRkZGJyxcclxuICAgICAgICAnbmF2aWdhdGlvbkJhckJhY2tncm91bmRDb2xvcic6ICcjMDA5MkZGJ1xyXG4gICAgfVxyXG5cclxuICAgIGNvbXBvbmVudHMgPSB7XHJcbiAgICB9XHJcblxyXG4gICAgZGF0YSA9IHtcclxuICAgICBkb3duTG9hZFVybDonaHR0cHM6Ly93eGFwcC5hbnRzb28uY29tL2Rvd25sb2FkLmh0bWwgJ1xyXG4gICAgfVxyXG5cclxuICAgIG1ldGhvZHMgPSB7XHJcblxyXG4gICAgICAgIH1cclxuXHJcbiAgICBvblNob3coKSB7XHJcbiAgICB9XHJcbiAgICBvbkxvYWQoKSB7XHJcblxyXG4gICAgfVxyXG5cclxufVxyXG4iXX0=

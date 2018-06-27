@@ -1,0 +1,181 @@
+@media only screen and ( min-device-width: 412px ){
+.dog_get {
+    background: url(../img/dog_03.png) no-repeat 9VW 0VH;
+    background-size: 14%;
+    }
+.dog{
+    background: url(../img/dog_03.png) no-repeat 9VW 0VH;
+    background-size: 14%;
+    }
+    .inviteFriends {
+    position: relative;
+    height: 55vh;
+    background: url(../img/cashPack_03.png) no-repeat center;
+    background-size: 83%;
+    margin-top: 1vh;
+}
+ .inviteFriends ul {
+    position: absolute;
+    top: 21vh;
+    left: 22vw;
+    color: #e94935;
+    line-height: 3vh;
+    }  
+.casher span {
+    position: absolute;
+    top: 4vh;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ec4d35;
+    font-size: 2.3rem;
+    font-weight: bold;
+}  
+.inviteFriends .inviteYou{
+	position: absolute;
+    top: 45vh;
+    left: 13vw   
+} 
+#layerBody {
+	top:10%;
+}
+.goodOne {
+    position: absolute;
+    top: 23vh;
+    left: 33vw;
+    color: #fff;
+} 
+.goodThree {
+    position: absolute;
+    top: 48vh;
+    left: 33vw;
+    color: #fff;
+} 
+.activityTime {
+    position: absolute;
+    bottom: 6vh;
+    width: 100%;
+    text-align: center;
+}
+.layerClose {
+    position: absolute;
+    bottom: -6vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+}
+/*调试iphone6s*/
+@media only screen and ( min-device-width: 375px )and (max-device-width:412px){
+.inviteFriends h3 {
+    position: absolute;
+    top: 13.5vh;
+    left: 26vw;
+    color: #e58f02;
+    font-weight: bold;
+    font-size: 1.8rem;
+}
+.inviteFriends .inviteYou {
+    position: absolute;
+    top: 48vh;
+    left: 13vw;
+}
+#layerBody {
+	top:10%;
+}
+.goodOne {
+    position: absolute;
+    top: 22.5vh;
+    left: 33vw;
+    color: #fff;
+} 
+.goodThree {
+    position: absolute;
+    top: 48.5vh;
+    left: 33vw;
+    color: #fff;
+} 
+.activityTime {   
+    bottom: 5vh;   
+    }
+.layerClose{	
+	bottom: -5vh;
+	}
+}
+@media only screen and ( max-device-width: 320px ){
+.dog_get {
+    background: url(../img/dog_03.png) no-repeat 3VW 0VH;
+    background-size: 14%;
+    font-size: 1.3rem;
+    }
+.dog{
+	background: url(../img/dog_03.png) no-repeat 3VW 0VH;
+    background-size: 14%;
+    font-size: 1.3rem;
+    line-height: 4rem;
+    height: 3rem;
+} 
+.casher {
+    margin-bottom: 0rem;
+}
+.inviteFriends h3 {
+    position: absolute;
+    top: 13vh;
+    left: 24vw;
+    color: #e58f02;
+    font-weight: bold;
+    font-size: 1.8rem;
+}  
+.inviteFriends h3 .money {
+    font-size: 2.6rem;
+    display: inline-block;
+    vertical-align: middle;
+} 
+#layerBody {
+	top:10%;
+}
+.layerClose{	
+	bottom: -5vh;
+	}
+.inviteFriends {
+	padding:0;
+	width:100%;
+}
+.inviteFriends ul {
+    position: absolute;
+    top: 24vh;
+    left: 19vw;
+    color: #e94935;
+    font-size:1.1rem;
+    line-height: 3vh;
+}
+.goodOne {
+    position: absolute;
+    top: 23vh;
+    left: 31vw;
+    color: #fff;
+}
+.goodOne h5, .goodTwo h5 {
+    font-weight: bold;
+    font-size: 1rem;
+    margin-top: .5rem;
+}
+.goodTwo {
+    position: absolute;
+    top: 37vh;
+    left: 31vw;
+    color: #fff;
+}
+.goodThree{
+	top:49vh;
+}
+.goodThree h5 {
+	font-size:1rem;
+    line-height: 1.3rem;
+    font-weight: bold;
+}
+.activityTime {
+    bottom: 6vh;
+    }
+.inviteProgress {
+    font-size: 1.3rem;
+}
+}

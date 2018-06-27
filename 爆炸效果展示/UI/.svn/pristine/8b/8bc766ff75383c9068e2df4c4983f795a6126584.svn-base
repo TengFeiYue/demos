@@ -1,0 +1,370 @@
+<style>
+	.seachbox {
+		height: 60rpx;
+		width: 90%;
+		margin: 30rpx auto;
+		padding-left: 50rpx;
+		box-sizing: border-box;
+		font-size: 24rpx;
+		color: #666;
+		border: 2rpx solid #ececec;
+		border-radius: 16rpx;
+		position: relative;
+	}
+
+	.seachbox image {
+		width: 26rpx;
+		height: 26rpx;
+		position: absolute;
+		left: 20rpx;
+		top: 17rpx;
+	}
+
+	.searchLetter {
+		position: fixed;
+		right: 0;
+		width: 50rpx;
+		text-align: center;
+		justify-content: center;
+		display: flex;
+		flex-direction: column;
+		color: #666;
+		z-index: 1;
+	}
+
+	.searchLetter view {
+		margin-top: 10rpx;
+	}
+
+	.touchClass {
+		color: #fff;
+		padding-top: 50rpx;
+	}
+
+	.showSlectedLetter {
+		background-color: rgba(0, 0, 0, 0.5);
+		color: #fff;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		margin: -100rpx;
+		width: 200rpx;
+		height: 200rpx;
+		border-radius: 20rpx;
+		font-size: 52rpx;
+		z-index: 1;
+	}
+
+	.selection {
+		display: flex;
+		width: 100%;
+		flex-direction: column;
+	}
+
+	.item_letter {
+		display: flex;
+		background-color: #f5f5f5;
+		height: 40rpx;
+		padding-left: 34rpx;
+		align-items: center;
+		font-size: 24rpx;
+		color: #666;
+	}
+
+	.item_city {
+		display: flex;
+		background-color: #fff;
+		height: 100rpx;
+		padding-left: 34rpx;
+		align-items: center;
+		border-bottom: 1rpx solid #ededed;
+		font-size: 24rpx;
+		color: #666;
+	}
+
+	.hotcity-common {
+		height: 40rpx;
+		line-height: 40rpx;
+		font-size: 28rpx;
+		color: #4a4a4a;
+		padding-left: 30rpx;
+		box-sizing: border-box;
+	}
+
+	.hotcity-common image {
+		height: 24rpx;
+		width: 8rpx;
+		margin-right: 20rpx;
+	}
+
+	.thisCityName {
+		display: inline-block;
+		border: .5rpx solid #ececec;
+		border-radius: 8rpx;
+		padding: 10rpx 0;
+		font-size: 24rpx;
+		color: #333;
+		text-align: center;
+		min-width: 149.5rpx;
+		margin: 20rpx 0 20rpx 30rpx;
+	}
+
+	.thishotText {
+		color: #2ab4ff;
+		font-size: 20rpx;
+		margin: 0 !important;
+	}
+
+	.slectCity {
+		border-color: #2ab4ff !important;
+	}
+
+	.slectCity view {
+		color: #2ab4ff !important;
+	}
+
+	.weui-grid {
+		position: relative;
+		float: left;
+		padding: 10rpx 0;
+		width: 149.5rpx;
+		box-sizing: border-box;
+		border: 1rpx solid #ececec;
+		border-radius: 8rpx;
+		margin: 10rpx 12rpx 10rpx 0;
+	}
+
+	.weui-grid__label {
+		display: block;
+		text-align: center;
+		color: #333;
+		font-size: 24rpx;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
+
+	.weui-grids {
+		padding: 0 30rpx;
+		box-sizing: border-box;
+		overflow: hidden;
+	}
+</style>
+<template>
+	<view class="seachbox">
+		<image src="../resources/icons/searchIcon.png"></image>
+		<input type="text" placeholder="请输入文字名或拼音" cursor="20px" />
+	</view>
+	<view class="searchLetter touchClass">
+		<view class="thishotText" bindtap="hotCity">
+			<view style="margin-top:0;">当前</view>
+			<view style="margin-top:0;">历史</view>
+			<view style="margin-top:0;">热门</view>
+		</view>
+		<view wx:for="{{searchLetter}}" style="color:#2ab4ff;font-size:20rpx;" wx:key="index" data-letter="{{item.name}}" catchtouchend="clickLetter">{{item.name}}</view>
+	</view>
+	<block wx:if="{{isShowLetter}}">
+		<view class="showSlectedLetter">
+			{{showLetter}}
+		</view>
+	</block>
+	<scroll-view scroll-y="true" style="height:{{winHeight}}px" bindscroll="bindScroll" scroll-into-view="{{scrollTopId}}" scroll-top="{{scrollTop}}">
+		<view class="hotcity-common">
+			<image src="../../../resources/icons/parallelogram.png"></image>
+			<text>你所在的地区</text>
+		</view>
+		<view class="thisCityName" data-city="{{currentCityName}}" bindtap="defaultBindCity">{{currentCityName}}</view>
+		<view>
+			<view class="hotcity hotcity-common">
+				<image src="../../../resources/icons/parallelogram.png"></image>
+				<text>历史访问目的地</text>
+			</view>
+			<view class="weui-grids">
+				<block wx:for-items="{{historyCity}}" wx:key="{{index}}">
+					<view class="weui-grid" data-cityCode="{{item.cityId}}" data-city="{{item.cityName}}" wx:if="{{item.cityName}}" bindtap="bindHotCity">
+						<view class="weui-grid__label">{{item.cityName}}</view>
+					</view>
+				</block>
+			</view>
+		</view>
+		<view>
+			<view class="hotcity hotcity-common">
+				<image src="../../../resources/icons/parallelogram.png"></image>
+				<text>热门城市</text>
+			</view>
+			<view class="weui-grids">
+				<block wx:for-items="{{hotcityList}}" wx:key="{{index}}">
+					<view class="weui-grid" data-cityCode="{{item.cityId}}" data-city="{{item.cityName}}" bindtap="bindHotCity">
+						<view class="weui-grid__label">{{item.cityName}}</view>
+					</view>
+				</block>
+			</view>
+		</view>
+		<view class="selection" wx:for="{{cityList}}" wx:key="{{item.initial}}">
+			<view class="item_letter" id="{{item.initial}}">{{item.initial}}</view>
+			<view class="item_city" wx:for="{{item.cityInfo}}" wx:for-item="ct" wx:key="{{ct.id}}" data-cityCode="{{ct.code}}" data-city="{{ct.city}}" bindtap="bindCity">
+				{{ct.city}}
+			</view>
+		</view>
+	</scroll-view>
+</template>
+<script>
+	import wepy from 'wepy';
+	import QQMapWX from '../utils/qqmap-wx-jssdk';
+	import { api } from '../config';
+	import city from '../utils/city';
+	export default class cityposition extends wepy.page {
+		config = {
+			'navigationBarTitleText': '城市选择',
+			'navigationBarTextStyle': '#FFFFFF',
+			'navigationBarBackgroundColor': '#0386FF'
+		}
+
+		data = {
+			currentCityName: '无法定位',
+			searchLetter: [],
+			showLetter: "",
+			winHeight: 0,
+			cityList: [],
+			isShowLetter: false,
+			scrollTop: 0, //置顶高度
+			scrollTopId: '', //置顶id
+			city: "全国",
+			hotcityList: [],
+			historyCity: []
+		}
+		methods = {
+			bindScroll: function() {
+
+			},
+			clickLetter: function(e) {
+				var showLetter = e.currentTarget.dataset.letter;
+				this.showLetter = showLetter;
+				this.isShowLetter = true;
+				this.scrollTopId = showLetter;
+				var that = this;
+				setTimeout(function() {
+					that.isShowLetter = false
+					that.$apply()
+				}, 1000)
+			},
+			//默认选择城市
+			defaultBindCity: function(e) {
+				var pages = this.getCurrentPages();
+				var currPage = pages[pages.length - 1]; //当前页面
+				var prevPage = pages[pages.length - 2]; //上一个页面
+				prevPage.cityChange(e.currentTarget.dataset);
+				wx.navigateBack();
+			},
+			//选择城市
+			bindCity: function(e) {
+				var obj = {};
+				obj.cityName = e.currentTarget.dataset.city;
+				obj.cityId = e.currentTarget.dataset.citycode;
+				this.city = e.currentTarget.dataset.city;
+				var pages = this.getCurrentPages();
+				var currPage = pages[pages.length - 1]; //当前页面citycode
+				var prevPage = pages[pages.length - 2]; //上一个页面
+				var arr = this.historyCity;
+				var newArr = [obj].concat(arr);
+				if(newArr.length>8){
+					newArr.splice(8, 1);
+					wx.setStorageSync('historyCityList', this.unique1(newArr));
+				}
+				wx.setStorageSync('historyCityList', this.unique1(newArr));
+				prevPage.cityChange(e.currentTarget.dataset);
+				wx.navigateBack();
+			},
+			//选择热门城市
+			bindHotCity: function(e) {
+				var pages = this.getCurrentPages();
+				var currPage = pages[pages.length - 1]; //当前页面
+				var prevPage = pages[pages.length - 2]; //上一个页面
+				prevPage.cityChange(e.currentTarget.dataset);
+				wx.navigateBack();
+			},
+			//点击热门城市回到顶部
+			hotCity: function() {
+				this.scrollTop = 0
+			}
+		}
+		onShow() {
+			var that = this;
+			var qqmapsdk = new QQMapWX({
+				key: 'BFYBZ-FF73Q-FNK5G-GUK2J-5DUSO-6QBDJ' // 必填
+			});
+			wx.getLocation({
+				type: 'wgs84',
+				success: function(res) {
+
+					qqmapsdk.reverseGeocoder({
+						location: {
+							latitude: res.latitude,
+							longitude: res.longitude
+						},
+						success: function(addressRes) {
+							that.currentCityName = addressRes.result.address_component.city;
+							that.$apply();
+						}
+					})
+				}
+			})
+		}
+		onLoad() {
+			this.historyCity = wx.getStorageSync('historyCityList')=='' ? [] : wx.getStorageSync('historyCityList');
+			// 生命周期函数--监听页面加载
+			this.city = "全国";
+			var searchLetter = city.searchLetter;
+			var cityList = city.cityList();
+			var sysInfo = wx.getSystemInfoSync();
+			var winHeight = sysInfo.windowHeight;
+			var itemH = winHeight / searchLetter.length;
+			var tempObj = [];
+			for(var i = 0; i < searchLetter.length; i++) {
+				var temp = {};
+				temp.name = searchLetter[i];
+				temp.tHeight = i * itemH;
+				temp.bHeight = (i + 1) * itemH;
+				tempObj.push(temp)
+			}
+			this.winHeight = winHeight;
+			this.itemH = itemH;
+			this.searchLetter = tempObj;
+			this.cityList = cityList
+			this.getHotCity();
+		}
+		getHotCity(){
+			var _this = this;
+			wx.request({
+				method: api.index.hotCity.method,
+				url: api.index.hotCity.url,
+				data: {},
+				success: function(res){
+					if (res.statusCode == 200) {
+						_this.hotcityList = res.data.body;
+						_this.$apply();
+					}
+				}
+			})
+		}
+
+		unique1(array){ // 数组去重
+			var allArr = [];//新数组
+			for(var i=0;i<array.length;i++){
+				var flag = true;
+			　　for(var j=0;j<allArr.length;j++){
+					if(array[i].cityId == allArr[j].cityId){
+			　　　　　	flag = false;
+			　　　　};
+			　　};
+			　　if(flag){
+			　　　　allArr.push(array[i]);
+			　　};
+			};
+			return allArr;
+		}
+	}
+</script>

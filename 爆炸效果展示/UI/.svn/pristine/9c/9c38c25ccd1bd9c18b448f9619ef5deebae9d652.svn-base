@@ -1,0 +1,661 @@
+<style >
+page,.body {
+    height: 100%;
+    font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+    background-color:#EEEEEE;
+    font-size:14px;
+    overflow: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+   .head{
+      background: #F0EFF5;
+      display:flex;
+      flex-direction:row;
+      justify-content:space-between;
+      align-items:center;
+      height:44rpx;
+      line-height:44rpx;
+      padding:22rpx 20rpx;
+   }
+   .cityPos{
+      flex:2;
+      font-size: 32rpx;
+      color: #0386FF;
+      position:relative;
+      padding-left:40rpx;
+   }
+   .cityPos image{
+      width:30rpx;
+      height:36rpx;
+      position:absolute;
+      top:5rpx;
+      left:0;
+   }
+   .cares{
+      flex:2;
+      text-align:right;
+      font-size: 32rpx;
+      color: #0386FF;
+      display:flex;
+   }
+   .cares .eye{
+       flex:1;
+      display:inline-block;
+      position:relative;
+      font-size:28rpx;
+   }
+    .collect{
+      flex:1;
+      display:inline-block;
+      position:relative;
+      font-size:28rpx;
+   }
+   .eye image{
+      width:40rpx;
+      height:32rpx;
+      position:absolute;
+      right:50rpx;
+      top:3rpx;
+
+   }
+   .collect image{
+      width:33rpx;
+      height:30rpx;
+      position:absolute;
+      left:12rpx;
+      top:8rpx;
+   }
+   .cardWraper{
+      position:relative;
+      width:94%;
+      height:auto;
+      margin:0 auto;
+   }
+   .cardBg{
+     width:706rpx;
+     height:450rpx
+   }
+  .linkInfos{
+    width:100%;
+    position:absolute;
+    top:0;
+    padding:38rpx 0rpx 25rpx;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .materialPic image{
+    width:92rpx;
+    height:102rpx;
+  }
+.materialPic{
+   flex:3;
+   text-align:center;
+}
+.materialInfo{
+   flex:6;
+}
+.linkBtn{
+    flex:4;
+    text-align:center;
+}
+.name{
+    display:inline-block;
+    font-size:34rpx;
+    color:#222222;
+    padding-right:15rpx;
+}
+.runingWays{
+    font-size: 26rpx;
+    color: #333333;
+}
+.companyName{
+  padding-top:30rpx;
+}
+.comName{
+    font-size:26rpx;
+    color:#333333;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+    width-space:nowrap;
+}
+.settled{
+    width:28rpx;
+    height:33rpx;
+    position:relative;
+    top:5rpx;
+    left:10rpx;
+}
+.linkBtn text{
+    display:inline-block;
+    width:110rpx;
+    height:43rpx;
+    text-align:center;
+    line-height:43rpx;
+    border:2rpx solid #0386FF;
+    border-radius:6rpx;
+    color:#0386FF;
+    font-size:20rpx;
+}
+.hisProTitle{
+    font-size: 30rpx;
+    color: #353535;
+    letter-spacing: 0;
+    padding:9rpx 30rpx;
+}
+.hisProList{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+    background: #FFFFFF;
+    padding:30rpx;
+    border:1px solid #eeeeee;
+}
+.hisMaterialPic{
+   flex:1;
+}
+.hisMaterialPic image{
+   width:80rpx;
+   height:80rpx;
+}
+.hisMaterialInfo{
+  padding-left:30rpx;
+  flex:6;
+}
+.h3{
+    font-size:33rpx;
+    color:#222222;
+    padding-right:20rpx;
+
+}
+.price_display{
+  font-size: 28rpx;
+  color: #FF9A00;
+}
+.hisMaterialDes{
+    font-size:28rpx;
+    color:#999999;
+    line-height:52rpx;
+    padding:20rpx 0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+    width-space:nowrap;
+}
+.hisMaterialAdd{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+}
+.address{
+    flex:3;
+    font-size: 26rpx;
+    color: #333333;
+}
+.time{
+   flex:1;
+   font-size: 26rpx;
+   color: #999999;
+}
+.hisCompany{
+   background:#ffffff;
+   position:fixed;
+   width:100%;
+   bottom:0;
+}
+.serveItems{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+}
+.left{ flex:1;}
+.right{ flex:1;}
+.hisCompanyTitle{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+    background: #0386FF;
+    padding:9rpx 30rpx;
+}
+.hisCompanyTitle .sliderUp{
+    flex:1;
+    text-align:right;
+}
+.sliderUp image{
+   width:15rpx;
+   height:9rpx;
+   position:relative;
+   top:-7rpx;
+}
+.hisCompanyTitle text{
+    flex:8;
+    font-size: 30rpx;
+    color: #FFFFFF;
+    letter-spacing: 0;
+}
+.serveItems{
+   padding:20rpx 30rpx;
+   overflow:hidden;
+}
+.serveItems .dl{
+line-height:50rpx;
+
+}
+.serveItems .dt{
+    display:inline-block;
+    vertical-align:middle;
+    font-size: 28rpx;
+    color: #333333;
+    letter-spacing: 1.9px;
+    width:140rpx;
+    text-align:justify;
+    text-align-last:justify;
+}
+.serveItems .dd{
+    display:inline-block;
+    vertical-align:middle;
+    font-size: 28rpx;
+    color: #999999;
+    width:200rpx;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+
+}
+.linkInfoDetails{
+    width:100%;
+    position:absolute;
+    bottom:70rpx;
+    right:12rpx;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+    padding-top:15rpx;
+    border-top:1px solid #eeeeee;
+}
+.linkWays{
+    flex:5;
+    font-size:26rpx;
+    color:#999999;
+    padding-left:60rpx;
+}
+.linkWays .way{
+    height:25rpx;
+    width:25rpx;
+}
+.linkWayCon{
+    display:inline-block;
+    width:420rpx;
+    vertical-align:top;
+    padding-left:10rpx;
+}
+.linkWayaddress{
+    min-height:56rpx;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+    width-space:nowrap;
+}
+.linkWayaddressWrap{
+    padding-left:25rpx;
+    position:relative;
+}
+.linkWayaddressWrap .way{
+    position:absolute;
+    left:0;
+    top:6rpx;
+}
+.scanCode{
+  flex:2;
+  font-size: 17rpx;
+  color: #999999;
+}
+.scan{
+  height:150rpx;
+  width:150rpx;
+}
+.longPress{
+  text-align:center;
+}
+.gototop{
+  position: fixed;
+  bottom: 140rpx;
+  right: 20rpx;
+  transition: all 0.3s;
+  opacity: 0;
+  z-index:12;
+  transform: translateY(200rpx) rotate(180deg);
+}
+.gototop.active{
+  opacity: 0.9;
+  transform: translateY(0) rotate(180deg);
+}
+.view{
+   background:#333333;
+   color:#ffffff;
+   width:270rpx;
+   height:270rpx;
+   position:fixed;
+   left:50%;
+   top:50%;
+   border-radius:10rpx;
+   margin-top:-135rpx;
+   margin-left:-135rpx;
+   text-align:center;
+   display:flex;
+   flex-direction:column;
+   justify-content:space-between;
+   align-items:center;
+}
+.view .tipPic{
+    flex:1;
+    padding-top:36rpx;
+}
+.view .tipPic image{
+  width:100rpx;
+  height:100rpx;
+}
+.view text{
+  flex:1;
+  padding:0 15rpx;
+}
+</style>
+<template>
+  <view class="wraper">
+    <view class="head">
+        <view class="cityPos"><image class="pos" src="../resources/icons/position.png"></image>{{currentCityName}}</view>
+        <view class="cares">
+            <view class="eye"><image  src="../resources/img/phone.png" style="right:30rpx"></image>{{userDto.linkManCount}}</view>
+            <view class="eye" style="padding-right:12rpx;"><image  src="../resources/img/eye.png"></image>{{userDto.browseNum}}</view>
+            <view class="collect" bindtap="collection">
+                <image  src="../resources/img/share.png" wx:if="{{!hasCollected}}"></image>
+                <image  src="../resources/img/shared.png" wx:if="{{hasCollected}}"></image>收藏</view>
+        </view>
+    </view>
+    </view>
+    <view class="cardWraper">
+        <image class="cardBg"  src="../resources/img/cardBg.png"></image>
+
+        <view class="linkInfos">
+         <view class="materialPic"><image  src="{{userDto.userLogo}}"></image></view>
+         <view class="materialInfo">
+              <view>
+                 <text class="name">{{userDto.name}}</text>
+                 <text class="runingWays">{{userDto.businessMode}}</text>
+              </view>
+              <view class="companyName">
+                 <view class="comName">{{userDto.enterpriseName}} <image class="settled" src="../resources/img/zhu.png"></image></view>
+              </view>
+         </view>
+         <view class="linkBtn" data-tel="{{userDto.phone}}" data-uid="{{userDto.userId}}" catchtap="startCall">
+             <text>一键联系</text>
+         </view>
+       </view>
+       <view class="linkInfoDetails">
+          <view class="linkWays">
+              <view><image class="way" src="../resources/img/tele.png"></image><text class="linkWayCon">{{userDto.phone}}</text></view>
+              <view><image class="way" src="../resources/img/email.png"></image><text class="linkWayCon">{{userDto.email}}</text></view>
+              <view class="linkWayaddressWrap"><image class="way" src="../resources/img/site.png"></image><text class="linkWayCon linkWayaddress">{{userDto.address}}</text></view>
+          </view>
+          <view class="scanCode">
+              <image class="scan" src="{{userDto.qrCode}}" data-img="{{userDto.qrCode}}" bindtap="saveImg"></image>
+          </view>
+       </view>
+
+    </view>
+
+   <view class="hisProTitle" wx:if="{{theProductsList.length!=0}}">他的产品</view>
+  <view class="scrollWrap" style="padding-bottom:{{pBottom}}rpx;background:#ffffff;">
+  <view  class="container-body">
+   <view class="ul">
+           <view class="hisProList" wx:for="{{theProductsList}}" wx:key="{{index}}" data-id="{{item.id}}" bindtap="toMaterialDetail">
+              <view class="hisMaterialPic">
+                 <view wx:if="{{item.productType=='原料'}}"><image src="../resources/img/materialPic.png"></image></view>
+                 <view wx:if="{{item.productType=='改性料'}}"><image src="../resources/img/betterMaterial.png"></image></view>
+                 <view wx:if="{{item.productType=='辅料'}}"><image src="../resources/img/accessory.png"></image></view>
+                 <view wx:if="{{item.productType=='回料'}}"><image src="../resources/img/recirculatMaterial.png"></image></view>
+              </view>
+              <view class="hisMaterialInfo">
+                  <view class="hisMaterialName">
+                     <text class="h3">{{item.productName}}</text>
+                     <text class="price_display">{{item.priceString}}</text>
+                  </view>
+                  <view class="hisMaterialDes">
+                          {{item.remark}}
+                  </view>
+                  <view class="hisMaterialAdd">
+                      <text class="address">交货地：{{item.deliveryPlace}}</text>
+                      <text class="time">{{item.timeAgo}}</text>
+                  </view>
+              </view>
+           </view>
+   </view>
+</view>
+</view>
+<view class="hisCompany"><!--bindtap="downloadApp"-->
+   <view class="hisCompanyTitle" catchtap="expand">
+      <text class="titleTxt">{{enterpriseDto.name}}</text>
+      <view class="sliderUp"><image  src="../resources/img/{{slideDown?'down':'up'}}.png"></image></view>
+   </view>
+   <view class="serveItems" style="{{slideDown?'height:0px;padding:0':'height:auto'}}">
+      <view class="left">
+          <view class="dl"><text class="dt">产 业 链</text><text class="dd">: {{enterpriseDto.type}}</text></view>
+          <view class="dl"><text class="dt">经营模式</text><text class="dd">: {{enterpriseDto.businessMode}}</text></view>
+          <view class="dl"><text class="dt">主营行业</text><text class="dd">: {{enterpriseDto.mainLines}}</text></view>
+      </view>
+      <view class="right">
+          <view class="dl"><text class="dt">分类</text><text class="dd">:{{enterpriseDto.baseSecondCategory}}</text></view>
+          <view class="dl"><text class="dt">服务区域</text><text class="dd">: {{enterpriseDto.serviceArea}}</text></view>
+          <view class="dl"><text class="dt">主营系列</text><text class="dd">: {{enterpriseDto.mainProduct}}</text></view>
+      </view>
+   </view>
+</view>
+<!--<modal title="提示" confirm-text="知道了"  bindconfirm="confirm" no-cancel="{{true}}" wx:if="{{!hiddeModel}}">
+    请前往俺搜APP查看！
+</modal>-->
+  <view wx:if="{{opa}}" class="view">
+     <view class="tipPic"><image src="../resources/icons/warning.png"></image></view>
+     <text>{{tip}}</text>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+import QQMapWX from '../utils/qqmap-wx-jssdk'
+import { api } from '../config'
+export default class marketingDetail extends wepy.page {
+    config={
+    'navigationBarTitleText': '销售详情',
+    'navigationBarTextStyle': '#FFFFFF',
+    'navigationBarBackgroundColor': '#0386FF'
+    }
+    data = {
+      pBottom:262,
+      opa:false,
+      tip:"",
+      slideDown:false,
+      currentCityName:"",
+      enterpriseDto:{},
+      userDto:{},
+      theProductsList:[],
+      loadNum: 0,
+      wait: true,
+      loadmore:true,
+      scrolltop:0, //滚动位置
+      scrollHeight:0,
+      pageIndex: 1,  //分页
+      showTopBtn:false,
+      loginUId:-1,
+      uId:-1,
+      productType:"",
+      hiddeModel:true,
+      hasCollected:false,
+      pictures:[]
+    }
+    methods = {
+        saveImg(e){
+           var picUrl=e.currentTarget.dataset.img;
+           this.pictures.push(picUrl)
+           wx.previewImage({
+                current:this.pictures[0] ,
+                urls: this.pictures
+              })
+           },
+          collection(){
+              if(!this.loginUId){
+                this.warningTip({
+                    msg:'请先登录！'
+                });
+                return;
+              }
+             var that=this;
+                  wepy.request({
+                      url:api.common.collection.url,
+                      method:api.common.collection.method,
+                      data:{
+                          'loginUserId':that.loginUId,
+                          'collectId':that.uId,
+                          'type':2
+                      },
+                      success:function(res){
+                        var collectRes=res.data;
+                        if(collectRes.isSuccess==1){
+                            that.hasCollected=true;
+                            wx.showToast({
+                                title: collectRes.errorMsg,
+                                icon: 'success'
+                            });
+                        }else if(collectRes.isSuccess==0){
+                            that.warningTip({
+                                msg:collectRes.errorMsg
+                            });
+                        }
+                        that.$apply();
+                      }
+                  });
+          },
+          expand(){
+            this.slideDown=!this.slideDown;
+            if(this.slideDown){
+               this.pBottom=60;
+            }else{
+              this.pBottom=262;
+            }
+          },
+          startCall(e){//一键拨号
+              var telNumber=e.currentTarget.dataset.tel;
+              var toUId=e.currentTarget.dataset.uid
+              wx.makePhoneCall({
+                  phoneNumber: telNumber
+                })
+                var that=this;
+                wepy.request({
+                    url:api.common.callLinkers.url,
+                    method:api.common.callLinkers.method,
+                    data:{
+                        'toUserId':toUId,
+                        'userId':that.loginUId,
+                    },
+                    success:function(res){
+                      console.log(res)
+                    }
+                });
+          },
+          toMaterialDetail(e){
+            var productsId=e.currentTarget.dataset.id;
+            wx.navigateTo({
+                url: 'materialDetail?proId='+productsId
+            })
+          },
+          downloadApp(){
+            this.hiddeModel=false;
+          },
+          confirm(){
+            this.hiddeModel=true;
+          }
+    }
+    onLoad(options) {
+        const antsooUserInfo = wepy.getStorageSync("antUserInfo");
+        this.loginUId=antsooUserInfo.userId;
+        let scene = decodeURIComponent(options.scene);
+        this.uId=options.scene==undefined?options.userId:scene;
+        this.productType=options.productType;
+        this.scrollHeight = wx.getSystemInfoSync().windowHeight * 0.91-160;
+        console.log('height'+this.scrollHeight)
+        this.fetchMarketingDetailData();
+        var that=this;
+        var qqmapsdk = new QQMapWX({
+          key: 'BFYBZ-FF73Q-FNK5G-GUK2J-5DUSO-6QBDJ' // 必填
+        });
+        wx.getLocation({
+          type: 'wgs84',
+          success: function (res) {
+            qqmapsdk.reverseGeocoder({
+              location: {
+                latitude: res.latitude,
+                longitude: res.longitude
+              },
+              success: function (addressRes) {
+                console.log(addressRes)
+                  that.currentCityName=addressRes.result.address_component.city;
+                  that.$apply();
+              }
+            })
+          }
+        })
+    }
+    warningTip(obj) {
+          this.opa=true;
+         this.tip=obj.msg;
+         this.$apply();
+         let that=this;
+          setTimeout(function(){
+            that.opa=false;
+            that.$apply();
+          },800)
+      }
+    fetchMarketingDetailData(){  //获取销售详情列表
+        wx.showLoading({
+            title: '加载中',
+        })
+        let that = this;
+        const pageSize = 20;
+        wepy.request({
+            url:api.product.marketingDetailLists.url,
+            method:api.product.marketingDetailLists.method,
+            data:{
+                'productType':that.productType,
+                'loginUserId':that.loginUId,
+                'userId':that.uId
+            },
+            success:function(res){
+               console.log(res.data.body)
+               that.hasCollected=res.data.body.isCollected;
+                that.enterpriseDto=res.data.body.enterpriseDto||{};
+                that.userDto=res.data.body.userDto||{};
+                var theProductsData=res.data.body.theProducts;
+                if(theProductsData){
+                        that.theProductsList = theProductsData;
+                }
+                that.$apply();
+                wx.hideLoading()
+            }
+        });
+    }
+
+}
+</script>

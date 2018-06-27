@@ -1,0 +1,251 @@
+*{margin:0;padding:0}
+a{text-decoration: none;}
+ul{list-style: none;}
+.p-0{padding:0}
+.m-0{margin:0}
+.p-t-0{padding-top:0}
+.p-b-0{padding-bottom:0}
+.p-l-0{padding-left:0}
+.p-r-0{padding-right:0}
+.m-t-0{margin-top:0}
+.m-b-0{margin-bottom:0}
+.b-w{background:#fff;}
+.c-w{color:#fff;}
+
+/*downloadAPP*/
+body{
+	    background: url(../carPreserveimages/indexBg.png) no-repeat center;
+    background-size: cover;
+}
+.ball img{
+	width: 25rem;
+}
+.upMove img{
+	width:3vw;
+}
+.hand img{
+	width:6rem;
+}
+header{
+	position: relative;
+    height: 16rem;
+}
+.upMove{
+	position:absolute;
+	top:1rem;
+	left:1rem;
+}
+.hand{
+	position: absolute;
+    bottom: 2rem;
+    right: 1rem;
+}
+.ball{
+	display: inline-block;
+    width: 100%;
+    text-align: center;
+    tansition:all .5s ease;
+   
+    animation: jump 1s ;
+    animation-timing-function: linear;
+	animation-delay: .5s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+.forms .form-group{
+	text-align: center;
+	color:#46b4ff;
+	margin-bottom:1rem;
+}
+.forms .form-group label{
+    width: 6rem;
+    display: inline-block;
+    text-align: justify;
+    text-align-last: justify;
+    font-size: 1.5rem;	
+	
+}
+.forms .form-group input{ 
+    background: #2c97b8;
+    border: 1px solid #2c97b8;
+    height: 3rem;
+    width: 19rem;
+    margin-left: 3vw;
+    outline: none;
+    box-shadow: none;
+    padding-left: 1rem;	
+    color: #fff;
+}
+.startMakeWrap{
+	padding-top:1rem;
+}
+.startMake{
+	display: inline-block;
+    background: #46ebff;
+    width: 26rem;
+    line-height: 3rem;
+    text-align: center;
+    border-radius: 3px;
+    font-weight: bold;
+    color: #002640;
+}
+
+.footerSection {
+        text-align: center;
+    padding-bottom: 0;
+    margin-top: 3rem;
+    color: #fff;
+    font-size: 1rem;
+}
+.footerSection p{
+	margin-bottom:1vw;
+}
+.scanCode img{
+	width:10rem;
+}
+@keyframes jump
+{
+	from {transform: translateY(0);}
+	to {transform: translateY(1rem);}
+}
+/*生成图片页样式*/
+.allWraper{
+	overflow: hidden;
+}
+.makeImgBody{
+	background:url(../carPreserveimages/makeImgBg.png) no-repeat center;
+	background-size:cover;
+}
+#imgArea{
+	/*width:80%;*/
+	background: #fff;
+    /*margin: 3rem auto;*/
+    position:relative;
+
+}
+#img,#demo{
+	width:80%;
+	margin: 2rem auto;
+}
+#img img{
+	width:104%;
+}
+.headArea{
+	background: #effdfb;
+    padding: 2vw 2rem 1rem;
+}
+.msg{
+	background: #fff;
+    border-radius: 1rem;
+    /*box-shadow: 0 2px 5px #333;*/
+    padding-top: 1vh;
+    line-height: 1.6rem;
+    border-bottom: 1px solid #afabab;
+   margin: 0 auto;
+}
+.msghead{
+	color:#333;
+}
+.weichat{
+	margin-right:2vw;
+}
+.weichat img{
+	width:1.8rem;
+}
+.msgNum{
+	padding-left:1rem;
+	color:#000;
+	font-size: 1rem;
+    font-weight: bold;
+}
+.msgCon{
+	color: #000;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0 1rem;
+}
+.isPaid{
+	color: #558489;
+    text-align: center;
+    font-size: 2rem;
+    padding-top: 1vh;
+}
+.carInfo{
+	font-size: 1rem;
+    color: #333;
+    border-bottom: 1rem solid #f4f4f4;
+    
+}
+.carInfo .imgWrap{
+	padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+.carInfos{
+	padding-left:2vw;
+}
+.carInfos h3{
+	font-size: 1.8rem;
+    color: #333;
+}
+.carInfoMore{
+	padding-top: 4rem;
+    text-align: right;
+}
+.carInfoMore a{
+	color:#d8d8d8;
+}
+
+.wantPrice{
+	color: #333;
+    line-height: 4rem;
+    border-bottom: 1px solid #f4f4f4;
+    font-size: 1.6rem;
+}
+.actPrice{
+	color: #2eafae;
+    line-height: 4rem;
+    font-size: 1.6rem;
+}
+.money{
+	border-bottom: 1rem solid #f4f4f4;
+}
+.city_price{
+	color: #333;
+    line-height: 3.3rem;
+    border-bottom: 1rem solid #f4f4f4;
+    font-size: 1.6rem;
+}
+.city_price .cities{
+	line-height: 4rem;
+    border-bottom: 1px solid #f4f4f4;
+}
+.city_price .totalPrices{
+	line-height: 4rem;
+    border-top: 1px solid #f4f4f4;
+}
+.pressScanCode{
+	line-height: 8rem;
+    padding-left: 2.5rem;
+    font-size: 1.6rem;
+}
+.pressScanCode img{
+	    width: 6rem;
+}
+
+	.operateTip {
+	position:relative;
+    color: #46ebff;
+    text-align: center;
+    font-size: 2rem;
+    line-height: 0rem;
+    height: 5rem;
+    padding-bottom: 12rem;
+}
+.bottomPointer{
+	position: absolute;
+    bottom: 9rem;
+    right: -2rem;
+}
+.bottomPointer img{
+	width:10rem;
+}

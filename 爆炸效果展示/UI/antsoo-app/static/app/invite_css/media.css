@@ -1,0 +1,110 @@
+@media only screen and ( min-device-width: 412px ){
+.dog_get {
+    background: url(../img/dog_03.png) no-repeat 9VW 0VH;
+    background-size: 14%;
+    }
+.dog{
+    background: url(../img/dog_03.png) no-repeat 9VW 0VH;
+    background-size: 14%;
+    }
+    .inviteFriends {
+    position: relative;
+    height: 55vh;
+    background: url(../img/cashPack_03.png) no-repeat center;
+    background-size: 83%;
+    margin-top: 1vh;
+}
+ .inviteFriends ul {
+    position: absolute;
+    top: 23vh;
+    left: 21vw;
+    color: #e94935;
+    line-height: 3vh;
+    }  
+.casher span {
+    position: absolute;
+    top: 4vh;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ec4d35;
+    font-size: 2.3rem;
+    font-weight: bold;
+}  
+.inviteFriends .inviteYou{
+	position: absolute;
+    top: 45vh;
+    left: 13vw   
+}   
+}
+@media only screen and ( min-device-width: 375px )and (max-device-width:412px){
+.inviteFriends h3 {
+    position: absolute;
+    top: 13.5vh;
+    left: 26vw;
+    color: #e58f02;
+    font-weight: bold;
+    font-size: 2rem;
+}
+.inviteFriends .inviteYou {
+    position: absolute;
+    top: 48vh;
+    left: 13vw;
+}
+}
+@media only screen and ( max-device-width: 320px ){
+.dog_get {
+    background: url(../img/dog_03.png) no-repeat 3VW 0VH;
+    background-size: 14%;
+    font-size: 1.3rem;
+    }
+.dog{
+	background: url(../img/dog_03.png) no-repeat 3VW 0VH;
+    background-size: 14%;
+    font-size: 1.3rem;
+    line-height: 4rem;
+    height: 3rem;
+} 
+.casher {
+    margin-bottom: 0rem;
+}
+.inviteFriends h3 {
+    position: absolute;
+    top: 11vh;
+    left: 24vw;
+    color: #e58f02;
+    font-weight: bold;
+    font-size: 1.8rem;
+}  
+.inviteFriends h3 .money {
+    font-size: 2.6rem;
+    display: inline-block;
+    vertical-align: middle;
+} 
+.inviteFriends ul {
+    position: absolute;
+    top: 23vh;
+    left: 18vw;
+    color: #e94935;
+    font-size: 1.2rem;
+    line-height: 3.5vh;
+}
+.goodOne {
+    position: absolute;
+    top: 19vh;
+    left: 31vw;
+    color: #fff;
+}
+.goodOne h5, .goodTwo h5 {
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+.goodTwo {
+    position: absolute;
+    top: 31vh;
+    left: 31vw;
+    color: #fff;
+}
+.inviteProgress {
+    font-size: 1.3rem;
+}
+}

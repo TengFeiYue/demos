@@ -1,0 +1,326 @@
+<style type="scss">
+	.portrait {
+		width: 100%;
+		height: 270rpx;
+		padding-top: 1rpx;
+		background-color: #458FEF;
+		text-align: center;
+		.slide-image {
+			display: block;
+			width: 100%;
+			height: 270rpx;
+			position: absolute;
+			z-index: 1;
+		}
+		.por-image {
+			margin-top: 36rpx;
+			image {
+				width: 132rpx;
+				height: 132rpx;
+				border-radius: 100%;
+			}
+		}
+		.por-content {
+			height: 60rpx;
+			width: 100%;
+			font-size: 28rpx;
+			color: #FFFFFF;
+			.texts {
+				width: 50%;
+				float: left;
+				height: 60rpx;
+				text-align: right;
+				line-height: 60rpx;
+			}
+			.icons {
+				width: 50%;
+				float: left;
+				height: 60rpx;
+				text-align: left;
+				line-height: 60rpx;
+				image {
+					display: block;
+					margin-top: 15rpx;
+					margin-left: 15rpx;
+					width: 80rpx;
+					height: 30rpx;
+				}
+			}
+		}
+		.pos-class {
+			position: relative;
+			z-index: 2;
+		}
+	}
+
+	.my-function {
+		width: 90%;
+		height: 90rpx;
+		float: right;
+		text-align: right;
+		.my-left {
+			color: #333333;
+			font-size: 28rpx;
+			float: left;
+			line-height: 90rpx;
+		}
+		.my-right {
+			color: #999999;
+			font-size: 24rpx;
+			float: right;
+			line-height: 90rpx;
+			margin-right: 15rpx;
+		}
+		.right-image {
+			display: block;
+			float: right;
+			width: 20rpx;
+			height: 30rpx;
+			margin: {
+				top: 32rpx;
+				right: 30rpx;
+			}
+		}
+	}
+
+	.border-top:not(:first-child) {
+		border-top: 1px solid #ECECEC;
+	}
+
+	.border-bottom {
+		border-bottom: 1px solid #ECECEC;
+	}
+
+	.labour-tel {
+		width: 120rpx;
+		height: 120rpx;
+		position: fixed;
+		right: 30rpx;
+		bottom: 135rpx;
+		image {
+			width: 100%;
+			height: 100%;
+		}
+	}
+</style>
+<template>
+	<view class="portrait">
+		<image src="../../../resources/img/bg.png" class="slide-image" style="" />
+		<view class="por-image pos-class">
+			<image src="{{userImg}}" class="pos-class"></image>
+		</view>
+		<view class="por-content pos-class">
+			<view class="texts">{{userName}}</view>
+			<view class="icons">
+				<image wx:if="{{info.bestFlag == 3}}" src="../../../resources/icons/confirm.png"></image>
+				<image wx:else src="../../../resources/icons/noconfirm.png"></image>
+			</view>
+		</view>
+	</view>
+	<view style="width: 100%;height: 20rpx;background-color: #F2F2F2;"></view>
+	<view style="width: 100%;height: 368rpx;">
+		<view class="my-function border-top" bindtap="routerLink('myCard')">
+			<view class="my-left">我的电子名片</view>
+			<image src="../../../resources/icons/righticon.png" class="right-image" />
+			<view class="my-right">电子社交更便捷</view>
+		</view>
+		<view class="my-function border-top" bindtap="routerLink('myQRCode')">
+			<view class="my-left">我的小程序码</view>
+			<image src="../../../resources/icons/righticon.png" class="right-image" />
+			<view class="my-right">属于你自己的小程序</view>
+		</view>
+		<navigator class="my-function border-top" hover-class="none" url="../../../pages/myCollect?userId={{loginUId}}">
+			<view class="my-left">我的收藏</view>
+			<image src="../../../resources/icons/righticon.png" class="right-image" />
+			<view class="my-right">{{info.collectNum}}</view>
+		</navigator>
+		<navigator class="my-function border-top" hover-class="none" url="../../../pages/deblockingConnection">
+			<view class="my-left">我的解锁人脉</view>
+			<image src="../../../resources/icons/righticon.png" class="right-image" />
+			<view class="my-right">{{info.lockNum}}</view>
+		</navigator>
+	</view>
+	<view style="width: 100%;height: 20rpx;background-color: #F2F2F2;"></view>
+	<view>
+		<view class="my-function border-bottom" bindtap="isConfirm">
+			<view class="my-left">俺搜认证变更</view>
+			<image src="../../../resources/icons/righticon.png" class="right-image" />
+			<view class="my-right">
+				<text wx:if="{{info.companyApplyStatus == 0}}">认证中</text>
+				<text wx:if="{{info.companyApplyStatus == 1}}">身份认证，权限升级</text>
+				<text wx:if="{{info.companyApplyStatus == 2}}">认证失败</text>
+				<text wx:if="{{info.companyApplyStatus == 3}}">未认证</text>
+				<text wx:if="{{info.companyApplyStatus == 4}}">职位变更,企业变更</text>
+			</view>
+		</view>
+		<navigator class="my-function border-bottom" hover-class="none" url="../../../pages/feedback?phone={{phone}}&userId={{loginUId}}">
+			<view class="my-left">意见反馈</view>
+			<image src="../../../resources/icons/righticon.png" class="right-image" />
+		</navigator>
+		<view class="my-function border-bottom" bindtap="downloadApp">
+			<view class="my-left">管理企业</view>
+			<image src="../../../resources/icons/righticon.png" class="right-image" />
+			<view class="my-right">下载俺搜APP管理企业空间</view>
+		</view>
+		<view class="my-function border-bottom" bindtap="exit">
+			<view class="my-left">退出登录</view>
+			<image src="../../../resources/icons/righticon.png" class="right-image" />
+		</view>
+	</view>
+	<view class="labour-tel" bindtap="callPhone">
+		<image src="../../../resources/img/labour.png" />
+	</view>
+</template>
+<script>
+	import wepy from 'wepy'
+	import { api } from '../../../config'
+	export default class my extends wepy.component {
+		data = {
+			userImg: '',
+			loginUId: -1,
+			userName: '',
+			info: {},
+			layerNoConfirm: false,
+			phone: '',
+			enterpriseId: -1,
+			memberId: -1
+		}
+		events={
+
+        }
+		methods = {
+			downloadApp() {
+				wx.showModal({
+					title: '',
+					content: '下载俺搜APP，管理企业空间',
+					showCancel: false,
+					confirmText: '确定',
+					confirmColor: '#0092ff',
+					success: function(res) {
+						if(res.confirm) {
+							console.log('点击了确定')
+						}
+					}
+				})
+			},
+			callPhone() {
+				wx.makePhoneCall({
+					phoneNumber: '17717928001'
+				})
+			},
+			isConfirm() {
+				wx.navigateTo({
+					url: 'attestationChange'
+				})
+			},
+			routerLink(obj) {
+				if(this.info.bestFlag== 3) { //表示该用户已经认证成功         this.info.bestFlag
+					if(obj == 'myCard') {
+						wx.navigateTo({
+							url: 'myCard?userId=' + this.loginUId + '&phone=' + this.phone + '&memberId=' + this.memberId + '&enterpriseId=' + this.enterpriseId
+						})
+					} else if(obj == 'myQRCode') {
+						wx.navigateTo({
+							url: 'myQRCode?userId=' + this.loginUId + '&phone=' + this.phone + '&memberId=' + this.memberId + '&enterpriseId=' + this.enterpriseId
+						})
+					}
+				} else { //表示该用户未认证成功
+					if(this.info.companyApplyStatus == 0) { // 表示审核中
+						wx.showModal({
+							title: '',
+							content: '您的认证还在审核中，请稍后再试',
+							showCancel: false,
+							confirmText: '确定',
+							confirmColor: '#0092ff',
+							success: function(res) {
+								if(res.confirm) {
+									console.log('点击了确定')
+								}
+							}
+						})
+					} else if(this.info.companyApplyStatus == 2) { // 表示审核失败
+						wx.showModal({
+							title: '',
+							content: '您的认证审核失败，请重新提交认证',
+							cancelText: '否',
+							confirmText: '是',
+							confirmColor: '#0092ff',
+							success: function(res) {
+								if(res.confirm) {
+									wx.navigateTo({
+										url: 'antsooConfirm'
+									})
+								}
+							}
+						})
+					} else if(this.info.companyApplyStatus == 4) { // 表示未提交认证
+						wx.showModal({
+							title: '',
+							content: '您需前往俺搜认证进行身份认证',
+							cancelText: '否',
+							confirmText: '是',
+							confirmColor: '#0092ff',
+							success: function(res) {
+								if(res.confirm) {
+									wx.navigateTo({
+										url: 'antsooConfirm'
+									})
+								}
+							}
+						})
+					} else {
+						return;
+					}
+				}
+			},
+			exit(){
+				wx.showModal({
+					title: '',
+					content: '是否退出俺搜·找客户',
+					cancelText: '否',
+					confirmText: '是',
+					confirmColor: '#0092ff',
+					success: function(res) {
+						if(res.confirm) {
+							wx.removeStorageSync('antUserInfo');
+			               	wx.reLaunch({
+			                	url: 'index'
+			               	})
+						}
+					}
+				})
+			}
+		}
+		onLoad() {
+			const wechatUserInfo = wepy.getStorageSync("wechatUserInfo"); //获取信息
+			const antsooUserInfo = wepy.getStorageSync("antUserInfo"); // 获取用户id
+			this.userImg = wechatUserInfo.avatarUrl; // 头像
+			this.userName = wechatUserInfo.nickName; // 用户名
+			this.loginUId = antsooUserInfo.userId;//用户id
+			this.phone = antsooUserInfo.phone;//电话号码
+			this.enterpriseId = antsooUserInfo.enterpriseId;//企业id
+			this.memberId = antsooUserInfo.memberId; //人脉id
+			console.log(this.loginUId)
+			this.getInfo();
+		}
+		onshow(){			
+			this.getInfo();
+		}
+		getInfo() {
+			var _this = this;
+			wx.request({
+				method: api.my.myCenter.method,
+				url: api.my.myCenter.url,
+				data: {
+					userId: _this.loginUId
+				},
+				success: function(res) {
+					if(res.statusCode == 200) {
+						_this.info = res.data.body;
+						_this.$apply();
+					}
+				}
+			})
+		}
+	}
+</script>

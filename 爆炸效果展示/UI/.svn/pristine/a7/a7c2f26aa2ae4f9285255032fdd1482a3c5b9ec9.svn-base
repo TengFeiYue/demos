@@ -1,0 +1,47 @@
+<template>
+  <div id="app">
+    <router-view/>
+    <FooterBar v-show="isShow" />
+  </div>
+</template>
+
+<script>
+import config from './config/index'
+console.log(config)
+import FooterBar from '@/FooterBar'
+export default {
+  name: 'App',
+  components:{
+    FooterBar:FooterBar
+  },
+  data(){
+    return {
+    }
+  },
+  computed:{
+     isShow(){
+       return this.$store.getters.isShow;
+     }
+  },
+  watch:{
+      $route(to,from){
+        if(to.name=='book'||to.name=='my'){
+           this.$store.dispatch('showFooter')
+           console.log(this.$config)
+        }else{
+           this.$store.dispatch('hideFooter')
+        }
+      }
+  }
+}
+</script>
+
+<style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+</style>

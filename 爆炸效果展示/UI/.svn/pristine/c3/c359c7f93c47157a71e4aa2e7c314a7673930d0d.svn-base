@@ -1,0 +1,150 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _wepy = require('./../npm/wepy/lib/wepy.js');
+
+var _wepy2 = _interopRequireDefault(_wepy);
+
+var _tabBar = require('./../components/tab/tabBar.js');
+
+var _tabBar2 = _interopRequireDefault(_tabBar);
+
+var _index = require('./../components/tab/tabPages/index.js');
+
+var _index2 = _interopRequireDefault(_index);
+
+var _findmeBuyMaterial = require('./../components/tab/tabPages/findmeBuyMaterial.js');
+
+var _findmeBuyMaterial2 = _interopRequireDefault(_findmeBuyMaterial);
+
+var _my = require('./../components/tab/tabPages/my.js');
+
+var _my2 = _interopRequireDefault(_my);
+
+var _index3 = require('./../interfaces/index.js');
+
+var _index4 = _interopRequireDefault(_index3);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Index = function (_wepy$page) {
+    _inherits(Index, _wepy$page);
+
+    function Index() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
+        _classCallCheck(this, Index);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
+            'navigationBarTitleText': '现货商城',
+            'navigationBarTextStyle': '#FFFFFF',
+            'navigationBarBackgroundColor': '#0386FF'
+        }, _this.events = {
+            'tabChange': function tabChange(p1) {
+                _this.currentTab = parseInt(p1);
+                _this.$apply();
+                switch (_this.currentTab) {
+                    case 0:
+                        wx.setNavigationBarTitle({
+                            title: '现货'
+                        });
+                        break;
+                    case 1:
+                        wx.setNavigationBarTitle({
+                            title: '卖家'
+                        });
+                        break;
+                    case 2:
+                        wx.setNavigationBarTitle({
+                            title: '我的'
+                        });
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }, _this.components = {
+            tab: _tabBar2.default,
+            index: _index2.default,
+            findmeBuyMaterial: _findmeBuyMaterial2.default,
+            my: _my2.default
+        }, _this.data = {
+            currentTab: 0
+        }, _this.methods = {}, _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    _createClass(Index, [{
+        key: 'onShow',
+        value: function () {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+                var antUserInfo, pages, currPage;
+                return regeneratorRuntime.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                antUserInfo = wx.getStorageSync('antUserInfo');
+
+                                this.$invoke('my', 'onLoad');
+                                pages = this.getCurrentPages();
+                                currPage = pages[pages.length - 1];
+
+                                this.$broadcast('selectCity', currPage.data.seleCity); //向子组件传递城市数据
+                                this.$broadcast('hasUserInfo', antUserInfo); //向子组件传递城市数据
+
+                            case 6:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this);
+            }));
+
+            function onShow() {
+                return _ref2.apply(this, arguments);
+            }
+
+            return onShow;
+        }()
+    }, {
+        key: 'onLoad',
+        value: function onLoad(params) {
+            if (params.showCon == "sellerList") {
+                this.currentTab = 1;
+                this.$broadcast('tabPosition', 1);
+            } else {
+                if (typeof params.tab !== 'undefined') {
+                    this.currentTab = params.tab;
+                } else {
+                    this.currentTab = 0;
+                }
+            }
+        }
+    }]);
+
+    return Index;
+}(_wepy2.default.page);
+
+
+Page(require('./../npm/wepy/lib/wepy.js').default.$createPage(Index , 'pages/index'));
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmpzIl0sIm5hbWVzIjpbIkluZGV4IiwiY29uZmlnIiwiZXZlbnRzIiwicDEiLCJjdXJyZW50VGFiIiwicGFyc2VJbnQiLCIkYXBwbHkiLCJ3eCIsInNldE5hdmlnYXRpb25CYXJUaXRsZSIsInRpdGxlIiwiY29tcG9uZW50cyIsInRhYiIsImluZGV4IiwiZmluZG1lQnV5TWF0ZXJpYWwiLCJteSIsImRhdGEiLCJtZXRob2RzIiwiYW50VXNlckluZm8iLCJnZXRTdG9yYWdlU3luYyIsIiRpbnZva2UiLCJwYWdlcyIsImdldEN1cnJlbnRQYWdlcyIsImN1cnJQYWdlIiwibGVuZ3RoIiwiJGJyb2FkY2FzdCIsInNlbGVDaXR5IiwicGFyYW1zIiwic2hvd0NvbiIsInBhZ2UiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7OztBQUNBOzs7O0FBQ0E7Ozs7QUFDQTs7OztBQUNBOzs7O0FBQ0E7Ozs7QUFDQTs7Ozs7Ozs7Ozs7Ozs7SUFDcUJBLEs7Ozs7Ozs7Ozs7Ozs7O3dMQUNqQkMsTSxHQUFTO0FBQ0wsc0NBQTBCLE1BRHJCO0FBRUwsc0NBQTBCLFNBRnJCO0FBR0wsNENBQWdDO0FBSDNCLFMsUUFLVEMsTSxHQUFTO0FBQ0wseUJBQWEsbUJBQUNDLEVBQUQsRUFBUTtBQUNqQixzQkFBS0MsVUFBTCxHQUFrQkMsU0FBU0YsRUFBVCxDQUFsQjtBQUNBLHNCQUFLRyxNQUFMO0FBQ0Esd0JBQVEsTUFBS0YsVUFBYjtBQUNJLHlCQUFLLENBQUw7QUFDSUcsMkJBQUdDLHFCQUFILENBQXlCO0FBQ3JCQyxtQ0FBTztBQURjLHlCQUF6QjtBQUdBO0FBQ0oseUJBQUssQ0FBTDtBQUNJRiwyQkFBR0MscUJBQUgsQ0FBeUI7QUFDckJDLG1DQUFPO0FBRGMseUJBQXpCO0FBR0E7QUFDSix5QkFBSyxDQUFMO0FBQ0lGLDJCQUFHQyxxQkFBSCxDQUF5QjtBQUNyQkMsbUNBQU87QUFEYyx5QkFBekI7QUFHQTtBQUNKO0FBQ0k7QUFqQlI7QUFtQkg7QUF2QkksUyxRQXlCVEMsVSxHQUFhO0FBQ1RDLGlDQURTO0FBRVRDLGtDQUZTO0FBR1RDLDBEQUhTO0FBSVRDO0FBSlMsUyxRQU9iQyxJLEdBQU87QUFDSFgsd0JBQVk7QUFEVCxTLFFBSVBZLE8sR0FBVSxFOzs7Ozs7Ozs7Ozs7QUFJQUMsMkMsR0FBY1YsR0FBR1csY0FBSCxDQUFrQixhQUFsQixDOztBQUNwQixxQ0FBS0MsT0FBTCxDQUFhLElBQWIsRUFBa0IsUUFBbEI7QUFDSUMscUMsR0FBUSxLQUFLQyxlQUFMLEU7QUFDUkMsd0MsR0FBV0YsTUFBTUEsTUFBTUcsTUFBTixHQUFlLENBQXJCLEM7O0FBQ2YscUNBQUtDLFVBQUwsQ0FBZ0IsWUFBaEIsRUFBNkJGLFNBQVNQLElBQVQsQ0FBY1UsUUFBM0MsRSxDQUFxRDtBQUNyRCxxQ0FBS0QsVUFBTCxDQUFnQixhQUFoQixFQUE4QlAsV0FBOUIsRSxDQUEyQzs7Ozs7Ozs7Ozs7Ozs7Ozs7OytCQUV4Q1MsTSxFQUFRO0FBQ2IsZ0JBQUdBLE9BQU9DLE9BQVAsSUFBZ0IsWUFBbkIsRUFBZ0M7QUFDMUIscUJBQUt2QixVQUFMLEdBQWtCLENBQWxCO0FBQ0EscUJBQUtvQixVQUFMLENBQWdCLGFBQWhCLEVBQThCLENBQTlCO0FBQ0wsYUFIRCxNQUdLO0FBQ0Qsb0JBQUcsT0FBT0UsT0FBT2YsR0FBZCxLQUFzQixXQUF6QixFQUFxQztBQUMvQix5QkFBS1AsVUFBTCxHQUFrQnNCLE9BQU9mLEdBQXpCO0FBQ0wsaUJBRkQsTUFFSztBQUNELHlCQUFLUCxVQUFMLEdBQWtCLENBQWxCO0FBQ0g7QUFDSjtBQUNGOzs7O0VBaEU4QixlQUFLd0IsSTs7a0JBQW5CNUIsSyIsImZpbGUiOiJpbmRleC5qcyIsInNvdXJjZXNDb250ZW50IjpbIlxuaW1wb3J0IHdlcHkgZnJvbSAnd2VweSdcbmltcG9ydCB0YWIgZnJvbSAnLi4vY29tcG9uZW50cy90YWIvdGFiQmFyJ1xuaW1wb3J0IGluZGV4IGZyb20gJy4uL2NvbXBvbmVudHMvdGFiL3RhYlBhZ2VzL2luZGV4J1xuaW1wb3J0IGZpbmRtZUJ1eU1hdGVyaWFsIGZyb20gJy4uL2NvbXBvbmVudHMvdGFiL3RhYlBhZ2VzL2ZpbmRtZUJ1eU1hdGVyaWFsJ1xuaW1wb3J0IG15IGZyb20gJy4uL2NvbXBvbmVudHMvdGFiL3RhYlBhZ2VzL215J1xuaW1wb3J0IGludGVyZmFjZXMgZnJvbSAnLi4vaW50ZXJmYWNlcy9pbmRleCdcbmV4cG9ydCBkZWZhdWx0IGNsYXNzIEluZGV4IGV4dGVuZHMgd2VweS5wYWdlIHtcbiAgICBjb25maWcgPSB7XG4gICAgICAgICduYXZpZ2F0aW9uQmFyVGl0bGVUZXh0JzogJ+eOsOi0p+WVhuWfjicsXG4gICAgICAgICduYXZpZ2F0aW9uQmFyVGV4dFN0eWxlJzogJyNGRkZGRkYnLFxuICAgICAgICAnbmF2aWdhdGlvbkJhckJhY2tncm91bmRDb2xvcic6ICcjMDM4NkZGJ1xuICAgIH1cbiAgICBldmVudHMgPSB7XG4gICAgICAgICd0YWJDaGFuZ2UnOiAocDEpID0+IHtcbiAgICAgICAgICAgIHRoaXMuY3VycmVudFRhYiA9IHBhcnNlSW50KHAxKTtcbiAgICAgICAgICAgIHRoaXMuJGFwcGx5KCk7XG4gICAgICAgICAgICBzd2l0Y2ggKHRoaXMuY3VycmVudFRhYikge1xuICAgICAgICAgICAgICAgIGNhc2UgMDpcbiAgICAgICAgICAgICAgICAgICAgd3guc2V0TmF2aWdhdGlvbkJhclRpdGxlKHtcbiAgICAgICAgICAgICAgICAgICAgICAgIHRpdGxlOiAn546w6LSnJ1xuICAgICAgICAgICAgICAgICAgICB9KVxuICAgICAgICAgICAgICAgICAgICBicmVhaztcbiAgICAgICAgICAgICAgICBjYXNlIDE6XG4gICAgICAgICAgICAgICAgICAgIHd4LnNldE5hdmlnYXRpb25CYXJUaXRsZSh7XG4gICAgICAgICAgICAgICAgICAgICAgICB0aXRsZTogJ+WNluWutidcbiAgICAgICAgICAgICAgICAgICAgfSlcbiAgICAgICAgICAgICAgICAgICAgYnJlYWs7XG4gICAgICAgICAgICAgICAgY2FzZSAyOlxuICAgICAgICAgICAgICAgICAgICB3eC5zZXROYXZpZ2F0aW9uQmFyVGl0bGUoe1xuICAgICAgICAgICAgICAgICAgICAgICAgdGl0bGU6ICfmiJHnmoQnXG4gICAgICAgICAgICAgICAgICAgIH0pXG4gICAgICAgICAgICAgICAgICAgIGJyZWFrO1xuICAgICAgICAgICAgICAgIGRlZmF1bHQ6XG4gICAgICAgICAgICAgICAgICAgIGJyZWFrO1xuICAgICAgICAgICAgfVxuICAgICAgICB9XG4gICAgfVxuICAgIGNvbXBvbmVudHMgPSB7XG4gICAgICAgIHRhYixcbiAgICAgICAgaW5kZXgsXG4gICAgICAgIGZpbmRtZUJ1eU1hdGVyaWFsLFxuICAgICAgICBteVxuICAgIH1cblxuICAgIGRhdGEgPSB7XG4gICAgICAgIGN1cnJlbnRUYWI6IDAsXG4gICAgfVxuXG4gICAgbWV0aG9kcyA9IHtcbiAgICB9XG5cbiAgICBhc3luYyBvblNob3coKSB7XG4gICAgICAgIGNvbnN0IGFudFVzZXJJbmZvID0gd3guZ2V0U3RvcmFnZVN5bmMoJ2FudFVzZXJJbmZvJyk7XG4gICAgICAgIHRoaXMuJGludm9rZSgnbXknLCdvbkxvYWQnKTtcbiAgICAgICAgdmFyIHBhZ2VzID0gdGhpcy5nZXRDdXJyZW50UGFnZXMoKTtcbiAgICAgICAgdmFyIGN1cnJQYWdlID0gcGFnZXNbcGFnZXMubGVuZ3RoIC0gMV07XG4gICAgICAgIHRoaXMuJGJyb2FkY2FzdCgnc2VsZWN0Q2l0eScsY3VyclBhZ2UuZGF0YS5zZWxlQ2l0eSk7Ly/lkJHlrZDnu4Tku7bkvKDpgJLln47luILmlbDmja5cbiAgICAgICAgdGhpcy4kYnJvYWRjYXN0KCdoYXNVc2VySW5mbycsYW50VXNlckluZm8pOy8v5ZCR5a2Q57uE5Lu25Lyg6YCS5Z+O5biC5pWw5o2uXG4gICAgfVxuICAgIG9uTG9hZChwYXJhbXMpIHtcbiAgICAgIGlmKHBhcmFtcy5zaG93Q29uPT1cInNlbGxlckxpc3RcIil7XG4gICAgICAgICAgICB0aGlzLmN1cnJlbnRUYWIgPSAxO1xuICAgICAgICAgICAgdGhpcy4kYnJvYWRjYXN0KCd0YWJQb3NpdGlvbicsMSk7XG4gICAgICB9ZWxzZXtcbiAgICAgICAgICBpZih0eXBlb2YgcGFyYW1zLnRhYiAhPT0gJ3VuZGVmaW5lZCcpe1xuICAgICAgICAgICAgICAgIHRoaXMuY3VycmVudFRhYiA9IHBhcmFtcy50YWJcbiAgICAgICAgICB9ZWxzZXtcbiAgICAgICAgICAgICAgdGhpcy5jdXJyZW50VGFiID0gMDtcbiAgICAgICAgICB9XG4gICAgICB9XG4gICAgfVxuXG59XG4iXX0=

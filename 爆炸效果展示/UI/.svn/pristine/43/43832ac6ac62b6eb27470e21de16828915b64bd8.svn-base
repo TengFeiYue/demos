@@ -1,0 +1,100 @@
+.con {
+  width: 100%;
+  padding-left: 30rpx;
+  box-sizing: border-box; }
+  .con .con-list {
+    width: 100%;
+    padding-right: 30rpx;
+    box-sizing: border-box;
+    border-bottom: 2rpx solid #ececec;
+    position: relative; }
+    .con .con-list .list-title,
+    .con .con-list .list-other,
+    .con .con-list .list-address {
+      height: 60rpx;
+      line-height: 60rpx;
+      width: 100%; }
+    .con .con-list .list-title,
+    .con .con-list .list-type,
+    .con .con-list .list-other text:nth-child(1),
+    .con .con-list .list-address {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap; }
+    .con .con-list .list-title {
+      font-size: 28rpx;
+      color: #333; }
+      .con .con-list .list-title text {
+        margin-right: 20rpx;
+        float: left; }
+      .con .con-list .list-title image {
+        width: 26rpx;
+        height: 26rpx;
+        float: left;
+        margin-top: 17rpx; }
+    .con .con-list .list-type {
+      height: 40rpx; }
+      .con .con-list .list-type .list-icons {
+        height: 36rpx;
+        width: 36rpx;
+        line-height: 36rpx;
+        text-align: center;
+        color: #fff;
+        background-color: #cce9ff;
+        font-size: 24rpx;
+        float: left;
+        margin-right: 20rpx;
+        border-radius: 50%; }
+      .con .con-list .list-type .list-text {
+        height: 40rpx;
+        border: 2rpx solid #c2e6f7;
+        line-height: 30rpx;
+        color: #999;
+        font-size: 24rpx;
+        border-radius: 4rpx;
+        box-sizing: border-box;
+        padding: 6rpx 10rpx;
+        float: left;
+        margin-right: 20rpx; }
+    .con .con-list .list-other text {
+      width: 85%;
+      float: left;
+      font-size: 24rpx;
+      color: #4a4a4a; }
+    .con .con-list .list-address {
+      font-size: 24rpx;
+      color: #666; }
+    .con .con-list .distance {
+      position: absolute;
+      right: 30rpx;
+      top: 115rpx;
+      font-size: 20rpx;
+      color: #666666; }
+
+.refresh-position {
+  height: 52rpx;
+  width: 136rpx;
+  position: fixed;
+  right: 30rpx;
+  bottom: 100rpx; }
+  .refresh-position image {
+    width: 100%;
+    height: 100%; }
+
+.tips {
+  font-size: 28rpx;
+  background: #ffffff;
+  height: 60rpx;
+  line-height: 60rpx; }
+  .tips .loadShow {
+    background: #ffffff;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: center;
+    justify-content: center; }
+    .tips .loadShow icon {
+      position: relative;
+      top: 17rpx;
+      right: 5rpx; }

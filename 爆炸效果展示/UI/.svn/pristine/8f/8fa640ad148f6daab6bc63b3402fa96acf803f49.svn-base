@@ -1,0 +1,61 @@
+console.log('WePY开启错误监控');
+console.warn(`CLI报错：WARNING IN : src\components\tab\tabPages\my.wpy
+[xmldom warning]	unclosed xml attribute
+@#[line:undefined,col:undefined]`);
+console.warn(`CLI报错：WARNING IN : src\pages\personalInfo.wpy
+[xmldom warning]	unclosed xml attribute
+@#[line:undefined,col:undefined]`);
+console.warn(`CLI报错：WARNING IN : src\pages\personalInfo.wpy
+[xmldom warning]	unclosed xml attribute
+@#[line:undefined,col:undefined]`);
+console.warn(`CLI报错：WARNING IN : src\pages\personInfoFill.wpy
+[xmldom warning]	unclosed xml attribute
+@#[line:undefined,col:undefined]`);
+console.warn(`CLI报错：WARNING IN : src\pages\personInfoFill.wpy
+[xmldom warning]	unclosed xml attribute
+@#[line:undefined,col:undefined]`);
+console.warn(`CLI报错：WARNING IN : src\pages\switchSubPrice.wpy
+[xmldom warning]	unclosed xml attribute
+@#[line:undefined,col:undefined]`);
+console.warn(`CLI报错：WARNING IN : src\pages\switchSubPrice.wpy
+[xmldom warning]	unclosed xml attribute
+@#[line:undefined,col:undefined]`);
+console.warn(`CLI报错：WARNING IN : src\pages\switchSubPrice.wpy
+[xmldom warning]	unclosed xml attribute
+@#[line:undefined,col:undefined]`);
+console.warn(`CLI报错：WARNING IN : src\components\tab\tabPages\my.wpy
+[xmldom warning]	unclosed xml attribute
+@#[line:undefined,col:undefined]`);
+console.warn(`CLI报错：WARNING IN : src\pages\personalInfo.wpy
+[xmldom warning]	unclosed xml attribute
+@#[line:undefined,col:undefined]`);
+console.warn(`CLI报错：WARNING IN : src\pages\personalInfo.wpy
+[xmldom warning]	unclosed xml attribute
+@#[line:undefined,col:undefined]`);
+console.warn(`CLI报错：WARNING IN : src\pages\personInfoFill.wpy
+[xmldom warning]	unclosed xml attribute
+@#[line:undefined,col:undefined]`);
+console.warn(`CLI报错：WARNING IN : src\pages\personInfoFill.wpy
+[xmldom warning]	unclosed xml attribute
+@#[line:undefined,col:undefined]`);
+console.warn(`CLI报错：WARNING IN : src\pages\switchSubPrice.wpy
+[xmldom warning]	unclosed xml attribute
+@#[line:undefined,col:undefined]`);
+console.warn(`CLI报错：WARNING IN : src\pages\switchSubPrice.wpy
+[xmldom warning]	unclosed xml attribute
+@#[line:undefined,col:undefined]`);
+console.warn(`CLI报错：WARNING IN : src\pages\switchSubPrice.wpy
+[xmldom warning]	unclosed xml attribute
+@#[line:undefined,col:undefined]`);
+console.warn(`CLI报错：WARNING IN : src\components\tab\tabPages\my.wpy
+[xmldom warning]	unclosed xml attribute
+@#[line:undefined,col:undefined]`);
+console.warn(`CLI报错：WARNING IN : src\pages\switchSubPrice.wpy
+[xmldom warning]	unclosed xml attribute
+@#[line:undefined,col:undefined]`);
+console.warn(`CLI报错：WARNING IN : src\pages\switchSubPrice.wpy
+[xmldom warning]	unclosed xml attribute
+@#[line:undefined,col:undefined]`);
+console.warn(`CLI报错：WARNING IN : src\pages\switchSubPrice.wpy
+[xmldom warning]	unclosed xml attribute
+@#[line:undefined,col:undefined]`);

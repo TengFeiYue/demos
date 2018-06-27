@@ -1,0 +1,484 @@
+<style type="scss">
+	.comS {
+		background: rgba(0, 146, 255, 0.20);
+		padding: 20rpx 30rpx;
+	}
+
+	.comquery {
+		background: #FFFFFF;
+		border: 1px solid #ECECEC;
+		border-radius: 16rpx;
+		height: 48rpx;
+		width: 90%;
+		display: flex;
+		flex-direction: row;
+		justify-content: between;
+		align-items: center;
+	}
+
+	.comquery image {
+		width: 24rpx;
+		height: 26rpx;
+	}
+
+	.comquery .comicon {
+		flex: 1;
+		text-align: center;
+	}
+
+	.comquery .comsearchIpt {
+		flex: 12;
+	}
+
+	.comsearchIpt input,
+	.comsearchIpt .compStyle {
+		font-family: PingFangSC-Regular;
+		font-size: 24rpx;
+		color: #666666;
+		letter-spacing: -0.14px;
+	}
+
+	.comT {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		padding: 16rpx 20rpx 0;
+		font-size: 24rpx;
+		letter-spacing: -0.14px;
+		border-bottom: 20rpx solid #F2F2F2;
+	}
+
+	.tabItems,
+	.tabItemsAct {
+		flex: 1;
+		text-align: center;
+	}
+
+	.tabItemsAct {
+		color: #0092FF;
+	}
+
+	.tabItems image,
+	.tabItemsAct image {
+		width: 48rpx;
+		height: 50rpx;
+	}
+
+	.companyTypeName {
+		line-height: 56rpx;
+		position: relative;
+	}
+
+	.companyTypeName:after {
+		content: '';
+		display: block;
+		width: 60rpx;
+		height: 4rpx;
+		background: #ffffff;
+		position: absolute;
+		bottom: 0;
+		left: 30rpx;
+	}
+
+	.companyTypeNameAct {
+		line-height: 56rpx;
+		position: relative;
+	}
+
+	.companyTypeNameAct:after {
+		content: '';
+		display: block;
+		width: 60rpx;
+		height: 4rpx;
+		background: #0092FF;
+		position: absolute;
+		bottom: 0;
+		left: 30rpx;
+	}
+
+	.comD {
+		display: flex;
+		flex-direction: row;
+		justify-content: between;
+		align-items: center;
+		text-align: center;
+		font-size: 28rpx;
+		color: #333333;
+		letter-spacing: 0.17px;
+		padding: 22rpx 0 16rpx;
+		line-height: 40rpx;
+		border-bottom: 1px solid #ECECEC;
+	}
+
+	.comD .selects {
+		display: inline-block;
+		flex: 1;
+	}
+
+	.comD .selects:after {
+		content: '';
+		display: inline-block;
+		width: 0;
+		height: 0;
+		border-left: 10rpx solid transparent;
+		border-right: 10rpx solid transparent;
+		border-top: 12rpx solid #999999;
+		position: relative;
+		top: -2rpx;
+		right: -10rpx;
+	}
+
+	.comD .selectsAct {
+		color: #0092FF;
+		display: inline-block;
+		flex: 1;
+	}
+
+	.comD .selectsAct:after {
+		content: '';
+		display: inline-block;
+		width: 0;
+		height: 0;
+		border-left: 10rpx solid transparent;
+		border-right: 10rpx solid transparent;
+		border-bottom: 12rpx solid #0092FF;
+		position: relative;
+		top: -2rpx;
+		right: -10rpx;
+	}
+
+	.filter-shadow {
+		position: absolute;
+		width: 100%;
+		top: 310rpx;
+		bottom: 0;
+		z-index: 1;
+		background: rgba(0, 0, 0, 0.5);
+	}
+
+	.filter-content {
+		background: #ffffff;
+		position: absolute;
+		width: 100%;
+		top: 305rpx;
+		z-index: 100;
+		font-size: 24rpx;
+		color: #333333;
+		letter-spacing: -0.14px;
+		padding-top: 15rpx;
+	}
+
+	.filter-panel .item {
+		padding: 0 30rpx;
+		line-height: 70rpx;
+		background: #f2f2f2;
+		border-bottom: 1px solid #ececec;
+	}
+
+	.filter-panel .itemAct {
+		padding: 0 30rpx;
+		line-height: 70rpx;
+		background: #ffffff;
+		color: #0092FF;
+		border-bottom: 1px solid #ececec;
+	}
+
+	.distanceItem,.allSorts {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 40%;
+		line-height: 70rpx;
+		background: #ffffff;
+	}
+
+	.dItem,.allSortsItem {
+		border-bottom: 1px solid #ececec;
+		padding-left: 20rpx;
+	}
+
+	.dItemAct,.allSortsItemAct {
+		border-bottom: 1px solid #ececec;
+		padding-left: 20rpx;
+		color: #0092FF;
+	}
+</style>
+<template>
+	<view class="comS">
+		<view class="comquery" bindtap="toSearchCom">
+			<view class="comicon">
+				<image src="../../resources/icons/comSearch.png" wx:if="{{show_hide}}"></image>
+			</view>
+			<view class="comsearchIpt">
+				<input type="text" value='{{searchvalue}}' placeholder="搜索企业名称/主营产品" />
+			</view>
+		</view>
+	</view>
+	<view class="comT">
+		<view wx:for="{{tabItems}}" wx:key="{{index}}" class="tabItems{{selIndex==index?'Act':''}}" data-i="{{index}}" data-v="{{item.name}}" data-a="{{item.childs}}" bindtap="chooseType">
+			<view class="companyTypeIcon">
+				<image src="{{selIndex==index?item.image:item.image2}}"></image>
+			</view>
+			<view class="companyTypeName{{selIndex==index?'Act':''}}">{{item.name}}</view>
+		</view>
+
+	</view>
+	<view class="comD">
+		<text bindtap="setFilterPanel" data-index="1" class="selects{{showfilterindex==1?'Act':''}}">{{selectedSite}}</text>
+		<text bindtap="setFilterPanel" data-index="2" class="selects{{showfilterindex==2?'Act':''}}">{{selectedAll}}</text>
+		<text bindtap="setFilterPanel" data-index="3" class="selects{{showfilterindex==3?'Act':''}}">{{selectedAllModel}}</text>
+	</view>
+	<view class="filter-content" wx:if="{{showfilter}}">
+		<view class="filter-panel" wx:if="{{showfilterindex==1}}">
+			<view class="filter-panel-left">
+				<scroll-view style="max-height:300px;width:100%;position:relative;z-index:13;" scroll-y="true">
+					<view class="distanceItem">
+						<view wx:for="{{distance}}" wx:key="{{index}}" catchtap="selectDistance" data-sort="{{item}}" data-index="{{index}}" wx:if="{{nearIndex=='a'}}" class="dItem{{disIndex==index?'Act':''}}">{{item}}</view>
+					</view>
+					<view bindtap="selectNear" data-sort="附近" data-index="a" class="item{{nearIndex=='a'?'Act':''}}"><text>附近</text></view>
+					<view wx:for="{{near}}" wx:key="{{index}}" bindtap="selectNear" data-sort="{{item.districtName}}" data-index="{{index}}" class="item{{nearIndex==index?'Act':''}}">
+						<text>{{item.districtName}}</text>
+					</view>
+				</scroll-view>
+			</view>
+
+		</view>
+		<view class="filter-panel" wx:if="{{showfilterindex==2}}">
+			<view class="filter-panel-left">
+				<scroll-view style="max-height:300px;width:100%;position:relative;z-index:13;" scroll-y="true">
+				     <view class="allSorts">
+						   <view wx:for="{{allSorts}}" wx:key="{{index}}" catchtap="selectAllSorts" data-sort="{{item.name}}" data-index="{{index}}" class="allSortsItem{{sortIndex==index?'Act':''}}">{{item.name}}</view>
+						 </view>
+					   <view wx:for="{{all}}" wx:key="{{index}}" data-a="{{item.childs}}" bindtap="selectAll" data-sort="{{item.name}}" data-index="{{index}}" class="item{{allIndex==index?'Act':''}}">{{item.name}}</view>
+				</scroll-view>
+			</view>
+		</view>
+		<view class="filter-panel" wx:if="{{showfilterindex==3}}">
+			<view class="filter-panel-left">
+				<scroll-view style="max-height:300px;width:100%;z-index:13;" scroll-y="true">
+					<view wx:for="{{allModel}}" wx:key="{{index}}" bindtap="selectAllModel" data-sort="{{item.value}}" data-index="{{index}}" class="item{{allModelIndex==index?'Act':''}}">{{item.value}}</view>
+				</scroll-view>
+			</view>
+		</view>
+	</view>
+	<view class="filter-shadow" wx:if="{{showfilter}}" bindtap="hideFilter"></view>
+</template>
+<script>
+	import wepy from 'wepy'
+	import { api } from '../config'
+	import location from '../utils/location'
+	export default class companySearch extends wepy.component {
+		data = {
+			searchvalue: "",
+			show_hide: true,
+			selIndex: 0,
+			showfilter: false,
+			showfilterindex: 0,
+			selectedSite: '附近',
+			selectedAll: '全部',
+			selectedAllModel: '全部模式',
+			tabItem: '原料',
+			distance: [],
+			allSorts:[],
+			near: [],
+			all: [],
+			allModel: [],
+			tabItems: [],
+			nearIndex: 'a',
+			allIndex: 0,
+			allModelIndex: 0,
+			disIndex: 0,
+			sortIndex:0,
+			currentCity: '',
+			long: -1,
+			lat: -1
+		}
+		events = {
+			'industryRole': (parmas) => {
+
+				this.tabItem = parmas.findtItem;
+				this.selIndex=parmas.findIndex;
+				var that = this;
+				this.selectedSite = '附近';
+				this.selectedAll = '全部';
+				this.selectedAllModel = '全部模式';
+				location.getLocation().then(function(res){
+						console.log(res);
+						that.$emit('sendFilterDatas', {
+							tabItem: that.tabItem,
+							selectedSite: '',
+							selectedAll: '',
+							selectedAllModel: '',
+							long: res.lng,
+							lat: res.lat,
+							currentCity: res.city
+						})
+						that.$apply();
+				})
+			},
+			'selectCity':(params)=>{
+				this.onLoad();
+			}
+		}
+		methods = {
+			toSearchCom() {
+				wx.navigateTo({
+					url: 'searchCom?long=' + this.long + '&lat=' + this.lat
+				})
+			},
+			//选项卡
+			chooseType(e) {
+				this.selectedSite = '附近';
+				this.selectedAll = '全部';
+				this.selectedAllModel = '全部模式';
+				this.showfilter = false;
+				this.showfilterindex = 0;
+				this.selIndex = Number(e.currentTarget.dataset.i)
+				this.all = e.currentTarget.dataset.a;
+				this.tabItem = e.currentTarget.dataset.v;
+				this.$emit('sendFilterDatas', {
+					tabItem: this.tabItem,
+					selectedSite: this.selectedSite,
+					selectedAll: this.selectedAll,
+					selectedAllModel: this.selectedAllModel,
+					long: this.long,
+					lat: this.lat,
+					currentCity: this.currentCity
+
+				})
+			},
+			//搜索框设置
+			hideSearchIcon() {
+				this.showfilter = false;
+				this.showfilterindex = 0;
+			},
+			showSearchIcon() {
+
+			},
+			gotoquery() {
+
+			},
+			setFilterPanel(e) {
+				this.showfilter = !this.showfilter;
+				if(this.showfilter) {
+					this.showfilterindex = e.currentTarget.dataset.index;
+				} else {
+					this.showfilterindex = 0;
+				}
+			},
+			hideFilter() {
+				this.showfilter = false;
+				this.showfilterindex = 0;
+			},
+			selectNear(e) { //下拉选择附近
+				this.nearIndex = e.currentTarget.dataset.index;
+				if(this.nearIndex != 'a') {
+					this.showfilter = false;
+					this.showfilterindex = 0;
+					this.selectedSite = e.currentTarget.dataset.sort;
+					this.$emit('sendFilterDatas', {
+						tabItem: this.tabItem,
+						selectedSite: this.selectedSite,
+						selectedAll: this.selectedAll,
+						selectedAllModel: this.selectedAllModel,
+						long: this.long,
+						lat: this.lat,
+						currentCity: this.currentCity
+					})
+				}
+			},
+			selectDistance(e) {
+				this.disIndex = e.currentTarget.dataset.index;
+				this.selectedSite = e.currentTarget.dataset.sort;
+				this.$emit('sendFilterDatas', {
+					tabItem: this.tabItem,
+					selectedSite: this.selectedSite,
+					selectedAll: this.selectedAll,
+					selectedAllModel: this.selectedAllModel,
+					long: this.long,
+					lat: this.lat,
+					currentCity: this.currentCity
+				})
+				this.showfilter = false;
+				this.showfilterindex = 0;
+			},
+			selectAll(e) {
+				this.allIndex = e.currentTarget.dataset.index;
+				this.allSorts = e.currentTarget.dataset.a;
+			},
+			selectAllSorts(e){//选择全部详情
+			  this.sortIndex = e.currentTarget.dataset.index;
+				this.selectedAll = e.currentTarget.dataset.sort;
+				this.$emit('sendFilterDatas', {
+					tabItem: this.tabItem,
+					selectedSite: this.selectedSite,
+					selectedAll: this.selectedAll,
+					selectedAllModel: this.selectedAllModel,
+					long: this.long,
+					lat: this.lat,
+					currentCity: this.currentCity
+				})
+				this.showfilter = false;
+				this.showfilterindex = 0;
+			},
+			selectAllModel(e) {
+				this.allModelIndex = e.currentTarget.dataset.index;
+				this.selectedAllModel = e.currentTarget.dataset.sort;
+				this.$emit('sendFilterDatas', {
+					tabItem: this.tabItem,
+					selectedSite: this.selectedSite,
+					selectedAll: this.selectedAll,
+					selectedAllModel: this.selectedAllModel,
+					long: this.long,
+					lat: this.lat,
+					currentCity: this.currentCity
+				})
+				this.showfilter = false;
+				this.showfilterindex = 0;
+			}
+		}
+		onLoad() {
+			var that = this;
+			this.selectedSite = '附近';
+			this.selectedAll = '全部';
+			this.selectedAllModel = '全部模式';
+			location.getLocation().then(function(res){
+					console.log(res);
+					that.currentCity = res.city;
+					that.long = res.lng;
+					that.lat = res.lat;
+					that.$emit('sendFilterDatas', {
+						tabItem: that.tabItem,
+						selectedSite: '',
+						selectedAll: '',
+						selectedAllModel: '',
+						long: res.lng,
+						lat: res.lat,
+						currentCity: res.city
+					})
+					that.fetchCompanyFilterData();
+					that.$apply();
+			})
+		}
+		fetchCompanyFilterData() { //获取企业列表过滤信息
+			let that = this;
+			wepy.request({
+				url: api.company.companyFilter.url,
+				method: api.company.companyFilter.method,
+				data: {
+					'cityName': this.currentCity
+				},
+				success: function(res) {
+					that.tabItems = res.data.body.baseFirstCategoryList;
+					that.allModel = res.data.body.businessModeList;
+					that.near = res.data.body.districtAreaDtoList;
+					that.distance = res.data.body.nearbyList;
+					that.allSorts=res.data.body.baseFirstCategoryList[0].childs[0].childs;
+					that.all = res.data.body.baseFirstCategoryList[0].childs;
+					that.$apply();
+				}
+			});
+		}
+	}
+</script>

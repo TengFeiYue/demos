@@ -1,0 +1,19 @@
+/* Base Application Styles */
+.footerBar{
+     width:100%;
+     position:fixed;
+     bottom:0;
+     left:0;
+     display: flex;
+     flex-direction: row;
+     justify-content: space-around;
+     align-items: center;
+     text-align: center;
+     line-height: 50px;
+}
+.nav{
+    flex:1;
+}
+.active{
+    color:red;
+}

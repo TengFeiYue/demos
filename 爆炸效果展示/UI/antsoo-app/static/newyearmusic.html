@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="format-detection" content="telephone=no"/>		
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta charset="utf-8">
+		<title>俺搜30秒测出你的牛X指数，年终奖就靠它了...</title>
+		<link rel="stylesheet" href="bootstrap/bootstrap.min.css" />
+		<link rel="stylesheet" href="NewYearcss/base.css" />
+		<link rel="stylesheet" href="NewYearcss/media.css" />
+		<script src="js/jquery-2.1.0.min.js"></script>
+		<script src="js/html2canvas.min.js"></script>
+		<script src="js/canvas2image.js"></script>
+		<script src="js/bscroll.min.js"></script>
+		<script src="js/axios.js"></script>
+		<script src="js/vue.js"></script>
+		<script src="js/vue-resource.min.js"></script>
+		<script src="js/vue-router.js"></script>
+		<script src="dev.js"></script>
+		 <script type="text/javascript">
+		 $("body").one("touchstart",function() {     
+			document.getElementById('bgm').play();
+			});
+		 	window.onload=window.onresize=function(){
+		 		console.log($(window).height())
+		 		//$(document.body).css('height',$(window).height()+'px');
+		 		var deviceWidth = document.documentElement.clientWidth;
+				if(deviceWidth > 750) deviceWidth = 750;
+				document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';
+				//音乐播放
+				var oMus=document.querySelector('#music');
+				 var oAudio=document.querySelector('#audio');			    
+				    oMus.addEventListener('touchend',function(){
+				    	if(this.className=="rotate"){
+				    		this.className=""
+				    		oAudio.pause();
+				    	}else{
+				    		this.className="rotate";
+				    		oAudio.play();
+				    	}
+				    },false)
+		 	} 
+				
+		 </script>
+		 <style>
+		 	.man{
+		 		transition:all .5s ease;
+		 		animation: move 2s linear infinite ;
+		 		transform: translateX(-.6rem);
+		 	}
+		 	@keyframes move{
+		 		0%{
+		 		    transform: translateX(-.6rem);
+		 		}
+		 		50%{
+		 			transform: translateX(0rem);
+		 		}
+		 		100%{
+		 			transform: translateX(-.6rem);
+		 		}
+		 	}
+
+			#ifreme{
+				 width:100%;
+				 height:100%;			    
+				position: fixed;
+			    top: 0;
+			    left: 0;
+			    z-index: 10;
+			    -webkit-overflow-scrolling: touch; 
+                overflow-y: scroll; 
+			}
+			#ifreme iframe{
+				border: none;
+				width:100%;
+				height:100%;
+			}
+			 #audio{
+	       	   display:none;
+	       }
+			#music{
+				position:fixed;
+		       	top: .2rem;
+                right: .3rem;		       	
+			    z-index: 100;			   
+			}
+			#music img{
+				width:.5rem;
+				
+			}
+		.rotate{
+       	  transition:all .5s ease;
+       	  animation:runing 5s infinite linear;
+        -webkit-animation:runing 5s infinite linear;
+       }
+       .lantern{
+       	    display: inline-block;
+		    width: 1.5rem;
+		    position: absolute;
+		    top: -.2rem;
+		    right: 1rem;
+		    transition:all .5s ease;
+       	  animation:shake 5s infinite linear;
+        -webkit-animation:shake 5s infinite linear;		    
+		    
+       }
+       @keyframes runing{
+       	0%{
+       		transform: rotateZ(0deg);
+       	}
+       	25%{
+       		transform: rotateZ(90deg);
+       	}
+       	50%{
+       		transform: rotateZ(180deg);
+       	}
+       	75%{
+       		transform: rotateZ(270deg);
+       	}
+       	100%{
+       		transform: rotateZ(360deg);
+       	}
+       }
+       @keyframes shake{
+       	0%{
+       		
+       		transform: translate(0,0);
+       	}
+       	25%{
+       		transform: translate(-.2rem,-.2rem);
+       	}
+       	50%{
+       		transform: translate(0,0);
+       	}
+       	75%{
+       		transform: translate(-.2rem,-.2rem);
+       	}
+       	100%{
+       		transform: translate(0,0);
+       	}
+      
+       }
+		 </style>
+	</head>
+	<body>
+	  <div id="app">
+	  	
+		<audio id="bgm" src="NewYearimages/music.mp3" autoplay="autoplay" loop="" style="display: none; width: 0; height: 0;"></audio>
+	  	<!--<div id="music" class="rotate"><img src="NewYearimages/music_03.png"/></div>-->
+	  	<div id="ifreme" v-show="!pageshow"><iframe src="question.html" width="100%" height="100%"></iframe></div>
+		<div class="container-fluid p-0" id="start" v-show="pageshow">			
+			<header class="col-xs-12 p-0">
+				<img src="NewYearimages/header.png" alt="" class="img-responsive" />				
+			</header>
+			<section class="col-xs-12 p-0 startTest">
+				<span class="man"><img src="NewYearimages/man_03.png" alt="" /></span>
+				<a href="javascript:void(0);" @click="hidepage"><img src="NewYearimages/testBtn_03.png"/></a>				
+			</section>
+			<section class="col-xs-12 p-0 rangeList text-center">
+				<div class="centerPos">
+					<h3 class="m-0"><img src="NewYearimages/title.png"/></h3>
+					<div class="ulWraper">
+						<ul class="moves">
+							<li>                 
+								<span>来自金发科技李**</span>
+								<span>2分钟前 </span>
+								<span>牛x指数</span>
+								<span>87分</span>
+							</li>
+							<li>                 
+								<span>来自上海普利特王**</span>
+								<span>7分钟前 </span>
+								<span>牛x指数</span>
+								<span>96分</span>
+							</li>
+							<li>                 
+								<span>来自合肥会通吴**</span>
+								<span>9分钟前 </span>
+								<span>牛x指数</span>
+								<span>94分</span>
+							</li>
+							<li>                 
+								<span>来自山东道恩张**</span>
+								<span>20分钟前 </span>
+								<span>牛x指数</span>
+								<span>83分</span>
+							</li>
+							<li>                 
+								<span>来自青岛国恩罗**</span>
+								<span>16分钟前 </span>
+								<span>牛x指数</span>
+								<span>86分</span>
+							</li>
+							<li>                 
+								<span>来自广东圆融吴**</span>
+								<span>15分钟前 </span>
+								<span>牛x指数</span>
+								<span>94分</span>
+							</li>
+							<li>                 
+								<span>来自广东银禧李**</span>
+								<span>18分钟前 </span>
+								<span>牛x指数</span>
+								<span>87分</span>
+							</li>
+							<li>                 
+								<span>来自锦湖日丽王**</span>
+								<span>31分钟前 </span>
+								<span>牛x指数</span>
+								<span>93分</span>
+							</li>
+							<li>                 
+								<span>来自上海日之升吴**</span>
+								<span>14分钟前 </span>
+								<span>牛x指数</span>
+								<span>92分</span>
+							</li><li>                 
+								<span>来自苏州润佳吴**</span>
+								<span>4分钟前 </span>
+								<span>牛x指数</span>
+								<span>88分</span>
+							</li><li>                 
+								<span>来自塞拉尼斯吴**</span>
+								<span>23分钟前 </span>
+								<span>牛x指数</span>
+								<span>95分</span>
+							</li><li>                 
+								<span>来自艾曼斯吴**</span>
+								<span>15分钟前 </span>
+								<span>牛x指数</span>
+								<span>86分</span>
+							</li>
+														
+						</ul>
+					</div>
+				</div>
+				
+			</section>
+			<footer class="col-xs-12 p-0">
+				<a href="" class="logo"><img src="NewYearimages/logo_03.png"/></a>
+				<img src="NewYearimages/lantern.png" class="lantern" alt="" />
+				<img src="NewYearimages/indexfooter.png" alt="" class="img-responsive" />
+			</footer>
+		</div>
+		
+	  </div>
+		
+		<script type="text/javascript">
+		    new  Vue({
+				el:'#app',
+				data:{
+					pageshow:true
+				},
+				mounted(){			
+				var _this=this;		   	 	
+				 this.$nextTick(function(){
+					/*var oMus=document.querySelector('#music');
+				    var oAudio=document.querySelector('#audio');
+				    oAudio.src="NewYearimages/music.mp3";
+				    oAudio.play();*/
+				    
+		 		//$(document.body).css('height',$(window).height()+'px');
+		 		var deviceWidth = document.documentElement.clientWidth;
+				if(deviceWidth > 750) deviceWidth = 750;
+				document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';				
+					_this.automove();
+					
+				})
+				 
+				},
+				methods:{
+					automove:function(){
+						 var n=0;
+						var oWrap=document.querySelector('.ulWraper');
+						var oUl=document.getElementsByClassName('moves')[0];
+						var aLi=oUl.getElementsByTagName('li');
+						
+						oUl.innerHTML+=oUl.innerHTML;						
+						oUl.style.height=aLi[0].offsetHeight*aLi.length+'px';
+						console.log(oUl.offsetHeight)
+						var timer=setInterval(move,100);
+						
+						/*oWrap.addEventListener('touchstart',function(){
+							clearInterval(timer)
+						},false)
+						oWrap.addEventListener('touchend',function(){
+							clearInterval(timer)
+							var timer=setInterval(move,100);
+						},false)*/
+						function move(){
+							if(n<-(oUl.offsetHeight/2)){
+								n=0;
+								oUl.style.top=0;
+							}else{
+								n--;
+								oUl.style.top=n+'px';
+							}
+										    
+						}
+					},
+					hidepage:function(){
+
+						this.pageshow=false;
+					}
+				}
+			})
+		</script>
+		<script>
+                var _mtac = {};
+                (function() {
+                    var mta = document.createElement("script");
+                    mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";
+                    mta.setAttribute("name", "MTAH5");
+                    mta.setAttribute("sid", "500566864");
+                    var s = document.getElementsByTagName("script")[0];
+                    s.parentNode.insertBefore(mta, s);
+                })();
+         </script>
+	</body>
+</html>
+

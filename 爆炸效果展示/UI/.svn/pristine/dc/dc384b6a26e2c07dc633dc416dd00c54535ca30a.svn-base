@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="format-detection" content="telephone=no"/>		
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta charset="utf-8">
+		<title>元旦</title>
+		<link rel="stylesheet" href="bootstrap/bootstrap.min.css" />
+		<link rel="stylesheet" href="NewYearcss/base.css" />
+		<link rel="stylesheet" href="NewYearcss/media.css" />
+		<script src="js/jquery-2.1.0.min.js"></script>
+		<script src="js/html2canvas.min.js"></script>
+		<script src="js/canvas2image.js"></script>
+		<script src="js/bscroll.min.js"></script>
+		<script src="js/axios.js"></script>
+		<script src="js/vue.js"></script>
+		<script src="js/vue-resource.min.js"></script>
+		<script src="js/vue-router.js"></script>
+		<script src="dev.js"></script>
+			
+		 <script type="text/javascript">
+		 	window.onload=window.onresize=function(){
+		 		console.log($(window).height())
+		 		$(document.body).css('height',$(window).height()+'px');
+		 		var deviceWidth = document.documentElement.clientWidth;
+				if(deviceWidth > 750) deviceWidth = 750;
+				document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';
+		 	}
+		 </script>
+		 <style>
+		 	#fillDuty{
+			   padding: .8rem 0 2.91rem;
+			}
+			#fillDuty a img{
+			  width:1.6rem;
+			}
+		 </style>
+	</head>
+	<body>
+	  <div id="app">	
+		<div class="container-fluid p-0">			
+			<header class="col-xs-12 p-0">
+				<img src="NewYearimages/unitHead.png" alt="" class="img-responsive" />				
+			</header>			
+			<section class="col-xs-12 fillDuty text-center" id="fillDuty">				 
+				<!-- <p class="nameipt"><input type="text" placeholder="请输入你的名字(必填)" v-model="userName" /></p> -->
+				<p class="ipt"><input type="text" placeholder="请输入企业名称" v-model="companyName" /></p>
+				<p class="go">
+					<!--<a href="question.html" class="passBtn"><img src="NewYearimages/pass.png" alt="" /></a>-->
+					<a  @click="judgefills"><img src="NewYearimages/finish.png"/></a>
+				</p>
+				
+			</section>
+			<footer class="col-xs-12 p-0">
+				<a href="" class="logo"><img src="NewYearimages/logo_03.png"/></a>
+				<img src="NewYearimages/lantern.png" class="lantern" alt="" />
+				<img src="NewYearimages/indexfooter.png" alt="" class="img-responsive" />
+			</footer>
+		</div>
+	  </div>
+		
+		<script type="text/javascript">
+		    new  Vue({
+				el:'#app',
+				data:{
+					userName:"",
+					companyName:"",
+					work:"",
+					result:0,
+					defaultImg:"",
+					userName:""
+		    
+				},
+				mounted(){			
+				var _this=this;		   	 	
+				 this.$nextTick(function(){
+                    _this.work=getQuery('work');
+                    _this.result=Number(getQuery('result'));
+                    _this.getData();
+                    console.log(_this.userName)
+                    console.log(_this.userName)
+                    
+                  })                
+				},				
+				methods:{
+					judgefills:function(){
+						if(this.companyName==null||this.companyName==""){
+	                    	this.result=this.result+0;
+	                    }else{
+	                    	this.result=this.result+5;
+	                    }
+						
+						/* if(this.userName==null||this.userName==""){
+							 alert('名字不能为空！');
+							 return false;
+						}	 */					
+						window.location.href="newyearimg.html?userName="+this.userName+"&defaultImg="+this.defaultImg+"&work="+this.work+"&result="+this.result+"&userName="+this.userName+"&companyName="+this.companyName;
+					},
+					getData:function(){
+						var _this=this;
+		   	 		this.$http.post(urlPort+'/index/getWxUserInfo').then(function(response){
+		   	 			 _this.defaultImg=response.body.body.headImgUrl;	   	 			 			   	 			 
+		   	 			 _this.userName=response.body.body.nickname;	   	 			 			   	 			 
+		   	 		})
+					}
+					
+				}
+			})
+		</script>
+		<script>
+                var _mtac = {};
+                (function() {
+                    var mta = document.createElement("script");
+                    mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";
+                    mta.setAttribute("name", "MTAH5");
+                    mta.setAttribute("sid", "500566864");
+                    var s = document.getElementsByTagName("script")[0];
+                    s.parentNode.insertBefore(mta, s);
+                })();
+         </script>
+	</body>
+</html>
+

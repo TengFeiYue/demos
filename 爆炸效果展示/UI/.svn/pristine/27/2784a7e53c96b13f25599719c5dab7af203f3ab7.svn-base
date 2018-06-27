@@ -1,0 +1,33 @@
+
+	<view class="con" style="height: {{sh}}px;">
+		<view class="first-title">成为材料人的营销利器</view>
+		<view class="second-title">
+			<image src="../resources/icons/whiteline.png"/>
+			<text>俺搜 · 找客户</text>
+		</view>
+		<view class="qrcode-box">
+			<view class="userImg">
+				<image src="{{info.userLogo}}"/>
+			</view>
+			<view class="qrcode-con">
+				<scroll-view scroll-x="{{true}}" scroll-y="{{false}}">
+					<view bindtap="previewImage">
+						<view class="qrcode-title">{{leftCont}}</view>
+						<image src="{{leftCont=='我的小程序码'?info.memberQrcode:info.enterpriseQrcode}}"/>
+					</view>
+					<view>
+						<view class="qrcode-title">{{rightCont}}</view>
+						<image src="{{leftCont=='我的企业码'?info.enterpriseQrcode:info.memberQrcode}}"/>
+					</view>
+				</scroll-view>
+			</view>
+			<view class="sw" bindtap="changesQrCode">
+				<image src="../resources/icons/righticon.png"/>
+			</view>
+			<view class="qrcode-tips">长按识别小程序码，进入属于你的电子名片</view>
+		</view>
+		<view class="con-tips">
+			<text>快速传播 便捷获取</text>
+			<text>高效工作 精准获客</text>
+		</view>
+	</view>

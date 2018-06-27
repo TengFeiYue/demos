@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="format-detection" content="telephone=no"/>		
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta charset="utf-8">
+		<title>邀请有礼</title>
+		<link rel="stylesheet" href="../bootstrap/bootstrap.min.css" />
+		<link rel="stylesheet" href="invitecss/base.css" />
+		<link rel="stylesheet" href="invitecss/media.css" />
+		<script src="../js/jquery-2.1.0.min.js"></script>
+		<script src="../js/bscroll.min.js"></script>
+		<script src="../js/axios.js"></script>
+		<script src="../js/vue.js"></script>
+		<script src="../js/vue-resource.min.js"></script>
+		<script src="../js/vue-router.js"></script>
+		<script src="../dev.js"></script>
+		<style>
+			.antsooLogo {
+			    padding: 1rem 0 1rem;
+			}
+			.moveDog{
+				z-index: 10;
+			}
+			.table>tbody>tr>td,
+			.table>tbody>tr>th,
+			.table>tfoot>tr>td,
+			.table>tfoot>tr>th,
+			.table>thead>tr>td,
+			.table>thead>tr>th {
+			    vertical-align: middle; 
+			}
+		</style>
+	</head>
+	<body>
+	  <div id="app">	
+		<header class="col-xs-12 p-0 header">
+			<img src="inviteImg/headerImg_02.png" alt="" />
+			<span class="regulations" @click="openRule"><img src="inviteImg/regulation_03.png" alt="" /></span>
+		</header>
+		<section class="col-xs-12 invitingProgress">
+			<div class="progressRuler">
+				<p class="moveDog" >
+					<span class="yourProgress">你的进度</span><br>
+					<span><img src="inviteImg/myProgress_11.png" alt="" /></span><br>
+					<span class="inviters" v-show="processCount!=5" v-if="processCount!=10">{{processCount}}人</span>
+				</p>
+				<p class='king' v-show="kingShow">
+					<span><img src="inviteImg/king_08.png" alt="" /></span><br>
+					<span class="inviters">5人</span>
+				</p>
+				<p class="end" @click="openStationTip" v-show="stationShow">
+					<span><img src="inviteImg/stationRecommand_05.png" alt="" /></span><br>
+					<span class="inviters">10人</span>
+				</p>
+			</div>
+			
+		</section>
+		<div class="col-xs-12 p-0 inviteNow text-center">
+				<a :href="'invite:8'"><img src="inviteImg/inviteNow_17.png" alt="" /></a>
+			</div>
+		<div class="col-xs-12 inviteContent">
+			<div class="myProfit">
+				<img src="inviteImg/partBg_07.png" class="bgHeight" alt="" />
+				<div class="myProfitCon">
+					<h3><span>我的收益</span></h3>
+					<ul class="list-inline">
+						<li>
+							<img src="inviteImg/scoreBg_25.png"/>
+							<span class="dt">俺搜积分</span>
+							<span class='dd'>{{score}}</span>
+						</li>
+						<li>
+							<img src="inviteImg/scoreBg_25.png"/>
+							<span class="dt">站内推荐</span>
+							<span class='dd'>{{pushCount}}</span>
+						</li>
+						<li>
+							<img src="inviteImg/scoreBg_25.png"/>
+							<span class="dt">成功邀请</span>
+							<span class='dd'>{{processCount}}</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="ProfitdDetail">
+				<img src="inviteImg/partBg_07.png" alt="" />	
+				<div class="ProfitTitle">
+					<h3><span>收益明细</span></h3>
+				</div>
+			</div>
+			<div class="ProfitdDetailCon">					
+					<table class="table" border="1">
+						<tr>
+							<th style="min-width: 12vw;">积分</th>
+							<th style="">描述</th>
+							<th style="min-width: 16vw;">状态</th>
+							<th style="min-width: 24vw;">日期</th>
+						</tr>						
+						<tr v-for="(val,index) in myDetail">
+							<td>{{val.getScore}}</td>
+							<td>{{val.mobile}}</td>
+							<td>{{val.status}}</td>
+							<td>{{val.createTime}}</td>
+						</tr>
+						
+						
+					</table>
+				</div>
+			 
+			<footer class="col-xs-12 text-center antsooLogo">
+			 <img src="inviteImg/logo_05.png" alt="" />
+		    </footer>
+		    <section id="layer" v-show="layerOpen"></section>
+		    <section id="layerBody" v-show="openRules">
+		    	 <img class="routesBg"  src="inviteImg/rules_03.png"/>
+		    	<span class="layerClose" @click="layerClose"><img src="inviteImg/close_07.png" alt="" /></span>
+		    	<div class="getScoreRules">
+			  		<h3><span>邀请好友，送俺搜积分</span></h3>
+				  	 <ul>
+				  	 	<li>1.即日起至6月30日0点,凡通过邀请链接领取俺搜礼包并在7天内注册成为俺搜会员,即可获得价值20元礼包一份;</li>
+				  	 	<li>2.注册成功后,内含200积分礼包即时到账,可到俺搜-会员中查看;</li>
+				  	 	<li>3.成功邀请一位好友下载并注册俺搜,即可获得20积分,最高可得1000积分;</li>
+				  	 	<li>4.俺搜可在法律范围内对本次活动规则进行解释;</li>
+				  	 </ul>					  		
+			  	</div>
+		    </section>
+		    <section id="layerBody_station" v-show="stationTips">
+		    	<span class="layerShutDown" @click="layerClose"><img src="inviteImg/close_07.png" alt="" /></span>
+		    	<div class="stationRecommand">
+			  		<h3><span>站内推荐</span></h3>
+				  	 <ul>
+				  	 	<li>根据您的需求，将您或贵企业推荐给俺搜APP精准客户。</li>				  	 	
+				  	 </ul>					  		
+			  	</div>
+		    </section>
+		</div>
+	  </div>
+		
+		<script type="text/javascript">
+		    new  Vue({
+				el:'#app',
+				data:{
+					layerOpen:false,
+					openRules:false,
+					stationTips:false,
+					fromId:-1,
+					processCount:0,
+					dogShow:true,
+					kingShow:true,
+					stationShow:true,
+					score:0,
+					pushCount:0,
+					myDetail:[]
+				},
+				mounted(){			
+				var _this=this;		   	 	
+				 this.$nextTick(function(){
+					_this.fromId=getQueryString('fromUserId');
+					_this.getInvitNumData();
+					_this.getDtailData();					
+					
+				})
+				},
+				methods:{
+					//获取好礼规则弹出框
+					openRule(){
+						this.layerOpen=true;
+						this.openRules=true;						
+					},
+					//站内推荐弹出框
+					openStationTip(){
+						this.layerOpen=true;
+						this.stationTips=true;						
+					},
+					layerClose(){
+						this.layerOpen=false;
+						this.openRules=false;
+						this.stationTips=false;						
+					},
+					//请求邀请人数数据
+					getInvitNumData(){					
+						var _this=this;	
+						var fromId=parseInt(this.fromId)
+						this.$http.post(appUrl+"/vip/successInviteGroup",{userId:fromId}).then(function(response){
+							//console.log(response)
+							var res=response.data.body;							
+							_this.processCount=res.successInviteCount;
+							_this.score=res.getTotalScore;	
+							_this.pushCount=res.getTotalPushCount;	
+							var moveCount=(_this.processCount*8)+'%';
+							$('.moveDog').css('left',moveCount);
+							if(_this.processCount==5){
+								$('.moveDog').css('bottom','-1.5rem')
+							}else if(_this.processCount==10){
+								$('.moveDog').css('bottom','-1.5rem')
+							}else{
+								$('.moveDog').css('bottom','-4.5rem')
+							};
+							if(moveCount=='40%'){
+								_this.dogShow=false;
+								_this.kingShow=true;
+							}else if(moveCount=='80%'){
+								_this.dogShow=false;
+								_this.stationShow=true;
+							}
+							
+						}).catch(function(err){
+		   	 			   console.log(err)
+		   	 		    });
+					},
+					//请求收益明细数据
+					getDtailData(){					
+						var _this=this;	
+						var fromId=parseInt(this.fromId)
+						this.$http.post(appUrl+"/vip/userInviteList",{userId:fromId}).then(function(response){
+							
+							var res=response.data;
+							if(res.isSuccess==1){
+								_this.myDetail=res.body;
+								console.log(_this.myDetail)
+							}else if(res.isSuccess==0){
+								
+							}
+							
+						}).catch(function(err){
+		   	 			   console.log(err)
+		   	 		    });
+					}
+					
+				}
+			})
+		</script>
+	</body>
+</html>
+

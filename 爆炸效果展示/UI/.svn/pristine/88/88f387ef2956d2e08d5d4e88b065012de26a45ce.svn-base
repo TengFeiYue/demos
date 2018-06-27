@@ -1,0 +1,18 @@
+// 引入组件
+import footComponent from "./common/footer"; // footer
+
+//弹出框组件
+import alertKnow from "./popup/alertKnow"; // alert-know(弹出知识)
+import alertCheck from "./popup/alertCheck"; // alertCheck(弹出提示-带验证)
+import alertTip from "./popup/alertTips"; // alertCheck(弹出提示-无验证)
+import delayTime from "./popup/delay"; // delay(黑底转圈)
+
+export default {
+	footComponent,
+	
+	//弹出框组件
+	alertKnow,
+	alertCheck,
+	alertTip,
+	delayTime,
+}

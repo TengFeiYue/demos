@@ -1,0 +1,76 @@
+
+  <view class="wraper">
+    <view class="head">
+        <view class="cityPos"><image class="pos" src="../resources/icons/position.png"/>{{currentCityName}}</view>
+        <view class="cares">
+            <view class="eye"><image src="../resources/img/eye.png"/>{{productDto.dailyBrowseNum}}</view>
+            <view class="collect" bindtap="collection">
+            <image src="../resources/img/share.png"  wx:if="{{!hasCollected}}"/>
+            <image src="../resources/img/shared.png"  wx:if="{{hasCollected}}"/>收藏</view>
+        </view>
+    </view>
+    </view>
+    <view class="wraper">
+        <view class="materialInfos">
+         <view class="materialPic">
+                <view  wx:if="{{productDto.productType=='原料'}}"><image src="../resources/img/materialPic.png"/></view>
+                <view  wx:if="{{productDto.productType=='改性料'}}"><image src="../resources/img/betterMaterial.png"/></view>
+                <view wx:if="{{productDto.productType=='辅料'}}"><image src="../resources/img/accessory.png"/></view>
+                <view wx:if="{{productDto.productType=='回料'}}"><image src="../resources/img/recirculatMaterial.png"/></view>
+         </view>
+         <view class="materialInfo">
+              <view class="h3">{{productDto.productName}}</view>
+              <view class="price_display">{{productDto.priceString}}</view>
+              <view class="tradeAdd"><text class="address">交货地：{{productDto.deliveryPlace}}</text></view>
+         </view>
+       </view>
+    </view>
+
+
+   <view class="descriptionTitle">详细描述</view>
+   <view class="descriptions">
+       <view class="desPic">
+         <image src="{{(productDto.photoList==null||productDto.photoList.length==0)?'../resources/img/noMaterialPic.png':productDto.photoList[0]}}"/>
+       </view>
+       <view class="desWords">
+           {{productDto.remark}}
+       </view>
+   </view>
+   <view class="descriptionTitle"  wx:if="{{MaterialDetailList.length!=0}}">其他报价信息</view>
+  <view class="scrollWrap">
+  <view class="container-body">
+   <view class="ul">
+             <view class="li"  wx:for="{{MaterialDetailList}}" wx:key="{{index}}" data-id="{{item.id}}" bindtap="toOtherPriceInfo">
+                <view class="otherMaterialPic">
+                    <view wx:if="{{item.productType=='原料'}}"><image src="../resources/img/materialPic.png"/></view>
+                    <view wx:if="{{item.productType=='改性料'}}"><image src="../resources/img/betterMaterial.png"/></view>
+                    <view wx:if="{{item.productType=='辅料'}}"><image src="../resources/img/accessory.png"/></view>
+                    <view wx:if="{{item.productType=='回料'}}"><image src="../resources/img/recirculatMaterial.png"/></view>
+                </view>
+                <view class="otherMaterialInfo">
+                    <view class="otherMaterialName">
+                       <text class="h3">{{item.productName}}</text>
+                        <view class="proDes">{{item.remark}}</view>
+                       <text class="price_display">{{item.priceString}}</text>
+                    </view>
+                    <view class="otherMaterialDes">
+                    </view>
+                    <view class="otherMaterialAdd">
+                        <text class="address">交货地：{{item.deliveryPlace}}</text>
+                        <text class="time">{{item.timeAgo}}</text>
+                    </view>
+                </view>
+             </view>
+   </view>
+</view>
+</view>
+<view class="fixedBottom" data-uid="{{userDto.userId}}" bindtap="toMarketingDetail">
+    <view class="companyLogo"><image src="{{userDto.userLogo}}"/></view>
+    <view class="linkName">
+          <view style="padding-bottom:25rpx;"><text class="name">{{userDto.name}}</text><text class="runingWays">{{userDto.businessMode}}</text></view>
+          <view class="comName">{{userDto.enterpriseName}}</view>
+    </view>
+    <view class="linkBtn" data-tel="{{userDto.phone}}" data-uid="{{userDto.userId}}" catchtap="startCall">
+          <text>一键联系</text>
+    </view>
+</view>

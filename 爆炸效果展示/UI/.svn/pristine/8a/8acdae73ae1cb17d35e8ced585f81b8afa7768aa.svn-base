@@ -1,0 +1,14 @@
+@import "./../components/tab/tabPages/my.wxss";
+@import "./../components/tab/tabPages/company.wxss";
+@import "./../components/tab/tabPages/connections.wxss";
+@import "./../components/tab/tabPages/index.wxss";
+@import "./../components/tab/tabBar.wxss";
+.tab_item {
+  height: 91%;
+}
+page,
+.body {
+  height: 100%;
+  font-family: PingFangSC-Regular;
+  background-color: #ffffff;
+}

@@ -1,0 +1,128 @@
+<style type="scss">
+page,
+.body {
+    height: 100%;
+    font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+    background-color: #eeeeee;
+    font-size:14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-item:center;
+    justify-content:center;
+}
+.changeCon{
+  flex:10;
+  width:204rpx;
+  height:256rpx;
+  background: #FFFFFF;
+  border-radius: 8rpx;
+  .changeContent{
+      display:inline-block;
+      padding:16rpx;
+      .h3{
+          font-size: 36rpx;
+          color: #333333;
+          letter-spacing: -0.43px;
+      }
+      .duty{
+         border-bottom:1px solid #eeeeee;
+      }
+      .changeConDl{
+         padding:11rpx 0;
+         text{
+              font-size: 32rpx;
+              color: #333333;
+              letter-spacing: -0.38px;
+         }
+         image{
+            width:140rpx;
+            height:80rpx;
+         }
+      }
+  }
+  .opButtons{
+      display: flex;
+      flex-direction: row;
+      align-item:center;
+      justify-content:space-between;
+      font-size: 18rpx;
+      color: #FFFFFF;
+      letter-spacing: -0.19px;
+      .cancelBtn{
+         flex:1;
+         display:inline-block;
+         width:145rpx;
+         height:48rpx;
+         background: #CCCCCC;
+         border-radius: 8rpx;
+      }
+      .subBtn{
+        flex:1;
+        display:inline-block;
+        width:145rpx;
+        height:48rpx;
+        background: #0092FF;
+        border-radius: 8rpx;
+      }
+  }
+}
+
+</style>
+<template>
+    <!--<view class="body">
+        <view class="changeCon">
+            <view class="changeContent">
+                 <view class="h3">名片职位变更</view>
+                 <view class="changeConItem">
+                    <view class="changeConDl duty">
+                      <text>名片职位</text>
+                      <input placeholder="请输入新名片职位" />
+                    </view>
+                    <view class="changeConDl>
+                    <text>名片</text>
+                    <!--<image src=""></image>-->
+                    </view>
+                 </view>
+                 <view class="opButtons">
+                      <text class="cancelBtn">取消</text>
+                      <text class="subBtn">提交</text>
+                 </view>
+            </view>
+
+
+        </view>
+    </view>-->
+
+</template>
+
+<script>
+import wepy from 'wepy'
+import { api } from '../config'
+export default class cardPositionChange extends wepy.page {
+    config = {
+        'navigationBarTitleText': '名片职位变更',
+        'navigationBarTextStyle': '#FFFFFF',
+        'navigationBarBackgroundColor': '#0386FF'
+    }
+
+    components = {
+    }
+
+    data = {
+
+    }
+
+    methods = {
+
+        }
+
+    onShow() {
+
+    }
+    onLoad() {
+
+    }
+
+}
+</script>

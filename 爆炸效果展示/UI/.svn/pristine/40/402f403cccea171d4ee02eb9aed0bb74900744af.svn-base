@@ -1,0 +1,191 @@
+page,
+.body {
+  height: 100%;
+  font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+  background-color: #f0eff5;
+  font-size: 14px;
+  overflow: hidden; }
+
+.shadow {
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  bottom: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.5); }
+
+.contactInfo {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 2;
+  height: 300px;
+  background: white; }
+  .contactInfo .title {
+    display: flex;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #239FDB; }
+    .contactInfo .title .text {
+      flex: 1;
+      font-size: 16px;
+      font-weight: bold;
+      padding-left: 20px;
+      vertical-align: middle; }
+    .contactInfo .title .btn {
+      width: 60px;
+      text-align: center;
+      color: #239FDB; }
+  .contactInfo .list {
+    display: flex;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    flex-direction: column;
+    background: white;
+    padding-left: 60px;
+    font-size: 16px; }
+    .contactInfo .list image {
+      margin-right: 8px; }
+    .contactInfo .list .row {
+      display: flex;
+      margin-top: 10px;
+      flex-direction: row; }
+      .contactInfo .list .row .name {
+        width: 60px;
+        color: grey;
+        text-align: left; }
+      .contactInfo .list .row .value {
+        flex: 1; }
+
+.bottom {
+  display: flex;
+  position: fixed;
+  bottom: 0px;
+  flex-direction: row;
+  height: 60px;
+  background: white;
+  width: 100%; }
+  .bottom .browse {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%; }
+    .bottom .browse image {
+      width: 26px;
+      height: 15px;
+      margin-bottom: 5px; }
+  .bottom .favorite {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: grey;
+    width: 25%; }
+    .bottom .favorite image {
+      width: 25px;
+      height: 25px; }
+  .bottom .contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #239FDB;
+    width: 50%; }
+    .bottom .contact .text {
+      color: white;
+      font-weight: bold;
+      font-size: 16px; }
+
+.detailInfo {
+  display: flex;
+  flex-direction: row;
+  background: white;
+  border-bottom: 1px solid #239FDB;
+  padding: 10px; }
+  .detailInfo .left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px; }
+    .detailInfo .left image {
+      width: 50px;
+      height: 50px; }
+  .detailInfo .right {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-left: 10px; }
+    .detailInfo .right .title {
+      display: flex;
+      font-size: 16px;
+      font-weight: bold;
+      color: grey; }
+    .detailInfo .right .serviceList {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap; }
+      .detailInfo .right .serviceList .serviceImg {
+        margin-right: 8px;
+        margin-top: 5px;
+        margin-bottom: 5px; }
+        .detailInfo .right .serviceList .serviceImg image {
+          width: 20px;
+          height: 20px; }
+
+.gototop {
+  position: fixed;
+  bottom: 140rpx;
+  right: 20rpx;
+  transition: all 0.3s;
+  opacity: 0;
+  z-index: 12;
+  transform: translateY(200rpx) rotate(180deg); }
+
+.gototop.active {
+  opacity: 0.9;
+  transform: translateY(0) rotate(180deg); }
+
+.productList .item {
+  display: flex;
+  flex-direction: row;
+  background: white;
+  margin-bottom: 8px; }
+  .productList .item .title {
+    flex: 1;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 2px;
+    flex-wrap: wrap;
+    margin-right: 20px;
+    margin-left: 8px;
+    margin-top: 8px; }
+    .productList .item .title .subTitle {
+      font-size: 12px;
+      color: grey;
+      font-weight: normal;
+      padding-bottom: 10px;
+      padding-top: 10px; }
+  .productList .item .price {
+    width: 100px;
+    margin-right: 5px;
+    font-size: 14px;
+    padding: 2px;
+    margin-top: 8px;
+    color: #ff7700;
+    font-weight: bold;
+    margin-right: 20px; }
+  .productList .item .delivery {
+    font-size: 12px;
+    color: grey;
+    padding-top: 10px; }
+  .productList .item .img {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+    .productList .item .img image {
+      width: 60px;
+      height: 60px; }

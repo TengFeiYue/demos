@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta name="format-detection" content="telephone=no" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+        <meta charset="utf-8">
+        <title>俺搜</title>
+        <link rel="stylesheet" href="../bootstrap/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/base.css" />
+        <link rel="stylesheet" href="css/media.css" />
+        <script src="../js/jquery-2.1.0.min.js"></script>
+        <script src="../js/bscroll.min.js"></script>
+        <script src="../js/vue.js"></script>
+        <script src="../js/myComponent.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../js/vue-resource.min.js"></script>
+        <script src="../js/vue-router.js"></script>
+        <script src="../dev.js"></script>
+    </head>
+
+    <body style="padding-bottom:5rem;">
+        <div class="container-fluid p-0" id="app">
+            <section class="col-xs-12 companyBanner">
+                <h3 class="text-center m-t-0">{{contentDatas.name}}</h3>
+                <p class="materialType"><span v-for="item in secondCategory">{{item}}</span></p>
+                <!--<div class="col-xs-12">
+  	 		<div class="col-xs-3 p-r-0">注册时间</div>
+  	 		<div class="col-xs-7 ">2010-03-03</div>
+  	 	</div>-->
+                <div class="col-xs-12">
+                    <div class="col-xs-3 p-r-0">经营模式</div>
+                    <div class="col-xs-7 ">{{contentDatas.businessMode}}</div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="col-xs-3 p-r-0">服务区域</div>
+                    <div class="col-xs-7 ">{{contentDatas.serviceArea}}</div>
+                </div>
+            </section>
+            <section class="container-fluid p-0" style="padding-bottom:4vh;">
+                <div class="col-xs-12 p-0">
+                    <p class="CompanyAddress ComAdd">企业地址:{{contentDatas.address}}</p>
+                </div>
+            </section>
+            <section class="container-fluid p-0 b-w" style="padding-bottom:2vh;">
+                <div class="col-xs-12 comInfo p-0">
+                    <div class="col-xs-6 pull-left">
+                        <h3>企业信息</h3>
+                    </div>
+                    <!--<div class="col-xs-2 pull-right">
+	 			<h3>
+ 		 		 <img src="img/up.png" width="70%" alt="" />
+	 		   </h3>
+	 		</div>-->
+                </div>
+                <div class="col-xs-12 distance" v-if="contentDatas.baseSecondCategory==''?false:true" v-show="contentDatas.baseSecondCategory==null?false:true">
+                    <div class="col-xs-4 p-r-0">主营行业</div>
+                    <div class="col-xs-8">{{contentDatas.baseSecondCategory}}</div>
+                </div>
+                <div class="col-xs-12 distance" v-if="contentDatas.customerGroup==''?false:true" v-show="contentDatas.customerGroup==null?false:true">
+                    <div class="col-xs-4 p-r-0">主要客户群体</div>
+                    <div class="col-xs-8">{{contentDatas.customerGroup}}</div>
+                </div>
+                <div class="col-xs-12 distance" v-if="contentDatas.isProcess==''?false:true" v-show="contentDatas.isProcess==null?false:true">
+                    <div class="col-xs-4 p-r-0">是否提供加工/定制服务</div>
+                    <div class="col-xs-8" style="padding-top:2vh"><span v-if="contentDatas.isProcess==1">是</span><span v-if="contentDatas.isProcess==0">否</span></div>
+                </div>
+                <div class="col-xs-12 distance" v-if="contentDatas.processingMethod==''?false:true" v-show="contentDatas.processingMethod==null?false:true">
+                    <div class="col-xs-4 p-r-0">加工方式</div>
+                    <div class="col-xs-8">{{contentDatas.processingMethod}}</div>
+                </div>
+                <div class="col-xs-12 distance" v-if="contentDatas.craft==''?false:true" v-show="contentDatas.craft==null?false:true">
+                    <div class="col-xs-4 p-r-0">工艺</div>
+                    <div class="col-xs-8">{{contentDatas.craft}}</div>
+                </div>
+                <div class="col-xs-12 distance" v-if="contentDatas.managementSystemCertification==''?false:true" v-show="contentDatas.managementSystemCertification==null?false:true">
+                    <div class="col-xs-4 p-r-0">管理体系认证</div>
+                    <div class="col-xs-8">{{contentDatas.managementSystemCertification}}</div>
+                </div>
+                <div class="col-xs-12 distance" v-if="contentDatas.productQualityCertification==''?false:true" v-show="contentDatas.productQualityCertification==null?false:true">
+                    <div class="col-xs-4 p-r-0">产品质量认证</div>
+                    <div class="col-xs-8">{{contentDatas.productQualityCertification}}</div>
+                </div>
+                <div class="col-xs-12 distance" v-if="contentDatas.plantArea==''?false:true" v-show="contentDatas.plantArea==null?false:true">
+                    <div class="col-xs-4 p-r-0">厂房面积</div>
+                    <div class="col-xs-8">{{contentDatas.plantArea}}</div>
+                </div>
+                <div class="col-xs-12 distance" v-if="contentDatas.employeeNum==''?false:true" v-show="contentDatas.employeeNum==null?false:true">
+                    <div class="col-xs-4 p-r-0">员工人数</div>
+                    <div class="col-xs-8">{{contentDatas.employeeNum}}</div>
+                </div>
+                <div class="col-xs-12 distance" v-if="contentDatas.monthlyOutput==''?false:true" v-show="contentDatas.monthlyOutput==null?false:true">
+                    <div class="col-xs-4 p-r-0">月产量</div>
+                    <div class="col-xs-8">{{contentDatas.monthlyOutput}}</div>
+                </div>
+                <div class="col-xs-12 distance" v-if="contentDatas.yearSalesVolume==''?false:true" v-show="contentDatas.yearSalesVolume==null?false:true">
+                    <div class="col-xs-4 p-r-0">年营业额</div>
+                    <div class="col-xs-8">{{contentDatas.yearSalesVolume}}</div>
+                </div>
+                <div class="col-xs-12 distance" v-if="contentDatas.yearExportVolume==''?false:true" v-show="contentDatas.yearExportVolume==null?false:true">
+                    <div class="col-xs-4 p-r-0">年出口额</div>
+                    <div class="col-xs-8">{{contentDatas.yearExportVolume}}</div>
+                </div>
+
+            </section>
+            <div class="col-xs-12 icbcInfo p-0">
+                <a href="http://www.antsoo.com/appdownload.shtml">
+                    <div class="col-xs-6 pull-left">
+                        <h3>工商信息</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="col-xs-12 mainProduct p-0">
+                <a href="http://www.antsoo.com/appdownload.shtml">
+                    <div class="col-xs-6 pull-left">
+                        <h3>主营产品</h3>
+                    </div>
+                </a>
+
+            </div>
+            <p class="col-xs-12 b-w mainPros">{{contentDatas.mainProduct}}</p>
+            <footer-download v-if="!showToward"></footer-download>
+        </div>
+
+        <script type="text/javascript">
+            new Vue({
+                el: '#app',
+                data: {
+                    showDownLoad: true,
+                    contentDatas: {},
+                    secondCategory: [],
+                    enterpriseId: -2,
+                    fromSys: '',
+                    showToward: true
+                },
+                mounted: function() {
+                    var _this = this;
+                    _this.enterpriseId = getQueryString('enterpriseId');
+                    this.$nextTick(function() {
+                        _this.fromSys = getQueryString('fromSys');
+                        _this.isShare();
+                        _this.fetchData();
+
+                    })
+                },
+                methods: {
+                    isShare() {
+                        if(this.fromSys == 'app') {
+                            this.showToward = false;
+                        } else {
+                            document.body.style.paddingBottom = '0px';
+                        }
+                    },
+                    fetchData: function() {
+                        var _this = this;
+                        console.log(_this.enterpriseId)
+                        this.$http.post(appUrl + "/enterprise/baseInfo", {
+                            enterpriseId: _this.enterpriseId
+                        }).then(function(response) {
+                            var res = response.body;
+                            console.log(res.body)
+                            if(res.isSuccess == 1) {
+                                _this.contentDatas = res.body;
+                                _this.cut();
+                            }
+
+                        }).catch(function(err) {
+                            console.log(err)
+                        })
+
+                    },
+                    cut: function() {
+                        var _this = this;
+                        _this.secondCategory = _this.contentDatas.baseSecondCategory.split(',');
+                    }
+                }
+            })
+        </script>
+    </body>
+
+</html>

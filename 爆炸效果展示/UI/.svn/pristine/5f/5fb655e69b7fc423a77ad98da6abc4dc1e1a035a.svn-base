@@ -1,0 +1,99 @@
+<style type="scss">
+page,
+.body {
+    height: 100%;
+    font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+    background-color: #eeeeee;
+    font-size:14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.exitBanner{
+   text-align:center;
+   padding:40rpx;
+    image{
+      width:156rpx;
+      height:168rpx;
+    }
+    .exitTips{
+      width:432rpx;
+      padding-top:60rpx;
+      padding-bottom:234rpx;
+      font-size: 36rpx;
+      color: #128EFF;
+      margin:0 auto;
+      line-height:50rpx;
+      text{
+         display:block;
+      }
+    }
+}
+.exitBtn{
+  padding:0 40rpx;
+  width:90%;
+  margin:0 auto;
+  button{
+     width:670rpx;
+     height:94rpx;
+     text-align:center;
+     line-height:94rpx;
+     background: #E64340;
+      border: 2rpx solid rgba(5,5,5,0.08);
+      border-radius: 10rpx;
+      font-size: 36rpx;
+      color: #FFFFFF;
+  }
+}
+</style>
+<template>
+    <view class="body">
+        <view class="exitBanner">
+            <image src="../resources/img/tips.png"></image>
+            <view class="exitTips">
+              <text>报价功能需先登录!</text>
+              <text>退出后，您将无法进行报价</text>
+            </view>
+        </view>
+         <view class="exitBtn">
+            <button bindtap="exitLogin"> 退出</button>
+         </view>
+    </view>
+
+</template>
+
+<script>
+import wepy from 'wepy'
+import { api } from '../config'
+export default class exit extends wepy.page {
+    config = {
+        'navigationBarTitleText': '退出',
+        'navigationBarTextStyle': '#FFFFFF',
+        'navigationBarBackgroundColor': '#0092FF'
+    }
+
+    components = {
+    }
+
+    data = {
+
+    }
+
+    methods = {
+           exitLogin(){
+               wx.removeStorageSync('antUserInfo');
+               console.log(wx.getStorageSync('antUserInfo'))
+               wx.reLaunch({
+                   url: 'index'
+               })
+           }
+        }
+
+    onShow() {
+    }
+    onLoad() {
+
+    }
+
+}
+</script>

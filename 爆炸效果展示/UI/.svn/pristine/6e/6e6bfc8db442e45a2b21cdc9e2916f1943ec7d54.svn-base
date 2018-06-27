@@ -1,0 +1,327 @@
+page,
+.body {
+  height: 100%;
+  font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+  background-color: #eeeeee;
+  font-size: 14px;
+  overflow: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column; }
+
+.hasConfirm {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: #FFFFFF;
+  padding: 20rpx 30rpx;
+  border-top: 1px solid #eeeeee; }
+  .hasConfirm .antsooLogo {
+    flex: 1;
+    padding-right: 30rpx; }
+    .hasConfirm .antsooLogo image {
+      width: 92rpx;
+      height: 102rpx; }
+  .hasConfirm .txt {
+    flex: 5;
+    font-size: 28rpx;
+    color: #000000; }
+  .hasConfirm .toConfirm {
+    display: inline-block;
+    width: 128rpx;
+    height: 48rpx;
+    color: #0092FF;
+    border: 1px solid #0092FF;
+    border-radius: 8rpx;
+    text-align: center;
+    line-height: 48rpx;
+    font-size: 24rpx; }
+
+.confirmWraper {
+  position: relative;
+  background: #ffffff; }
+  .confirmWraper .banner {
+    padding-left: 20rpx;
+    border-top: 30rpx solid #eeeeee;
+    border-bottom: 30rpx solid #eeeeee; }
+    .confirmWraper .banner .confirmDl {
+      padding: 15rpx 0;
+      border-bottom: 1px solid #eeeeee;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center; }
+      .confirmWraper .banner .confirmDl .confirmDt {
+        flex: 2;
+        font-size: 32rpx;
+        color: #000000;
+        letter-spacing: 0; }
+      .confirmWraper .banner .confirmDl picker {
+        flex: 8; }
+      .confirmWraper .banner .confirmDl .confirmDd {
+        flex: 8; }
+        .confirmWraper .banner .confirmDl .confirmDd input {
+          font-size: 30rpx;
+          color: #888888;
+          letter-spacing: 0;
+          text-align: right; }
+      .confirmWraper .banner .confirmDl .confirmTo {
+        flex: 1;
+        text-align: center; }
+        .confirmWraper .banner .confirmDl .confirmTo image {
+          width: 16rpx;
+          height: 26rpx;
+          position: relative;
+          top: 5rpx; }
+  .confirmWraper .wraper {
+    padding-left: 20rpx; }
+    .confirmWraper .wraper .confirmDl {
+      position: relative;
+      padding: 15rpx 0;
+      border-bottom: 1px solid #eeeeee;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center; }
+      .confirmWraper .wraper .confirmDl .confirmDt {
+        flex: 3;
+        font-size: 32rpx;
+        color: #000000;
+        letter-spacing: 0;
+        text-align: left; }
+      .confirmWraper .wraper .confirmDl picker {
+        flex: 8; }
+      .confirmWraper .wraper .confirmDl .confirmDd {
+        flex: 8; }
+        .confirmWraper .wraper .confirmDl .confirmDd input {
+          font-size: 30rpx;
+          color: #888888;
+          letter-spacing: 0;
+          text-align: right; }
+      .confirmWraper .wraper .confirmDl .confirmTo {
+        flex: 1;
+        text-align: center; }
+        .confirmWraper .wraper .confirmDl .confirmTo image {
+          width: 16rpx;
+          height: 26rpx;
+          position: relative;
+          top: 5rpx; }
+      .confirmWraper .wraper .confirmDl .pNameSelect {
+        position: absolute;
+        bottom: 62rpx;
+        right: 70rpx;
+        width: 300rpx;
+        box-shadow: 0 2px 5px #ccc;
+        background: #ffffff;
+        z-index: 1000;
+        line-height: 40rpx;
+        font-size: 24rpx;
+        padding: 8rpx 0;
+        border-top: 1px solid #eee; }
+        .confirmWraper .wraper .confirmDl .pNameSelect .pNameOpt {
+          width: 299rpx;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          padding: 0 8rpx; }
+  .confirmWraper .companyArea {
+    text-align: right; }
+    .confirmWraper .companyArea input {
+      display: inline-block;
+      width: 130rpx; }
+  .confirmWraper .btn-area {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #eeeeee;
+    padding: 50rpx 0; }
+    .confirmWraper .btn-area .btnSub {
+      width: 100%;
+      height: 94rpx;
+      background: #128EFF;
+      border-radius: 0;
+      text-align: center;
+      font-size: 36rpx;
+      color: #FFFFFF; }
+    .confirmWraper .btn-area .btnSubDis {
+      width: 100%;
+      height: 94rpx;
+      background: #128EFF;
+      border-radius: 0;
+      text-align: center;
+      font-size: 36rpx;
+      color: #FFFFFF;
+      opacity: .6; }
+
+.changeInfoLayer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  opacity: .6;
+  z-index: 100; }
+
+.changeInfoLayerCon {
+  position: fixed;
+  top: 130rpx;
+  right: 30rpx;
+  width: 252rpx;
+  background: #ffffff;
+  border-radius: 4px;
+  font-size: 24rpx;
+  color: #999999;
+  letter-spacing: 0;
+  padding: 12rpx;
+  z-index: 1000; }
+  .changeInfoLayerCon image {
+    width: 30rpx;
+    height: 20rpx;
+    position: absolute;
+    top: -16rpx;
+    right: 40rpx; }
+
+.OperateLayerCon {
+  position: fixed;
+  width: 100%;
+  top: 25%;
+  z-index: 1000;
+  text-align: center; }
+  .OperateLayerCon .ConDetail {
+    display: inline-block;
+    width: 80%;
+    background: #ffffff;
+    border-radius: 8rpx;
+    padding: 30rpx; }
+    .OperateLayerCon .ConDetail .layerTitle {
+      font-size: 36rpx;
+      color: #333333;
+      letter-spacing: -0.43px;
+      padding-bottom: 20rpx; }
+    .OperateLayerCon .ConDetail .layerDl {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 32rpx;
+      color: #333333;
+      letter-spacing: -0.38px;
+      border-bottom: 1px solid #ECECEC;
+      padding: 20rpx 0; }
+      .OperateLayerCon .ConDetail .layerDl .layerDt {
+        flex: 3;
+        text-align: left; }
+      .OperateLayerCon .ConDetail .layerDl picker {
+        flex: 8; }
+      .OperateLayerCon .ConDetail .layerDl .layerDd {
+        flex: 6; }
+        .OperateLayerCon .ConDetail .layerDl .layerDd .pClass {
+          font-size: 32rpx;
+          color: #999999;
+          letter-spacing: -0.38px;
+          text-align: left; }
+    .OperateLayerCon .ConDetail .auditRes {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 32rpx;
+      color: #333333;
+      letter-spacing: -0.38px;
+      border-bottom: 1px solid #ECECEC;
+      padding: 20rpx 0; }
+      .OperateLayerCon .ConDetail .auditRes .layerDt {
+        flex: 3;
+        text-align: left; }
+      .OperateLayerCon .ConDetail .auditRes .layerDd {
+        flex: 6;
+        font-size: 32rpx;
+        color: #999999;
+        letter-spacing: -0.38px;
+        text-align: left; }
+    .OperateLayerCon .ConDetail .upload {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      font-size: 32rpx;
+      color: #333333;
+      letter-spacing: -0.38px;
+      padding: 30rpx 0; }
+      .OperateLayerCon .ConDetail .upload .uploadDl {
+        flex: 3;
+        text-align: left; }
+      .OperateLayerCon .ConDetail .upload .uploadImg {
+        flex: 6; }
+        .OperateLayerCon .ConDetail .upload .uploadImg image {
+          width: 260rpx;
+          height: 150rpx; }
+    .OperateLayerCon .ConDetail .operateBtn {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 30rpx;
+      font-size: 36rpx;
+      color: #FFFFFF;
+      letter-spacing: -0.19px; }
+      .OperateLayerCon .ConDetail .operateBtn .opCancel {
+        flex: 3;
+        display: inline-block;
+        height: 88rpx;
+        background: #CCCCCC;
+        border-radius: 8rpx;
+        text-align: center;
+        line-height: 88rpx; }
+      .OperateLayerCon .ConDetail .operateBtn .gap {
+        flex: 1; }
+      .OperateLayerCon .ConDetail .operateBtn .opSubmit {
+        flex: 3;
+        display: inline-block;
+        height: 88rpx;
+        background: #0092FF;
+        border-radius: 8rpx;
+        text-align: center;
+        line-height: 88rpx; }
+    .OperateLayerCon .ConDetail .layercontent {
+      font-size: 32rpx;
+      color: #999999;
+      letter-spacing: -0.38px;
+      line-height: 48rpx;
+      text-align: center;
+      padding-bottom: 20rpx; }
+    .OperateLayerCon .ConDetail .layerFooter {
+      font-size: 36rpx;
+      color: #0092FF;
+      letter-spacing: -0.43px;
+      border-top: 1px solid #ECECEC;
+      padding-top: 30rpx; }
+
+.view {
+  background: #333333;
+  color: #ffffff;
+  width: 270rpx;
+  height: 270rpx;
+  position: fixed;
+  z-index: 1000000;
+  left: 50%;
+  top: 50%;
+  border-radius: 10rpx;
+  margin-top: -135rpx;
+  margin-left: -135rpx;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center; }
+  .view .tipPic {
+    flex: 1;
+    padding-top: 36rpx; }
+    .view .tipPic image {
+      width: 100rpx;
+      height: 100rpx; }
+  .view text {
+    flex: 1;
+    padding: 0 15rpx; }

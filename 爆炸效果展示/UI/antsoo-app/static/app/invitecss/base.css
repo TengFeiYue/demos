@@ -1,0 +1,382 @@
+*{margin:0;padding:0}
+a{text-decoration: none;}
+ul{list-style: none;}
+.p-0{padding:0}
+.m-0{margin:0}
+.p-t-0{padding-top:0}
+.p-b-0{padding-bottom:0}
+.p-l-0{padding-left:0}
+.p-r-0{padding-right:0}
+.m-t-0{margin-top:0}
+.m-b-0{margin-bottom:0}
+.b-w{background:#fff;}
+.c-w{color:#fff;}
+
+/*downloadAPP*/
+body{
+	background:#feeeaa;
+}
+header img{
+	width:100%;
+}
+.inviteContent{
+	margin-top:1rem;
+}
+.getRedPack{
+	position:relative;
+}
+.getRedPack img{
+	width:100%;
+}
+.getRedPackBackground{
+	height:20rem;
+}
+.inset-get{
+	width:100%;
+	position:absolute;
+	top:0;
+}
+.cash{
+	color: #985923;
+    font-size: 2rem;
+    line-height: 6rem;
+}
+.cash .packMoney{
+	color: #f30b0b;
+    font-weight: bold;
+    font-size: 3rem;
+}
+#phone{
+	background: #ffe590;
+    border: 1px solid #d7b98c;
+    text-align: center;
+    height: 4rem;
+    width: 90%;  
+    font-size: 1.6rem;
+}
+#phone::-webkit-input-placeholder { /* WebKit browsers */
+    color: #ff9821;
+}
+#phone:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #ff9821;
+}
+#phone::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #ff9821;
+}
+#phone:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #ff9821;
+}
+.getRedPack .btn{
+	display:block;
+	margin-top: 0rem;	
+}
+.getRedPack .btn img{
+	width:21rem;
+}
+.prizeTip{
+	position:relative;
+	margin-top: 2rem;
+}
+.prizeTip img {
+    width: 100%;
+    height: 24rem;
+}
+.prizeTip .rules{
+	position:absolute;
+	top:0;
+	color:#666;
+}
+.prizeTip .rules h3{
+	text-align: center;
+	font-size:2rem;
+}
+.rules h3 span {
+    display: inline-block;
+    border-right: 3rem solid #666;
+    border-left: 3rem solid #666;
+    line-height: 1px;
+    padding: 0 1rem;
+}
+.rules ul{
+	line-height: 2rem;
+    padding: 0 2rem;
+}
+.antsooLogo{
+	padding: 3rem 0 1rem;
+}
+.antsooLogo img{
+	width: 4rem;
+}
+/*邀请有礼*/
+.header{
+	position:relative;
+}
+.regulations{
+	position:absolute;
+	top:5rem;
+	right:0;
+}
+.regulations img{
+	width:5rem;
+}
+.invitingProgress{
+	padding-top:8rem;
+}
+.progressRuler{
+	position: relative;
+    height: 1rem;
+    width: 100%;
+    margin: 0 auto;
+    background: #ffd653;
+    border-radius: 4rem;
+}
+.moveDog,.king,.end{
+	position:absolute;
+	display:none;
+}
+.moveDog{
+	display: block;
+    text-align: center;
+    bottom: -4.5rem;
+    left:8%;
+    color:#d99329;
+}
+.moveDog img{
+	width:3rem;
+}
+.inviters{
+	display:inline-block;
+	line-height:3rem;
+}
+.king{
+	display: block;
+    text-align: center;
+    bottom: -3.9rem;
+    left: 38%;
+    color: #d99329;
+}
+.king img{
+	width:6rem;
+}
+.end{
+	display: block;
+    text-align: center;
+    bottom: -3.9rem;
+    left: 80%;
+    color: #d99329;
+}
+.end img{
+	width:6rem;
+}
+.inviteNow{
+  margin-top: 5rem;
+}
+.inviteNow img{
+	width:60%;
+}
+.myProfit,.ProfitdDetail{
+	position: relative;
+    margin: 2rem 0;
+}
+.ProfitdDetail{
+	height: 6rem;
+    overflow: hidden;
+    margin-bottom: 0;
+}
+.myProfit img,.ProfitdDetail img{
+	width:100%;
+}
+.myProfitCon{
+	width:100%;
+	position:absolute;
+	top:0;
+	left:0;
+}
+.myProfitCon h3{
+	text-align: center;
+    margin-bottom: 2rem;
+    color: #985923;
+    font-size: 2rem;
+    font-weight: bold;
+	
+}
+.myProfitCon h3 span{
+	display:inline-block;
+	padding-left:2rem;
+	background:url(../inviteImg/myYiel_21.png) no-repeat left center;
+	background-size:1.4rem;
+}
+.ProfitTitle h3{
+	position:absolute;
+	top:0;
+	left:0;
+	text-align: center;
+    margin-bottom: 2rem;
+    color: #985923;
+    font-size: 2rem;
+    font-weight: bold;
+	width: 100%;
+}
+.ProfitTitle h3 span{
+	display:inline-block;
+	padding-left:2rem;
+	background:url(../inviteImg/yielDetail_25.png) no-repeat left center;
+	background-size:1.3rem;
+}
+.bgHeight{
+	height:15rem;
+}
+
+.myProfitCon ul{
+	width: 96%;
+    margin: 0 auto;
+    color: #985923;
+}
+.myProfitCon ul li{
+	position: relative;
+    padding: 0;
+    margin-right: 10%;
+}
+.myProfitCon ul li:last-child{
+	margin-right:0;
+}
+.myProfitCon ul li img{
+	width:8rem;
+}
+.myProfitCon ul li span{
+	position:absolute;
+	display:inline-block;
+	width:100%;
+	text-align: center;
+	line-height: 3rem;
+}
+.myProfitCon ul li .dt{
+	top:0;
+}
+.myProfitCon ul li .dd{
+	font-weight: bold;
+    font-size: 1.8rem;
+    bottom: 0;
+}
+.ProfitdDetailCon{
+	background: #fff5c8;
+    padding-bottom: 2rem;
+}
+.table {
+    width: 90%;
+    max-width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    color: #985923;
+    border-color: #d7b98c;
+    border-width: 0px;
+    border-top: 1px solid #d7b98c;
+}
+.table tr th{
+	text-align: center;
+	background:#ffd653;
+}
+#layer{
+	width:100%;
+	height:100%;
+	background:#000;
+	opacity: .5;
+	position:fixed;
+	top:0;
+	left:0;	
+	z-index: 100;	
+}
+#layerBody{
+	width: 90%;
+    height: 70vh;
+    line-height: 1vh;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%);
+    /*background: url(../inviteImg/rules_03.png) no-repeat center;
+    background-size: 100%;*/
+    font-size:1.3rem; 
+    z-index: 1000; 
+}
+#layerBody .routesBg{
+	width: 90vw;
+    height: 64vh;
+}
+#layerBody_station{
+	width: 90%;
+    height: 70vh;
+    line-height: 1vh;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%);
+    background: url(../inviteImg/stationRecommanLayer_03.png) no-repeat center;
+    background-size: 100%;
+    font-size:1.3rem;
+    z-index: 1000;
+}
+.layerClose{
+	position: absolute;
+    bottom: -3rem;
+    left: 50%;
+    transform:translateX(-50%);
+}
+.layerShutDown{
+	position: absolute;
+    bottom: 4rem;
+    left: 50%;
+    transform:translateX(-50%);
+}
+.layerClose img,.layerShutDown img{
+	width:10vw;
+}
+.getScoreRules{
+	text-align: center;
+    width: 100%;
+    padding: 0 1rem;
+    position: absolute;
+    top: 5rem;
+}
+.getScoreRules h3{
+	font-size:2rem;
+	font-weight: bold;
+	color:#f8ae38;
+}
+.getScoreRules ul{
+	text-align: left;
+    line-height: 2.5rem;
+    padding: 0 2rem;
+    color:#666666;
+}
+.stationRecommand{
+	text-align: center;
+    width: 100%;
+    padding: 0 1rem;
+    position: absolute;
+    top: 14rem;
+}
+.stationRecommand h3{
+	font-size:2rem;
+	font-weight: bold;
+	color:#f8ae38;
+}
+.stationRecommand ul{
+	text-align: left;
+    line-height: 2rem;
+    padding: 0 2rem;
+    color:#666666;
+    font-size: 1.6rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+

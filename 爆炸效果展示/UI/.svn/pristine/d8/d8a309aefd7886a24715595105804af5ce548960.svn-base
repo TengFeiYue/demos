@@ -1,0 +1,464 @@
+<style type="scss">
+page,
+.body {
+    height: 100%;
+    font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+    background-color: #ffffff;
+    font-size:14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.loginBanner{
+    padding-top:40rpx;
+    padding-bottom:52rpx;
+    text-align:center;
+    font-size: 20rpx;
+    color: #666666;
+    letter-spacing: -0.15px;
+   image{
+       width:280rpx;
+       height:82rpx;
+   }
+   .tips{
+      padding-top:15rpx;
+      font-size:25rpx;
+      letter-spacing:2rpx;
+   }
+}
+.login{
+      display:flex;
+      flex-direction:column;
+      background:white;
+      padding:0 40rpx;
+      font-size:32rpx;
+      color:#000000;
+      letter-spacing:0;
+    .userName{
+        display: flex;
+        flex-direction:row;
+        align-items:center;
+        border-bottom:1px solid #f0eff5;
+        height:45px;
+        .name{
+            width:120rpx;
+            padding-right:6rpx;
+            text-align:justify;
+            text-align-last:justify;
+        }
+        .value{
+            flex:1;
+            padding-left:20rpx;
+        }
+    }
+    .password{
+        .name{
+            width:120rpx;
+            padding-right:6rpx;
+            text-align:justify;
+            text-align-last:justify;
+        }
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        flex-direction:row;
+        height:45px;
+        border-bottom:1px solid #f0eff5;
+        .value{
+            flex:1;
+            padding-left:10px;
+        }
+        .validateCode{
+            padding:5px;
+            .btn{
+                font-size: 32rpx;
+                color: #0386FF;
+                letter-spacing: 0;
+                line-height: 46rpx;
+            }
+            .btndisable{
+                color:#b1b0b6;
+                border:1px solid #b1b0b6;
+                font-size:13px;
+                padding:5px;
+                border-radius:2px;
+            }
+        }
+    }
+}
+.btnLogin{
+    justify-content:center;
+    display:flex;
+    text-align:center;
+    padding-top:50rpx;
+    .btn{
+        width:670rpx;
+        height:94rpx;
+        background: #128EFF;
+        border-radius: 10rpx;
+        font-size: 36rpx;
+        color: #FFFFFF;
+        line-height:94rpx;
+    }
+}
+.loginTab{
+    padding:30rpx 40rpx;
+    text-align:right;
+    font-size:32rpx;
+    color:#0386FF;
+    letter-spacing:0;
+    line-height:46rpx;
+}
+
+    .view{
+       background:#333333;
+       color:#ffffff;
+       width:270rpx;
+       height:270rpx;
+       position:fixed;
+       left:50%;
+       top:50%;
+       border-radius:10rpx;
+       margin-top:-135rpx;
+       margin-left:-135rpx;
+       text-align:center;
+       display:flex;
+       flex-direction:column;
+       justify-content:space-between;
+       align-items:center;
+       .tipPic{
+           flex:1;
+           padding-top:36rpx;
+           image{
+             width:100rpx;
+             height:100rpx;
+           }
+       }
+       text{
+         flex:1;
+         padding:0 15rpx;
+       }
+    }
+</style>
+<template>
+    <view class="body">
+        <view class="loginBanner">
+          <image src="../resources/img/loginBannerLogo.png"></image>
+          <view class="tips">
+            <text>找客户 找人脉 找供应商 找塑价</text>
+          </view>
+        </view>
+        <!--短信登录-->
+      <view wx:if="{{!loginType}}">
+            <view class="login">
+                <view class="userName">
+                    <view class="name">
+                        手机号
+                    </view>
+                    <text>:</text>
+                    <view class="value">
+                        <input type="number" bindinput="bindUserNameInput" maxlength="11" >
+                        </input>
+                    </view>
+                </view>
+                <view class="password">
+                    <view class="name">
+                        验证码
+                    </view>
+                    <text>:</text>
+                    <view class="value">
+                        <input type="number" bindinput="bindCodeInput" maxlength="6" >
+                        </input>
+                    </view>
+                    <view class="validateCode">
+                        <view class="{{second >= 0 ? 'btndisable' : 'btn'}}" @tap="{{second < 0 ? 'sendValidateCode':''}}">
+                            {{second >= 0 ? ('(' + second +')') : ''}}获取验证码
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="btnLogin">
+                <view class="btn" @tap="msgLogin">
+                    登录
+                </view>
+            </view>
+      </view>
+        <!--密码登录-->
+      <view wx:if="{{loginType}}">
+            <view class="login">
+                <view class="userName">
+                    <view class="name">
+                        手机号
+                    </view>
+                    <text>:</text>
+                    <view class="value">
+                        <input type="number" bindinput="userNumber" maxlength="11" >
+                        </input>
+                    </view>
+                </view>
+                <view class="password">
+                    <view class="name">
+                        密码
+                    </view>
+                    <text>:</text>
+                    <view class="value">
+                        <input type="password" bindinput="userPwd"  >
+                        </input>
+                    </view>
+
+                </view>
+            </view>
+            <view class="btnLogin">
+                <view class="btn" @tap="pwdLogin">
+                    登录
+                </view>
+            </view>
+        </view>
+         <view class="loginTab">
+              <text wx:if="{{!loginType}}" bindtap="usePwdLogin">密码登录</text>
+              <text wx:if="{{loginType}}" bindtap="useMsgLogin">手机验证码登录</text>
+         </view>
+    </view>
+    <view wx:if="{{opa}}" class="view">
+       <view class="tipPic"><image src="../resources/icons/warning.png"></image></view>
+       <text>{{tip}}</text>
+    </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import md5 from '../utils/md5'
+import { api } from '../config'
+export default class login extends wepy.page {
+    config = {
+        'navigationBarTitleText': '登录',
+        'navigationBarTextStyle': '#FFFFFF',
+        'navigationBarBackgroundColor': '#0386FF'
+    }
+
+    components = {
+    }
+
+    data = {
+        loginType:false,
+        second:-1, //秒
+        username:'',
+        validateCode:'',
+        accountNumer:'',
+        accountPwd:'',
+        from:"",
+        opa:false,
+        tip:""
+    }
+
+    methods = {
+        usePwdLogin(){
+           this.loginType=true;
+        },
+        useMsgLogin(){
+           this.loginType=false;
+        },
+        msgLogin(){//手机验证码登录
+             if(this.username == ''){
+                this.warningTip({
+                    msg:"请输入手机号！"
+                });
+                return;
+            }
+            if(this.validateCode == ''){
+                this.warningTip({
+                    msg:"请输入验证码！"
+                });
+                return;
+            }
+
+            let that = this;
+            wepy.request({
+                url:api.user.login.url,
+                method:api.user.login.method,
+                data:{
+                    'username': that.username,
+                    'svcode': that.validateCode
+                },
+                success:function(data){
+                    if(data.data.isSuccess == 0){
+                        that.warningTip({
+                            msg:data.data.errorMsg
+                        });
+                    }else{
+                        wx.setStorageSync('antUserInfo', data.data.body);
+                        if(that.from!=""||that.from!=null){
+                            if(data.data.body.joinFlag=="noappliy"){
+                                wx.redirectTo({
+                                  url: 'personInfoFill'
+                                });
+                                return;
+                            }else if(data.data.body.joinFlag=="unpassed"||data.data.body.joinFlag=="applied"||data.data.body.joinFlag==undefined){
+                                wx.redirectTo({
+                                    url: 'personalInfo?fromPage=login'
+                                });
+                                return;
+                            }else if(data.data.body.joinFlag=="passed"){
+                                  wx.redirectTo({
+                                      url: 'subPrice?pUnit=元/吨&deliverway=自提&picList=../resources/img/imgUpload.jpg'
+                                  })
+                                  return;
+                            }
+                            /*if(that.from=="propaganda"){//有宣传页来的
+                              console.log(data.data.body)
+                                wx.redirectTo({
+                                     url: 'propaganda?redirect=login&userId='+that.loginUId
+                                 })
+                                 return;
+                            }*/
+
+                        }
+			                  wx.navigateBack({
+                                delta: 1
+                            });
+                         return;
+                    }
+                    that.$apply();
+                }
+            });
+        },
+        bindUserNameInput(e){//输入手机号
+            this.username = e.detail.value;
+        },
+        bindCodeInput(e){//输入短信验证码
+            this.validateCode = e.detail.value;
+        },
+        userNumber(e){//输入账号
+          this.accountNumer=e.detail.value;
+        },
+        userPwd(e){//输入密码
+          this.accountPwd=e.detail.value;
+        },
+        sendValidateCode(){
+            if(this.username == ''){
+            this.warningTip({
+                msg:"请输入手机号"
+            });
+                return;
+            }
+            const regString = '^((13[0-9])|(15[0-9])|(18[0-9])|(17[0-9])|(147))\\d{8}$'
+            var reg = new RegExp(regString);
+            if(!reg.test(this.username)){
+                this.warningTip({
+                    msg:"手机号格式错误"
+                });
+                return;
+            }
+            this.second = 60;
+            const interval = setInterval(() => {
+                this.second--;
+                this.$apply();
+                if(this.second <= -1){
+                    clearInterval(interval);
+                }
+              }, 1000);
+            let that = this;
+           wepy.request({
+                url:api.user.validateCode.url,
+                method:api.user.validateCode.method,
+                data:{
+                    'username': that.username
+                },
+                success:function(res){
+                    console.log(res);
+                }
+            });
+        },
+        pwdLogin(){//密码登录
+              if(this.accountNumer == ''){
+                 this.warningTip({
+                     msg:"请输入手机号！"
+                 });
+                 return;
+             }
+             if(this.accountPwd == ''){
+                 this.warningTip({
+                     msg:"请输入密码！"
+                 });
+                 return;
+             }else{
+                this.accountPwd=md5.hexMD5(this.accountPwd);
+                console.log(this.accountPwd)
+             }
+             const regString = '^((13[0-9])|(15[0-9])|(18[0-9])|(17[0-9])|(147))\\d{8}$'
+             var reg = new RegExp(regString);
+             if(!reg.test(this.accountNumer)){
+                 this.warningTip({
+                     msg:"手机号格式错误"
+                 });
+                 return;
+             }
+             let that = this;
+             wepy.request({
+                 url:api.user.pwdLogin.url,
+                 method:api.user.pwdLogin.method,
+                 data:{
+                     'username': that.accountNumer,
+                     'password': that.accountPwd
+                 },
+                 success:function(data){
+                     console.log(data)
+                     if(data.data.isSuccess == 0){
+                         that.warningTip({
+                             msg:data.data.errorMsg
+                         });
+                     }else{
+                         wx.setStorageSync('antUserInfo', data.data.body);
+                          console.log(that.from)
+                         if(that.from!=""&&that.from!=null&&that.from!=undefined){
+                            console.log(6)
+                             if(data.data.body.joinFlag=="noappliy"){
+                                 wx.redirectTo({
+                                   url: 'personInfoFill'
+                                 });
+                                 return;
+                             }else if(data.data.body.joinFlag=="unpassed"||data.data.body.joinFlag=="applied"||data.data.body.joinFlag==undefined){
+                                 wx.redirectTo({
+                                     url: 'personalInfo?fromPage=login'
+                                 });
+                                 return;
+                             }else if(data.data.body.joinFlag=="passed"){
+                                   wx.redirectTo({
+                                       url: 'subPrice?pUnit=元/吨&deliverway=自提&picList=../resources/img/imgUpload.jpg'
+                                   })
+                                   return;
+                             }
+                         }
+                         if(that.from==undefined){
+                             wx.navigateBack({
+                                    delta: 1
+                                });
+                             return;
+                         }
+
+                     }
+                     that.$apply();
+                 }
+             });
+        }
+
+    }
+
+    onShow() {
+        console.log('login页面显示')
+    }
+    onLoad(e) {
+        this.from=e.fromPage;
+    }
+    warningTip(obj) {
+          this.opa=true;
+         this.tip=obj.msg;
+         this.$apply();
+         let that=this;
+          setTimeout(function(){
+            that.opa=false;
+            that.$apply();
+          },800)
+      }
+}
+</script>

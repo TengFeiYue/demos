@@ -1,0 +1,237 @@
+<style type="scss">
+	$border-color: #ececec;
+	.con{
+		width: 100%;
+		background-color: #0092ff;
+		padding: 0 100rpx;
+		box-sizing: border-box;
+		.first-title{
+			width: 100%;
+			color: #fff;
+			font-size: 38rpx;
+			line-height: 3;
+			text-align: center;
+		}
+		.second-title{
+			width: 100%;
+			height: 44rpx;
+			line-height: 44rpx;
+			font-size: 32rpx;
+			color: #fff;
+			text-align: center;
+			position: relative;
+			image{
+				width: 100%;
+				height: 2rpx;
+			}
+			text{
+				width: 300rpx;
+				background-color: #0092ff;
+				position: absolute;
+				left: 0;
+				right: 0;
+				margin: auto;
+				top: 10rpx;
+			}
+		}
+		.qrcode-box{
+			width: 550rpx;
+			height: 696rpx;
+			background-color: #fff;
+			border-radius: 16rpx;
+			margin-top: 100rpx;
+			padding: 50rpx 0 0 0 ;
+			box-sizing: border-box;
+			position: relative;
+			.userImg{
+				height: 132rpx;
+				width: 100%;
+				text-align: center;
+				image{
+					width: 132rpx;
+					height: 132rpx;
+				}
+			}
+			.qrcode-con{
+				width: 280rpx;
+				height: 330rpx;
+				margin: 50rpx auto;
+				overflow: scroll;
+				.qrcode-title{
+					height: 50rpx;
+					line-height: 50rpx;
+					width: 100%;
+					font-size: 36rpx;
+					color: #333;
+					text-align: center;
+					background-color: #fff;
+				}
+				view{
+					height: 330rpx;
+					width: 280rpx;
+					float: left;
+				}
+				scroll-view{
+					background-color: #f2f2f2;
+					width: 560rpx;
+					height: 330rpx;
+				}
+				image{
+					width: 280rpx;
+					height: 280rpx;
+				}
+			}
+			.sw{
+				width: 40rpx;
+				height: 60rpx;
+				position: absolute;
+				right: 50rpx;
+				top: 300rpx;
+				image{
+					width: 100%;
+					height: 100%;
+				}
+			}
+			.qrcode-tips{
+				font-size: 24rpx;
+				color: #333;
+				text-align: center;
+			}
+		}
+		.con-tips{
+			padding: 40rpx 0;
+
+			color: #fff;
+			font-size: 36rpx;
+			text-align: center;
+			line-height: 1.5;
+			text{
+				display: block;
+			}
+		}
+	}
+	::-webkit-scrollbar {
+	  width: 0;
+	  height: 0;
+	  color: transparent;
+	}
+</style>
+<template>
+	<view class="con" style="height: {{sh}}px;">
+		<view class="first-title">成为材料人的营销利器</view>
+		<view class="second-title">
+			<image src="../resources/icons/whiteline.png"></image>
+			<text>俺搜 · 找客户</text>
+		</view>
+		<view class="qrcode-box">
+			<view class="userImg">
+				<image src="{{info.userLogo}}"></image>
+			</view>
+			<view class="qrcode-con">
+				<scroll-view scroll-x="{{true}}" scroll-y="{{false}}">
+					<view bindtap="previewImage">
+						<view class="qrcode-title">{{leftCont}}</view>
+						<image src="{{leftCont=='我的小程序码'?info.memberQrcode:info.enterpriseQrcode}}"></image>
+					</view>
+					<view>
+						<view class="qrcode-title">{{rightCont}}</view>
+						<image src="{{leftCont=='我的企业码'?info.enterpriseQrcode:info.memberQrcode}}"></image>
+					</view>
+				</scroll-view>
+			</view>
+			<view class="sw" bindtap="changesQrCode">
+				<image src="../resources/icons/righticon.png"></image>
+			</view>
+			<view class="qrcode-tips">长按识别小程序码，进入属于你的电子名片</view>
+		</view>
+		<view class="con-tips">
+			<text>快速传播 便捷获取</text>
+			<text>高效工作 精准获客</text>
+		</view>
+	</view>
+</template>
+<script>
+	import wepy from 'wepy';
+	import { api } from '../config';
+
+	export default class myQRCode extends wepy.page {
+		config = {
+			'navigationBarTitleText': '我的小程序码',
+			'navigationBarTextStyle': '#FFFFFF',
+			'navigationBarBackgroundColor': '#0092FF'
+		}
+		components = {
+
+		}
+		data = {
+			sh: 0, // 瀏覽器高度
+			sw: [1, 2],
+			info: {},
+			userId: -1,
+			phone: -1,
+			enterpriseId: -1,
+			memberId: -1,
+			sureCode: 0,
+			leftCont: '我的小程序码',
+			rightCont: '我的企业码',
+			imgalist: [],
+		}
+		events = {
+		}
+		methods = {
+			changesQrCode(){
+				this.sureCode++;
+				if(this.sureCode%2 != 0){
+					this.leftCont = '我的企业码';
+					this.rightCont = '我的小程序码';
+				}else{
+					this.leftCont = '我的小程序码';
+					this.rightCont = '我的企业码';
+				}
+			},
+			previewImage: function(e){
+				var current=e.target.dataset.src;
+		        wx.previewImage({
+		            urls: this.data.imgalist // 需要预览的图片http链接列表
+		        })
+    		}
+		}
+		onShow() {
+
+		}
+		onLoad(option) {
+			var that = this;
+			this.userId = option.userId;
+			this.phone = option.phone;
+			this.memberId = option.memberId;
+			this.enterpriseId = option.enterpriseId;
+			wx.getSystemInfo({
+		      	success: function (res) {
+		          	that.sh = res.windowHeight;
+		      	}
+		   });
+		   this.getQrCode();
+		}
+
+		getQrCode(){
+			var _this = this;
+			wx.request({
+				url: api.my.myQrCode.url,
+				method: api.my.myQrCode.method,
+				data: {
+					memberId: _this.memberId,
+					userId: _this.userId,
+					enterpriseId: _this.enterpriseId,
+					phone: _this.phone
+				},
+				success: function(res){
+					if (res.statusCode == 200) {
+						_this.info = res.data.body;
+						_this.imgalist = [_this.info.memberQrcode, _this.info.enterpriseQrcode];
+						_this.$apply();
+					}
+				}
+			})
+		}
+	}
+</script>

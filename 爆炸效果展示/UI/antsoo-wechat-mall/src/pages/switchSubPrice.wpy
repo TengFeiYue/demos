@@ -1,0 +1,1027 @@
+<style type="scss">
+.release{
+   background:#ffffff;
+  padding:0 30rpx;
+  padding-right:0;
+  position:relative;
+  padding-bottom:194rpx;
+}
+.releaseInfos{
+   padding:21rpx 0;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #eeeeee;
+    .releaseDt{
+      flex:2;
+      text-align:left;
+    }
+    .releaseDd{
+      display:flex;
+      flex:6;
+      position:relative;
+      input{
+         height:45rpx;
+         min-height:45rpx;
+      }
+      .radio{
+         padding-right:20rpx;
+         font-size:24rpx;
+        image{
+          width:32rpx;
+          height:32rpx;
+          position:relative;
+          top:6rpx;
+        }
+        checkbox{
+          opacity:0;
+          width:20rpx;
+          height:20rpx;
+        }
+      }
+      .pNameSelect{
+          position:absolute;
+          left:-14rpx;
+          top:60rpx;
+          width:200rpx;
+          padding:10rpx 0 10rpx;
+          font-size:25rpx;
+          line-height:37rpx;
+          box-shadow:0 2px 5px #cccccc;
+          background:#ffffff;
+          z-index:1000;
+          .pNameOpt{
+             padding:0 15rpx;
+          }
+      }
+      .placeholderCon{
+          width:301rpx;
+          height:46rpx;
+          overflow:hidden;
+          text-overflow:ellipsis;
+          white-space:nowrap;
+      }
+    }
+    .priceSelect{
+        position:relative;
+        .showSel{
+            display:inline-block;
+            position:absolute;
+            right:0;
+            padding-right:85rpx;
+            top:0rpx;
+            font-size:24rpx;
+            image{
+              position:absolute;
+              top:12rpx;
+              right:50rpx;
+              width:16rpx;
+              height:10rpx;
+            }
+        }
+        .select{
+            display:inline-block;
+            font-size:30rpx;
+            color:#353535;
+            letter-spacing:0;
+            position:absolute;
+            width:150rpx;
+            right:20rpx;
+            top:44rpx;
+            z-index:999;
+            box-shadow:0 2rpx 5rpx #cccccc;
+            .options{
+                padding:12rpx 0;
+                background:#ffffff;
+                padding-left:15rpx;
+                border-top:1px solid #eeeeee;
+                .option{
+                    background:#ffffff;
+                    text-align:left;
+                    line-height:43rpx;
+                    font-size:24rpx;
+                }
+            }
+
+        }
+
+    }
+    .subArea{
+      position:relative;
+      .showAdd{
+      display:inline-block;
+      width:47rpx;
+      height:44rpx;
+      line-height:38rpx;
+      text-align:center;
+      border:1px solid #CCCCCC;
+      color:#cccccc;
+      font-size:50rpx;
+      position:absolute;
+      right:20rpx;
+      top:0rpx;
+      }
+    }
+    .imgList{
+        display:flex;
+        flex-direction:row;
+        justify-content:space-between;
+        align-items:center;
+        .imgItem,.imgItem2,.imgItem3{
+            position:relative;
+            .delImg{
+                position:absolute;
+                top:-10rpx;
+                right:10rpx;
+                image{
+                   width:40rpx;
+                   height:40rpx;
+                }
+            }
+            flex:1;
+            padding-right:30rpx;
+            image{
+               width:116rpx;
+               height:116rpx;
+            }
+        }
+    }
+}
+.descriptionDetail{
+  background:#ffffff;
+  padding:20rpx 0;
+  border-bottom:1px solid #eeeeee;
+  .descriptionDt{
+      font-size: 32rpx;
+      color: #000000;
+      letter-spacing: 0;
+  }
+  .descriptionDd{
+      padding-top:22rpx;
+      textarea{
+          position:static;
+          background:#FFFFFF;
+          border:1px solid #eeeeee;
+          height:150rpx;
+          width:660rpx;
+          padding:14rpx;
+      }
+      .pClass{
+          font-size: 32rpx;
+          color: #B2B2B2;
+          letter-spacing: 0;
+      }
+  }
+}
+.warmTip{
+    background:#ffffff;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+    padding-bottom:22rpx;
+    .warmDt{
+      flex:1
+    }
+    .warmDd{
+        flex:6;
+        font-size: 28rpx;
+        color: #999999;
+        line-height: 42rpx;
+    }
+}
+.subButton{
+    width:100%;
+    position:absolute;
+    bottom:0;
+    left:0;
+    padding:50rpx 0;
+    background:#eeeeee;
+   button{
+       width:670rpx;
+       height:94rpx;
+       text-align:center;
+       line-height:94rpx;
+       background: #128EFF;
+       border-radius: 10rpx;
+       font-size: 36rpx;
+       color: #FFFFFF;
+   }
+}
+.view{
+   background:#333333;
+   color:#ffffff;
+   width:270rpx;
+   height:270rpx;
+   position:fixed;
+   left:50%;
+   top:50%;
+   border-radius:10rpx;
+   margin-top:-135rpx;
+   margin-left:-135rpx;
+   text-align:center;
+   display:flex;
+   flex-direction:column;
+   justify-content:space-between;
+   align-items:center;
+   .tipPic{
+       flex:1;
+       padding-top:36rpx;
+       image{
+         width:100rpx;
+         height:100rpx;
+       }
+   }
+   text{
+     flex:1;
+     padding:0 15rpx;
+   }
+}
+</style>
+<template>
+        <view class="release">
+           <form bindsubmit="formSubmit">
+               <view class="classify releaseInfos">
+                   <view class="releaseDt">
+                      <text>*分类</text>
+                   </view>
+                   <view class="releaseDd">
+                        <view class="radio" wx:for="{{sorts}}" wx:key="{{index}}" data-index="{{index}}" data-v="{{item.value}}"  bindtap="radioTab">
+                            <image src="../resources/icons/sort{{radioIndex===index?'Act':''}}.jpg"></image>
+                            <checkbox value="{{item.name}}" />{{item.value}}
+                        </view>
+                   </view>
+               </view>
+
+               <view class="classify releaseInfos">
+                   <view class="releaseDt">
+                      <text wx:if="{{showModelItem}}">*品种</text>
+                      <text wx:if="{{!showModelItem}}">*品名</text>
+                   </view>
+                   <view class="releaseDd">
+                        <input value="{{csName}}" name="csName" hidden />
+                        <input value="{{mName=='null'?tName:mName}}" focus="{{autoFocus}}" name="mName" bindinput="filterMname"/>
+                        <view class="pNameSelect" wx:if="{{showSeachList}}">
+                            <scroll-view scroll-y style="height:250rpx;">
+                                <view>
+                                      <view class="pNameOpt" wx:for="{{filteredName}}" wx:key="{{index}}" data-v="{{item.name}}" data-c="{{item.sName}}"  bindtap="selectPname">{{item.name}}</view>
+                                  </view>
+                            </scroll-view>
+                        </view>
+                   </view>
+               </view>
+               <view class="classify releaseInfos">
+                   <view class="releaseDt" style="flex:2;">
+                      <text>*生产厂家</text>
+                   </view>
+                   <view class="releaseDd">
+                        <input value="{{mProducer}}" name="mProducer" />
+                   </view>
+               </view>
+               <view class="classify releaseInfos" wx:if="{{showModelItem}}">
+                   <view class="releaseDt">
+                      <text>*型号</text>
+                   </view>
+                   <view class="releaseDd">
+                        <input value="{{mModel}}" name="mModel" />
+                   </view>
+               </view>
+               <view class="classify releaseInfos" wx:if="{{!showModelItem}}">
+                   <view class="releaseDt">
+                      <text>*牌号</text>
+                   </view>
+                   <view class="releaseDd">
+                        <input value="{{mBrandNum}}" name="mBrandNum" />
+                   </view>
+               </view>
+               <view class="classify releaseInfos">
+                   <view class="releaseDt">
+                      <text>*价格</text>
+                   </view>
+                   <view class="releaseDd priceSelect">
+                        <input value="{{mPrice}}" name="mPrice" />
+                        <input value="{{mUnit}}" name="mUnit" hidden />
+                        <view class="showSel" bindtap="showSel">
+                            <view wx:if="{{!showOption}}">
+                               <image src="../resources/img/expand.png"></image>
+                            </view>
+                            <view wx:if="{{showOption}}">
+                               <image src="../resources/img/shink.png"></image>
+                            </view>
+                        <text>{{mUnit}}</text></view>
+                        <view class="select">
+                           <view class="options" wx:if="{{showOption}}">
+                               <view class="option" wx:for="{{unit}}" wx:key="{{index}}" data-v="{{item}}" bindtap="selUint">{{item}}</view>
+                           </view>
+                        </view>
+                   </view>
+               </view>
+               <view class="classify releaseInfos">
+                   <view class="releaseDt">
+                      <text>*是否含税</text>
+                   </view>
+                   <view class="releaseDd">
+                        <view class="radio" wx:for="{{hasTax}}" wx:key="{{index}}" data-index="{{index}}" bindtap="hasTaxTab">
+                            <image src="../resources/icons/sort{{taxRadioIndex===index?'Act':''}}.jpg"></image>
+                            <checkbox value="{{item}}" />{{item}}
+                        </view>
+                   </view>
+               </view>
+               <view class="classify releaseInfos">
+                   <view class="releaseDt">
+                      <text>*交货方式</text>
+                   </view>
+                   <view class="releaseDd priceSelect">
+                        <input value="{{deliveryWay}}" name="deliveryWay" hidden />
+                        <view class="showSel" bindtap="showDeliveryWays" style="top:-18rpx;">
+                            <view wx:if="{{!showDeliverOption}}">
+                               <image src="../resources/img/expand.png"></image>
+                            </view>
+                            <view wx:if="{{showDeliverOption}}">
+                               <image src="../resources/img/shink.png"></image>
+                            </view>
+                        <text>{{deliveryWay}}</text></view>
+                        <view class="select" style="top:26rpx;">
+                           <view class="options" wx:if="{{showDeliverOption}}">
+                               <view class="option" wx:for="{{deliveryWays}}" wx:key="{{index}}" data-v="{{item}}" bindtap="selDeliveryWays">{{item}}</view>
+                           </view>
+                        </view>
+                   </view>
+               </view>
+               <view class="classify releaseInfos">
+                   <view class="releaseDt">
+                      <text>*交货地</text>
+                   </view>
+                   <view class="releaseDd subArea">
+                      <input value="{{seleCity}}" name="seleCity" />
+                      <text class="showAdd"  bindtap="showAdd">+</text>
+                   </view>
+               </view>
+               <view class="classify releaseInfos" data-v="{{pVal}}" bindtap="toDescription">
+                   <view class="releaseDt">
+                      <text>详细描述</text>
+                   </view>
+                   <view class="releaseDd subArea">
+                      <input value="{{pVal}}" placeholder="请描述一下产品信息" name="pVal" hidden="{{pVal!=''}}" />
+                      <view class="placeholderCon">{{pVal}}</view>
+                      <text class="showAdd">+</text>
+                   </view>
+               </view>
+               <view class="classify releaseInfos" style="border-bottom:none;">
+                   <view class="releaseDt">
+                      <text>图片</text>
+                   </view>
+                   <view class="releaseDd">
+                        <view class="imgList">
+                          <view class="imgItem" bindtap="chooseImg">
+                              <view class="delImg" catchtap="removeImg" wx:if="{{uploaded}}"><image src="../resources/img/delete.png"></image></view>
+                             <image src="{{upPics}}"></image>
+                          </view>
+                          <!--<view class="imgItem2" bindtap="chooseImg"><image src="{{upLoadPic[1].photoAddress}}"></image></view>
+                          <view class="imgItem3" bindtap="chooseImg"><image src="{{upLoadPic[2].photoAddress}}"></image></view>-->
+                        </view>
+                   </view>
+               </view>
+               <view class="warmTip"><text class="warmDt"></text><text class="warmDd">发布照片有助于卖家联系您</text></view>
+              <view class="subButton">
+                 <button formType="submit">发布</button>
+              </view>
+           </form>
+        </view>
+        <view wx:if="{{opa}}" class="view">
+           <view class="tipPic"><image src="../resources/icons/warning.png"></image></view>
+           <text>{{tip}}</text>
+        </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import { api } from '../config'
+export default class switchSubPrice extends wepy.component {
+    data = {
+      opa:false,
+      tip:"",
+      edit:-1,
+      isUpload:-1,
+       tName:"",
+       up:-1,
+       dailId:-1,
+       loginUId:-1,
+       upLoadPic:[
+           '../resources/img/imgUpload.jpg',
+           '../resources/img/imgUpload.jpg',
+           '../resources/img/imgUpload.jpg'
+       ],
+       upPics:"../resources/img/imgUpload.jpg",
+        sorts: [
+          {name: '原料', value: '原料'},
+          {name: '改性料', value: '改性料', checked: 'true'},
+          {name: '辅料', value: '辅料'},
+          {name: '回料', value: '回料'}
+        ],
+        filterObj:[],
+        unit:[],
+        deliveryWays:[],
+        hasTax:['否','是'],
+        deliveryWay:'自提',
+        radioIndex:0,
+        taxRadioIndex:0,
+        showOption:false,
+        showDeliverOption:false,
+        isConfirmSuccess:false,
+        showModelItem:false,
+        showSeachList:false,
+        filteredName:[],
+        mType:"原料",
+        mName:"",
+        csName:"",
+        mProducer:"",
+        mBrandNum:"",
+        mPrice:"",
+        mUnit:"元/吨",
+        deliveryWay:'自提',
+        seleCity:"",
+        mModel:"",
+        pVal:"",
+        autoFocus:false,
+        uploaded:false,
+        emmitImg:1,
+    }
+    events={
+     'hideFilterList':(params)=>{
+           this.showSeachList=params;
+        },
+     'giveImg':(params)=>{
+            this.isUpload=parseInt(params);
+         },
+      'getUnits':(params)=>{
+             console.log(params)
+             this.deliveryWays=params.deliveryWay;
+             this.unit=params.units;
+            },
+      'getFocus':(params)=>{
+            let that=this;
+            setTimeout(function(){
+              that.autoFocus=params;
+              that.$apply();
+            },500)
+          },
+       'selectCity':($event)=>{
+            this.seleCity=$event;
+          },
+       'descript':($event)=>{
+            this.pVal=$event;
+          },
+       'getUserId':($event)=>{
+            this.loginUId=$event;
+          },
+        'hasConfirmed':(params)=>{
+             if(params=='passed'){
+                this.isConfirmSuccess=true;
+             }else{
+                this.isConfirmSuccess=false;
+             }
+
+        },
+        'copyData':(params)=>{
+            this.edit=params.edit;
+            this.up=params.up;
+            this.mName=params.mName;
+            this.mProducer=params.mProducer;
+            this.mBrandNum=params.mBrandNum==undefined?"":params.mBrandNum;
+            this.mPrice=parseInt(params.mPrice);
+            this.mUnit=params.mUnit;
+            this.deliveryWay=params.deliveryWay==undefined?"自提":params.deliveryWay;
+            this.seleCity=params.seleCity;
+            this.mModel=params.mModel==undefined?'':params.mModel;
+            this.pVal=params.pVal;
+            this.radioIndex=isNaN(params.radioIndex)?0:parseInt(params.radioIndex);
+            this.taxRadioIndex=isNaN(params.taxRadioIndex)?0:parseInt(params.taxRadioIndex);
+            this.upPics=params.upPics;
+            this.dailId=params.dailId;
+            this.tName=params.tName;
+            this.uploaded=params.showD=='true'?true:false;
+            this.mType=params.getType==undefined?'原料':params.getType;
+            if(this.radioIndex==2) this.showModelItem=true;
+        }
+      }
+    methods = {
+        radioTab(e){
+          this.radioIndex=e.currentTarget.dataset.index;
+          this.mType=e.currentTarget.dataset.v;
+          if(this.mType=='辅料'){
+              this.showModelItem=true;
+          }else{
+              this.showModelItem=false;
+          }
+          this.getPnameDatas();
+        },
+        filterMname(e){
+           this.showSeachList=true;
+           if(this.filterObj!=null){
+               var filterKey=e.detail.value.toUpperCase();
+               var arr=[];
+               for(var i=0;i<this.filterObj.length;i++){
+                   if((this.filterObj[i].commodityName.toUpperCase()).indexOf(filterKey)!=-1){
+                      arr.push({name:this.filterObj[i].commodityName,sName:this.filterObj[i].csname});
+                   }
+               }
+              this.filteredName=arr;
+           }
+        },
+        selectPname(e){
+          this.csName=e.currentTarget.dataset.c;
+          this.mName=e.currentTarget.dataset.v;
+          this.showSeachList=false;
+        },
+        hasTaxTab(e){
+          this.taxRadioIndex=e.currentTarget.dataset.index;
+        },
+        showSel(){
+           this.showOption=!this.showOption;
+        },
+        selUint(e){
+            this.mUnit=e.currentTarget.dataset.v;
+            this.showOption=false;
+        },
+        showDeliveryWays(){
+            this.showDeliverOption=!this.showDeliverOption;
+        },
+        selDeliveryWays(e){
+            this.deliveryWay=e.currentTarget.dataset.v;
+            this.showDeliverOption=false;
+        },
+        showAdd(){
+            wx.navigateTo({
+                url: 'cityposition'
+            })
+        },
+        toDescription(e){
+            let takeVal=e.currentTarget.dataset.v;
+            wx.navigateTo({
+                url: 'description?val='+takeVal
+            })
+        },
+        chooseImg(){
+        var that=this;
+        wx.chooseImage({
+              count: 3, // 默认9
+              sizeType: ['original', 'compressed'],
+              sourceType: ['album', 'camera'],
+              success: function (res) {
+                  that.isUpload=8;
+                  if(res.tempFilePaths.length>0){
+                  wx.saveFile({
+                        tempFilePath: res.tempFilePaths[0],
+                        success: function (res) {
+                            console.log(res)
+                            that.upPics = res.savedFilePath;
+                            console.log(that.upPics)
+                            that.uploaded=true;
+                            console.log(that.uploaded)
+                            that.$apply();
+                          }
+                      })
+                  }
+                  that.$apply();
+              }
+          })
+        },
+         removeImg(){
+            this.isUpload=-1;
+            this.emmitImg=0;
+            this.upPics="../resources/img/imgUpload.jpg";
+            this.uploaded=false;
+         },
+        formSubmit(e){
+             console.log(this.mType)
+             if(!this.loginUId){
+                 wx.navigateTo({
+                     url: 'login?fromPage=subPrice'
+                 });
+                 return;
+             }
+            if(e.detail.value.mName==''||e.detail.value.mName==null){
+                  this.warningTip({
+                      msg:'请输入品名！'
+                  });
+                  return;
+            }else if((e.detail.value.mBrandNum==''||e.detail.value.mBrandNum==null)&&(this.mType!='辅料')){
+                  this.warningTip({
+                      msg:'请输入牌号！'
+                  });
+                  return;
+            }else if(e.detail.value.mProducer==''||e.detail.value.mProducer==null){
+                  this.warningTip({
+                      msg:'请输入生产厂家！'
+                  });
+                  return;
+            }else if(e.detail.value.mUnit!='面议'&&(e.detail.value.mPrice==''||e.detail.value.mPrice==null||isNaN(e.detail.value.mPrice))){
+                      this.warningTip({
+                          msg:'价格错误！'
+                      });
+                     return;
+            }else if(e.detail.value.mUnit=='面议'&&e.detail.value.mPrice!=""){
+                    this.warningTip({
+                        msg:'面议的价格应为空！'
+                    });
+                   return;
+            }else if(e.detail.value.seleCity==''||e.detail.value.seleCity==null){
+                  this.warningTip({
+                      msg:'请选择交货地！'
+                  });
+                  return;
+            }
+            if(this.mType=='辅料'&&(e.detail.value.mModel==''||e.detail.value.mModel==null)){
+                this.warningTip({
+                    msg:'请输入型号！'
+                });
+                return;
+            }
+            let that = this;
+            if(this.edit==5&&this.up!=9){
+                console.log(this.edit)
+                if(this.isUpload==8&&this.edit==5){
+                   console.log(this.isUpload)
+                   wx.getSavedFileList({
+                         success: function(res) {
+                           console.log(res)
+                           for(var i=0;i<res.fileList.length-1;i++){
+                               for(var j=0;j<res.fileList.length-1-i;j++){
+                                  if(res.fileList[j].createTime>res.fileList[j+1].createTime){
+                                        var tem=res.fileList[j];
+                                         res.fileList[j]=res.fileList[j+1];
+                                         res.fileList[j+1]=tem;
+                                  }
+                               }
+                           }
+                           if(res.fileList.length > 5){
+                               wx.removeSavedFile({
+                                 filePath: res.fileList[0].filePath,
+                                 complete: function(res) {
+                                   console.log(res)
+                                 }
+                               })
+                           }
+                           if(that.isUpload==8){
+                              that.upPics=res.fileList[res.fileList.length-1].filePath;
+                           }else{
+                               that.upPics="../resources/img/imgUpload.jpg";
+                           }
+
+                           that.$apply();
+                         }
+                     })
+                    wx.uploadFile({
+                      url: api.product.editMaterialPrice.url, //仅为示例，非真实的接口地址
+                        filePath: that.upPics,
+                        name: 'pictures',
+                        header: {
+                         'content-type': 'multipart/form-data'
+                        },
+                        formData:{
+                            'emptyImg':that.emmitImg,
+                            'dailyBaseProductId':that.dailId,
+                            'userId':that.loginUId,
+                            'productType':that.mType==undefined?'原料':that.mType,
+                            'commodityName':e.detail.value.mName==that.mName?that.mName:"",
+                            'definedCommodityName':e.detail.value.mName==that.mName?"":e.detail.value.mName,
+                            'csName':e.detail.value.csName,
+                            'productSign':e.detail.value.mBrandNum==undefined?(that.mBrandNum==undefined?'':that.mBrandNum):e.detail.value.mBrandNum,
+                            'producer':e.detail.value.mProducer,
+                            'deliveryPlace':e.detail.value.seleCity,
+                            'deliveryType':that.deliveryWay==undefined?'自提':that.deliveryWay,
+                            'containTaxFlag':that.taxRadioIndex,
+                            'price':(e.detail.value.mPrice==""||e.detail.value.mPrice==null)?0:e.detail.value.mPrice,
+                            'priceUnit':e.detail.value.mUnit,
+                            'model':e.detail.value.mModel==undefined?(that.mModel==undefined?'':that.mModel):e.detail.value.mModel,
+                            'remark':e.detail.value.pVal
+                        },
+                      success: function(res){
+
+                           let msg=typeof res.data=="string"?JSON.parse(res.data):res.data;
+                            if(msg.isSuccess==1){
+                                wx.showToast({
+                                    title: msg.errorMsg,
+                                    icon: 'success'
+                                });
+                                wx.redirectTo({
+                                    url: 'subPrice?redirect=my&picList=../resources/img/imgUpload.jpg'
+                                })
+                            }else{
+                                that.warningTip({
+                                    msg: msg.errorMsg
+                                });
+                            }
+                            that.$apply();
+                      }
+                    })
+                }else{
+                    wepy.request({
+                        url:api.product.editMaterialPrice.url,
+                        method:"POST",
+                        header: {
+                          "Content-Type": "application/x-www-form-urlencoded"
+                        },
+                        data:{
+                            'emptyImg':that.emmitImg,
+                            'dailyBaseProductId':that.dailId,
+                            'userId':that.loginUId,
+                            'productType':that.mType==undefined?'原料':that.mType,
+                            'commodityName':e.detail.value.mName==that.mName?that.mName:"",
+                            'definedCommodityName':e.detail.value.mName==that.mName?"":e.detail.value.mName,
+                            'csName':e.detail.value.csName,
+                            'productSign':e.detail.value.mBrandNum==undefined?(that.mBrandNum==undefined?'':that.mBrandNum):e.detail.value.mBrandNum,
+                            'producer':e.detail.value.mProducer,
+                            'deliveryPlace':e.detail.value.seleCity,
+                            'deliveryType':that.deliveryWay==undefined?'自提':that.deliveryWay,
+                            'containTaxFlag':that.taxRadioIndex,
+                            'price':(e.detail.value.mPrice==""||e.detail.value.mPrice==null)?0:e.detail.value.mPrice,
+                            'priceUnit':e.detail.value.mUnit,
+                            'model':e.detail.value.mModel==undefined?(that.mModel==undefined?'':that.mModel):e.detail.value.mModel,
+                            'remark':e.detail.value.pVal
+                        },
+                        success:function(res){
+                            console.log(res)
+                             let msg=typeof res.data=="string"?JSON.parse(res.data):res.data;
+                             if(msg.isSuccess==1){
+                                 wx.showToast({
+                                     title: msg.errorMsg,
+                                     icon: 'success'
+                                 });
+                                 wx.redirectTo({
+                                     url: 'subPrice?redirect=my&picList=../resources/img/imgUpload.jpg'
+                                 })
+                             }else{
+                               that.warningTip({
+                                   msg:msg.errorMsg
+                               });
+                             }
+                           that.$apply();
+                        }
+                    });
+                }
+            }
+           if(this.up==9&&this.edit!=5){//复制后的提交
+               console.log(this.isUpload)
+                if(this.isUpload==8){
+                     this.uploadPicFn(e);
+                }else{
+                wepy.request({
+                    url:api.product.releaseMaterialPrice.url,
+                    method:"POST",
+                    header: {
+                      "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    data:{
+                        'emptyImg':that.emmitImg,
+                        'dailyBaseProductId':that.dailId,
+                        'userId':that.loginUId,
+                        'productType':that.mType==undefined?'原料':that.mType,
+                        'commodityName':e.detail.value.mName==that.mName?that.mName:"",
+                        'definedCommodityName':e.detail.value.mName==that.mName?"":e.detail.value.mName,
+                        'csName':e.detail.value.csName,
+                        'productSign':e.detail.value.mBrandNum==undefined?(that.mBrandNum==undefined?'':that.mBrandNum):e.detail.value.mBrandNum,
+                        'producer':e.detail.value.mProducer,
+                        'deliveryPlace':e.detail.value.seleCity,
+                        'deliveryType':that.deliveryWay==undefined?'自提':that.deliveryWay,
+                        'containTaxFlag':that.taxRadioIndex,
+                        'price':(e.detail.value.mPrice==""||e.detail.value.mPrice==null)?0:e.detail.value.mPrice,
+                        'priceUnit':e.detail.value.mUnit,
+                        'model':e.detail.value.mModel==undefined?(that.mModel==undefined?'':that.mModel):e.detail.value.mModel,
+                        'remark':e.detail.value.pVal
+                    },
+                    success:function(res){
+                        console.log(res)
+                         let msg=typeof res.data=="string"?JSON.parse(res.data):res.data;
+                         if(msg.isSuccess==1){
+                             wx.showToast({
+                                 title: msg.errorMsg,
+                                 icon: 'success'
+                             });
+                             wx.redirectTo({
+                                 url: 'subPrice?redirect=my&picList=../resources/img/imgUpload.jpg'
+                             })
+                         }else{
+                           that.warningTip({
+                               msg:msg.errorMsg
+                           });
+                         }
+                       that.$apply();
+                    }
+                });
+                }
+            }
+            if(this.up!=9&&this.edit!=5){
+                  console.log('normal')
+                  console.log(this.isUpload)
+                if(this.isUpload==8){
+                  this.uploadPicFn(e);
+                }else{
+                  this.uploadParams(e);
+                }
+            }
+        }
+    }
+    onLoad(){
+      const confirmInfos = wepy.getStorageSync("antUserInfo");
+      console.log(confirmInfos)
+      this.mProducer=confirmInfos.companySimpleDesc==undefined?confirmInfos.user.companySimpleDesc:confirmInfos.companySimpleDesc;
+      this.getPnameDatas();
+      this.fetchUnitsData();
+    }
+    warningTip(obj) {
+          this.opa=true;
+         this.tip=obj.msg;
+         this.$apply();
+         let that=this;
+          setTimeout(function(){
+            that.opa=false;
+            that.$apply();
+          },800)
+      }
+  getPnameDatas(){
+         let that=this;
+         wepy.request({
+             url:api.product.getPnameDataList.url,
+             method:api.product.getPnameDataList.method,
+             data:{
+                 'industryRole': that.mType
+             },
+             success:function(res){
+                 that.filterObj=res.data.body;
+                 that.$apply();
+
+             }
+         });
+     }
+   releaseStatus(){
+      if(this.isConfirmSuccess){
+        wx.showModal({
+            title: '个人信息认证成功',
+            content: '您的信息已认证成功，发布的产品可以展示到线上咯',
+            showCancel:false,
+            confirmColor:'#128EFF',
+            success: function(res) {
+             if (res.confirm) {
+              console.log('用户点击确定')
+             }
+            }
+           })
+      }else{
+      wx.showModal({
+          title: '个人信息认证中',
+          content: '您的信息还在认证中，您可提前发布产品，待认证成功后即可线上展示',
+          showCancel:false,
+          confirmColor:'#128EFF',
+          success: function(res) {
+           if (res.confirm) {
+            console.log('用户点击确定')
+           }
+          }
+         })
+
+      }
+   }
+   fetchUnitsData(){//获取单位与交货方式
+       let that = this;
+       wepy.request({
+           url:api.product.fetchUnitsData.url,
+           method:api.product.fetchUnitsData.method,
+           success:function(res){
+                 console.log(res)
+                 that.unit=res.data.body.priceUnit;
+                 that.deliveryWays=res.data.body.deliveryType;
+                 that.$apply();
+           }
+       });
+   }
+   uploadParams(e){
+       let that = this;
+       console.log(e.detail.value.mBrandNum)
+       wepy.request({
+           url:api.product.releaseMaterialPrice.url,
+           method:"POST",
+           header: {
+             "Content-Type": "application/x-www-form-urlencoded"
+           },
+           data:{
+               'emptyImg':that.emmitImg,
+               //'dailyBaseProductId':that.dailId,
+               'userId':that.loginUId,
+               'productType':that.mType==undefined?'原料':that.mType,
+               'commodityName':e.detail.value.mName==that.mName?that.mName:"",
+               'definedCommodityName':e.detail.value.mName==that.mName?"":e.detail.value.mName,
+               'csName':e.detail.value.csName,
+               'productSign':e.detail.value.mBrandNum==undefined?(that.mBrandNum==undefined?'':that.mBrandNum):e.detail.value.mBrandNum,
+               'producer':e.detail.value.mProducer,
+               'deliveryPlace':e.detail.value.seleCity,
+               'deliveryType':that.deliveryWay==undefined?'自提':that.deliveryWay,
+               'containTaxFlag':that.taxRadioIndex,
+               'price':(e.detail.value.mPrice==""||e.detail.value.mPrice==null)?0:e.detail.value.mPrice,
+               'priceUnit':e.detail.value.mUnit,
+               'model':e.detail.value.mModel==undefined?(that.mModel==undefined?'':that.mModel):e.detail.value.mModel,
+               'remark':e.detail.value.pVal
+           },
+           success:function(res){
+               console.log(res)
+               let msg=typeof res.data=="string"?JSON.parse(res.data):res.data;
+               if(msg.isSuccess==1){
+                   wx.showToast({
+                       title: msg.errorMsg,
+                       icon: 'success'
+                   });
+                   wx.redirectTo({
+                       url: 'subPrice?redirect=my&picList=../resources/img/imgUpload.jpg'
+                   })
+               }else{
+                   that.warningTip({
+                       msg:msg.errorMsg
+                   });
+               }
+               that.$apply();
+           }
+       });
+       }
+
+   uploadPicFn(e){
+      let that = this;
+      console.log(that.mType)
+        wx.getSavedFileList({
+              success: function(res) {
+                for(var i=0;i<res.fileList.length-1;i++){
+                    for(var j=0;j<res.fileList.length-1-i;j++){
+                       if(res.fileList[j].createTime>res.fileList[j+1].createTime){
+                             var tem=res.fileList[j];
+                              res.fileList[j]=res.fileList[j+1];
+                              res.fileList[j+1]=tem;
+                       }
+                    }
+                }
+                if(res.fileList.length > 5){
+                    wx.removeSavedFile({
+                      filePath: res.fileList[0].filePath,
+                      complete: function(res) {
+                        console.log(res)
+                      }
+                    })
+                }
+                if(that.isUpload==8){
+                   that.upPics=res.fileList[res.fileList.length-1].filePath;
+                }else{
+                    that.upPics="../resources/img/imgUpload.jpg";
+                }
+
+                that.$apply();
+              }
+          })
+          console.log(that.upPics)
+       wepy.uploadFile({
+           url: api.product.releaseMaterialPrice.url, //接口地址
+           filePath: that.upPics,
+           name: 'pictures',
+           header: {
+           "content-type": "multipart/form-data",
+           },
+           formData:{
+               'emptyImg':that.emmitImg,
+               'userId':that.loginUId,
+               'productType':that.mType==undefined?'原料':that.mType,
+               'commodityName':e.detail.value.mName==that.mName?that.mName:"",
+               'definedCommodityName':e.detail.value.mName==that.mName?"":e.detail.value.mName,
+               'csName':e.detail.value.csName,
+               'productSign':e.detail.value.mBrandNum==undefined?(that.mBrandNum==undefined?'':that.mBrandNum):e.detail.value.mBrandNum,
+               'producer':e.detail.value.mProducer,
+               'deliveryPlace':e.detail.value.seleCity,
+               'deliveryType':that.deliveryWay==undefined?'自提':that.deliveryWay,
+               'containTaxFlag':that.taxRadioIndex,
+               'price':(e.detail.value.mPrice==""||e.detail.value.mPrice==null)?0:e.detail.value.mPrice,
+               'priceUnit':e.detail.value.mUnit,
+               'model':e.detail.value.mModel==undefined?(that.mModel==undefined?'':that.mModel):e.detail.value.mModel,
+               'remark':e.detail.value.pVal
+           },
+         success: function(res){
+
+             let msg=typeof res.data=="string"?JSON.parse(res.data):res.data;
+             if(msg.isSuccess==0){
+                 that.warningTip({
+                     msg:msg.errorMsg
+                 });
+                 return false;
+             }
+             if(msg.isSuccess==1){
+                 wx.showToast({
+                     title: msg.errorMsg,
+                     icon: 'success'
+                 });
+                 wx.redirectTo({
+                     url: 'subPrice?redirect=my&picList=../resources/img/imgUpload.jpg'
+                 })
+             }
+             that.$apply();
+         }
+       })
+   }
+}
+</script>

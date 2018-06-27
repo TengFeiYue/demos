@@ -1,0 +1,102 @@
+page,
+.body {
+  height: 100%;
+  font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+  background-color: #ffffff;
+  font-size: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column; }
+  page .ulWraper,
+  .body .ulWraper {
+    padding: 30rpx;
+    text-align: center; }
+    page .ulWraper .modelItems,
+    .body .ulWraper .modelItems {
+      display: inline-block;
+      width: 200rpx;
+      line-height: 60rpx;
+      border: none;
+      border-radius: 8rpx;
+      margin-right: 26rpx;
+      margin-top: 26rpx; }
+      page .ulWraper .modelItems text,
+      .body .ulWraper .modelItems text {
+        display: inline-block;
+        width: 120rpx; }
+    page .ulWraper .modelItemsAct,
+    .body .ulWraper .modelItemsAct {
+      display: inline-block;
+      width: 200rpx;
+      line-height: 60rpx;
+      border: 1px solid #0386FF;
+      color: #0386FF;
+      border-radius: 8rpx;
+      margin-right: 26rpx;
+      margin-top: 26rpx; }
+    page .ulWraper checkbox .wx-checkbox-input,
+    .body .ulWraper checkbox .wx-checkbox-input {
+      border-radius: 50%;
+      width: 30rpx;
+      height: 30rpx; }
+    page .ulWraper checkbox .wx-checkbox-input.wx-checkbox-input-checked,
+    .body .ulWraper checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+      border: 1px solid #eeeeee;
+      background: #ffffff; }
+    page .ulWraper checkbox .wx-checkbox-input.wx-checkbox-input-checked::before,
+    .body .ulWraper checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+      border-radius: 50%;
+      width: 30rpx;
+      height: 30rpx;
+      line-height: 26rpx;
+      text-align: center;
+      font-size: 22rpx;
+      color: #128EFF;
+      border: 1px solid #128EFF;
+      background: #ffffff;
+      transform: translate(-50%, -50%) scale(1);
+      -webkit-transform: translate(-50%, -50%) scale(1); }
+  page .btn_sub,
+  .body .btn_sub {
+    padding-top: 50rpx;
+    width: 96%;
+    margin: 0 auto;
+    text-align: center; }
+    page .btn_sub text,
+    .body .btn_sub text {
+      display: inline-block;
+      width: 300rpx;
+      line-height: 74rpx;
+      background: #128EFF;
+      border-radius: 10rpx;
+      font-size: 36rpx;
+      color: #FFFFFF; }
+  page .view,
+  .body .view {
+    background: #333333;
+    color: #ffffff;
+    width: 270rpx;
+    height: 270rpx;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    border-radius: 10rpx;
+    margin-top: -135rpx;
+    margin-left: -135rpx;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center; }
+    page .view .tipPic,
+    .body .view .tipPic {
+      flex: 1;
+      padding-top: 36rpx; }
+      page .view .tipPic image,
+      .body .view .tipPic image {
+        width: 100rpx;
+        height: 100rpx; }
+    page .view text,
+    .body .view text {
+      flex: 1;
+      padding: 0 15rpx; }

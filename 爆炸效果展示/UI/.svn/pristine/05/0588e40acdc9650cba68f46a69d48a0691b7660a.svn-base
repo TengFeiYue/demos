@@ -1,0 +1,495 @@
+<style lang="scss">
+page,
+.body {
+    height: 100%;
+    font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+    background-color: #f0eff5;
+    font-size:14px;
+    overflow: hidden;
+}
+.shadow{
+	position: fixed;
+	width: 100%;
+	top: 0px;
+	bottom: 0;
+	z-index: 1;
+	background: rgba(0,0,0,.5);
+}
+.contactInfo{
+    position: fixed;
+	width: 100%;
+	bottom: 0;
+    z-index: 2;
+    height:300px;
+    background: white;
+    .title{
+        display: flex;
+        height:40px;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 1px solid #239FDB;
+        .text{
+            flex:1;
+            font-size:16px;
+            font-weight:bold;
+            padding-left:20px;
+            vertical-align: middle;
+        }
+        .btn{
+            width:60px;
+            text-align: center;
+            color:#239FDB;
+        }
+    }
+    .list{
+        display:flex;
+        margin-top:10px;
+        padding-bottom:10px;
+        flex-direction: column;
+        background: white;
+        padding-left:60px;
+        font-size:16px;
+        image{
+            margin-right:8px;
+        }
+        .row{
+            display:flex;
+            margin-top: 10px;
+            flex-direction: row;
+            .name{
+                width:60px;
+                color:grey;
+                text-align: left;
+            }
+            .value{
+                flex:1;
+            }
+        }
+    }
+
+}
+.bottom{
+    display:flex;
+    position: fixed;
+    bottom: 0px;
+    flex-direction: row;
+    height:60px;
+    background: white;
+    width:100%;
+    .browse{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        image{
+            width:26px;
+            height:15px;
+            margin-bottom:5px;
+        }
+        width:50%;
+    }
+    .favorite{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color:grey;
+        image{
+            width:25px;
+            height:25px;
+        }
+        width:25%;
+    }
+    .contact{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #239FDB;
+        width:50%;
+        .text{
+            color:white;
+            font-weight: bold;
+            font-size:16px;
+
+        }
+    }
+}
+.detailInfo{
+    display: flex;
+    flex-direction: row;
+    background: white;
+    border-bottom:1px solid #239FDB;
+    padding:10px;
+    .left{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width:50px;
+        image{
+            width:50px;
+            height:50px;
+        }
+    }
+    .right{
+        display: flex;
+        flex-direction: column;
+        flex:1;
+        margin-left:10px;
+        .title{
+            display: flex;
+            font-size:16px;
+            font-weight: bold;
+            color:grey;
+        }
+        .serviceList{
+            display:flex;
+            flex-direction: row;
+            flex-wrap:wrap;
+            .serviceImg{
+                margin-right: 8px;
+                margin-top:5px;
+                margin-bottom:5px;
+                image{
+                    width:20px;
+                    height:20px;
+                }
+            }
+        }
+    }
+}
+.gototop{
+	position: fixed;
+	bottom: 140rpx;
+	right: 20rpx;
+	transition: all 0.3s;
+	opacity: 0;
+    z-index:12;
+	transform: translateY(200rpx) rotate(180deg);
+}
+.gototop.active{
+	opacity: 0.9;
+	transform: translateY(0) rotate(180deg);
+}
+.productList{
+    .item{
+        display:flex;
+        flex-direction: row;
+        background:white;
+        margin-bottom:8px;
+        .title{
+            flex:1;
+            font-size:14px;
+            font-weight:bold;
+            padding:2px;
+            flex-wrap:wrap;
+            margin-right:20px;
+            margin-left:8px;
+            margin-top:8px;
+            .subTitle{
+                font-size:12px;
+                color:grey;
+                font-weight:normal;
+                padding-bottom:10px;
+                padding-top:10px;
+            }
+        }
+        .price{
+            width:100px;
+            margin-right:5px;
+            font-size:14px;
+            padding:2px;
+            margin-top:8px;
+            color:#ff7700;
+            font-weight:bold;
+            margin-right:20px;
+        }
+        .delivery{
+              font-size:12px;
+              color:grey;
+              padding-top:10px;
+        }
+        .img{
+            width:80px;
+            height:80px;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            image{
+                width:60px;
+                height:60px;
+            }
+
+        }
+    }
+}
+</style>
+<template>
+    <view class="body">
+        <view class="detailInfo">
+            <view class="left">
+                <image src="{{companyInfo.photoUrl}}">
+
+                </image>
+            </view>
+            <view class="right">
+                <view class="title">
+                    {{companyInfo.companyName}}
+                </view>
+                <view class="serviceList">
+                    <block wx:for="{{companyInfo.serviceImgUrlArr}}" wx:key="{{index}}">
+                        <view class="serviceImg">
+                            <image src='{{item}}'>
+                            </image>
+                        </view>
+                    </block>
+                </view>
+            </view>
+        </view>
+        <scroll-view class="container-body" scroll-top="{{scrolltop}}"  scroll-y="true"  style="height:{{scrollHeight}}px"  bindscrolltoupper="onPullDownRefresh"  bindscrolltolower="scrollLoading">
+
+            <view class="productList">
+                <block wx:for="{{productList}}" wx:key="{{index}}">
+                    <view class="item" @tap="gotoProductDetail" data-id="{{item.id}}" >
+                        <view class="title">
+                            {{item.commodityName}}/{{item.productSign}}
+                            <view class="subTitle">
+                                {{item.specialNames}}/{{item.useNames}}
+                            </view>
+                        </view>
+                        <view class="price">
+                            {{item.price}}元/{{item.unit}}
+                            <view class="delivery">
+                                {{item.deliveryArea}}
+                            </view>
+                        </view>
+                        <view class="img">
+                            <image src='{{item.photoUrl}}'>
+
+                            </image>
+                        </view>
+                    </view>
+                </block>
+            </view>
+	    </scroll-view>
+        <view class="bottom">
+            <view class="browse">
+                <image src="../resources/img/eyes_14.png"></image>
+                <view>{{companyInfo.browseNums}}</view>
+            </view>
+            <!-- <view class="favorite">
+                <image src="../resources/img/collect.png"></image>
+                <view>收藏</view>
+            </view> -->
+            <view class="contact" bindtap="contactUs">
+                <view class="text">联系我们</view>
+            </view>
+        </view>
+        <view class="contactInfo" wx:if="{{showContact}}" >
+            <view class="title">
+                <view class="text">
+                    {{companyInfo.companyName}}
+                </view>
+                <view class="btn" @tap="hideContact">
+                    取消
+                </view>
+            </view>
+             <view class="list">
+                    <view class="row">
+                        <image src="../resources/img/user_03.png" style="width:16px;height:18px;margin-right:12px">
+
+                        </image>
+                        <view class="name">
+                            联系人
+                        </view>
+                        <view class="value">
+                            {{dailyCompanyInfo.linkman_name}}
+                        </view>
+                    </view>
+                    <view class="row">
+                        <image src="../resources/img/weixinIcon_06.png" style="width:25px;height:19px">
+
+                        </image>
+                        <view class="name">
+                            微信
+                        </view>
+                        <view class="value price">
+                            {{dailyCompanyInfo.linkman_wx}}
+                        </view>
+                    </view>
+                    <view class="row">
+                        <image src="../resources/img/phone_09.png" style="width:21px;height:19px">
+
+                        </image>
+                        <view class="name">
+                            手    机
+                        </view>
+                        <view class="value">
+                            {{dailyCompanyInfo.linkman_mobile}}
+                        </view>
+                        <view style="width:60px" @tap="callTel" data-phoneno="{{dailyCompanyInfo.linkman_mobile}}">
+                            <image src="../resources/img/dial.png" data-phoneno="{{dailyCompanyInfo.linkman_mobile}}"  @tap="callTel" style="width:25px;height:25px">
+                            </image>
+                        </view>
+                    </view>
+                    <view class="row">
+                        <image src="../resources/img/tel_11.png" style="width:21px;height:18px">
+
+                        </image>
+                        <view class="name">
+                            座    机
+                        </view>
+                        <view class="value">
+                           {{dailyCompanyInfo.linkman_phone}}
+                        </view>
+                        <view style="width:60px"  @tap="callTel" data-phoneno="{{dailyCompanyInfo.linkman_phone}}">
+                        <image src="../resources/img/dial.png" data-phoneno="{{dailyCompanyInfo.linkman_phone}}"  @tap="callTel" style="width:25px;height:25px">
+                        </image>
+                        </view>
+                    </view>
+                </view>
+        </view>
+        <view class="shadow" wx:if="{{showContact}}" bindtap="hideContact">
+
+        </view>
+    </view>
+</template>
+
+
+<script>
+import wepy from 'wepy'
+import { api } from '../config'
+export default class companyDetailInfo extends wepy.page {
+    config = {
+        'navigationBarTitleText': '公司详情',
+        'navigationBarTextStyle': 'white',
+        'navigationBarBackgroundColor': '#239FDB'
+    }
+    components = {
+    }
+    data = {
+        companyInfo:{}, //公司详情
+        showContact: false,
+        dailyCompanyInfo:{},
+        loadmore:true,
+        showTopBtn:false,
+        productList:[], //产品列表
+        scrolltop:0, //滚动位置
+        scrollHeight:0,
+        pageIndex: 1,  //分页
+        companyId:0
+    }
+    events = {
+    }
+    methods = {
+        hideContact(){ //关闭筛选面板
+            this.showContact = false;
+        },
+        contactUs(){
+            this.showContact = true;
+            this.fetchDailyCompanyData();
+        },
+        callTel(e){
+            const telNo = e.currentTarget.dataset.phoneno;
+            wx.makePhoneCall({
+                phoneNumber: telNo
+            })
+        },
+        goToTop(){ //回到顶部
+            this.scrolltop = 0;
+            // this.$apply();
+            console.log("scrolltop:" + this.scrolltop);
+        },
+        scrollLoading(){ //滚动加载
+            console.log("loadMore:" + this.loadmore)
+            if(this.loadmore){
+                this.pageIndex++;
+                this.fetchProductData();
+            }else{
+              return false;
+            }
+        },
+        gotoProductDetail(e){
+                const id = e.currentTarget.dataset.id;
+                wx.navigateTo({
+                    url: 'productDetail?id=' + id
+                })
+        }
+    }
+    onLoad(params) {
+        this.scrollHeight = wx.getSystemInfoSync().windowHeight - 136;
+        this.showContact = false;
+        this.companyId = parseInt(params.id);
+        this.fetchCompanyDetailData();
+        this.fetchProductData();
+    }
+    fetchDailyCompanyData(){
+         wx.showLoading({
+            title: '加载中',
+        })
+        let that = this;
+        wepy.request({
+            url:api.company.dailyCompanyInfo.url,
+            method:api.company.dailyCompanyInfo.method,
+            data:{
+                'companyId': that.companyInfo.companyId
+            },
+            success:function(data){
+                console.log(data);
+                that.dailyCompanyInfo = data.data.body;
+                that.$apply();
+                wx.hideLoading()
+            }
+        });
+    }
+    fetchCompanyDetailData(){
+        console.log('company detail id:' + this.companyId)
+         wx.showLoading({
+            title: '加载中',
+        })
+        let that = this;
+        wepy.request({
+            url:api.company.companyInfo.url,
+            method:api.company.companyInfo.method,
+            data:{
+                'companyId':that.companyId
+            },
+            success:function(data){
+                console.log(data);
+                that.companyInfo = data.data.body;
+                that.$apply();
+                wx.hideLoading()
+            }
+        });
+    }
+    fetchProductData(){  //获取产品列表
+        wx.showLoading({
+            title: '加载中',
+        })
+        let that = this;
+        const pageSize = 20;
+        wepy.request({
+            url:api.product.companyProductList.url,
+            method:api.product.companyProductList.method,
+            data:{
+                'companyId': that.companyId,
+                'pageIndex':that.pageIndex,
+                'pageSize': pageSize
+            },
+            success:function(data){
+                console.log(data);
+                const pages = data.data.page.pages;
+                console.log('总页数：' + pages);
+                if(that.pageIndex > 1){
+                    that.productList = that.productList.concat(data.data.body);
+                }else{
+                    that.productList = data.data.body;
+                }
+                that.loadmore = (pages > that.pageIndex) ? true : false;
+                that.$apply();
+                wx.hideLoading();
+            }
+        });
+    }
+}
+</script>

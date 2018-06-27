@@ -1,0 +1,19 @@
+.footerBar{
+   display:flex;
+   flex-direction: row;
+   justify-content: space-around;
+   align-items: center;
+   position:fixed;
+   width:100%;
+   bottom:0;
+}
+.blue{
+  color:blue;
+  text-decoration: none;
+  flex:1;
+  text-align:center;
+  line-height: 80px;
+}
+.active{
+  color:red;
+}

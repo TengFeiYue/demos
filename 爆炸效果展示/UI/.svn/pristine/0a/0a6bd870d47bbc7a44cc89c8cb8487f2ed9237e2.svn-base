@@ -1,0 +1,178 @@
+.comS {
+  background: rgba(0, 146, 255, 0.2);
+  padding: 20rpx 30rpx; }
+
+.comquery {
+  background: #FFFFFF;
+  border: 1px solid #ECECEC;
+  border-radius: 16rpx;
+  height: 48rpx;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: between;
+  align-items: center; }
+
+.comquery image {
+  width: 24rpx;
+  height: 26rpx; }
+
+.comquery .comicon {
+  flex: 1;
+  text-align: center; }
+
+.comquery .comsearchIpt {
+  flex: 12; }
+
+.comsearchIpt input,
+.comsearchIpt .compStyle {
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  color: #666666;
+  letter-spacing: -0.14px; }
+
+.comT {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 16rpx 20rpx 0;
+  font-size: 24rpx;
+  letter-spacing: -0.14px;
+  border-bottom: 20rpx solid #F2F2F2; }
+
+.tabItems,
+.tabItemsAct {
+  flex: 1;
+  text-align: center; }
+
+.tabItemsAct {
+  color: #0092FF; }
+
+.tabItems image,
+.tabItemsAct image {
+  width: 48rpx;
+  height: 50rpx; }
+
+.companyTypeName {
+  line-height: 56rpx;
+  position: relative; }
+
+.companyTypeName:after {
+  content: '';
+  display: block;
+  width: 60rpx;
+  height: 4rpx;
+  background: #ffffff;
+  position: absolute;
+  bottom: 0;
+  left: 30rpx; }
+
+.companyTypeNameAct {
+  line-height: 56rpx;
+  position: relative; }
+
+.companyTypeNameAct:after {
+  content: '';
+  display: block;
+  width: 60rpx;
+  height: 4rpx;
+  background: #0092FF;
+  position: absolute;
+  bottom: 0;
+  left: 30rpx; }
+
+.comD {
+  display: flex;
+  flex-direction: row;
+  justify-content: between;
+  align-items: center;
+  text-align: center;
+  font-size: 28rpx;
+  color: #333333;
+  letter-spacing: 0.17px;
+  padding: 22rpx 0 16rpx;
+  line-height: 40rpx;
+  border-bottom: 1px solid #ECECEC; }
+
+.comD .selects {
+  display: inline-block;
+  flex: 1; }
+
+.comD .selects:after {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 10rpx solid transparent;
+  border-right: 10rpx solid transparent;
+  border-top: 12rpx solid #999999;
+  position: relative;
+  top: -2rpx;
+  right: -10rpx; }
+
+.comD .selectsAct {
+  color: #0092FF;
+  display: inline-block;
+  flex: 1; }
+
+.comD .selectsAct:after {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 10rpx solid transparent;
+  border-right: 10rpx solid transparent;
+  border-bottom: 12rpx solid #0092FF;
+  position: relative;
+  top: -2rpx;
+  right: -10rpx; }
+
+.filter-shadow {
+  position: absolute;
+  width: 100%;
+  top: 310rpx;
+  bottom: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.5); }
+
+.filter-content {
+  background: #ffffff;
+  position: absolute;
+  width: 100%;
+  top: 305rpx;
+  z-index: 100;
+  font-size: 24rpx;
+  color: #333333;
+  letter-spacing: -0.14px;
+  padding-top: 15rpx; }
+
+.filter-panel .item {
+  padding: 0 30rpx;
+  line-height: 70rpx;
+  background: #f2f2f2;
+  border-bottom: 1px solid #ececec; }
+
+.filter-panel .itemAct {
+  padding: 0 30rpx;
+  line-height: 70rpx;
+  background: #ffffff;
+  color: #0092FF;
+  border-bottom: 1px solid #ececec; }
+
+.distanceItem, .allSorts {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40%;
+  line-height: 70rpx;
+  background: #ffffff; }
+
+.dItem, .allSortsItem {
+  border-bottom: 1px solid #ececec;
+  padding-left: 20rpx; }
+
+.dItemAct, .allSortsItemAct {
+  border-bottom: 1px solid #ececec;
+  padding-left: 20rpx;
+  color: #0092FF; }

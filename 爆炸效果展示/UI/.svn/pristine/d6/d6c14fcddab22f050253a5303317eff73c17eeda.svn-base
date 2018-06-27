@@ -1,0 +1,159 @@
+<template>
+	<div class="app-container">
+		<ul>
+			<li>
+				<div class="left">
+					<p>
+						<span>张三</span>
+						<img src="../../assets/imgs/confirm.png" />
+					</p>
+					<p>技术研发-东莞市万瀚塑胶有限公司</p>
+				</div>
+				<div class="right">
+					<p>2018.3.16</p>
+					<p>
+						<a :href="'tel:' + thistel">
+							<img src="../../assets/imgs/call.png" />
+							<span>一键拨号</span>
+						</a>
+					</p>
+				</div>
+			</li>
+			<li>
+				<div class="left">
+					<p>
+						<span>张三</span>
+						<img src="../../assets/imgs/confirm.png" />
+					</p>
+					<p>技术研发-东莞市万瀚塑胶有限公司</p>
+				</div>
+				<div class="right">
+					<p>2018.3.16</p>
+					<p>
+						<a :href="'tel:' + thistel">
+							<img src="../../assets/imgs/call.png" />
+							<span>一键拨号</span>
+						</a>
+					</p>
+				</div>
+			</li>
+			<li>
+				<h1>
+					<span>上海华特新材料有限公司</span>
+					<span>2018.3.16</span>
+				</h1>
+				<div class="list">
+					<span>产业链</span>
+					<span>改性料，制品，制品，制品</span>
+				</div>
+				<div class="list">
+					<span>主营行业</span>
+					<span>通用塑料，工程塑料</span>
+				</div>
+				<div class="list">
+					<span>经营模式</span>
+					<span>生产加工</span>
+				</div>
+				<p class="address">企业地址：上海市嘉定区曹安公路5666号301室</p>
+			</li>
+		</ul>
+	</div>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				thistel: "15652898912"
+			}
+		},
+		methods: {
+			
+		},
+		mounted() {
+			this.$store.dispatch('hideFooter');
+		}
+	}
+</script>
+
+<style lang="less" scoped>
+	.app-container {
+		ul {
+			width: 100%;
+			overflow: hidden;
+			li {
+				width: 100%;
+				margin-bottom: 10px;
+				background-color: #fff;
+				padding: 10px 15px;
+				overflow: hidden;
+				.left,
+				.right {
+					height: 100%;
+					float: left;
+					p {
+						height: 24px;
+						width: 100%;
+						line-height: 24px;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						white-space: nowrap;
+						a {
+							display: block;
+							height: 100%;
+							width: 100%;
+						}
+						span {
+							margin-right: 10px;
+						}
+						img {
+							display: inline-block;
+							vertical-align: middle;
+						}
+					}
+				}
+				.left {
+					width: 80%;
+				}
+				.right {
+					width: 20%;
+				}
+				h1 {
+					line-height: 1.5;
+					span {
+						display: inline-block;
+					}
+					span:nth-child(2) {
+						float: right;
+					}
+				}
+				.list {
+					width: 50%;
+					line-height: 30px;
+					float: left;
+					span {
+						display: inline-block;
+						height: 100%;
+						float: left;
+					}
+					span:nth-child(1) {
+						width: 40%;
+						font-weight: bold;
+					}
+					span:nth-child(2) {
+						width: 60%;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						white-space: nowrap;
+					}
+				}
+				.address {
+					border-top: 1px solid #ececec;
+					float: left;
+					width: 100%;
+					line-height: 3;
+				}
+			}
+		}
+	}
+</style>

@@ -1,0 +1,529 @@
+
+	<view class="body">
+		<view class="tab_item tab_message"  wx:if="{{currentTab == 0}}">
+			
+	<view class="header">
+		<view class="up"/>
+		<view class="down"/>
+		<view class="pannal">
+			
+	<view class="searchTabs{{$index$search$tabComAct?'':'Act'}}">
+		<navigator class="cityBox" hover-class="none" url="../pages/cityposition">
+			<image class="thisCity" src="../../../../resources/img/{{$index$search$tabComAct?'city':'cityWhite'}}.png"/>
+			<text class="_city">{{$index$search$seleCity}}</text>
+		</navigator>
+		<view class="tabCom" bindtap="$index$search$changers" data-current="0">
+			<text class="tabComTxt" data-current="0">找企业</text>
+			<image src="../../../../resources/img/{{$index$search$tabComAct?'whiteBg':'blueBg'}}.png"/>
+			<text class="bottomLine"/>
+		</view>
+		<view class="tabCon" data-current="1" bindtap="$index$search$changers">
+			<text class="" data-current="1">找人脉</text>
+			<text class="bottomLine"/>
+		</view>
+	</view>
+	<!--搜企业-->
+	<view style="height: 280rpx;"  wx:if="{{$index$search$viewShow}}">
+		<view class="query" bindtap="$index$search$toSearchCom">
+			<view class="icon">
+				<image src="../../../../resources/icons/search.png" wx:if="{{$index$search$show_hide}}"/>
+			</view>
+			<view class="searchIpt">
+				<input type="text" value="" placeholder="搜索企业名称" disabled="true"/>
+			</view>
+		</view>
+		<scroll-view scroll-y="true" style="height:180rpx;">
+<<<<<<< .mine
+     <view class="select_com" wx:for="{{$index$search$testCom}}" wx:key="{{index}}" data-industryrole="{{item.industryRole}}" data-findex="{{index}}" bindtap="$index$search$gotoEnterprise">{{item.industryRole}}{{item.enpCount}}+</view>
+||||||| .r611
+			<!-- <navigator class='select_com' wx:for="{{testCom}}" wx:key="{{index}}" hover-class="none" open-type="reLaunch" url="index?goFindId=2&findtItem={{item.industryRole}}&findIndex={{index}}">{{item.industryRole}}{{item.enpCount}}+</navigator> -->
+     <view class="select_com" wx:for="{{$index$search$testCom}}" wx:key="{{index}}" data-industryrole="{{item.industryRole}}" data-findex="{{index}}" bindtap="$index$search$gotoEnterprise">{{item.industryRole}}{{item.enpCount}}+</view>
+=======
+     		<view class="select_com" wx:for="{{$index$search$testCom}}" wx:key="{{index}}" data-industryrole="{{item.industryRole}}" data-findex="{{index}}" bindtap="$index$search$gotoEnterprise">
+     			{{item.industryRole}}{{item.enpCount}}+
+     		</view>
+>>>>>>> .r632
+		</scroll-view>
+	</view>
+	<!--搜人脉-->
+	<view style="height: 280rpx;"  wx:if="{{$index$search$tabComAct}}">
+		<view class="query" bindtap="$index$search$toSearchPer">
+			<view class="icon">
+				<image src="../../../../resources/icons/search.png" wx:if="{{$index$search$show_hide}}"/>
+			</view>
+			<view class="searchIpt">
+				<input type="text" value="" placeholder="搜索可靠人脉" disabled="true"/>
+			</view>
+		</view>
+		<scroll-view scroll-y="true" style="height:180rpx;">
+<<<<<<< .mine
+ <view class="select_com" wx:for="{{$index$search$testPer}}" wx:key="{{index}}" data-key="{{item.value}}" bindtap="$index$search$gotoRelations">{{item.value}}{{item.count}}+</view>
+||||||| .r611
+			<!-- <text class='select_com' wx:for="{{testPer}}" wx:key="index">{{item.value}}{{item.count}}+</text> -->
+			<!-- <navigator class='select_com' wx:for="{{testPer}}" wx:key="{{index}}" hover-class="none" open-type="reLaunch" url="index?goFindId=1&findtItem={{item.key}}">{{item.value}}{{item.count}}+</navigator> -->
+ <view class="select_com" wx:for="{{$index$search$testPer}}" wx:key="{{index}}" data-key="{{item.key}}" bindtap="$index$search$gotoRelations">{{item.value}}{{item.count}}+</view>
+=======
+ 			<view class="select_com" wx:for="{{$index$search$testPer}}" wx:key="{{index}}" data-key="{{item.key}}" bindtap="$index$search$gotoRelations">
+ 				{{item.value}}{{item.count}}+
+ 			</view>
+>>>>>>> .r632
+		</scroll-view>
+
+	</view>
+
+		</view>
+	</view>
+
+	<view class="banner">
+		<swiper class="swiper-box" indicator-dots="true" indicator-color="rgba(225, 225, 225, 0)" indicator-active-color="rgba(225, 225, 225, 1)" autoplay="true" circular="true" interval="{{$index$interval}}" duration="{{$index$duration}}" bindchange="$index$swiperChange">
+			<block  wx:for="{{$index$bannerImgUrls}}" wx:key="{{index}}">
+				<swiper-item>
+					<image src="{{item.imgUrl}}" class="slide-image" style="width:100%;height:206rpx;" bindtap="$index$bannerTap"/>
+				</swiper-item>
+			</block>
+		</swiper>
+	</view>
+	<view class="content">
+		<view class="around">
+			<view class="subTitle">
+				<text>周边雷达</text>
+				<image src="../resources/icons/radar.png" class="subTitleIcon"/>
+			</view>
+			<view class="aboutAround">
+				<view class="robot"  wx:if="{{$index$statisticData.length == 0}}">
+					<view class="robot-bg">
+						<image src="../resources/img/robot.gif" class="robot-robot"/>
+						<image src="../resources/img/robot-bg.png" class="robot-bg"/>
+						<image src="../resources/img/robot-back.png" class="robot-back left"/>
+						<image src="../resources/img/robot-back.png" class="robot-back right"/>
+						<text>俺搜正在为您匹配50km以内的数据</text>
+					</view>
+				</view>
+				<view class="aroundCompany"  wx:if="{{$index$statisticData.length != 0}}" wx:for="{{$index$statisticData}}" wx:key="{{index}}" data-i="{{index}}" bindtap="$index$toDetails">
+					<view class="aroundData">
+						<view class="aroundText">{{item.nameStr}}</view>
+						<view class="aroundTxt">{{item.numStr}}</view>
+					</view>
+					<view class="aroundPic">
+						<image src="{{item.imgUrl}}" class="aroundImg"/>
+					</view>
+				</view>
+			</view>
+		</view>
+
+		<view class="recommand">
+			<view class="subTitle">
+				<text>俺搜推荐</text>
+				<image src="../resources/icons/recommand.png" class="subTitleIcon"/>
+				<image src="../resources/img/changeAnother.png" class="changeOthers" bindtap="$index$changeOther"/>
+			</view>
+			<scroll-view class="scrollBody" scroll-y="true">
+				<view class="ul">
+					<view class="recommandList" wx:for="{{$index$recommandList}}" wx:key="{{index}}" data-id="{{item.id}}" bindtap="$index$toCompanyDetail">
+						<view class="companyName">
+							<text>{{item.name}}</text>
+							<image src="../resources/icons/zhu.png" wx:if="{{item.companyId > 0}}"/>
+						</view>
+						<view class="applies">
+							<view class="typesW" wx:for="{{item.typeArr}}" wx:key="">{{item}}</view>
+							<view class="types" wx:for="{{item.baseSecondCategoryArr}}" wx:key="">{{item}}</view>
+						</view>
+						<view class="otherDataService">
+							<view class="otherserve">{{item.mainLines}}</view>
+							<view class="distance">{{item.distance}}</view>
+						</view>
+						<view class="companySite">
+							<text>{{item.provinceName}}{{item.districtName}}{{item.address}}</text>
+						</view>
+					</view>
+					<view class="tips">
+						<view wx:if="{{$index$loadmore}}" class="loadShow">
+							<icon type="waiting" size="16"/><text>玩命的加载中...</text>
+						</view>
+						<view wx:else style="text-align:center;"><text>查看更多内容，请前往俺搜APP</text></view>
+					</view>
+				</view>
+			</scroll-view>
+			<view class="status" wx:if="{{$index$showStatus}}">
+				<view class="statusDes">
+					<text>{{$index$confirmInfos}}</text>
+				</view>
+				<view class="statusBtn">
+					<text class="btn" catchtap="$index${{$index$toUrl}}">{{$index$confirmBtn}}</text>
+					<text class="shutDown" bindtap="$index$ShowStatus">×</text>
+				</view>
+			</view>
+		</view>
+	</view>
+
+		</view>
+		<view class="tab_item tab_contact" wx:if="{{currentTab == 1}}">
+			
+	<view class="connectionHeader">
+		<view class="connectionUp"/>
+		<view class="connectionDown"/>
+		<view class="connectionPannal">
+			
+	<view class="connectionSearchSelects">
+		<view class="queries">
+			<view class="connectionQuery">
+				<view class="icon">
+					<image src="../../../../resources/icons/search.png"  wx:if="{{$connections$connectionSearch$show_hide}}"/>
+				</view>
+				<view class="searchIpt" bindtap="$connections$connectionSearch$toSearchPer">
+					<input type="text" value="{{$connections$connectionSearch$searchvalue}}" placeholder="搜索企业名称/人脉名称" placeholder-class="pStyle" confirm-type="search"/>
+				</view>
+			</view>
+			<view class="sorting" bindtap="$connections$connectionSearch$showFiler"><text>{{$connections$connectionSearch$choosedSort}}</text>
+				<image src="../../../../resources/icons/sorting.png"/>
+			</view>
+		</view>
+		<view style="padding-top:10rpx;">
+			<view class="editPannel" style="max-height: {{$connections$connectionSearch$second_height}}px;">
+				<view class="editTips">
+					<text  wx:if="{{($connections$connectionSearch$getArr.length==0)&&($connections$connectionSearch$getDutyArr.length==0)&&($connections$connectionSearch$getDisArr.length==0)&&($connections$connectionSearch$getRuningArr.length==0)}}" class="preTips">请点击编辑选项，添加筛选条件</text>
+					<view class="selectedItems" wx:if="{{$connections$connectionSearch$getArr !=''}}">
+						<view class="wraper">
+							<text>{{$connections$connectionSearch$getArr}}</text>
+							<image src="../../../../resources/icons/delete.png" data-i="{{$connections$connectionSearch$index}}" catchtap="$connections$connectionSearch$deleteSelected"/>
+						</view>
+					</view>
+					<!--担任职位-->
+					<view class="selectedItems" wx:if="{{$connections$connectionSearch$getDutyArr != ''}}">
+						<view class="wraper">
+							<text>{{$connections$connectionSearch$getDutyArr}}</text>
+							<image src="../../../../resources/icons/delete.png" data-i="{{$connections$connectionSearch$index}}" catchtap="$connections$connectionSearch$deleteDuty"/>
+						</view>
+					</view>
+					<!--距离-->
+					<view class="selectedItems" wx:if="{{$connections$connectionSearch$getDisArr != ''}}">
+						<view class="wraper">
+							<text wx:for="{{$connections$connectionSearch$nearSite}}" wx:key="{{index}}" wx:if="{{item.id == $connections$connectionSearch$getDisArr}}">{{item.name}}</text>
+							<image src="../../../../resources/icons/delete.png" catchtap="$connections$connectionSearch$deleteSite"/>
+						</view>
+					</view>
+					<!--经营模式-->
+					<view class="selectedItems" wx:if="{{$connections$connectionSearch$getRuningArr != ''}}">
+						<view class="wraper">
+							<text wx:for="{{$connections$connectionSearch$runingModel}}" wx:key="{{index}}" wx:if="{{item.id == $connections$connectionSearch$getRuningArr}}">{{item.name}}</text>
+							<image src="../../../../resources/icons/delete.png" catchtap="$connections$connectionSearch$deleteModel"/>
+						</view>
+					</view>
+				</view>
+				<view class="chooseOptions" wx:if="{{$connections$connectionSearch$closeAll}}">
+					<view class="optionsTitle">
+						<image src="../../../../resources/icons/parallelogram.png"/>
+						<text>产业链</text>
+					</view>
+					<checkbox-group bindchange="$connections$connectionSearch$selectIndustryChain">
+						<view class="optionsUl">
+							<block wx:for="{{$connections$connectionSearch$materialType}}" wx:key="{{index}}" data-v="{{item.name}}">
+								<label class="optionsLi{{item.checked?'Act':''}}">
+                              		<checkbox value="{{item.name}}" checked="{{item.checked}}" style="display:none;"/>{{item.name}}
+                        		</label>
+							</block>
+						</view>
+					</checkbox-group>
+					<view class="optionsTitle">
+						<image src="../../../../resources/icons/parallelogram.png"/>
+						<text>担任职务</text>
+					</view>
+
+					<checkbox-group bindchange="$connections$connectionSearch$selectDuties">
+						<view class="optionsUl">
+							<block wx:for="{{$connections$connectionSearch$dutyType}}" wx:key="{{index}}">
+								<label class="optionsLi{{item.checked?'Act':''}}">
+                  	<checkbox value="{{item.name}}" checked="{{item.checked}}" style="display:none;"/>{{item.name}}
+            		</label>
+							</block>
+						</view>
+					</checkbox-group>
+
+					<view class="optionsTitle">
+						<image src="../../../../resources/icons/parallelogram.png"/>
+						<text>地理位置(单选)</text>
+					</view>
+
+					<radio-group bindchange="$connections$connectionSearch$selectSite">
+						<view class="optionsUl">
+							<block wx:for="{{$connections$connectionSearch$nearSite}}" wx:key="{{index}}">
+								<label class="optionsLi{{item.checked?'Act':''}}">
+                                <radio value="{{item.id}}" checked="{{item.checked}}" style="display:none;"/>{{item.name}}
+                          </label>
+							</block>
+						</view>
+					</radio-group>
+
+					<view class="optionsTitle">
+						<image src="../../../../resources/icons/parallelogram.png"/>
+						<text>经营模式(单选)</text>
+					</view>
+
+					<radio-group bindchange="$connections$connectionSearch$selectModels">
+						<view class="optionsUl">
+							<block wx:for="{{$connections$connectionSearch$runingModel}}" wx:key="{{index}}">
+								<label class="optionsLi{{item.checked?'Act':''}}">
+                                <radio value="{{item.id}}" checked="{{item.checked}}" style="display:none;"/>{{item.name}}
+                          </label>
+							</block>
+						</view>
+					</radio-group>
+				</view>
+				<view class="editOper">
+					<view class="editResults">共找到<text class="resNum">{{$connections$connectionSearch$relationNum}}</text>条结果</view>
+					<view class="closeAll" wx:if="{{$connections$connectionSearch$closeAll}}" bindtap="$connections$connectionSearch$closeAll">收起全部</view>
+					<view class="startEdit" bindtap="$connections$connectionSearch$editOptions" wx:if="{{!$connections$connectionSearch$closeAll}}">编辑选项</view>
+				</view>
+			</view>
+
+
+		</view>
+	</view>
+	<view  wx:if="{{$connections$connectionSearch$filterShow}}" class="filterMask"/>
+	<view  wx:if="{{$connections$connectionSearch$filterShow}}" class="filterCon">
+		<view class="conH3">
+			<view class="conLeft">选择排序方式</view>
+			<view class="conRight" bindtap="$connections$connectionSearch$closeLayer">
+				<image src="../../../../resources/icons/delete.png"/>
+			</view>
+		</view>
+		<view class="conList">
+			<view class="conItem" wx:for="{{$connections$connectionSearch$autoSorting}}" wx:key="{{index}}" data-i="{{index}}" data-id="{{item.id}}" data-v="{{item.name}}" bindtap="$connections$connectionSearch$chooseCondition">
+				<view class="itemLeft{{$connections$connectionSearch$choosedItem==index?'Act':''}}">{{item.name}}</view>
+				<view class="itemRight">
+					<image src="../../../../resources/icons/checked.png" wx:if="{{$connections$connectionSearch$choosedItem==index}}"/>
+				</view>
+			</view>
+
+		</view>
+	</view>
+
+		</view>
+	</view>
+	<view style="margin-top: 40rpx;">
+		<scroll-view class="connectionScrollBody" scroll-y="true" style="max-height:{{$connections$scrollWrapHeight}}px" bindscrolltolower="$connections$scrollLoading">
+			<view class="connectionUl">
+				<view class="connectionList"  wx:for="{{$connections$info}}" wx:key="{{index}}" data-id="{{item.id}}" bindtap="$connections$toPersonDetail">
+					<view class="headImg">
+						<image src="{{item.userLogo}}"/>
+					</view>
+					<view class="itemDl">
+						<view class="connectionName">
+							<text>{{item.name}}</text>
+							<image wx:if="{{item.bestFlag == 2}}" src="../resources/icons/verify.png"/>
+  							<image wx:if="{{item.bestFlag == 1}}" src="../resources/icons/noverify.png"/>
+  							<image wx:if="{{item.bestFlag == 3}}" src="../resources/icons/confirm.png"/>
+						</view>
+						<view class="connectionDuty">
+							<text>{{item.job}}</text>
+							<text>{{item.companyName}}</text>
+						</view>
+						<view class="dataServes">
+							<text>{{item.firstCategory}}</text>
+						</view>
+						<view class="connectionCities">
+							<text>{{item.city}}</text>
+						</view>
+					</view>
+				</view>
+				<view class="tips">
+					<view  wx:if="{{$connections$loadmore}}" class="loadShow">
+						<icon type="waiting" size="16"/><text>玩命的加载中...</text>
+					</view>
+					<view wx:else style="text-align:center;"><text>查看更多内容，请前往俺搜APP</text></view>
+				</view>
+			</view>
+		</scroll-view>
+	</view>
+
+		</view>
+		<view class="tab_item tab_contact" wx:if="{{currentTab == 2}}">
+			
+	<view>
+		
+	<view class="comS">
+		<view class="comquery" bindtap="$company$companySearch$toSearchCom">
+			<view class="comicon">
+				<image src="../../../../resources/icons/comSearch.png"  wx:if="{{$company$companySearch$show_hide}}"/>
+			</view>
+			<view class="comsearchIpt">
+				<input type="text" value="{{$company$companySearch$searchvalue}}" placeholder="搜索企业名称/主营产品"/>
+			</view>
+		</view>
+	</view>
+	<view class="comT">
+		<view  wx:for="{{$company$companySearch$tabItems}}" wx:key="{{index}}" class="tabItems{{$company$companySearch$selIndex==index?'Act':''}}" data-i="{{index}}" data-v="{{item.name}}" data-a="{{item.childs}}" bindtap="$company$companySearch$chooseType">
+			<view class="companyTypeIcon">
+				<image src="{{$company$companySearch$selIndex==index?item.image:item.image2}}"/>
+			</view>
+			<view class="companyTypeName{{$company$companySearch$selIndex==index?'Act':''}}">{{item.name}}</view>
+		</view>
+
+	</view>
+	<view class="comD">
+		<text bindtap="$company$companySearch$setFilterPanel" data-index="1" class="selects{{$company$companySearch$showfilterindex==1?'Act':''}}">{{$company$companySearch$selectedSite}}</text>
+		<text bindtap="$company$companySearch$setFilterPanel" data-index="2" class="selects{{$company$companySearch$showfilterindex==2?'Act':''}}">{{$company$companySearch$selectedAll}}</text>
+		<text bindtap="$company$companySearch$setFilterPanel" data-index="3" class="selects{{$company$companySearch$showfilterindex==3?'Act':''}}">{{$company$companySearch$selectedAllModel}}</text>
+	</view>
+	<view class="filter-content"  wx:if="{{$company$companySearch$showfilter}}">
+		<view class="filter-panel" wx:if="{{$company$companySearch$showfilterindex==1}}">
+			<view class="filter-panel-left">
+				<scroll-view style="max-height:300px;width:100%;position:relative;z-index:13;" scroll-y="true">
+					<view class="distanceItem">
+						<view wx:for="{{$company$companySearch$distance}}" wx:key="{{index}}" catchtap="$company$companySearch$selectDistance" data-sort="{{item}}" data-index="{{index}}" wx:if="{{$company$companySearch$nearIndex=='a'}}" class="dItem{{$company$companySearch$disIndex==index?'Act':''}}">{{item}}</view>
+					</view>
+					<view bindtap="$company$companySearch$selectNear" data-sort="附近" data-index="a" class="item{{$company$companySearch$nearIndex=='a'?'Act':''}}"><text>附近</text></view>
+					<view wx:for="{{$company$companySearch$near}}" wx:key="{{index}}" bindtap="$company$companySearch$selectNear" data-sort="{{item.districtName}}" data-index="{{index}}" class="item{{$company$companySearch$nearIndex==index?'Act':''}}">
+						<text>{{item.districtName}}</text>
+					</view>
+				</scroll-view>
+			</view>
+
+		</view>
+		<view class="filter-panel" wx:if="{{$company$companySearch$showfilterindex==2}}">
+			<view class="filter-panel-left">
+				<scroll-view style="max-height:300px;width:100%;position:relative;z-index:13;" scroll-y="true">
+				     <view class="allSorts">
+						   <view wx:for="{{$company$companySearch$allSorts}}" wx:key="{{index}}" catchtap="$company$companySearch$selectAllSorts" data-sort="{{item.name}}" data-index="{{index}}" class="allSortsItem{{$company$companySearch$sortIndex==index?'Act':''}}">{{item.name}}</view>
+						 </view>
+					   <view wx:for="{{$company$companySearch$all}}" wx:key="{{index}}" data-a="{{item.childs}}" bindtap="$company$companySearch$selectAll" data-sort="{{item.name}}" data-index="{{index}}" class="item{{$company$companySearch$allIndex==index?'Act':''}}">{{item.name}}</view>
+				</scroll-view>
+			</view>
+		</view>
+		<view class="filter-panel" wx:if="{{$company$companySearch$showfilterindex==3}}">
+			<view class="filter-panel-left">
+				<scroll-view style="max-height:300px;width:100%;z-index:13;" scroll-y="true">
+					<view wx:for="{{$company$companySearch$allModel}}" wx:key="{{index}}" bindtap="$company$companySearch$selectAllModel" data-sort="{{item.value}}" data-index="{{index}}" class="item{{$company$companySearch$allModelIndex==index?'Act':''}}">{{item.value}}</view>
+				</scroll-view>
+			</view>
+		</view>
+	</view>
+	<view class="filter-shadow"  wx:if="{{$company$companySearch$showfilter}}" bindtap="$company$companySearch$hideFilter"/>
+
+		<view>
+			<scroll-view class="scrollBody" scroll-y="true" style="max-height:{{$company$scrollWrapHeight}}px" bindscrolltolower="$company$scrollLoading">
+				<view class="ul">
+					<view class="recommandList"  wx:for="{{$company$info}}" wx:key="{{index}}" data-id="{{item.id}}" bindtap="$company$toCompanyDetail">
+						<view class="companyName">
+							<text>{{item.name}}</text>
+							<image src="../resources/icons/zhu.png" wx:if="{{item.companyId > 0}}"/>
+						</view>
+						<view class="applies">
+							<view class="types" wx:for="{{item.typeArr}}" wx:for-item="i" wx:key="{{i}}">{{i}}</view>
+							<view class="list-text" wx:for="{{item.baseSecondCategoryArr}}" wx:for-item="j" wx:key="{{j}}" wx:if="{{item.baseSecondCategoryArr.length != 0}}">{{j}}</view>
+						</view>
+						<view class="otherDataService">
+							<view class="otherserve">{{item.mainLines}}</view>
+							<view class="distance">{{item.distance}}</view>
+						</view>
+						<view class="companySite">
+							<text>{{item.provinceName}}{{item.districtName}}{{item.address}}</text>
+						</view>
+					</view>
+				</view>
+				<view class="tips">
+					<view  wx:if="{{$company$loadmore}}" class="loadShow">
+						<icon type="waiting" size="16"/><text>玩命加载中...</text>
+					</view>
+					<view wx:else style="text-align:center;">
+						<text>查看更多内容，请前往俺搜APP</text>
+					</view>
+				</view>
+			</scroll-view>
+		</view>
+	</view>
+
+		</view>
+		<view class="tab_item tab_me" wx:if="{{currentTab == 3}}">
+			
+	<view class="portrait">
+		<image src="../resources/img/bg.png" class="slide-image" style=""/>
+		<view class="por-image pos-class">
+			<image src="{{$my$userImg}}" class="pos-class"/>
+		</view>
+		<view class="por-content pos-class">
+			<view class="texts">{{$my$userName}}</view>
+			<view class="icons">
+				<image  wx:if="{{$my$info.companyApplyStatus == 1}}" src="../resources/icons/confirm.png"/>
+				<image  wx:else src="../resources/icons/noconfirm.png"/>
+			</view>
+		</view>
+	</view>
+	<scroll-view scroll-y="{{$my$true}}" style="height: 90%">
+		<view style="width: 100%;height: 20rpx;background-color: #F2F2F2;"/>
+		<view style="width: 100%;height: 368rpx;">
+			<view class="my-function border-top" bindtap="$my$routerLink" data-wpyrouterlink-a="myCard">
+				<view class="my-left">我的电子名片</view>
+				<image src="../resources/icons/righticon.png" class="right-image"/>
+				<view class="my-right">电子社交更便捷</view>
+			</view>
+			<view class="my-function border-top" bindtap="$my$routerLink" data-wpyrouterlink-a="myQRCode">
+				<view class="my-left">我的小程序码</view>
+				<image src="../resources/icons/righticon.png" class="right-image"/>
+				<view class="my-right">属于你自己的小程序</view>
+			</view>
+			<navigator class="my-function border-top" hover-class="none" url="../../../pages/myCollect?userId={{$my$loginUId}}">
+				<view class="my-left">我的收藏</view>
+				<image src="../resources/icons/righticon.png" class="right-image"/>
+				<view class="my-right">{{$my$info.collectNum}}</view>
+			</navigator>
+			<navigator class="my-function border-top" hover-class="none" url="../../../pages/deblockingConnection?userId={{$my$loginUId}}">
+				<view class="my-left">我的解锁人脉</view>
+				<image src="../resources/icons/righticon.png" class="right-image"/>
+				<view class="my-right">{{$my$info.lockNum}}</view>
+			</navigator>
+		</view>
+		<view style="width: 100%;height: 20rpx;background-color: #F2F2F2;"/>
+		<view>
+			<view class="my-function border-bottom" bindtap="$my$isConfirm">
+				<view class="my-left">俺搜认证变更</view>
+				<image src="../resources/icons/righticon.png" class="right-image"/>
+				<view class="my-right">
+					<text  wx:if="{{$my$info.companyApplyStatus == 0}}">认证中</text>
+					<text  wx:if="{{$my$info.companyApplyStatus == 1}}">身份认证，权限升级</text>
+					<text wx:if="{{$my$info.companyApplyStatus == 2}}">认证失败</text>
+					<text wx:if="{{$my$info.companyApplyStatus == 3}}">已离职</text>
+					<text wx:if="{{$my$info.companyApplyStatus == 4}}">未认证</text>
+				</view>
+			</view>
+			<navigator class="my-function border-bottom" hover-class="none" url="../../../pages/feedback?phone={{$my$phone}}&userId={{$my$loginUId}}">
+				<view class="my-left">意见反馈</view>
+				<image src="../resources/icons/righticon.png" class="right-image"/>
+			</navigator>
+			<view class="my-function border-bottom" bindtap="$my$downloadApp">
+				<view class="my-left">管理企业</view>
+				<image src="../resources/icons/righticon.png" class="right-image"/>
+				<view class="my-right">下载俺搜APP管理企业空间</view>
+			</view>
+			<view class="my-function border-bottom" bindtap="$my$exit">
+				<view class="my-left">退出登录</view>
+				<image src="../resources/icons/righticon.png" class="right-image"/>
+			</view>
+		</view>
+	</scroll-view>
+	<view class="labour-tel" bindtap="$my$callPhone">
+		<image src="../resources/img/labour.png"/>
+	</view>
+
+		</view>
+		
+    <view class="tab">
+        <view class="tab_item tab_message{{$tab$active == 0 ? ' active' : ''}}" bindtap="$tab$change" data-wpychange-a="0">
+            <image class="icon" src="../resources/icons/index{{$tab$active == 0 ? 'Act' : ''}}.png"/>
+            <text class="title">首页</text>
+        </view>
+        <view class="tab_item tab_contact{{$tab$active == 1 ? ' active' : ''}}" bindtap="$tab$change" data-wpychange-a="1">
+            <image class="icon" src="../resources/icons/connection{{$tab$active == 1 ? 'Act' : ''}}.png"/>
+            <text class="title">人脉</text>
+        </view>
+        <view class="tab_item tab_me{{$tab$active == 2 ? ' active' : ''}}" bindtap="$tab$change" data-wpychange-a="2">
+            <image class="icon" src="../resources/icons/company{{$tab$active == 2 ? 'Act' : ''}}.png"/>
+            <text class="title">企业</text>
+        </view>
+        <view class="tab_item tab_me{{$tab$active == 3 ? ' active' : ''}}" bindtap="$tab$change" data-wpychange-a="3">
+            <image class="icon" src="../resources/icons/my{{$tab$active == 3 ? 'Act' : ''}}.png"/>
+            <text class="title">我的</text>
+        </view>
+    </view>
+
+	</view>

@@ -1,0 +1,79 @@
+<style type="scss">
+	.con{
+		width: 100%;
+		background-color: #fff;
+		padding: 100rpx 30rpx 0 30rpx;
+		box-sizing: border-box;
+		.img{
+			width: 60%;
+			height: 590rpx;
+			font-size: 24rpx;
+			color: #666;
+			line-height: 1.5;
+			text-align: center;
+			margin: 0 auto;
+			position: relative;
+			image{
+				display: block;
+				margin: 0 auto;
+				width: 60%;
+			}
+			text{
+				display: block;
+			}
+			.active{
+				color: #0092ff;
+			}
+		}
+		.back{
+			background-color: #0092ff;
+			color: #fff;
+			font-size: 32rpx;
+			width: 560rpx;
+			height: 96rpx;
+			line-height: 96rpx;
+			text-align: center;
+			margin: 0 auto;
+			border-radius: 16rpx;
+			margin-top: 100rpx;
+		}
+	}
+	::-webkit-scrollbar {
+	  width: 0;
+	  height: 0;
+	  color: transparent;
+	}
+</style>
+<template>
+	<view class="con">
+		<view class="img">
+			<image src="../resources/img/mascot.png"></image>
+			<text class="active">审核中</text>
+			<text>您的信息已提交</text>
+			<text>俺搜会在48小时内审核并联系您</text>
+		</view>
+		<view class="back" bindtap="toIndex">返回首页</view>
+	</view>
+</template>
+<script>
+	import wepy from 'wepy';
+	import { api } from '../config';
+	export default class antsooComfirming extends wepy.page {
+		config = {
+			'navigationBarTitleText': '俺搜认证',
+			'navigationBarTextStyle': '#FFFFFF',
+			'navigationBarBackgroundColor': '#0092FF'
+		}
+		onShow() {
+			const antsooUserInfo = wepy.getStorageSync("antUserInfo");
+			this.loginUId = antsooUserInfo.userId;
+		}
+		methods={
+			toIndex(){
+				wx.navigateTo({
+					url: 'index'
+				})
+			},
+		}
+	}
+</script>

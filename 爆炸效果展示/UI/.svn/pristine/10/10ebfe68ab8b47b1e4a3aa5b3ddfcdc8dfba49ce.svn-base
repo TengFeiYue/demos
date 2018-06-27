@@ -1,0 +1,88 @@
+
+
+    .li{
+      padding:30rpx;
+      background: #FFFFFF;
+      border-bottom:1px solid #eeeeee;
+    }
+    .tips{
+       background:#ffffff;
+       line-height:60rpx;
+    }
+    .loadShow{
+          background:#ffffff;
+          text-align:center;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          align-self: center;
+          justify-content: center;
+    }
+    .loadShow icon{
+        position:relative;
+        top:17rpx;
+        right:5rpx;
+    }
+    .proName{
+       display:flex;
+       flex-direction:row;
+       justify-content:space-between;
+    }
+    .pName{
+      flex:4;
+      height:48rpx;
+      line-height:48rpx;
+      font-size:34rpx;
+      color:#222222;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+    }
+    .proDes{
+        font-size:28rpx;
+        color:#999999;
+        line-height:42rpx;
+        padding:7.5rpx 0;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        display:-webkit-box;
+        -webkit-box-orient:vertical;
+        -webkit-line-clamp:2;
+        width-space:nowrap;
+    }
+    .tradeAddress{
+      display:flex;
+      flex-direction:row;
+      justify-content:space-between;
+      font-size: 26rpx;
+      color: #333333;
+    }
+    .address{
+       flex:2;
+    }
+    .tradeAddress .time{
+      flex:1;
+      font-size: 26rpx;
+      color: #999999;
+      text-align:right;
+    }
+    .pPrice{
+      flex:2;
+      font-size: 28rpx;
+      color: #FF9A00;
+       line-height:48rpx;
+       text-align:right;
+    }
+    .gototop{
+    	position: fixed;
+    	bottom: 140rpx;
+    	right: 20rpx;
+    	transition: all 0.3s;
+    	opacity: 0;
+        z-index:12;
+    	transform: translateY(200rpx) rotate(180deg);
+    }
+    .gototop.active{
+    	opacity: 0.9;
+    	transform: translateY(0) rotate(180deg);
+    }

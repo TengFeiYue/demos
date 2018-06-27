@@ -1,0 +1,35 @@
+
+    <view class="noDatas"  wx:if="{{!hasDatas}}">
+      <view class="noDatasTip">
+          <image src="../resources/img/noPriceRecord.png"/>
+          <view class="noDatasTipTxt">您还没有任何记录哦～</view>
+      </view>
+      <view class="checkedBtn">
+          <text bindtap="toSellerList">前往查看</text>
+      </view>
+    </view>
+    <view class="body"  wx:if="{{hasDatas}}">
+        <view class="myCollectList">
+        <scroll-view scroll-top="{{scrolltop}}" scroll-y="true" style="height:{{scrollWrapHeight}}px" bindscrolltoupper="onPullDownRefresh" bindscrolltolower="scrollLoading">
+            <view class="myCollectUl">
+                <view class="myCollectPersonLi" wx:for="{{linkedManList}}" wx:key="{{index}}" data-uid="{{item.userDto.userId}}" bindtap="toMarketingDetail">
+                   <view class="myCollectHeadImg"><image src="{{item.userDto.userLogo}}"/></view>
+                   <view class="myCollectDes">
+                       <view><text class="h3">{{item.userDto.name}}</text><text class="runningWay">{{item.userDto.businessMode}}</text></view>
+                       <view class="myCollectComName"><text>{{item.userDto.enterpriseName}}</text><image src="../resources/img/zhu.png"/></view>
+                       <view class="myCollectLinks"><text class="orange">{{item.userDto.productCount}}</text>款产品<text class="linkNum">{{item.userDto.linkManCount}}</text>人联系</view>
+                   </view>
+                   <view class="myCollectDate">
+                         <view class="linkedDate">{{item.createDate}}</view>
+                         <view class="linkButton" data-tel="{{item.userDto.phone}}" data-uid="{{item.userDto.userId}}" catchtap="startCall">一键联系</view>
+                   </view>
+                </view>
+                <view class="tips">
+                  <view wx:if="{{loadmore}}" class="loadShow">
+                   <icon type="waiting" size="16"/><text>玩命的加载中...</text></view>
+                   <view wx:else style="text-align:center;"><text>没有更多内容了</text></view>
+                </view>
+             </view>
+             </scroll-view>
+        </view>
+    </view>

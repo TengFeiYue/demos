@@ -1,0 +1,76 @@
+/*针对不同屏幕分辨率*/
+
+@media screen and ( min-width: 414px ){
+	.actBgHeader .back span {
+       font-size: 1.8rem; 
+     }
+   .reported {
+    width: 26vw;
+    }
+   .shareCol{
+       width: 8vw;
+       z-index: 1000;
+       top: 1vh;
+       right: 18vw;
+     }  
+	.shareCol img {
+      width: 14vw;
+    }
+    .shanqiTitle .share {
+    position: absolute;
+    top: 3vh;
+    right: -1vw;   
+   }
+    
+   .downLoad .downNow .downLink{	
+     right: -30vw;
+  }
+}
+@media screen and ( max-width: 320px ){
+	.actBgHeader .back span img{
+	width: 16%;
+	}
+	.reported {
+    width: 27vw;
+    font-size: 1rem;   
+    }
+	.joinedHeader .back span img{
+		width: 16%;
+	}
+	.entryFooter {
+    background: #31b3f6;
+    position: fixed;
+    bottom:0;
+    left:0;
+    }
+    .entryFooter .pull-left {
+    width: 63vw;
+    position: absolute;
+    top: 0;
+    left: -10vw;
+    }
+	.entryFooter .timeLeft {
+    width: 50vw;
+     }
+     .preTitle h4 {
+     font-size: 1.4rem;
+    }
+    .shanqiTitle p{  
+    font-size: 1.3rem;   
+     }
+     .downLoad .downNow .downLink {
+    right: -35vw;
+     }
+     .adjust{
+     	padding-bottom:10vh;
+     }
+     .productDet h3 {
+    font-size: 1.8rem;
+    }
+    .conWraper {
+    padding: 2rem;
+    }
+    .registCondition {
+    padding: 1vh 0;  
+}
+}

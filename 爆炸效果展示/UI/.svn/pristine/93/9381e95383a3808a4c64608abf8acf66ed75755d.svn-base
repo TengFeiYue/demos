@@ -1,0 +1,128 @@
+<style type="scss">
+	.con{
+		padding: 60rpx;
+		box-sizing: border-box;
+		.title-list{
+			width: 100%;
+			overflow: hidden;
+		}
+		.title-save {
+			width: 560rpx;
+			height: 96rpx;
+			margin: 0 auto;
+			background-color: #0092ff;
+			color: #fff;
+			font-size: 32rpx;
+			border-radius: 8rpx;
+			line-height: 96rpx;
+			text-align: center;
+			margin-top: 80rpx;
+		}
+		label{
+			display: block;
+			float: left;
+			width: 160rpx;
+			height: 64rpx;
+			border: 2rpx solid #ececec;
+			border-radius: 8rpx;
+			font-size: 24rpx;
+			color: #999;
+			line-height: 64rpx;
+			text-align: center;
+			margin-right: 69rpx;
+			margin-bottom: 20rpx;
+		}
+		label:nth-child(3n){
+			margin-right: 0;
+		}
+		label.active{
+			border-color: #0092ff;
+			color: #0092ff;
+		}
+	}
+</style>
+<template>
+	<view class="con">
+	   <checkbox-group bindchange="selectIndustryChain">
+			<view class="title-list">
+				<block wx:for="{{titleList}}" wx:key="" data-v="{{item.name}}" bindtap="getVal">
+					<label class="{{item.checked?'active':''}}">
+                      <checkbox value="{{item.name}}" checked="{{item.checked}}" style="display:none;" />{{item.name}}
+                    </label>
+				</block>
+			</view>
+		</checkbox-group>
+		<view class="title-save" bindtap="saveBtn">保存</view>
+	</view>
+</template>
+<script>
+	import wepy from 'wepy';
+	import { api } from '../config';
+
+	export default class companyType extends wepy.page {
+		config = {
+			'navigationBarTitleText': '俺搜认证',
+			'navigationBarTextStyle': '#FFFFFF',
+			'navigationBarBackgroundColor': '#0092FF'
+		}
+		components = {
+
+		}
+		data = {
+			titleList: [{
+				checked:false,
+				name: '原料'
+			},{
+				checked:false,
+				name: '改性料'
+			},{
+				checked:false,
+				name: '辅料'
+			},{
+				checked:false,
+				name: '涂料'
+			},{
+				checked:false,
+				name: '主机厂'
+			},{
+				checked:false,
+				name: '制品'
+			}],
+			status: '',
+			getArr:[]
+		}
+		events = {
+
+		}
+		methods = {
+			selectIndustryChain(e) {
+				let titleList = this.titleList;
+				let checkArr = e.detail.value;
+				for(var i = 0; i < titleList.length; i++) {
+					if(checkArr.indexOf(titleList[i].name) != -1) {
+						titleList[i].checked = true;
+					} else {
+						titleList[i].checked = false;
+					}
+				}
+				this.getArr=e.detail.value;
+			},
+      saveBtn(){
+					let sendData={
+						seleType: this.getArr,
+					}
+					wx.setStorageSync('companyTypeInfo', sendData);
+					wx.navigateBack();
+       }
+      	}
+      	onLoad(e){
+            var returnModel=e.selModel.split(',');
+            var titleList=this.titleList;
+            for(var i=0;i<titleList.length;i++){
+                 if(returnModel.indexOf(titleList[i].name)!=-1){
+                      this.titleList[i].checked=true;
+                 }
+            }
+      	}
+	}
+</script>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>俺搜欢度国际橡塑展</title>
+		<link rel="stylesheet" type="text/css" href="../../js/theme/default/layer.css" />
+		<link rel="stylesheet" type="text/css" href="css/base.css" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<script type="text/javascript">
+			window.onload = function(){				
+				var deviceWidth = document.documentElement.clientWidth;
+				if(deviceWidth > 750) {
+					deviceWidth = 750;
+				}
+				document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="con" id="app">
+			<div class="con-time">
+				<img src="images/timepick.png" /><span v-cloak>{{getNowTime()}}</span>
+			</div>
+			<div class="con-title">
+				<img src="images/zhongjiang.png" />
+			</div>
+			<div class="con-com">
+				<a href="javascript:;">
+					<img v-if="userId <=0" src="images/comlogin.png" />
+					<img v-else src="images/jihui.png" />
+				</a>
+				<a href="javascript:;">
+					<img v-if="isLoginShare.shareCount == 1" src="images/jihui.png" />
+					<img v-else src="images/comshare.png" />
+				</a>
+			</div>
+			<div class="con-btn">
+				<!--如果没有登陆-->
+				<a :href="'login:'" class="toLogin" v-if="userId<=0" @click="getLoginInfo(1)"></a>
+				<!--如果已经登陆但未分享-->
+				<!--<a :href="'shareimage:|1'" class="toShare" v-if="isShareBtn"></a>-->
+				<a :href="'shareimage:|1'" class="toShare" v-if="isLoginShare.shareCount ==0 "></a>
+				<!--如果已经登陆并且已经分享-->
+				<a href="javascript:;" class="complate" v-if="userId > 0 && isLoginShare.shareCount == 1"></a>
+			</div>
+			<div class="con-scroll">
+				<ul class="scroll-content">
+					<li v-for="(e, i) in prizeList">{{e.mobile}}成功获取{{e.rewardName}}</li>
+				</ul>
+			</div>
+			<div class="con-main">
+				<ul>
+					<li class="item" :data-num="k.id" v-for='(k,v) in arr1'>
+						<dl>
+							<dt><img :src="k.imgUrl"/></dt>
+						</dl>
+					</li>
+					<li class="btn" @click="start"></li>
+					<li class="item" :data-num="k.id" v-for='(k,v) in arr2'>
+						<dl>
+							<dt><img :src="k.imgUrl"/></dt>
+						</dl>
+					</li>
+				</ul>
+			</div>
+			<div class="con-list">
+				<ul>
+					<li>
+						<p>剩余{{numDraw}}次</p>
+					</li>
+					<li @click="getDrawRecodes(); showDrawRecodes()">
+						<p>获奖记录</p>
+					</li>
+				</ul>
+			</div>
+			<div class="con-role">
+				<img src="images/actionrole.png" /><br />
+				<ul>
+					<li>1.2018年4月20日-4月27日活动期间，用户每天成功登录俺搜APP即可获得1次抽奖机会，分享此页面可再获得1次抽奖机会，抽奖所获奖品可累积，现场最多可领取所中奖品中的任意2件。已到展台领取过奖品的用户，不可再次领取。</li>
+					<li>2.奖品领取方式:2018年4月24日-27日中午12:00期间至俺搜展台现场验证领取奖品（展台号4.2H T32），送完即止。 活动最终解释权归俺搜所有。</li>
+				</ul>
+			</div>
+
+			<section class="layer" v-if="layerCon == true">
+				<div class="layerCon">
+					<p class="layer-main-title">中奖啦！</p>
+					<p class="layer-title">恭喜您成功获得{{prizeName}}一份。</p>
+					<p class="layer-intr">请于2018年4月24日-27日中午12:00期间至俺搜展台现场验证领取奖品(展台号4.2H T32）</p>
+					<button v-if="layerNext == true && isShare != 1" @click="hideLayer(); showLayerNext()">知道了</button>
+					<button v-if="layerNext == true && isShare == 1" @click="hideLayer()">知道了</button>
+				</div>
+			</section>
+			<section class="layer-next" v-if="layerNext == true && isShare != 1">
+				<div class="layerNext">
+					<p class="layer-main-title">还想中奖吗？</p>
+					<p class="layer-intr">赶紧分享此页面，完成任务再次获得抽奖机会，大奖在等你！</p>
+					<button @click="hideLayerNext()">知道了</button>
+				</div>
+			</section>
+			<section class="draw-recodes" v-on:click.self="hideDrawRecodes()">
+				<div class="draw-recodes-con">
+					<img src="images/my-recodes.png" class="title" />
+					<div class="close" @click="hideDrawRecodes()">
+						<img src="images/close.png" />
+					</div>
+					<ul>
+						<li v-for="(e, $index) in addSelectedList">
+							<input type="checkbox" v-model="sureDrawedArr" :value="e.id" :id="e.id * 10000" />
+							<label :for="e.id * 10000" :class="{'select': e.status == 1}" :id="e.id" @click="isSelected(e.status, e.id)">
+								<i></i>
+								<span>{{e.winRewardTime}}</span>
+								<span>获得</span>s
+								<span>{{e.rewardName}}</span>
+								<span>X{{e.count}}</span>
+							</label>
+						</li>
+					</ul>
+					<div class="btn">
+						<button @click="sureDrawed()">确认已领取</button>
+					</div>
+				</div>
+			</section>
+		</div>
+		<script src="../../js/jquery-2.1.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../dev.js"></script>
+		<script src="../../js/axios.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/vue-resource.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+
+</html>

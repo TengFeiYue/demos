@@ -1,0 +1,1012 @@
+<style lang="less">
+	.uploadCard {
+		border-bottom: 30rpx solid #f2f2f2;
+		.preTips {
+			background: #F2F2F2;
+			padding: 30rpx;
+			line-height: 34rpx;
+			font-size: 24rpx;
+			color: #666666;
+			letter-spacing: -0.14px;
+			image {
+				width: 24rpx;
+				height: 24rpx;
+				vertical-align: middle;
+			}
+			text {
+				vertical-align: middle;
+				margin-left: 10rpx;
+			}
+		}
+		.uploadDl {
+			padding: 24rpx 32rpx;
+			font-size: 28rpx;
+			color: #4A4A4A;
+			letter-spacing: -0.14px;
+			.uploadDd {
+				padding: 26rpx 0 70rpx;
+				text-align: center;
+				image {
+					width: 160rpx;
+					height: 160rpx;
+				}
+			}
+		}
+	}
+
+	.editInfomation {
+		padding-left: 32rpx;
+		.editDl {
+			padding: 24rpx 30rpx 24rpx 0;
+			display: flex;
+			flex-direction: row;
+			justify-content: between;
+			align-items: center;
+			border-bottom: 1px solid #ECECEC;
+			.editDt {
+				flex: 20;
+				font-size: 28rpx;
+				color: #4A4A4A;
+				letter-spacing: 0;
+				line-height: 40rpx;
+				image {
+					width: 48rpx;
+					height: 48rpx;
+					vertical-align: middle;
+				}
+				text {
+					vertical-align: middle;
+					margin-left: 18rpx;
+				}
+			}
+			.editDd {
+				input {
+					font-size: 24rpx;
+					color: #999999;
+					letter-spacing: 0;
+					text-align: right;
+				}
+				.iptColor {
+					font-size: 24rpx;
+					color: #999999;
+					letter-spacing: 0;
+					text-align: right;
+				}
+				.confirmDd {
+					display: flex;
+					flex-direction: row;
+					justify-content: space-around;
+					align-items: center;
+					input {
+						flex: 1;
+					}
+				}
+			}
+			.editDD {
+				image {
+					width: 17rpx;
+					height: 28rpx;
+				}
+			}
+		}
+		.switchDl {
+			padding: 24rpx 30rpx 30rpx 0;
+			display: flex;
+			flex-direction: row;
+			justify-content: between;
+			align-items: center;
+			border-bottom: 1px solid #ECECEC;
+			.switchDt {
+				flex: 2;
+				text-align: left;
+				.whether {
+					font-size: 32rpx;
+					color: #4A4A4A;
+					letter-spacing: 0;
+				}
+				.motta {
+					font-size: 24rpx;
+					color: #666666;
+					letter-spacing: 0;
+					padding-top: 10rpx;
+				}
+			}
+			.switchDd {
+				text-align: right;
+				.wx-switch-input {
+					width: 102rpx;
+					height: 62rpx;
+				}
+				.wx-switch-input::before {
+					width: 102rpx;
+					height: 60rpx;
+				}
+				.wx-switch-input::after {
+					width: 60rpx;
+					height: 55rpx;
+				}
+			}
+		}
+		.formUploadDl {
+			padding: 24rpx 32rpx;
+			font-size: 32rpx;
+			color: #4A4A4A;
+			letter-spacing: -0.14px;
+			.formUploadDd {
+				padding: 26rpx 0 70rpx;
+				text-align: center;
+				image {
+					width: 160rpx;
+					height: 160rpx;
+				}
+			}
+		}
+	}
+
+	.confirmSubmit {
+		button {
+			background: #0092FF;
+			height: 96rpx;
+			line-height: 96rpx;
+			font-size: 32rpx;
+			color: #FFFFFF;
+			letter-spacing: -0.19px;
+			border-radius: 0;
+		}
+	}
+	.changeInfoLayer {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: #000000;
+			opacity: .6;
+			z-index: 100;
+		}
+		.OperateLayerCon {
+		position: fixed;
+		width: 100%;
+		top: 25%;
+		z-index: 1000;
+		text-align: center;
+		.ConDetail {
+			display: inline-block;
+			width: 80%;
+			background: #ffffff;
+			border-radius: 8rpx;
+			padding: 30rpx;
+			.layerTitle {
+				font-size: 36rpx;
+				color: #333333;
+				letter-spacing: -0.43px;
+				padding-bottom: 20rpx;
+			}
+			.layerDl {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+				font-size: 32rpx;
+				color: #333333;
+				letter-spacing: -0.38px;
+				border-bottom: 1px solid #ECECEC;
+				padding: 20rpx 0;
+				.layerDt {
+					flex: 3;
+					text-align: left;
+				}
+				picker {
+					flex: 8;
+				}
+				.layerDd {
+					flex: 6;
+					.pClass {
+						font-size: 32rpx;
+						color: #999999;
+						letter-spacing: -0.38px;
+						text-align: left;
+					}
+				}
+			}
+			.auditRes {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+				font-size: 32rpx;
+				color: #333333;
+				letter-spacing: -0.38px;
+				border-bottom: 1px solid #ECECEC;
+				padding: 20rpx 0;
+				.layerDt {
+					flex: 3;
+					text-align: left;
+				}
+				.layerDd {
+					flex: 6;
+					font-size: 32rpx;
+					color: #999999;
+					letter-spacing: -0.38px;
+					text-align: left;
+				}
+			}
+			.upload {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				font-size: 32rpx;
+				color: #333333;
+				letter-spacing: -0.38px;
+				padding: 30rpx 0;
+				.uploadDl {
+					flex: 1;
+					text-align: left;
+				}
+				.uploadImg {
+					flex: 6;
+					image {
+						width: 260rpx;
+						height: 150rpx;
+					}
+				}
+			}
+			.operateBtn {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+				padding-top: 30rpx;
+				font-size: 36rpx;
+				color: #FFFFFF;
+				letter-spacing: -0.19px;
+				.opCancel {
+					flex: 3;
+					display: inline-block;
+					height: 88rpx;
+					background: #CCCCCC;
+					border-radius: 8rpx;
+					text-align: center;
+					line-height: 88rpx;
+				}
+				.gap {
+					flex: 1
+				}
+				.opSubmit {
+					flex: 3;
+					display: inline-block;
+					height: 88rpx;
+					background: #0092FF;
+					border-radius: 8rpx;
+					text-align: center;
+					line-height: 88rpx;
+				}
+			}
+			.layercontent {
+				font-size: 32rpx;
+				color: #999999;
+				letter-spacing: -0.38px;
+				line-height: 48rpx;
+				text-align: center;
+				padding-bottom: 20rpx;
+			}
+			.layerFooter {
+				font-size: 36rpx;
+				color: #0092FF;
+				letter-spacing: -0.43px;
+				border-top: 1px solid #ECECEC;
+				padding-top: 30rpx;
+			}
+		}
+	}
+	.view {
+		background: #333333;
+		color: #ffffff;
+		width: 270rpx;
+		height: 270rpx;
+		position: fixed;
+		z-index: 1000000;
+		left: 50%;
+		top: 50%;
+		border-radius: 10rpx;
+		margin-top: -135rpx;
+		margin-left: -135rpx;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+		.tipPic {
+			flex: 1;
+			padding-top: 36rpx;
+			image {
+				width: 100rpx;
+				height: 100rpx;
+			}
+		}
+		text {
+			flex: 1;
+			padding: 0 15rpx;
+		}
+	}
+</style>
+<template>
+	<view class="uploadCard">
+		<view class="preTips">
+			<image src="../resources/icons/preTip.png"></image>
+			<text>认证身份，获得电子社交名片和小程序码</text>
+		</view>
+		<view class="uploadDl">
+			<view class="uploadDt">*请上传名片</view>
+			<view class="uploadDd">
+				<image src="{{upNameCard}}" bindtap="upLoadCard"></image>
+			</view>
+		</view>
+	</view>
+	<form bindsubmit="formSubmit">
+		<view class="editInfomation">
+			<view class="editDl">
+				<view class="editDt">
+					<image src="../resources/icons/confirmName.png"></image>
+					<text>姓名</text>
+				</view>
+				<view class="editDd">
+					<input type="text" value="{{pName}}" name="pName"></input>
+				</view>
+			</view>
+			<view class="editDl">
+				<view class="editDt">
+					<image src="../resources/icons/confirmDuty.png"></image>
+					<text>名片职位</text>
+				</view>
+				<view class="editDd">
+					<input type="text" value="{{cardPosition}}" name="cardPosition"></input>
+				</view>
+			</view>
+			<view class="editDl">
+				<view class="editDt">
+					<image src="../resources/icons/confirmEmail.png"></image>
+					<text>邮箱</text>
+				</view>
+				<view class="editDd">
+					<input type="text" value="{{pEmail}}" name="pEmail"></input>
+				</view>
+			</view>
+			<view class="editDl" bindtap="toChooseCom">
+				<view class="editDt">
+					<image src="../resources/icons/confirmCompnayName.png"></image>
+					<text>企业名称</text>
+				</view>
+				<view class="editDd">
+					<input type="text" value="{{pCompanyName}}" name="pCompanyName" disabled="{{hasManageRights>0}}"></input>
+				</view>
+				<view class="editDD">
+					<image src="../resources/icons/than.png"></image>
+				</view>
+			</view>
+			<view class="editDl" hover-class="none" bindtap="toCompanyType">
+				<view class="editDt">
+					<image src="../resources/icons/confirmCompanyType.png"></image>
+					<text>企业类型</text>
+				</view>
+				<view class="editDd">
+					<input type="text" placeholder-class="iptColor" name="companyType" value="{{companyType}}" disabled="{{hasManageRights>0}}"></input>
+				</view>
+				<view class="editDD" wx:if="{{hasManageRights<=0}}">
+					<image src="../resources/icons/than.png"></image>
+				</view>
+			</view>
+			<view class="editDl">
+				<view class="editDt">
+					<image src="../resources/icons/confirmRuningway.png"></image>
+					<text>经营模式</text>
+				</view>
+				<view class="editDd">
+					<input type="text" placeholder-class="iptColor" name="runingWay" value="{{runingWay}}" disabled="{{hasManageRights>0}}"></input>
+				</view>
+				<view class="editDD" bindtap="listenerButton" wx:if="{{hasManageRights<=0}}">
+					<image src="../resources/icons/than.png"></image>
+				</view>
+			</view>
+			<view class="editDl">
+				<view class="editDt" style="flex:2;">
+					<image src="../resources/icons/confirmArea.png"></image>
+					<text>企业地区</text>
+				</view>
+				<view class="editDd" style="flex:5;">
+					<picker mode="region" bindchange="bindRegionChange" value="{{region}}" disabled="{{hasManageRights>0}}">
+						<view class="picker">
+							<view class="confirmDd"><input name="companyP" value="{{companyP}}" disabled="true" /><input name="companyC" value="{{companyC}}" disabled="true" /><input name="companyA" value="{{companyA}}" disabled="true" /></view>
+						</view>
+					</picker>
+				</view>
+				<view class="editDD" wx:if="{{hasManageRights<=0}}">
+					<image src="../resources/icons/than.png"></image>
+				</view>
+			</view>
+			<view class="editDl">
+				<view class="editDt">
+					<image src="../resources/icons/confirmAddress.png"></image>
+					<text>详细地址</text>
+				</view>
+				<view class="editDd">
+					<input type="text" value="{{addressDetail}}" name="addressDetail" disabled="{{hasManageRights>0}}"></input>
+				</view>
+			</view>
+			<view class="switchDl" wx:if="{{!hasManageRights>0}}">
+				<view class="switchDt">
+					<view class="whether">是否认证为本企业管理员</view>
+					<view class="motta">（管理企业中心,曝光企业品牌)</view>
+				</view>
+				<view class="switchDd">
+					<switch bindchange="switch1Change" color="#0092FF" />
+				</view>
+			</view>
+
+			<view class="formUploadDl" wx:if="{{showUploadLisence&&!hasManageRights>0}}">
+				<view class="uploadDt">*请上传企业营业执照</view>
+				<view class="formUploadDd">
+					<image src="{{lisence}}" bindtap="upLoadLisence"></image>
+				</view>
+			</view>
+		</view>
+		<view class="confirmSubmit">
+			<button formType="submit">提交</button>
+		</view>
+	</form>
+	<view class="changeInfoLayer" wx:if="{{verifyingOperateLayer}}" bindtap="closeLayer"></view>
+	<view class="OperateLayerCon" wx:if="{{verifyingOperateLayer}}">
+		<view class="ConDetail">
+			<view class="layerTitle">审核不通过</view>
+			<view class="layercontent">{{rejectReason}}</view>
+			<view class="layerFooter" bindtap="closeLayer">知道了</view>
+		</view>
+	</view>
+	<view wx:if="{{opa}}" class="view">
+		<view class="tipPic">
+			<image src="../resources/icons/warning.png"></image>
+		</view>
+		<text>{{tip}}</text>
+	</view>
+	<action-sheet hidden="{{actionSheetHidden}}" bindchange="listenerActionSheet">
+		<view wx:for="{{actionSheetItems}}" wx:key="{{index}}">
+			<action-sheet-item data-v="{{item.name}}" bindtap="selModel">{{item.name}}</action-sheet-item>
+		</view>
+		<action-sheet-cancel>取消</action-sheet-cancel>
+	</action-sheet>
+</template>
+<script>
+	import wepy from 'wepy';
+	import { api } from '../config';
+
+	export default class antsooConfirm extends wepy.page {
+		config = {
+			'navigationBarTitleText': '俺搜认证',
+			'navigationBarTextStyle': '#FFFFFF',
+			'navigationBarBackgroundColor': '#0092FF'
+		}
+		components = {
+
+		}
+		data = {
+			alertModel:-1,
+			isAudit:-1,
+		 isUploadLisence:-1,
+		  isUpload:-1,
+			loginUId: -1,
+			opa: false,
+			tip: "",
+			verifyingOperateLayer: false,
+			actionSheetHidden: true,
+			actionSheetItems: [],
+			runingWay: '',
+			region: [],
+			companyP: '',
+			companyC: '',
+			companyA: '',
+			pName: "",
+			cardPosition: "",
+			pEmail: "",
+			pCompanyName: "",
+			companyType: "",
+			runingWay: "",
+			addressDetail: "",
+			upNameCard: '../resources/icons/cameraConfirm.png',
+			lisence: '../resources/icons/cameraConfirm.png',
+			hasManageRights: 0,
+			isAdmit: 0,
+			showUploadLisence: false,
+			applyType: 1,
+			rejectReason:'',
+			fromStatus:false
+		}
+		events = {}
+		methods = {
+			toChooseCom(){
+				if(this.isAudit==0||this.isAudit==1){
+					return;
+				}
+				wx.navigateTo({
+					url:'companyName?comName='+this.pCompanyName
+				})
+			},
+			toCompanyType() {
+				if(this.hasManageRights>0){
+					return;
+				}
+				wx.navigateTo({
+					url: 'companyType?selModel=' + this.companyType
+				})
+			},
+			upLoadCard() { //上传名片
+				var that = this;
+				wx.chooseImage({
+					count: 1, // 默认9
+					sizeType: ['original', 'compressed'],
+					sourceType: ['album', 'camera'],
+					success: function(res) {
+					  that.isUpload=8;
+						that.uploadImg = res.tempFilePaths[0];
+						if(res.tempFilePaths.length > 0) {
+							wx.saveFile({
+								tempFilePath: res.tempFilePaths[0],
+								success: function(res) {
+									that.upNameCard = res.savedFilePath;
+									that.$apply();
+								}
+							})
+						}
+						wx.getSavedFileList({
+							success: function(res) {
+								console.log(res)
+								for(var i = 0; i < res.fileList.length - 1; i++) {
+									for(var j = 0; j < res.fileList.length - 1 - i; j++) {
+										if(res.fileList[j].createTime > res.fileList[j + 1].createTime) {
+											var tem = res.fileList[j];
+											res.fileList[j] = res.fileList[j + 1];
+											res.fileList[j + 1] = tem;
+										}
+									}
+								}
+								if(res.fileList.length > 5) {
+									wx.removeSavedFile({
+										filePath: res.fileList[0].filePath,
+										complete: function(res) {
+											console.log(res)
+										}
+									})
+								}
+								that.pName = "";
+								that.cardPosition = "";
+								that.pEmail = "";
+								that.pCompanyName = "";
+								that.companyC = "";
+								that.addressDetail = "";
+								that.upNameCard = res.fileList[res.fileList.length - 1].filePath;
+								wx.uploadFile({
+									url: api.my.cardRecognize.url, //仅为示例，非真实的接口地址
+									filePath: that.upNameCard,
+									name: 'userCardUrl',
+									header: {
+										'content-type': 'multipart/form-data'
+									},
+									success: function(res) {
+										console.log(res)
+										var getCardInfo = JSON.parse(res.data).body;
+										that.pName = getCardInfo.formatted_name[0].item;
+										that.cardPosition = getCardInfo.title[0].item;
+										that.pEmail = getCardInfo.email[0].item;
+										that.pCompanyName = getCardInfo.organization[0].item.name;
+										that.companyC = getCardInfo.address[0].item.locality;
+										that.companyP = "";
+										that.companyA = "";
+										that.addressDetail = getCardInfo.address[0].item.street;
+										if(that.pCompanyName) {
+											that.hasCompany();
+										}
+										that.$apply();
+									}
+								})
+								that.$apply();
+							}
+						})
+						that.$apply();
+					}
+				})
+			},
+			switch1Change(e) { //switch按钮
+				if(e.detail.value) {
+					this.showUploadLisence = true;
+					this.applyType = 2;
+					console.log(this.lisence)
+					this.lisence = (this.lisence==''||this.lisence==null||this.lisence=='http://106.14.92.11:8099/images/cameraConfirm.png')?"../resources/icons/cameraConfirm.png":this.lisence;
+				} else {
+					this.showUploadLisence = false;
+					this.applyType = 1;
+
+				}
+			},
+			upLoadLisence() { //上传营业执照
+				this.alertModel=8;
+				var that = this;
+				wx.chooseImage({
+					count: 1, // 默认9
+					sizeType: ['original', 'compressed'],
+					sourceType: ['album', 'camera'],
+					success: function(res) {
+					  that.isUploadLisence=9;
+						that.uploadImg = res.tempFilePaths[0];
+						if(res.tempFilePaths.length > 0) {
+							wx.saveFile({
+								tempFilePath: res.tempFilePaths[0],
+								success: function(res) {
+									that.lisence = res.savedFilePath;
+									that.$apply();
+								}
+							})
+						}
+						wx.getSavedFileList({
+							success: function(res) {
+								console.log(res)
+								for(var i = 0; i < res.fileList.length - 1; i++) {
+									for(var j = 0; j < res.fileList.length - 1 - i; j++) {
+										if(res.fileList[j].createTime > res.fileList[j + 1].createTime) {
+											var tem = res.fileList[j];
+											res.fileList[j] = res.fileList[j + 1];
+											res.fileList[j + 1] = tem;
+										}
+									}
+								}
+								if(res.fileList.length > 5) {
+									wx.removeSavedFile({
+										filePath: res.fileList[0].filePath,
+										complete: function(res) {
+											console.log(res)
+										}
+									})
+								}
+								that.lisence = res.fileList[res.fileList.length - 1].filePath;
+								that.$apply();
+							}
+						})
+						that.$apply();
+					}
+				})
+			},
+			listenerButton() {
+				this.actionSheetHidden = !this.actionSheetHidden
+			},
+			listenerActionSheet() {
+				this.actionSheetHidden = !this.actionSheetHidden
+			},
+			selModel(e) { //选择经营模式
+				this.runingWay = e.currentTarget.dataset.v;
+				this.actionSheetHidden = !this.actionSheetHidden
+			},
+			toChooseModel() { //选择企业类型
+				wx.navigateTo({
+					url: 'companyMode'
+				});
+			},
+			bindRegionChange(e) {
+				this.region = e.detail.value;
+				this.companyP = e.detail.value[0];
+				this.companyC = e.detail.value[1];
+				this.companyA = e.detail.value[2];
+			},
+			formSubmit(e) {
+				let that = this;
+				if(!this.loginUId) {
+					wx.navigateTo({
+						url: 'login?fromPage=antsooConfirm'
+					});
+					return;
+				}
+				if(this.upNameCard == "../resources/icons/cameraConfirm.png" || this.upNameCard == null) {
+					this.warningTip({
+						msg: '名片不能为空！'
+					});
+					return
+				}
+				if(e.detail.value.pName == "") {
+					this.warningTip({
+						msg: '姓名不能为空！'
+					});
+					return
+				}
+				if(e.detail.value.pEmail == "") {
+					this.warningTip({
+						msg: '邮箱不能为空！'
+					});
+					return
+				}
+				if(e.detail.value.cardPosition == "") {
+					this.warningTip({
+						msg: '职位不能为空！'
+					});
+					return
+				}
+				if(e.detail.value.pCompanyName == "") {
+					this.warningTip({
+						msg: '企业名称不能为空！'
+					});
+					return
+				}
+				if(e.detail.value.companyType == "") {
+					this.warningTip({
+						msg: '企业类型不能为空！'
+					});
+					return
+				}
+				if(e.detail.value.runingWay == "") {
+					this.warningTip({
+						msg: '经营模式不能为空！'
+					});
+					return
+				}
+				if(e.detail.value.companyC == "") {
+					this.warningTip({
+						msg: '请选择企业地区！'
+					});
+					return
+				}
+				if(e.detail.value.addressDetail == "") {
+					this.warningTip({
+						msg: '详细地址不能为空！'
+					});
+					return
+				}
+				if(this.applyType==2&&(this.lisence=='../resources/icons/cameraConfirm.png'||this.lisence==null||this.lisence=='')) {
+					this.warningTip({
+						msg: '营业执照不能为空！'
+					});
+					return
+				}
+				var cardInfos = e.detail.value
+				wepy.request({
+					url: api.my.myPersonalInfo.url,
+					method: 'POST',
+					data: {
+						'userId': that.loginUId,
+						'name': cardInfos.pName,
+						'position': cardInfos.cardPosition,
+						'email': cardInfos.pEmail,
+						'companyName': cardInfos.pCompanyName,
+						'opeIndustry': cardInfos.companyType,
+						'businessMode': cardInfos.runingWay,
+						'province': that.companyP,
+						'city': that.companyC,
+						'area': that.companyA,
+						'address': cardInfos.addressDetail,
+					},
+					success: function(res) {
+						let msg = typeof res.data == "string" ? JSON.parse(res.data) : res.data;
+						console.log(msg)
+						if(msg.isSuccess == 1) {
+						  if(that.isUpload ==8){
+								wx.uploadFile({
+									url: api.my.confirmSubmit.url, //仅为示例，非真实的接口地址
+									filePath: that.upNameCard,
+									name: 'photo',
+									header: {
+										'content-type': 'multipart/form-data'
+									},
+									formData: {
+										'userId': that.loginUId,
+										'isCardFile': 1
+									},
+									success: function(res) {
+											let msg =typeof res.data == "string" ? JSON.parse(res.data) : res.data;
+											var backCardUrl=msg.body.imgUrl;
+													if(that.isUploadLisence==9){
+														wx.uploadFile({
+																url: api.my.confirmSubmit.url, //仅为示例，非真实的接口地址
+																filePath: that.lisence,
+																name: 'photo',
+																header: {
+																	'content-type': 'multipart/form-data'
+																},
+																formData: {
+																	'userId': that.loginUId,
+																	'applyType': that.applyType,
+																	 'userCardUrl':backCardUrl
+																},
+																success: function(res) {
+																		 console.log(res)
+																		 wx.redirectTo({
+																			url: 'antsooComfirming'
+																		 });
+																		that.$apply();
+																}
+															})
+													}
+													if(msg.isSuccess==1){
+	 												 wx.redirectTo({
+	 														 url: 'antsooComfirming'
+	 													 });
+	 													 }
+														 	that.$apply();
+															}
+								})
+							}else{
+
+							   if(that.isUploadLisence==9){
+										 wx.uploadFile({
+												 url: api.my.confirmSubmit.url, //仅为示例，非真实的接口地址
+												 filePath: that.lisence,
+												 name: 'photo',
+												 header: {
+													 'content-type': 'multipart/form-data'
+												 },
+												 formData: {
+													 'userId': that.loginUId,
+													 'applyType': that.applyType,
+														'userCardUrl':that.upNameCard
+												 },
+												 success: function(res) {
+															wx.redirectTo({
+															 url: 'antsooComfirming'
+															});
+														 that.$apply();
+												 }
+											 })
+								 }
+									wepy.request({
+									 url: api.my.confirmSubmit.url,
+									 method:'GET',
+									 data: {
+										 'userId': that.loginUId,
+										 'userCardUrl': that.upNameCard,
+										 'applyType': that.applyType,
+										 'businessLicenceCardUrl':that.lisence
+									 },
+									 success: function(res) {
+											 let msg =typeof res.data == "string" ? JSON.parse(res.data) : res.data;
+											 if(msg.isSuccess==1){
+												 wx.redirectTo({
+														 url: 'antsooComfirming'
+													 });
+													 }
+		                     that.$apply();
+											 }
+								 })
+
+							}
+						} else {
+							that.warningTip({
+								msg: msg.errorMsg
+							});
+							return
+						}
+						that.$apply();
+					}
+				});
+
+			},
+			closeLayer() {
+				this.verifyingOperateLayer = false;
+			},
+		}
+		onShow() {
+			const companyTypeInfo=wepy.getStorageSync("companyTypeInfo");
+			const antsooUserInfo = wepy.getStorageSync("antUserInfo");
+			const companyNameInfo = wepy.getStorageSync("companyNameInfo");
+			this.fromStatus=companyNameInfo.saveStatus;
+			console.log(this.fromStatus)
+			this.loginUId = antsooUserInfo.userId;
+			let pages = companyNameInfo;
+			if(this.fromStatus){
+		       if(this.alertModel!=8){
+							this.companyType = companyTypeInfo.seleType;
+							this.runingWay = pages.seleModel;
+							this.companyP=pages.seleProvince;
+							this.companyC=pages.selePcity;
+							this.companyA=pages.seleParea;
+							this.addressDetail=pages.seleAdd;
+							}
+							this.pCompanyName = (pages.seleCompanyNames == "" || pages.seleCompanyNames == null) ? "" : pages.seleCompanyNames;
+					 if(pages.seleCompanyNames == "" || pages.seleCompanyNames == null) {
+						 this.hasManageRights = 0;
+						 this.isAdmit = 0;
+					 }
+			 }
+			 if(this.pCompanyName) this.hasCompany();
+			 this.getRunningModel();
+       wx.removeStorageSync('companyNameInfo');
+		}
+		onLoad() {
+			const antsooUserInfo = wepy.getStorageSync("antUserInfo");
+			this.loginUId = antsooUserInfo.userId;
+
+			this.getUserInfos();
+			this.getAuditStatus();
+		}
+
+		hasCompany() {
+			let that = this;
+			wepy.request({
+				url: api.my.hasManageRights.url,
+				method: api.my.hasManageRights.method,
+				data: {
+					'enterpriseName': that.pCompanyName,
+				},
+				success: function(res) {
+					console.log(res)
+					that.hasManageRights = res.data.body.enterpriseId;
+					that.isAdmit = res.data.body.isHaveAdmin;
+					that.$apply();
+				}
+			});
+		}
+		getRunningModel() {
+			let that = this;
+			wepy.request({
+				url: api.relations.runningModel.url,
+				method: api.relations.runningModel.method,
+				data: {},
+				success: function(res) {
+					that.actionSheetItems = res.data.body;
+					that.$apply();
+				}
+			});
+		}
+		getUserInfos() { //获取个人信息
+			let that = this;
+			wepy.request({
+				url: api.my.attestationChange.url,
+				method: api.my.attestationChange.method,
+				data: {
+					'userId': that.loginUId,
+				},
+				success: function(res) {
+					console.log(res.data.body)
+					that.pName = res.data.body.name;
+					that.cardPosition = res.data.body.position;
+					that.pEmail = res.data.body.email;
+					that.pCompanyName = res.data.body.companyName;
+					that.companyType = res.data.body.opeIndustry;
+					that.runingWay = res.data.body.businessMode;
+					that.companyC = res.data.body.city;
+					that.companyP = res.data.body.province;
+					that.companyA = res.data.body.area;
+					that.addressDetail = res.data.body.address;
+					that.hasManageRights = res.data.body.enterpriseId;
+					that.isAdmit = res.data.body.isHaveAdmin;
+					that.upNameCard = (res.data.body.nameCardPhoto == null||res.data.body.nameCardPhoto == '') ? '../resources/icons/cameraConfirm.png' : res.data.body.nameCardPhoto;
+					that.lisence = (res.data.body.businessLicencePhoto == null||res.data.body.businessLicencePhoto == '') ? '../resources/icons/cameraConfirm.png' : res.data.body.businessLicencePhoto;
+					that.$apply();
+				}
+			});
+		}
+		getAuditStatus() { //获取个人审核状态
+			let that = this;
+			wepy.request({
+				url: api.my.checkStatus.url,
+				method: api.my.checkStatus.method,
+				data: {
+					'userId': that.loginUId,
+				},
+				success: function(res) {
+					console.log(res)
+					  that.isAudit=res.data.body.status;
+					if(res.data.body.status==2){
+					     that.verifyingOperateLayer=true;
+							 that.rejectReason=res.data.body.rejectReason;
+					}
+
+					that.$apply();
+				}
+			});
+		}
+		warningTip(obj) {
+			this.opa = true;
+			this.tip = obj.msg;
+			this.$apply();
+			let that = this;
+			setTimeout(function() {
+				that.opa = false;
+				that.$apply();
+			}, 800)
+		}
+	}
+</script>

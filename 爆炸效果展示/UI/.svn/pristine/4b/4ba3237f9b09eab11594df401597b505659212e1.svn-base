@@ -1,0 +1,22 @@
+<template>
+	<div class="container">
+		<!--<topComponent :title='appName' :showLeft='false'></topComponent>-->
+		<h1>个人中心</h1>
+		<footComponent :idx='1'></footComponent>
+	</div>
+</template>
+<script>
+	export default {
+		data() {
+			return {
+				
+			}
+		},
+		methods: {
+
+		},
+		mounted() {
+			
+		}
+	}
+</script>

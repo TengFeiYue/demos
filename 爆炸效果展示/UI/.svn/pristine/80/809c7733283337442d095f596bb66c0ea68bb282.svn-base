@@ -1,0 +1,12 @@
+@import "./../components/tab/tabPages/my.wxss";
+@import "./../components/tab/tabPages/findmeBuyMaterial.wxss";
+@import "./../components/tab/tabPages/index.wxss";
+@import "./../components/tab/tabBar.wxss";
+.tab_item {
+  height: 91%; }
+
+page,
+.body {
+  height: 100%;
+  font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+  background-color: #f0eff5; }

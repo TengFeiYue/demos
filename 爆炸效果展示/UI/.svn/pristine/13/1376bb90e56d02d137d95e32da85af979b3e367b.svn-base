@@ -1,0 +1,39 @@
+<style type="scss">
+
+</style>
+<template>
+    <view class="body">
+    <web-view src="{{downLoadUrl}}"></web-view>
+    </view>
+
+</template>
+
+<script>
+import wepy from 'wepy'
+import { api } from '../config'
+export default class dowloadApp extends wepy.page {
+    config = {
+        'navigationBarTitleText': '下载app',
+        'navigationBarTextStyle': '#FFFFFF',
+        'navigationBarBackgroundColor': '#0092FF'
+    }
+
+    components = {
+    }
+
+    data = {
+     downLoadUrl:'https://wxapp.antsoo.com/download.html '
+    }
+
+    methods = {
+
+        }
+
+    onShow() {
+    }
+    onLoad() {
+
+    }
+
+}
+</script>

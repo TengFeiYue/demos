@@ -1,0 +1,144 @@
+
+	<view class="uploadCard">
+		<view class="preTips">
+			<image src="../resources/icons/preTip.png"/>
+			<text>认证身份，获得电子社交名片和小程序码</text>
+		</view>
+		<view class="uploadDl">
+			<view class="uploadDt">*请上传名片</view>
+			<view class="uploadDd">
+				<image src="{{upNameCard}}" bindtap="upLoadCard"/>
+			</view>
+		</view>
+	</view>
+	<form bindsubmit="formSubmit">
+		<view class="editInfomation">
+			<view class="editDl">
+				<view class="editDt">
+					<image src="../resources/icons/confirmName.png"/>
+					<text>姓名</text>
+				</view>
+				<view class="editDd">
+					<input type="text" value="{{pName}}" name="pName"/>
+				</view>
+			</view>
+			<view class="editDl">
+				<view class="editDt">
+					<image src="../resources/icons/confirmDuty.png"/>
+					<text>名片职位</text>
+				</view>
+				<view class="editDd">
+					<input type="text" value="{{cardPosition}}" name="cardPosition"/>
+				</view>
+			</view>
+			<view class="editDl">
+				<view class="editDt">
+					<image src="../resources/icons/confirmEmail.png"/>
+					<text>邮箱</text>
+				</view>
+				<view class="editDd">
+					<input type="text" value="{{pEmail}}" name="pEmail"/>
+				</view>
+			</view>
+			<view class="editDl" bindtap="toChooseCom">
+				<view class="editDt">
+					<image src="../resources/icons/confirmCompnayName.png"/>
+					<text>企业名称</text>
+				</view>
+				<view class="editDd">
+					<input type="text" value="{{pCompanyName}}" name="pCompanyName" disabled="{{hasManageRights>0}}"/>
+				</view>
+				<view class="editDD">
+					<image src="../resources/icons/than.png"/>
+				</view>
+			</view>
+			<view class="editDl" hover-class="none" bindtap="toCompanyType">
+				<view class="editDt">
+					<image src="../resources/icons/confirmCompanyType.png"/>
+					<text>企业类型</text>
+				</view>
+				<view class="editDd">
+					<input type="text" placeholder-class="iptColor" name="companyType" value="{{companyType}}" disabled="{{hasManageRights>0}}"/>
+				</view>
+				<view class="editDD"  wx:if="{{hasManageRights<=0}}">
+					<image src="../resources/icons/than.png"/>
+				</view>
+			</view>
+			<view class="editDl">
+				<view class="editDt">
+					<image src="../resources/icons/confirmRuningway.png"/>
+					<text>经营模式</text>
+				</view>
+				<view class="editDd">
+					<input type="text" placeholder-class="iptColor" name="runingWay" value="{{runingWay}}" disabled="{{hasManageRights>0}}"/>
+				</view>
+				<view class="editDD" bindtap="listenerButton"  wx:if="{{hasManageRights<=0}}">
+					<image src="../resources/icons/than.png"/>
+				</view>
+			</view>
+			<view class="editDl">
+				<view class="editDt" style="flex:2;">
+					<image src="../resources/icons/confirmArea.png"/>
+					<text>企业地区</text>
+				</view>
+				<view class="editDd" style="flex:5;">
+					<picker mode="region" bindchange="bindRegionChange" value="{{region}}" disabled="{{hasManageRights>0}}">
+						<view class="picker">
+							<view class="confirmDd"><input name="companyP" value="{{companyP}}" disabled="true"/><input name="companyC" value="{{companyC}}" disabled="true"/><input name="companyA" value="{{companyA}}" disabled="true"/></view>
+						</view>
+					</picker>
+				</view>
+				<view class="editDD" wx:if="{{hasManageRights<=0}}">
+					<image src="../resources/icons/than.png"/>
+				</view>
+			</view>
+			<view class="editDl">
+				<view class="editDt">
+					<image src="../resources/icons/confirmAddress.png"/>
+					<text>详细地址</text>
+				</view>
+				<view class="editDd">
+					<input type="text" value="{{addressDetail}}" name="addressDetail" disabled="{{hasManageRights>0}}"/>
+				</view>
+			</view>
+			<view class="switchDl" wx:if="{{!hasManageRights>0}}">
+				<view class="switchDt">
+					<view class="whether">是否认证为本企业管理员</view>
+					<view class="motta">（管理企业中心,曝光企业品牌)</view>
+				</view>
+				<view class="switchDd">
+					<switch bindchange="switch1Change" color="#0092FF"/>
+				</view>
+			</view>
+
+			<view class="formUploadDl" wx:if="{{showUploadLisence&&!hasManageRights>0}}">
+				<view class="uploadDt">*请上传企业营业执照</view>
+				<view class="formUploadDd">
+					<image src="{{lisence}}" bindtap="upLoadLisence"/>
+				</view>
+			</view>
+		</view>
+		<view class="confirmSubmit">
+			<button formType="submit">提交</button>
+		</view>
+	</form>
+	<view class="changeInfoLayer"  wx:if="{{verifyingOperateLayer}}" bindtap="closeLayer"/>
+	<view class="OperateLayerCon"  wx:if="{{verifyingOperateLayer}}">
+		<view class="ConDetail">
+			<view class="layerTitle">审核不通过</view>
+			<view class="layercontent">{{rejectReason}}</view>
+			<view class="layerFooter" bindtap="closeLayer">知道了</view>
+		</view>
+	</view>
+	<view  wx:if="{{opa}}" class="view">
+		<view class="tipPic">
+			<image src="../resources/icons/warning.png"/>
+		</view>
+		<text>{{tip}}</text>
+	</view>
+	<action-sheet hidden="{{actionSheetHidden}}" bindchange="listenerActionSheet">
+		<view  wx:for="{{actionSheetItems}}" wx:key="{{index}}">
+			<action-sheet-item data-v="{{item.name}}" bindtap="selModel">{{item.name}}</action-sheet-item>
+		</view>
+		<action-sheet-cancel>取消</action-sheet-cancel>
+	</action-sheet>

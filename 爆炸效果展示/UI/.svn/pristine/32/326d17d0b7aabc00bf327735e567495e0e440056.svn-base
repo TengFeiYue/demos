@@ -1,0 +1,421 @@
+<style type="scss">
+	$border-color: #ececec;
+	.pad15{
+		padding: 0 30rpx;
+		box-sizing: border-box;
+	}
+	.header{
+		width: 100%;
+		height: 252rpx;
+		position: relative;
+		.header-bg{
+			width: 100%;
+			height: 100%;
+		}
+		.header-con{
+			width: 690rpx;
+			height: 320rpx;
+			box-shadow: 1rpx 1rpx 20rpx rgba(0,0,0,0.3);
+			position: absolute;
+			left: 0;
+			right: 0;
+			margin: auto;
+			top: 0;
+			.header-bgimg{
+				width: 100%;
+				height: 100%;
+			}
+			.header-con-center{
+				height: 222rpx;
+				width: 100%;
+				background-color: #fff;
+				border-radius: 8rpx;
+				padding: 30rpx 30rpx 0 30rpx;
+				box-sizing: border-box;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			.header-img{
+				width: 96rpx;
+				height: 96rpx;
+				float: left;
+				image{
+					width: 100%;
+					height: 100%;
+					border-radius: 50%;
+				}
+			}
+			.header-info{
+				width: 80%;
+				height: 100%;
+				float: right;
+				view{
+					width: 100%;
+					height: 60rpx;
+					line-height: 60rpx;
+					font-size: 32rpx;
+					color: #333;
+					image{
+						width: 80rpx;
+						height: 28rpx;
+						margin-left: 20rpx;
+					}
+				}
+				.header-info-work, .header-info-company{
+					font-size: 24rpx;
+				}
+				.header-info-work{
+					color: #999;
+				}
+				.header-info-company{
+					color: #666;
+				}
+			}
+			.header-title{
+				height: 96rpx;
+				width: 100%;
+				float: left;
+				scroll-view{
+					display: flex;
+					white-space: nowrap;
+					height: 96rpx;
+					line-height: 96rpx;
+					box-sizing: border-box;
+					button{
+						background-color: transparent;
+						border: 2rpx solid #fff;
+						color: #fff;
+						line-height: 1.3;
+						padding: 0 .5em;
+						margin-right: 10rpx;
+					}
+				}
+			}
+		}
+	}
+
+	.main{
+		margin-top: 70rpx;
+		width: 100%;
+		margin-bottom: 100rpx;
+		.main-list{
+			width: 100%;
+			.main-title, .main-detail, .main-company, .main-detail-box{
+				height: 80rpx;
+				line-height: 80rpx;
+				color: #4a4a4a;
+				font-size: 28rpx;
+			}
+			.main-title{
+				border-bottom: 2rpx solid $border-color;
+				image{
+					height: 26rpx;
+					width: 8rpx;
+					margin-right: 10rpx;
+				}
+				.edit{
+					padding: 5rpx 10rpx;
+					border: 1rpx solid #0092ff;
+					color: #0092ff;
+					margin-left: 20rpx;
+					border-radius: 8rpx;
+				}
+			}
+			.main-detail{
+				.title{
+					width: 30%;
+					float: left;
+				}
+				.con{
+					font-size: 24rpx;
+					color: #999;
+					float: right;
+				}
+			}
+			.main-company{
+				overflow: hidden;
+				text-overflow:ellipsis;
+				white-space: nowrap;
+			}
+			.main-detail-box .main-detail{
+				display: flex;
+				width: 50%;
+				float: left;
+				text{
+				}
+				.title{
+					width: 140rpx;
+				}
+				.con{
+					width: 60%;
+					overflow: hidden;
+					text-overflow:ellipsis;
+					white-space: nowrap;
+				}
+			}
+			.main-detail-box {
+				display: flex;
+				.main-detail-box-title{
+					width: 140rpx;
+				}
+				.main-detail-box-con{
+					width: 550rpx;
+					overflow: hidden;
+					text-overflow:ellipsis;
+					white-space: nowrap;
+					font-size: 24rpx;
+					color: #999;
+				}
+			}
+			.main-adress{
+				line-height: 88rpx;
+				width: 100%;
+				font-size: 24rpx;
+				color: #666;
+				background-color: #f2f2f2;
+				overflow: hidden;
+				text-overflow:ellipsis;
+				white-space: nowrap;
+				position: relative;
+				image{
+					width: 46rpx;
+					height: 46rpx;
+					float: right;
+					margin-top: 20rpx;
+					position: fixed;
+					right: 60rpx;
+					bottom: 130rpx;
+				}
+				.scan-num{
+					padding: 3rpx 8rpx;
+					height: 20rpx;
+					line-height: 20rpx;
+					font-size: 20rpx;
+					border-radius: 20rpx;
+					color: #fff;
+					background-color: #0092ff;
+					position: fixed;
+					right: 30rpx;
+					bottom: 160rpx;
+				}
+			}
+			.edit-con{
+				font-size: 12px;
+				color: #666666;
+				line-height: 1.5;
+			}
+		}
+	}
+	.foot{
+		width: 100%;
+		height: 100rpx;
+		line-height: 100rpx;
+		text-align: center;
+		font-size: 32rpx;
+		color: #fff;
+		background-color: #0092ff;
+		position: fixed;
+		bottom: 0;
+	}
+</style>
+<template>
+	<view class="header">
+		<image class="header-bg" src="../resources/img/bg.png"></image>
+		<view class="header-con">
+			<image class="header-bgimg" src="../resources/img/bg2.png"></image>
+			<view class="header-con-center">
+				<view class="header-img">
+					<image wx:if="{{comInfo.memberLogoUrl != ''}}" src="{{comInfo.memberLogoUrl}}"></image>
+					<image wx:else src="../resources/img/myImg.png"></image>
+				</view>
+				<view class="header-info">
+					<view class="header-info-name">
+						<text>{{comInfo.memberName}}</text>
+						<image src="../resources/icons/confirm.png"></image>
+					</view>
+					<view class="header-info-work">{{enterInfo.businessMode}}</view>
+					<view class="header-info-company">{{comInfo.enterpriseName}}</view>
+				</view>
+				<view class="header-title">
+					<scroll-view scroll-x="false" style="">
+						<button size="mini" wx:if="{{labels.length != 0}}" wx:for="{{labels}}" wx:key="{{index}}">{{item}}</button>
+						<button size="mini" bindtap="showokk">+</button>
+					</scroll-view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="main">
+		<view class="main-list">
+			<view class="main-title pad15">
+				<image src="../resources/icons/parallelogram.png"></image>
+				<text>联系方式</text>
+			</view>
+			<view class="main-detail pad15">
+				<text class="title">移动电话</text>
+				<text class="con">{{comInfo.phoneNo}}</text>
+			</view>
+			<view class="main-detail pad15">
+				<text class="title">电子邮箱</text>
+				<text class="con">{{comInfo.email}}</text>
+			</view>
+			<view class="main-title pad15">
+				<image src="../resources/icons/parallelogram.png"></image>
+				<text>企业概况</text>
+			</view>
+			<view class="main-company pad15">
+				<text>{{comInfo.enterpriseName}}</text>
+			</view>
+			<view class="main-detail-box pad15">
+				<view class="main-detail" wx:if="{{enterInfo.type}}">
+					<text  class="title">产业链</text>
+					<text class="con">{{enterInfo.type}}</text>
+				</view>
+				<view class="main-detail" wx:if="{{enterInfo.baseFirstCategory}}">
+					<text class="title">分类</text>
+					<text class="con">{{enterInfo.baseFirstCategory}}</text>
+				</view>
+			</view>
+			<view class="main-detail-box pad15" wx:if="{{enterInfo.businessMode}}">
+				<view class="main-detail">
+					<text class="title">经营模式</text>
+					<text class="con">{{enterInfo.businessMode}}</text>
+				</view>
+				<view class="main-detail" wx:if="{{enterInfo.serviceArea}}">
+					<text class="title">服务区域</text>
+					<text class="con">{{enterInfo.serviceArea}}</text>
+				</view>
+			</view>
+			<view class="main-detail-box pad15" wx:if="{{enterInfo.mainProduct}}">
+				<text class="main-detail-box-title">主营行业</text>
+				<text class="main-detail-box-con">{{enterInfo.mainProduct}}</text>
+			</view>
+			<view class="main-detail-box pad15" wx:if="{{enterInfo.profile}}">
+				<text class="main-detail-box-title">主营系列</text>
+				<text class="main-detail-box-con">{{enterInfo.profile}}</text>
+			</view>
+			<view class="main-adress pad15">
+				<text>{{enterInfo.address}}</text>
+				<image src="../resources/icons/scannum.png"></image>
+				<text class="scan-num">{{comInfo.browseQty}}</text>
+			</view>
+			<view class="main-title pad15">
+				<image src="../resources/icons/parallelogram.png"></image>
+				<text>我的产品</text>
+				<text class="edit" bindtap="showokk">编辑</text>
+			</view>
+			<view class="edit-con pad15">{{comInfo.agencyProduct}}</view>
+		</view>
+		<view class="foot" bindtap="previewImage">我的小程序码</view>
+	</view>
+</template>
+<script>
+	import wepy from 'wepy';
+	import { api } from '../config';
+
+	export default class myCard extends wepy.page {
+		config = {
+			'navigationBarTitleText': '我的电子名片',
+			'navigationBarTextStyle': '#FFFFFF',
+			'navigationBarBackgroundColor': '#0092FF'
+		}
+		components = {
+
+		}
+		data = {
+			loginUId: -1,
+			info: {},
+			comInfo: {},
+			enterInfo: {},
+			proInfo: {},
+			labels: [],
+			imgalist: [],
+			phone: -1,
+			memberId: -1,
+			enterpriseId: -1,
+		}
+		events = {
+
+		}
+		methods = {
+			showokk:function() {
+        		wx.showModal({
+					title: '',
+					content: '您可下载俺搜APP编辑您的产品信息',
+					showCancel: false,
+					confirmText: '确定',
+					confirmColor: '#0092ff'
+				})
+    		},
+    		previewImage: function(e){
+				var current=e.target.dataset.src;
+		        wx.previewImage({
+		            urls: this.data.imgalist // 需要预览的图片http链接列表
+		        })
+    		}
+		}
+		onShow() {
+			const antsooUserInfo = wepy.getStorageSync("antUserInfo");
+			this.loginUId = antsooUserInfo.userId;
+			this.getInfo();
+		}
+		onLoad(option) {
+			this.loginUId = option.userId;
+			this.phone = option.phone;
+			this.memberId = option.memberId;
+			this.enterpriseId = option.enterpriseId;
+			this.getQrCode();
+		}
+
+		getInfo(){
+			var _this = this;
+			wx.request({
+				url: api.my.myCard.url,
+				method: api.my.myCard.method,
+				data: {
+					memberId: _this.memberId,
+					userId: _this.loginUId
+				},
+				success: function(res){
+					if (res.statusCode == 200) {
+						_this.info = res.data.body;
+						_this.comInfo = _this.info.companyMember;
+						console.log(_this.comInfo)
+						_this.enterInfo = _this.info.enterpriseInfoDto;
+						_this.proInfo = _this.info.productList;
+						var labels = _this.info.companyMember.labels;
+						if (labels == '' || labels == null) {
+							_this.labels = [];
+						} else {
+							_this.labels = labels.split(',');
+						}
+						_this.$apply();
+					}
+				}
+			})
+		}
+
+		getQrCode(){ //获取我的小程序码
+			var _this = this;
+			wx.request({
+				url: api.my.myQrCode.url,
+				method: api.my.myQrCode.method,
+				data: {
+					memberId: _this.memberId,
+					userId: _this.loginUId,
+					enterpriseId: _this.enterpriseId,
+					phone: _this.phone,
+				},
+				success: function(res){
+					console.log(res)
+					if (res.statusCode == 200) {
+						_this.imgalist[0] = res.data.body.memberQrcode;
+						_this.myScancode=res.data.body.memberQrcode
+						_this.$apply();
+					}
+				}
+			})
+		}
+	}
+</script>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>array</title>
+  </head>
+  <body>
+       <script type="text/javascript">
+             var arr=['a', 'b', 'c', 'd'];
+               function splitArr(ar,n){
+                    var newArr=[];
+                    var len=Math.ceil(ar.length/n);
+                       for(var i=0;i<len;i++){
+                          var temArr=[];
+                          for(var j=0; j<ar.length;j++){
+                            temArr.push(ar[j])
+                              if(j==n-1) break;
+                          }
+                          ar.splice(0,n)
+                          newArr.push(temArr)
+                       }
+
+
+                    return newArr;
+               }
+               console.log(splitArr(arr,1))
+       </script>
+  </body>
+</html>

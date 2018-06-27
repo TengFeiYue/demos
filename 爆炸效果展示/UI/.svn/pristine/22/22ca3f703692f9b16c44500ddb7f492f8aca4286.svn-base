@@ -1,0 +1,68 @@
+
+    <view class="body">
+       <view>
+           <view class="hasConfirm">
+              <view class="antsooLogo"><image src="../resources/img/materailImg.png"/></view>
+              <text class="txt">您的个人信息存在错误，请修改后提交</text>
+           </view>
+       </view>
+       <view>
+           <view class="upload">
+             <text class="uploadDl">个人名片</text>
+             <view class="uploadImg"><image src="../resources/img/camera.png"/></view>
+           </view>
+       </view>
+       <view class="confirmWraper" style="padding-bottom:194rpx;">
+       <form bindsubmit="formSubmit">
+         <view class="confirmDl">
+              <text class="confirmDt">姓名</text>
+              <view class="confirmDd"><input/></view>
+              <view class="confirmTo"/>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">名片职位</text>
+              <view class="confirmDd"><input/></view>
+              <view class="confirmTo"/>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">邮箱</text>
+              <view class="confirmDd"><input/></view>
+              <view class="confirmTo"/>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">企业名称</text>
+              <view class="confirmDd"><input/></view>
+              <view class="confirmTo"/>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">企业简称</text>
+              <view class="confirmDd"><input/></view>
+              <view class="confirmTo"/>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">企业类型</text>
+              <view class="confirmDd"><input/></view>
+              <view class="confirmTo"><image src="../resources/icons/chevion.jpg"/></view>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">经营模式</text>
+              <view class="confirmDd"><input/></view>
+              <view class="confirmTo"><image src="../resources/icons/chevion.jpg"/></view>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">企业地区</text>
+              <view class="confirmDd"><input/></view>
+              <view class="confirmTo"><image src="../resources/icons/chevion.jpg"/></view>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">详细地址</text>
+              <view class="confirmDd"><input/></view>
+              <view class="confirmTo"/>
+         </view>
+         <view class="btn-area" style="padding:50rpx 0;">
+            <button formType="submit">提交</button>
+        </view>
+       </form>
+       </view>
+
+      </view>

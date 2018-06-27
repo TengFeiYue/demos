@@ -1,0 +1,84 @@
+.portrait {
+  width: 100%;
+  height: 270rpx;
+  padding-top: 1rpx;
+  background-color: #458FEF;
+  text-align: center; }
+  .portrait .slide-image {
+    display: block;
+    width: 100%;
+    height: 270rpx;
+    position: absolute;
+    z-index: 1; }
+  .portrait .por-image {
+    margin-top: 36rpx; }
+    .portrait .por-image image {
+      width: 132rpx;
+      height: 132rpx;
+      border-radius: 100%; }
+  .portrait .por-content {
+    height: 60rpx;
+    width: 100%;
+    font-size: 28rpx;
+    color: #FFFFFF; }
+    .portrait .por-content .texts {
+      width: 50%;
+      float: left;
+      height: 60rpx;
+      text-align: right;
+      line-height: 60rpx; }
+    .portrait .por-content .icons {
+      width: 50%;
+      float: left;
+      height: 60rpx;
+      text-align: left;
+      line-height: 60rpx; }
+      .portrait .por-content .icons image {
+        display: block;
+        margin-top: 15rpx;
+        margin-left: 15rpx;
+        width: 80rpx;
+        height: 30rpx; }
+  .portrait .pos-class {
+    position: relative;
+    z-index: 2; }
+
+.my-function {
+  width: 90%;
+  height: 90rpx;
+  float: right;
+  text-align: right; }
+  .my-function .my-left {
+    color: #333333;
+    font-size: 28rpx;
+    float: left;
+    line-height: 90rpx; }
+  .my-function .my-right {
+    color: #999999;
+    font-size: 24rpx;
+    float: right;
+    line-height: 90rpx;
+    margin-right: 15rpx; }
+  .my-function .right-image {
+    display: block;
+    float: right;
+    width: 20rpx;
+    height: 30rpx;
+    margin-top: 32rpx;
+    margin-right: 30rpx; }
+
+.border-top:not(:first-child) {
+  border-top: 1px solid #ECECEC; }
+
+.border-bottom {
+  border-bottom: 1px solid #ECECEC; }
+
+.labour-tel {
+  width: 120rpx;
+  height: 120rpx;
+  position: fixed;
+  right: 30rpx;
+  bottom: 135rpx; }
+  .labour-tel image {
+    width: 100%;
+    height: 100%; }

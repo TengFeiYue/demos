@@ -1,0 +1,87 @@
+
+.search {
+    background-color:#f0eff5;
+    padding:15rpx 20rpx;
+    display:flex;
+    justify-content:center;
+    box-sizing:border-box;
+}
+.search .all {
+    flex:3;
+    padding-left:50rpx;
+    vertical-align:middle;
+    color:#0386ff;
+    line-height:56rpx;
+    position:relative;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+.search .all .pos{
+    width:30rpx;
+    height:36rpx;
+    position:absolute;
+    left:8rpx;
+    top:10rpx;
+}
+.header-query {
+    flex:12;
+    background-color: white;
+    border-radius: 5px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+.header-query .icon {
+    position:absolute;
+    width:30rpx;
+    height:30rpx;
+    left:210rpx;
+    top:16rpx;
+
+}
+.header-query input{
+    color:#b2b2b2;
+    font-size:12px;
+    text-align:center;
+    height:56rpx;
+    min-height:56rpx;
+}
+.filterconditions{
+    background:#fafafa;
+}
+.filterconditions .filterTabs{
+   display:flex;
+   flex-direction:row;
+   justify-content:center;
+   align-items:center;
+   text-align:center;
+   border-bottom:1px solid #e5e5e5;
+}
+.filterconditions .filterTabs text{
+    flex:1;
+    line-height:94rpx;
+}
+.filterconditions .filterTabs .cur{
+   color:#0386ff;
+   position:relative;
+}
+.filterconditions .filterTabs .cur:after{
+  content:"";
+  background:#0386ff;
+  height:4rpx;
+  width:100rpx;
+  position:absolute;
+  bottom:0;
+  left:42rpx;
+}
+.filterconditions .filter-tab{
+    display:inline-block;
+    text-align:left;
+    background:#fafafa;
+    border-bottom:1px solid #dadada;
+}
+.filterconditions .filter-tab text{
+    text-align:center;
+    padding-left:66rpx;
+}

@@ -1,0 +1,37 @@
+<template>
+	<transition name="scale">
+		<div class="dialogBg" v-if="visible">
+			<div :class="['dialog',cls]">{{msg}}</div>
+		</div>
+	</transition>
+</template>
+<script>
+	export default {
+		props: {
+			'msg': {
+				type: String,
+				default: '未知错误'
+			},
+			'visible': {
+				type: Boolean,
+				default: false
+			},
+			'cls': {
+				type: String,
+				default: 'sort'
+			}
+		},
+		watch: {
+			'visible': function(value) {
+				if(value === true) {
+					setTimeout(() => {
+						this.visible = false;
+					}, 1500)
+				}
+			}
+		}
+	}
+</script>
+<style lang="scss">
+
+</style>

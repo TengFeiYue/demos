@@ -1,0 +1,238 @@
+
+page,.body {
+    height: 100%;
+    font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+    background-color:#EEEEEE;
+    font-size:14px;
+    overflow: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+   .head{
+      background: #F0EFF5;
+      display:flex;
+      flex-direction:row;
+      justify-content:space-between;
+      align-items:center;
+      height:44rpx;
+      line-height:44rpx;
+      padding:22rpx 20rpx;
+   }
+   .cityPos{
+      flex:2;
+      font-size: 32rpx;
+      color: #0386FF;
+      position:relative;
+      padding-left:40rpx;
+   }
+   .cityPos image{
+      width:30rpx;
+      height:36rpx;
+      position:absolute;
+      top:5rpx;
+      left:0;
+   }
+   .cares{
+      flex:3;
+      text-align:right;
+      font-size: 32rpx;
+      color: #0386FF;
+      display:flex;
+   }
+   .cares .eye{
+       flex:2;
+      display:inline-block;
+      padding-left:40rpx;
+      position:relative;
+
+   }
+    .collect{
+       flex:1;
+      display:inline-block;
+      padding-left:40rpx;
+      position:relative;
+   }
+   .eye image{
+      width:40rpx;
+      height:32rpx;
+      position:absolute;
+      right:50rpx;
+      top:3rpx;
+
+   }
+   .collect image{
+      width:33rpx;
+      height:30rpx;
+      position:absolute;
+      left:42rpx;
+      top:8rpx;
+   }
+   .materialInfos{
+     background: #FFFFFF;
+     height:158rpx;
+     padding:30rpx;
+     display:flex;
+     flex-direction:row;
+     justify-content:space-between;
+     align-items:center;
+   }
+   .materialPic{
+     flex:1
+   }
+   .materialPic image{
+     width:80rpx;
+     height:80rpx;
+   }
+   .materialInfo{
+     flex:5
+   }
+   .h3{
+        font-size:34rpx;
+        color:#222222;
+        line-height:48rpx;
+        display:inline-block;
+        padding-right:20rpx;
+
+   }
+   .price_display{
+       font-size: 28rpx;
+       color: #FE9900;
+       line-height:40rpx;
+       padding:15rpx 0;
+   }
+   .tradeAdd,.otherMaterialAdd{
+      font-size: 26rpx;
+      color: #333333;
+      line-height:36rpx;
+      display:flex;
+      flex-direction:row;
+      justify-content:space-between;
+      align-items:center;
+   }
+   .address{
+       flex:3;
+   }
+   .time{
+       font-size: 26rpx;
+      color: #999999;
+   }
+   .descriptionTitle{
+     height:40rpx;
+     padding:10rpx 30rpx;
+      font-size: 30rpx;
+      color: #353535;
+      letter-spacing: 0;
+   }
+   .descriptions{
+      padding:30rpx;
+      background:#ffffff;
+   }
+   .desPic image{
+      width:690rpx;
+      height:264rpx;
+   }
+   .desWords{
+      font-size: 28rpx;
+      color: #999999;
+      line-height: 42rpx;
+      padding:22rpx 0 4rpx;
+   }
+   .li{
+      background:#ffffff;
+     display:flex;
+     flex-direction:row;
+     justify-content:space-between;
+     align-items:center;
+      padding:30rpx;
+      border-bottom:1px solid #eeeeee;
+   }
+   .otherMaterialPic{
+      flex:1;
+   }
+   .otherMaterialPic image{
+      height:80rpx;
+      width:80rpx;
+   }
+   .otherMaterialInfo{
+      flex:5;
+   }
+   .otherMaterialDes{
+      font-size: 28rpx;
+      color: #999999;
+      line-height: 42rpx;
+      padding:14rpx 0;
+   }
+   .scrollWrap{
+      padding-bottom:180rpx;
+   }
+   .fixedBottom{
+      width:100%;
+      position:fixed;
+      bottom:0;
+      left:0;
+      z-index:10;
+      display:flex;
+      flex-direction:row;
+      justify-content:space-between;
+      align-items:center;
+      background: #FFFFFF;
+      padding:30rpx;
+      box-shadow:0 -1px 5px #97cdff;
+   }
+   .companyLogo{
+      flex:1;
+   }
+   .linkName{
+     flex:3
+   }
+   .linkBtn{
+     flex:2;
+     text-align:right;
+     padding-right:60rpx;
+
+   }
+   .companyLogo image{
+      width:92rpx;
+      height:102rpx;
+   }
+   .name{
+        display:inline-block;
+        line-height:56rpx;
+        font-size:34rpx;
+        color:#222222;
+        vertical-align:middle;
+        padding-right:20rpx;
+   }
+   .runingWays{
+       font-size: 26rpx;
+       color: #333333;
+   }
+   .comName{
+       font-size: 26rpx;
+       color: #333333;
+   }
+   .linkBtn text{
+      display:inline-block;
+      width:146rpx;
+      height:58rpx;
+      border:2rpx solid #0386FF;
+      border-radius:6rpx;
+      font-size:26rpx;
+      color:#0386FF;
+      text-align:center;
+      line-height:58rpx;
+
+   }
+   .proDes{
+    font-size:28rpx;
+    color:#999999;
+    line-height:42rpx;
+    padding:7.5rpx 0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+    width-space:nowrap;
+   }

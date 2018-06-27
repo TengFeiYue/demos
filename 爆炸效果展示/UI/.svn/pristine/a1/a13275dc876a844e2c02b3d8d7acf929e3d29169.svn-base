@@ -1,0 +1,68 @@
+<template>
+  <div >
+      <section class="joinState">
+           <div class="joinStateHead">
+                <span class="h3">全国改性料通讯录</span>
+                <span class="joinStatus">立即加入</span>
+           </div>
+           <p class="joinStateDes">
+             通讯录包含上下游最new的人脉关系，只有你想不到的，
+             没有我们做不到的
+           </p>
+      </section>
+      <section class="confilters">
+            <conditionFilter></conditionFilter>
+      </section>
+      <section class="bookList">
+           <ul>
+               <li>
+                   <dl class="bookItems">
+                       <dt class="userImg"><img src="../../assets/imgs/headImg.png" /></dt>
+                       <dd class="userInfo">
+                           <p><span class="userName">李坤鹏</span><span class="status"><img src="../../assets/imgs/confirmed.png" /></span></p>
+                           <p>市场销售  上海迪塔班克数据有限公司</p>
+                           <p>其他,数据服务</p>
+                           <p class="userAddress">上海市,改性料</p>
+                       </dd>
+                   </dl>
+               </li>
+               <li>
+                   <dl class="bookItems">
+                       <dt class="userImg"><img src="../../assets/imgs/headImg.png" /></dt>
+                       <dd class="userInfo">
+                           <p><span class="userName">李坤鹏</span><span class="status"></span></p>
+                           <p>市场销售  上海迪塔班克数据有限公司</p>
+                           <p>其他,数据服务</p>
+                           <p>上海市,改性料</p>
+                       </dd>
+                   </dl>
+               </li>
+           </ul>
+      </section>
+  </div>
+</template>
+
+<script>
+import './bookDetail.css'
+import conditionFilter from '../conditionFilter/conditionFilter'
+export default {
+  components:{
+     conditionFilter
+  },
+  name: 'bookDetail',
+  data () {
+    return {
+      msg: ''
+    }
+  },
+  mounted() {
+    this.$store.dispatch('hideFooter');
+  }
+
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+
+</style>

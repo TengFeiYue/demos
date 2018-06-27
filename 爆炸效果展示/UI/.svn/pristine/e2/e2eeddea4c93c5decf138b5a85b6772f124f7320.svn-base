@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="format-detection" content="telephone=no"/>		
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta charset="utf-8">
+		<title>圣诞节，俺搜送你“蔚来”大礼</title>
+		<link rel="stylesheet" href="bootstrap/bootstrap.min.css" />
+		<link rel="stylesheet" href="NewYearcss/base.css" />
+		<link rel="stylesheet" href="NewYearcss/media.css" />
+		<script src="js/jquery-2.1.0.min.js"></script>		
+		<script src="js/bscroll.min.js"></script>
+		<script src="js/axios.js"></script>
+		<script src="js/vue.js"></script>
+		<script src="js/vue-resource.min.js"></script>
+		<script src="js/vue-router.js"></script>
+		<script src="dev.js"></script>
+		<script src="js/resultdata.js"></script>
+		 <style>
+		 	#imgArea{
+		 		height:10.2rem;
+				position: relative;
+				width:100%;
+			    /*margin-top: -.4rem;*/
+				margin-top:-1.5rem;
+				background: #f2c658;
+			}
+			#mainBg{
+				width: 100%;
+			    position: absolute;
+			    /*top: .6rem;*/
+				top:.6rem;
+			    left: 0;
+			}
+			#mainBg img{
+				width: 100%;				
+			}
+			.logoimg{
+				position: absolute;
+			    top: .6rem;
+			    left: 0;
+			    z-index: 10;
+			    padding: .1rem;
+			}
+			.logoimg img{
+				width:1.8rem;
+			}
+			.headImgArea{
+				padding-top:1rem;
+				height:5rem;
+			}
+			.headImgArea .defaultHeadImg{
+			    width: 1.3rem;
+			    height: 1.3rem;
+			    border-radius: 50%;
+			}
+			#demo{
+				margin-top: -.25rem;
+			}
+			#img{
+				margin-top: -.25rem;
+			}
+			#img img{
+				width:90%;
+			}
+			[v-cloak] {
+			  display: none;
+			}
+			#mask{
+				position:fixed;
+				top:0;
+				left:0;
+				width:100%;
+				height:100%;
+				background:#333;
+				opacity: .6;
+			}
+			.shareposition{
+				position: absolute;
+			    top: 0;
+			    right: .5rem;
+			    width: 4.5rem;
+			}
+		 </style>
+	   </head>
+	
+	<body class="makeImgBody">
+	<div id="app">
+	    <div class="container-fluid p-0">
+		  <header class="col-xs-12 p-0">
+				<img src="NewYearimages/resultHead_02.png" alt="" class="img-responsive" />				
+		  </header>			
+			<section class="col-xs-12 p-0 midSection text-center">				
+				<div class="p-0" id="imgArea">
+					<div id="mainBg"><img src="NewYearimages/imgAreaBg_03.png" class="imgbg" alt="" /></div>
+					<p class="m-0 logoimg"><img src="NewYearimages/logoimg_03.png"/></p>
+					<div class="col-xs-12 p-0 headImgArea">
+						<span class="firstTag" v-cloak>{{tags.a}}</span>
+						<span class="secondTag" v-cloak>{{tags.b}}</span>
+						<span class="thirdTag" v-cloak>{{tags.c}}</span>
+						<span class="fourthTag" v-cloak>{{tags.d}}</span>
+						<span class="fifthTag" v-cloak>{{tags.e}}</span>
+						<span class="sixthTag" v-cloak>{{tags.f}}</span>
+						<span class="seventhTag" v-cloak>{{tags.g}}</span>
+						
+						<span class="weixinImg"><img class="defaultHeadImg" :src="defaultImg" width="50" /><img src="NewYearimages/wheat_03.png" class="wheat" /></span>
+						<p class="name_company" v-cloak>{{userName}}-{{companyName}}</p>
+					</div>
+					<div class="col-xs-12 p-0 honors">
+						<img src="NewYearimages/innerBg_11.png" class="honorsBg" alt="" />
+						<div class="honorDetail clearfix">
+							<div class="pull-left bage"><img :src="bages" alt="" /></div>
+							<div class="pull-right">
+								<h5><span v-cloak>{{roles}}</span><span class="score" id="score" v-cloak>{{result}}</span>
+									<span class="scoreunit">分<img src="NewYearimages/underscore_03.png" ></span>
+								</h5>
+								<p class="mota" v-cloak>{{mota}}</p>
+								<p class="scancode">
+									<span><img src="NewYearimages/scancode_12.png"/></span><br>
+									<span class="pressTips">长按识别二维码测测你的牛X指数 <br>开始测试</span>
+								</p>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="demo"></div>
+				<div class="col-xs-12" id="img"></div>
+			</section>
+			<footer class="col-xs-12 p-0">				
+				<a href="http://www.antsoo.com/appdownload.shtml" target="_blank" class="sharefriend"><img src="NewYearimages/downloadappbtn_17.png"/></a>
+				<a  class="downloadapp" @click="maskShow"><img src="NewYearimages/toSharebtn_20.png"/></a>
+
+				<img src="NewYearimages/lantern.png" class="lantern" alt="" />
+				<img src="NewYearimages/indexfooter.png" alt="" class="img-responsive" />
+			</footer>
+			 <div id="mask" @click="hideMask" v-show="showMask">
+				 <img src="NewYearimages/sharePosition.jpg" class='shareposition' v-show="showMask" />
+			 </div>
+			
+		</div>
+     </div>
+     <script type="text/javascript">
+     
+     	
+     </script>
+		<script src="js/html2canvas.min.js"></script>
+		<script src="js/canvas2image.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				console.log("aaa"+getQuery('userName'));
+				console.log(getQuery('defaultImg'));
+				new  Vue({
+					el:'#app',
+					data:{
+						defaultImg:"",
+						bages:"",
+						roles:"",
+						work:"",
+						userName:"",
+						companyName:"",
+						result:0,
+						tags:[],
+						mota:"",
+						showMask:false
+					},
+					mounted(){			
+					 var _this=this;
+					 var scoreArr=[81,82,83,84];
+				
+					 this.$nextTick(function(){				 	
+					 	_this.work=getQuery('work');
+					 	_this.defaultImg=getQuery('defaultImg');
+					 	_this.userName=getQuery('userName');
+						_this.companyName=getQuery('companyName');
+						_this.result=Number(getQuery('result'));
+						
+						if(_this.result<80){//不到80随机给80以上
+							_this.result=scoreArr[Math.floor(Math.random()*(3))]
+						}
+						
+
+						switch(_this.work){
+							case 'boss':
+							
+							_this.roles="企业老板";
+							_this.bages="NewYearimages/bossbage_03.png";
+							_this.tags=resultData.boss;
+							
+							break;
+							
+							case 'sale':
+							
+							_this.roles="销售精英";
+							_this.bages="NewYearimages/salebage_03.png";
+							_this.tags=resultData.sale;
+							
+							break;
+							
+							case 'buyer':
+							
+							_this.roles="采购达人";
+							_this.bages="NewYearimages/buyerbage_03.png";
+							_this.tags=resultData.buyer;
+							
+							break;
+							
+							case 'tech':
+							
+							_this.roles="技术达人";
+							_this.bages="NewYearimages/techbage_03.png";
+							_this.tags=resultData.tech;
+							
+							break;
+						}
+						_this.mota=resultData.motas[Math.floor(Math.random()*(21))]//随机座右铭
+						
+						$(document.body).css('height',$(window).height()+'px');
+				 		var deviceWidth = document.documentElement.clientWidth;
+						if(deviceWidth > 750) deviceWidth = 750;
+						document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';
+												
+						//加载二维码图片
+						var scanImg=new Image();
+						scanImg.src=_this.defaultImg;				
+						scanImg.className='defaultHeadImg';
+						scanImg.onload= function () {
+							$('.wheat').before(scanImg)
+							
+						}
+						
+						var oImgArea=$('#imgArea');
+						var w = $("#imgArea").width();
+		                var h = $("#imgArea").height();
+		                var canvas = document.createElement("canvas");
+						canvas.width = w * 2;
+						canvas.height = h * 2;
+						canvas.style.width = w + "px";
+						canvas.style.height = h + "px";
+						var context = canvas.getContext("2d");
+		                context.scale(2,2);
+		                scanImg.onload= function () {
+		                	
+						html2canvas(oImgArea, {
+							    canvas: canvas,
+					            onrendered: function(canvas) {
+					                //添加属
+					                oImgArea.hide();		                 
+					                canvas.setAttribute('id','thecanvas');
+					                document.getElementById('demo').innerHTML = '';
+		                            document.getElementById('demo').appendChild(canvas);
+		                           
+		                            canvas.style.width="100%";
+					                canvas.style.height="100%";
+					                
+					                 var oCanvas = document.getElementById("thecanvas");
+					                            
+				        /*自动保存为png*/
+				        // 获取图片资源
+					        var img_data1 = Canvas2Image.saveAsPNG(oCanvas, true).getAttribute('src');
+					           var img=new Image();
+					           img.src=img_data1;
+					           
+					          document.getElementById('img').appendChild(img);
+					          document.querySelector('#demo').remove();			         
+						            }
+						       });				        
+						  }      			 
+						
+					})
+					},
+					methods:{
+						maskShow:function(){
+							this.showMask=true;
+						},
+						hideMask:function(){
+							this.showMask=false;
+						}
+						
+					}
+				})
+				
+				
+		 		      
+			})
+						
+           /* function getQueryString(name) {
+				    var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+				    var r = window.location.search.substr(1).match(reg);
+				    if (r != null) {
+				        return unescape(r[2]);
+				    }
+				    return null;
+				}*/
+						  
+		</script>
+		<script>
+                var _mtac = {};
+                (function() {
+                    var mta = document.createElement("script");
+                    mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";
+                    mta.setAttribute("name", "MTAH5");
+                    mta.setAttribute("sid", "500566864");
+                    var s = document.getElementsByTagName("script")[0];
+                    s.parentNode.insertBefore(mta, s);
+                })();
+         </script>
+	</body>
+</html>
+

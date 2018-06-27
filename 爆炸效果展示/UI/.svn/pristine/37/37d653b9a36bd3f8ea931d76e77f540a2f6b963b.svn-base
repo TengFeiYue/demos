@@ -1,0 +1,276 @@
+@charset "UTF-8";
+@font-face {
+	font-family: "icons";
+	src: url("../font/icons.eot");
+	/* IE9*/
+	src: url("../font/icons.eot?#iefix") format("embedded-opentype"), 
+		url("../font/icons.woff") format("woff"), 
+		url("../font/icons.ttf") format("truetype"), 
+		url("../font/icons.svg#iconfont") format("svg");
+	/* iOS 4.1- */
+}
+
+body,
+div,
+ul,
+ol,
+li,
+p,
+dl,
+dt,
+dd,
+h1,
+h2,
+h3,
+h4,
+button {
+	margin: 0;
+	padding: 0;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	outline: 0;
+}
+
+.yahei,
+body,
+input,
+select,
+textarea {
+	font-family: 'microsoft yahei';
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	background: #E8EAEC;
+	margin: 0 auto;
+	color: #333;
+}
+
+input,
+select,
+textarea {
+	appearance: none;
+	-webkit-appearance: none;
+	border: 0;
+	outline: 0;
+	color: #333;
+	padding: 0;
+	margin: 0;
+}
+
+input::-webkit-input-placeholder {
+	color: #ccc;
+}
+
+ul,
+ol,
+li {
+	list-style: none;
+	list-style-type: none;
+}
+
+em,
+i {
+	font-style: normal;
+}
+
+a {
+	text-decoration: none;
+	color: #333;
+}
+
+.footer {
+	height: 2.75rem;
+	position: fixed;
+	bottom: 0;
+	background: #fff;
+}
+
+.footer ul {
+	padding-top: 0.15625rem;
+	height: 2.59375rem;
+	font-size: 0.5625rem;
+	border-top: 2px #dcdcdc solid;
+}
+
+.footer li {
+	float: left;
+	width: 50%;
+	overflow: hidden;
+	text-align: center;
+}
+
+.footer li:before {
+	display: block;
+	font-family: 'icons';
+	line-height: 1.5625rem;
+	font-size: 1.4375rem;
+	color: #777;
+}
+
+.footer li.home:before {
+	content: "";
+}
+
+.footer li.user:before {
+	content: "";
+}
+
+.footer li.on,
+.footer li.on:before {
+	color: #3297fd;
+}
+
+@media only screen and (min-width: 640px) {
+	html {
+		font-size: 32px;
+		background: #8cbc8b;
+	}
+	body {
+		width: 640px;
+		margin: 0 auto;
+	}
+	.top,
+	.btn-float,
+	.footer ul {
+		width: 640px;
+	}
+}
+
+@media only screen and (min-width: 620px) and (max-width: 640px) {
+	html {
+		font-size: 32px;
+	}
+}
+
+@media only screen and (min-width: 600px) and (max-width: 620px) {
+	html {
+		font-size: 31px;
+	}
+}
+
+@media only screen and (min-width: 580px) and (max-width: 600px) {
+	html {
+		font-size: 30px;
+	}
+}
+
+@media only screen and (min-width: 560px) and (max-width: 580px) {
+	html {
+		font-size: 29px;
+	}
+}
+
+@media only screen and (min-width: 540px) and (max-width: 560px) {
+	html {
+		font-size: 28px;
+	}
+}
+
+@media only screen and (min-width: 520px) and (max-width: 540px) {
+	html {
+		font-size: 27px;
+	}
+}
+
+@media only screen and (min-width: 500px) and (max-width: 520px) {
+	html {
+		font-size: 26px;
+	}
+}
+
+@media only screen and (min-width: 480px) and (max-width: 500px) {
+	html {
+		font-size: 25px;
+	}
+}
+
+@media only screen and (min-width: 460px) and (max-width: 480px) {
+	html {
+		font-size: 24px;
+	}
+}
+
+@media only screen and (min-width: 440px) and (max-width: 460px) {
+	html {
+		font-size: 23px;
+	}
+}
+
+@media only screen and (min-width: 430px) and (max-width: 440px) {
+	html {
+		font-size: 22px;
+	}
+}
+
+@media only screen and (min-width: 420px) and (max-width: 430px) {
+	html {
+		font-size: 21.5px;
+	}
+}
+
+@media only screen and (min-width: 410px) and (max-width: 420px) {
+	html {
+		font-size: 21px;
+	}
+	.footer{
+		width: 100%;
+	}
+}
+
+@media only screen and (min-width: 400px) and (max-width: 410px) {
+	html {
+		font-size: 20.5px;
+	}
+}
+
+@media only screen and (min-width: 380px) and (max-width: 400px) {
+	html {
+		font-size: 20px;
+	}
+	.footer{
+		width: 100%;
+	}
+}
+
+@media only screen and (min-width: 360px) and (max-width: 380px) {
+	html {
+		font-size: 19px;
+	}
+	.footer{
+		width: 100%;
+	}
+}
+
+@media only screen and (min-width: 340px) and (max-width: 360px) {
+	html {
+		font-size: 18px;
+	}
+}
+
+@media only screen and (min-width: 320px) and (max-width: 340px) {
+	html {
+		font-size: 17px;
+	}
+	.footer{
+		width: 100%;
+	}
+}
+
+@media only screen and (min-width: 300px) and (max-width: 320px) {
+	html {
+		font-size: 16px;
+	}
+}
+
+@media only screen and (max-width: 300px) {
+	html {
+		font-size: 15px;
+	}
+}
+
+
+/*# sourceMappingURL=style2016.css.map */

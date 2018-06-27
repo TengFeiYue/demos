@@ -1,0 +1,161 @@
+<style lang="less">
+	page,
+	.body {
+		height: 100%;
+		font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+		background-color: #ffffff;
+		font-size: 14px;
+		overflow: hidden;
+		overflow-y: auto;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.con {
+		padding-left: 30rpx;
+		box-sizing: border-box;
+		.confirmDd {
+			border-bottom: 1px solid #ECECEC;
+			padding: 15rpx 0;
+			input,
+			.pClass {
+				font-size: 32rpx;
+				color: #4A4A4A;
+				letter-spacing: 0;
+			}
+		}
+		.pNameOpt {
+			border-bottom: 1px solid #ECECEC;
+			font-size: 28rpx;
+			color: #666666;
+			letter-spacing: 0;
+			padding: 16rpx 0;
+		}
+	}
+
+	.saveCompanyName {
+		width: 100%;
+		background: #0092FF;
+		height: 96rpx;
+		line-height: 96rpx;
+		text-align: center;
+		font-size: 32rpx;
+		color: #FFFFFF;
+		letter-spacing: -0.19px;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+	}
+</style>
+<template>
+	<view class="body" bindtap="hideSearchList">
+		<view class="con">
+			<view class="confirmDd"><input placeholder="{{pValue}}" placeholder-class="pClass" value="{{pCompanyName}}" disabled="{{otherIpt}}" bindinput="filterMname" bindblur="blurEvent" /></view>
+			<view class="pNameSelect" wx:if="{{showSeachList}}">
+				<scroll-view scroll-y style="height:550rpx;">
+					<view>
+						<view class="pNameOpt" wx:for="{{searchData}}" wx:key="{{index}}"
+						 data-v="{{item.name}}" data-i="{{index}}" data-d="{{item.address}}" data-p="{{item.provinceName}}" data-c="{{item.cityName}}" data-a="{{item.districtName}}" data-t="{{item.type}}" data-b="{{item.businessMode}}" catchtap="selectPname">{{item.name}}</view>
+					</view>
+				</scroll-view>
+			</view>
+		</view>
+		<view class="saveCompanyName" bindtap="saveCompanyName">保存</view>
+	</view>
+</template>
+<script>
+	import wepy from 'wepy';
+	import { api } from '../config';
+	export default class companyName extends wepy.page {
+		config = {
+			'navigationBarTitleText': '俺搜认证',
+			'navigationBarTextStyle': '#FFFFFF',
+			'navigationBarBackgroundColor': '#0092FF'
+		}
+		components = {
+
+		}
+		data = {
+			sle:false,
+			pValue: '请输入企业名称',
+			searchvalue: '',
+			blurVal: '',
+			showSeachList: true,
+			pCompanyName: '请输入企业名称',
+			pProvince:'',
+			pCity:'',
+			pAera:'',
+			searchData: []
+		}
+		events = {}
+		methods = {
+			filterMname(e) { //筛选企业名称
+				if(e.detail.value.length == 0) {
+					this.showSeachList = false;
+				} else {
+					this.showSeachList = true;
+				}
+				console.log(e.detail.value)
+				let that = this;
+				wepy.request({
+					url: api.my.companySearchShow.url,
+					method: api.my.companySearchShow.method,
+					data: {
+						'enterpriseName': e.detail.value
+					},
+					success: function(res) {
+					  console.log(res)
+						if(res.data.body) {
+							that.searchData = res.data.body;
+						}
+						that.$apply();
+					}
+				});
+			},
+			selectPname(e) {
+				this.sle=true;
+				this.selectIndex = e.currentTarget.dataset.i;
+				this.pCompanyName = e.currentTarget.dataset.v;
+				this.pCompanyNameType = e.currentTarget.dataset.t;
+				this.pCompanyNameModel = e.currentTarget.dataset.b;
+				this.pProvince = e.currentTarget.dataset.p;
+				this.pCity = e.currentTarget.dataset.c;
+				this.pAera = e.currentTarget.dataset.a;
+        this.pAddress= e.currentTarget.dataset.d;
+				this.showSeachList = false;
+				console.log(this.pCompanyName)
+			},
+			hideSearchList() {
+				this.showSeachList = false;
+			},
+			blurEvent(e) {
+				this.blurVal = e.detail.value;
+				console.log(this.blurVal)
+			},
+			saveCompanyName() {
+
+				let saveData={
+					seleCompanyNames:this.sle?this.pCompanyName:(this.blurVal||this.pCompanyName),
+					seleModel:this.pCompanyNameModel,
+					seleProvince:this.pProvince,
+					selePcity:this.pCity,
+					seleParea:this.pAera,
+					seleAdd:this.pAddress
+				}
+				let sendData={
+					seleType:this.pCompanyNameType,
+				}
+				console.log(saveData)
+				wx.setStorageSync('companyNameInfo', saveData);
+				wx.setStorageSync('companyTypeInfo', sendData);
+				this.sle=false;
+				wx.navigateBack();
+
+			}
+		}
+		onLoad(e){
+			  console.log(e)
+			 this.pCompanyName=(e.comName=='null'||e.comName=='undefined')?'':e.comName;
+		}
+	}
+</script>

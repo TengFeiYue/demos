@@ -1,0 +1,241 @@
+<style type="scss">
+page,
+.body {
+    height: 100%;
+    font-family: '\5FAE\8F6F\96C5\9ED1', arial;
+    background-color: #ffffff;
+    font-size:14px;
+    overflow: hidden;
+    overflow-y:auto;
+    display: flex;
+    flex-direction: column;
+}
+.subPriceList{
+   background:#ffffff;
+    padding-bottom:30rpx;
+   .subPriceUl{
+      padding:15rpx;
+      padding:15rpx;
+      height:140rpx;
+      overflow-y:hidden;
+     .subPriceLi{
+        display:flex;
+        flex-direction:row;
+        justify-content:space-between;
+        align-items:center;
+        font-size: 28rpx;
+         color: #888888;
+         line-height:50rpx;
+         .submiter{
+            flex:1;
+            padding:0 15rpx;
+         }
+         .subTime{
+            flex:2;
+            padding-right:15rpx;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap;
+         }
+         .subPro{
+            flex:5;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap;
+         }
+      }
+   }
+   .viewMore{
+      padding-top:10rpx;
+      text-align:center;
+      text{
+        display:inline-block;
+        width:146rpx;
+        height:58rpx;
+        border: 2rpx solid #0386FF;
+        border-radius: 6rpx;
+        line-height:58rpx;
+        font-size: 26rpx;
+        color: #0386FF;
+      }
+   }
+}
+.tabBarWraper{
+    background: #FAFAFA;
+    box-shadow: inset 0 -1px 0 0 #E5E5E5;
+    padding:0 30rpx;
+    .tabBar{
+        display:flex;
+        flex-direction:row;
+        justify-content:space-between;
+        align-items:center;
+        font-size: 30rpx;
+        color: #353535;
+        letter-spacing: 0;
+        line-height:94rpx;
+        .subPrice{
+          flex:1;
+          text-align:center;
+          position:relative;
+        }
+        .subPriceAct{
+          color: #0386FF;
+        }
+        .subPriceAct:after{
+           content:"";
+           display:inline-block;
+           width:314rpx;
+           height:6rpx;
+           background: #0386FF;
+           position:absolute;
+           left:15rpx;
+           bottom:0;
+        }
+    }
+
+}
+
+</style>
+<template>
+    <view class="body" bindtap="hideOperateModel">
+       <view class="subPriceList">
+         <view class="subPriceUl">
+             <view class="subPriceLi" wx:for="{{latestpriceList}}" wx:key="{{index}}">
+                <text class="submiter">{{item.userRealName}}</text>
+                <text class="subTime">{{item.lastUpdateDateString}}报价</text>
+                <text class="subPro">{{item.productName}}</text>
+             </view>
+         </view>
+          <view class="viewMore">
+            <text bindtap="toIndex">查看更多</text>
+          </view>
+       </view>
+
+        <view class="tabBarWraper">
+           <view class="tabBar">
+                 <view wx:for="{{tabArr}}" wx:key="{{index}}" data-index="{{index}}" bindtap="selectTab" class="subPrice subPrice{{curIndex==index?'Act':''}}">{{item}}</view>
+           </view>
+        </view>
+        <view wx:if="{{switchSubPriceShow}}">
+           <switchSubPrice />
+        </view>
+        <view wx:if="{{mySubPriceShow}}">
+           <mySubPrice />
+        </view>
+      </view>
+
+</template>
+
+<script>
+import wepy from 'wepy'
+import { api } from '../config'
+import switchSubPrice from './switchSubPrice'
+import mySubPrice from './mySubPrice'
+export default class subPrice extends wepy.page {
+    config = {
+        'navigationBarTitleText': '报价',
+        'navigationBarTextStyle': '#FFFFFF',
+        'navigationBarBackgroundColor': '#0386FF'
+    }
+
+    components = {
+      switchSubPrice,
+      mySubPrice
+    }
+
+    data = {
+       latestpriceList:[],
+       tabArr:['报价','我的'],
+       curIndex:0,
+       switchSubPriceShow:true,
+       mySubPriceShow:false
+    }
+
+    methods = {
+       hideOperateModel(){
+          this.$broadcast('hideFilterList',false);
+          this.$broadcast('hideOperation',-1);
+       },
+       toIndex(){
+           wx.navigateTo({
+               url: 'index'
+           })
+       },
+        selectTab(e){
+            this.curIndex=e.target.dataset.index;
+            if(this.curIndex==0){
+                 this.$broadcast('giveImg',-1);
+                 this.switchSubPriceShow=true;
+                 this.mySubPriceShow=false;
+            }else if(this.curIndex==1){
+                  this.switchSubPriceShow=false;
+                  this.mySubPriceShow=true;
+            }
+        }
+    }
+    async onShow() {
+        var pages = this.getCurrentPages();
+        var currPage = pages[pages.length - 1];
+        this.$broadcast('selectCity',currPage.data.seleCity);
+        this.$broadcast('descript',currPage.data.description);
+    }
+    onLoad(e) {
+         if(e.getfocus=='fucus'){
+             this.$broadcast('getFocus',true);
+         }
+         console.log(e)
+         if(e.redirect=='my'){
+             this.curIndex=1;
+             this.switchSubPriceShow=false;
+             this.mySubPriceShow=true;
+         }
+         if(e.redirect=='edit'){
+             this.curIndex=0;
+             this.switchSubPriceShow=true;
+             this.mySubPriceShow=false;
+         }
+         if(e.hasRefresh=='yes'){
+              this.$broadcast('refreshed',false);
+         }
+         this.$broadcast('copyData',{
+             edit:e.edit,
+             up:e.up,
+             mName:e.mName,
+             mProducer:e.producer,
+             mBrandNum:e.brandNum,
+             mPrice:parseInt(e.price),
+             mUnit:e.pUnit,
+             deliveryWay:e.deliverway,
+             seleCity:e.deliversite,
+             mModel:e.model,
+             pVal:e.remark,
+             radioIndex:parseInt(e.mType),
+             taxRadioIndex:parseInt(e.hastax),
+             upPics:e.picList,
+             dailId:e.id,
+             tName:e.tName,
+             showD:e.showDel,
+             getType:e.getType
+         });
+        const antsooUserInfo = wepy.getStorageSync("antUserInfo");
+        this.$broadcast('getUserId',antsooUserInfo.userId);
+        this.$broadcast('hasConfirmed',antsooUserInfo.joinFlag);
+        this.fetchPricesData();
+    }
+   fetchPricesData(){
+       wx.showLoading({
+           title: '加载中',
+       })
+       let that = this;
+       wepy.request({
+           url:api.product.fetchPricesDatas.url,
+           method:api.product.fetchPricesDatas.method,
+           success:function(res){
+                 that.latestpriceList=res.data.body;
+                 that.$apply();
+                 wx.hideLoading();
+           }
+       });
+   }
+}
+</script>

@@ -1,0 +1,168 @@
+.con {
+  width: 100%; }
+  .con .search-box {
+    width: 100%;
+    height: 88rpx;
+    padding: 20rpx 30rpx;
+    box-sizing: border-box;
+    background: rgba(0, 146, 255, 0.2);
+    display: flex; }
+    .con .search-box .search {
+      width: 600rpx;
+      height: 48rpx;
+      background-color: #fff;
+      border-radius: 16rpx;
+      position: relative; }
+      .con .search-box .search .icons {
+        height: 48rpx;
+        width: 48rpx;
+        text-align: center;
+        float: left; }
+        .con .search-box .search .icons image {
+          height: 50%;
+          width: 50%; }
+      .con .search-box .search input {
+        display: block;
+        height: 48rpx;
+        min-height: 48rpx;
+        width: 80%;
+        font-size: 24rpx;
+        color: #666;
+        float: left; }
+      .con .search-box .search .icons-del {
+        height: 48rpx;
+        width: 48rpx;
+        float: right;
+        text-align: center; }
+        .con .search-box .search .icons-del image {
+          height: 50%;
+          width: 50%; }
+    .con .search-box .cancel {
+      height: 48rpx;
+      width: 90rpx;
+      line-height: 48rpx;
+      text-align: center;
+      font-size: 24rpx;
+      color: #666; }
+  .con .list-op {
+    padding: 20rpx 30rpx;
+    box-sizing: border-box;
+    overflow: hidden; }
+    .con .list-op .icons {
+      width: 48rpx;
+      height: 48rpx;
+      float: left; }
+      .con .list-op .icons image {
+        width: 100%;
+        height: 100%; }
+    .con .list-op .text {
+      width: 20%;
+      height: 48rpx;
+      line-height: 48rpx;
+      float: left;
+      font-size: 28rpx;
+      color: #666;
+      text-align: center; }
+    .con .list-op .del {
+      height: 48rpx;
+      width: 48rpx;
+      float: right; }
+      .con .list-op .del image {
+        width: 100%;
+        height: 100%; }
+  .con .list-detail {
+    padding: 0rpx 30rpx;
+    box-sizing: border-box;
+    font-size: 24rpx;
+    color: #666; }
+    .con .list-detail text {
+      display: inline-block;
+      height: 52rpx;
+      line-height: 46rpx;
+      padding: 0 20rpx;
+      box-sizing: border-box;
+      border: 2rpx solid #ececec;
+      border-radius: 8rpx;
+      box-sizing: border-box;
+      margin-right: 20rpx;
+      margin-bottom: 20rpx; }
+
+.emptyRes {
+  text-align: center;
+  padding-top: 250rpx; }
+  .emptyRes .emptyIcon {
+    padding-bottom: 58rpx; }
+    .emptyRes .emptyIcon image {
+      width: 184rpx;
+      height: 202rpx; }
+  .emptyRes .emptyTip {
+    font-size: 28rpx;
+    color: #999999;
+    letter-spacing: 0.17px;
+    padding-bottom: 34rpx;
+    line-height: 40rpx; }
+  .emptyRes .subAdvice text {
+    display: inline-block;
+    width: 120rpx;
+    height: 52rpx;
+    line-height: 52rpx;
+    border: 2rpx solid #0092FF;
+    border-radius: 8rpx;
+    font-size: 24rpx;
+    color: #0092FF;
+    letter-spacing: 0.14px; }
+
+.scrollBody .ul {
+  padding: 10rpx 0rpx 20rpx 30rpx; }
+  .scrollBody .ul .searchList {
+    border-bottom: 1px solid #ECECEC;
+    padding: 16rpx 0; }
+    .scrollBody .ul .searchList .personName {
+      font-size: 28rpx;
+      color: #333333;
+      letter-spacing: -0.15px;
+      line-height: 40rpx; }
+      .scrollBody .ul .searchList .personName .headerImg {
+        display: inline-block;
+        vertical-align: middle; }
+        .scrollBody .ul .searchList .personName .headerImg image {
+          width: 60rpx;
+          height: 60rpx; }
+      .scrollBody .ul .searchList .personName .confirmed {
+        width: 80rpx;
+        height: 28rpx;
+        position: relative;
+        right: -14rpx; }
+    .scrollBody .ul .searchList .cName {
+      font-size: 24rpx;
+      color: #333333;
+      letter-spacing: 0.17px;
+      line-height: 40rpx; }
+      .scrollBody .ul .searchList .cName .duty text {
+        padding-right: 12rpx; }
+    .scrollBody .ul .searchList .otherDataService {
+      font-size: 24rpx;
+      color: #4A4A4A;
+      letter-spacing: 0.17px;
+      line-height: 40rpx; }
+    .scrollBody .ul .searchList .companySite {
+      font-size: 20rpx;
+      color: #666666;
+      letter-spacing: 0.17px; }
+  .scrollBody .ul .tips {
+    font-size: 28rpx;
+    background: #ffffff;
+    height: 60rpx;
+    line-height: 60rpx; }
+    .scrollBody .ul .tips .loadShow {
+      background: #ffffff;
+      text-align: center;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      align-self: center;
+      justify-content: center; }
+      .scrollBody .ul .tips .loadShow icon {
+        position: relative;
+        top: 17rpx;
+        right: 5rpx; }

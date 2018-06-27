@@ -1,0 +1,87 @@
+<style type="scss">
+	.product-box{
+		height: 122rpx;
+		padding: 14rpx 30rpx 0 30rpx;
+		.product-name{
+			height: 68rpx;
+			line-height: 68rpx;
+			font-size: 28rpx;
+			color: #4A4A4A;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		    white-space: nowrap;
+		}
+		.label-block{
+			display: inline-block;
+			font-size: 20rpx;
+		}
+		.block-left{
+			float: left;
+			width: 114rpx;
+			height: 34rpx;
+			line-height: 34rpx;
+			border-radius: 8rpx;
+			border: 1rpx solid #C2E6F7;	
+			text-align: center;
+			color: #777777;
+			&:not(:first-child){
+				margin-left: 10rpx;
+			}
+		}
+		.block-right{
+			float: right;
+			line-height: 34rpx;
+			color: #4A4A4A;
+		}
+		&:not(:last-child){
+			border-bottom: 1rpx solid #ECECEC;
+		}
+	}
+</style>
+<template>
+	<view class="product-box" wx:for="{{product}}" wx:key="{{index}}">
+		<view class="product-name">{{item.commodityName}}/{{item.producer}}/{{item.productSign}}</view>
+		<view>
+			<text class="label-block block-left">{{item.bigType}}</text>
+			<text class="label-block block-left">{{item.productType}}</text>
+			<text class="label-block block-right">面议</text><!-- {{item.price}} -->
+		</view>
+	</view>
+</template>
+<script>
+	import wepy from 'wepy'
+	import { api } from '../config'
+	export default class productDetails extends wepy.page {
+		config = {
+			'navigationBarTitleText': '主营产品',
+			'navigationBarTextStyle': '#FFFFFF',
+			'navigationBarBackgroundColor': '#0092FF'
+		}
+
+		components = {
+
+		}
+
+		data = {
+			loginUId: -1,
+			product: [],
+		}
+
+		events = {
+
+		}
+
+		methods = {
+			
+		}
+
+		onShow() {
+			this.$apply();
+		}
+
+		onLoad(e) {
+			var value = wx.getStorageSync("mainProduct")
+			this.product = value;
+		}
+	}
+</script>

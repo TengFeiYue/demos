@@ -1,0 +1,121 @@
+<template>
+	<div>
+		<ul>
+			<router-link tag='li' v-for="(v,i) in arrList" :key="i" :to="{ name: 'bookDetail', params: {aa:v.p} }">
+				<dl class="classifly">
+					<dt></dt>
+					<dd class="classifly-title">
+						<span>{{v.category}}</span>
+					</dd>
+					<dd class="classifly-body">
+						<span>{{v.content}}</span>
+					</dd>
+					<dd class="classifly-people">
+						<div class="people-amount">1234人</div>
+						<div class="people-collect">
+							<span class="collect-child">134</span>
+							<img class="collect-child" src="../assets/imgs/grey.png">
+						</div>
+					</dd>
+				</dl>
+			</router-link>
+		</ul>
+		<i class="iconfont icon-wendu"></i>
+	</div>
+</template>
+
+<script>
+	export default {
+		name: 'book',
+		data() {
+			return {
+				arrList: [{
+						category: '全国改性料通讯录',
+						p: '1',
+						content: '通讯录包含上下游最new的人脉关系，只有你想不到的，没有我们做不到的'
+					},
+					{
+						category: '全国主机厂通讯录',
+						p: '1'
+					},
+					{
+						category: '全国制品通讯录',
+						p: '1'
+					},
+					{
+						category: '全国辅料通讯录',
+						p: '1'
+					},
+				]
+			}
+		}
+	}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style lang="less" scoped>
+	.icon-wendu{
+		font-size:50px;
+	}
+	ul{
+		li{
+			float: left;
+			margin: .3rem .25rem;
+			width: 45%;
+			text-align: left;
+			background-color: #fff;			
+		}
+		.classifly{
+			dt{
+				height: 1.5rem;
+				background-color: #DCDCDC;
+			}
+			.classifly-title{ /*通讯录标题*/
+				height: .7rem;
+				line-height: .7rem;
+				font-size: .3rem;
+				font-weight: bold;
+				padding-left: .05rem;
+			}
+			.classifly-body { /*通讯录摘要*/
+				color: #A9A9A9;
+				height: 1rem;
+				font-size: .2rem;
+				padding-left: .05rem;
+				line-height: .5rem;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp:2;
+				overflow: hidden;
+			}
+			.classifly-people{ /*通讯录统计*/
+				font-size: .2rem;
+				margin-top: .2rem;
+				height: .55rem;
+				.people-amount{ /*通讯录人脉数统计*/
+					background-color: #DCDCDC;
+					width: 1.7rem;
+					height: .4rem;
+					text-align: center;
+					line-height: .4rem;
+					border-radius: .4rem;
+					float: left;
+					margin-left: .05rem;
+				}
+				.people-collect{
+					/*通讯录收藏数统计*/
+					float: right;
+					margin-right: .05rem;
+					.collect-child{
+						display: block;
+						float: right;
+						height: .3rem;
+					}
+					img{
+						margin-right: .07rem;
+					}
+				}
+			}
+		}
+	}
+</style>

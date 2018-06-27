@@ -1,0 +1,183 @@
+.con {
+	width: 100%;
+}
+
+.con .con-head {
+	width: 100%;
+	height: 4.32rem;
+	background-image: url(../images/bg.png);
+	background-size: cover;
+	padding-top: 1.7rem;
+	box-sizing: border-box;
+	position: relative;
+}
+
+.con .con-head .user-img {
+	height: 1.26rem;
+	width: 1.26rem;
+	border-radius: 50%;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0.44rem;
+	margin: auto;
+}
+
+.con .con-head .user-img img {
+	width: 100%;
+	height: 100%;
+}
+
+.con .con-head .title {
+	font-size: 16px;
+	line-height: 1.8;
+	text-align: center;
+	color: #fff;
+}
+
+.con .con-btn {
+	height: 0.6rem;
+	width: 100%;
+	text-align: center;
+	line-height: 0.6rem;
+	color: #fff;
+}
+
+.con .con-btn span {
+	border: 1px solid #fff;
+	padding: 0.02rem 0.1rem;
+	border-radius: 0.08rem;
+	margin: 0 3px;
+}
+
+.con .con-intr {
+	height: 0.96rem;
+	width: 100%;
+	padding: 0 0.74rem;
+	box-sizing: border-box;
+	margin-top: 0.2rem;
+}
+
+.con .con-intr li {
+	height: 0.48rem;
+	width: 100%;
+}
+
+.con .con-intr li p {
+	height: 0.48rem;
+	width: 100%;
+	line-height: 0.48rem;
+	color: #fff;
+	float: left;
+}
+
+.con .con-intr li p:nth-child(2) {
+	text-align: right;
+}
+
+.con .con-intr li:nth-child(1) p {
+	width: 50%;
+}
+
+.con .con-intr li p span:nth-child(1) {
+	display: inline-block;
+	width: 1rem;
+	height: 0.48rem;
+	text-align: justify;
+	margin-right: 10px;
+	float: left;
+}
+
+.con .con-intr li p span:nth-child(2) {
+	color: #dedede;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	float: left;
+}
+
+.con .con-intr li:nth-child(2) p span:nth-child(2){	
+	display: inline-block;
+	width: 75%;
+	height: 0.48rem;
+	line-height: 0.48rem;
+}
+
+.con .con-adress {
+	width: 100%;
+	height: 0.9rem;
+	line-height: 0.9rem;
+	font-size: 14px;
+	background-color: #fff;
+	color: #666;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+
+.con .con-list {
+	width: 100%;
+	background-color: #fff;
+}
+
+.con .con-list .list-title {
+	height: 0.7rem;
+	border-bottom: 1px solid #ececec;
+	color: #4a4a4a;
+	line-height: 0.7rem;
+}
+
+.con .con-list .list-title span {
+	border-left: 4px solid #0092ff;
+	font-size: 14px;
+}
+
+.con .con-list .base-detail {
+	/*height: 2.6rem;*/
+	width: 100%;
+	overflow: hidden;
+}
+
+.con .con-list .base-detail li {
+	height: 1.3rem;
+	width: 33.3%;
+	float: left;
+}
+
+.con .con-list .base-detail li img {
+	display: block;
+	width: .4rem;
+	margin: .2rem auto;
+}
+
+.con .con-list .base-detail li p {
+	text-align: center;
+	color: #4a4a4a;
+}
+
+.con .con-list .pro-detail {
+	width: 100%;
+}
+
+.con .con-list .pro-detail li {
+	width: 100%;
+	color: #4a4a4a;
+	overflow: hidden;
+}
+
+.con .con-list .pro-detail li span {
+	display: inline-block;
+	height: 100%;
+	line-height: .64rem;
+}
+
+.con .con-list .pro-detail li span:nth-child(1) {
+	width: 25%;
+	float: left;
+}
+
+.con .con-list .pro-detail li span:nth-child(2) {
+	width: 70%;
+	color: #999;
+	float: right;
+}

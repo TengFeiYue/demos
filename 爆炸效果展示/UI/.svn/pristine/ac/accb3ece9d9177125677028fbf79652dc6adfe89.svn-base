@@ -1,0 +1,42 @@
+<template>
+  <div >
+      <ul>
+        <router-link tag='li' v-for="(v,i) in arrList" :key="i" :to="{ name: 'bookDetail', params: {aa:v.p} }">
+           <dl class="">
+               <dt></dt>
+               <dd>
+                  <h3>{{v.category}}</h3>
+               </dd>
+           </dl>
+        </router-link>
+      </ul>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'book',
+  data () {
+    return {
+      arrList:[
+         {category:'全国改性料通讯录',p:'1'},
+         {category:'全国主机厂通讯录',p:'1'},
+         {category:'全国制品通讯录',p:'1'},
+         {category:'全国辅料通讯录',p:'1'},
+      ]
+    }
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+ul li{
+  font-size:.3rem;
+  float: left;
+  margin: .3rem .1rem;
+  width: 2rem;
+  text-align: center;
+}
+
+</style>

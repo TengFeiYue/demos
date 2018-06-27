@@ -1,0 +1,4 @@
+
+    <view class="body">
+      <web-view src="http://www.antsoo.com/appdownload.shtml"/>
+    </view>

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="format-detection" content="telephone=no"/>
+		
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta charset="utf-8">
+		<title>走进企业</title>
+		<link rel="stylesheet" href="../bootstrap/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/media.css" />
+		<script src="../js/jquery-2.1.0.min.js"></script>
+		<script src="../js/bscroll.min.js"></script>
+		<script src="../js/axios.js"></script>
+		<!--<script src="bootstrap/js/bootstrap.mis"></script>-->
+		<script src="../js/vue.js"></script>
+		<!--<script src="http://apps.bdimg.com/libs/vue/1.0.14/vue.js"></script>-->
+		<script src="../js/vue-resource.min.js"></script>
+		<script src="../js/vue-router.js"></script>
+		<script src="../dev.js"></script>
+		<style>
+			
+		</style>
+	</head>
+	<body style="padding-bottom:0;">
+	 <div id="app">	 
+		<header class="joinedHeader c-w container-fluid p-0" >
+			<img :src="headerImg" class="Zoom" width="100%" alt="" />
+			<div class="container-fluid p-0 headUp" >		
+				<div class="shareCol col-xs-5 pull-right text-right">
+					<!--<span class="collect" >
+						<img src="img/collection_n.png" alt="" v-show="collect" @click="addCollect"/>
+						<img src="img/collection_s.png" alt="" v-show="!collect" @click="cancelCollect"/>						
+					</span>-->
+				 <a class="reporting" href="#" v-show="enrolling"><img src="img/reporting.png" alt="" /></a>				  
+				</div>
+				<div class="reported text-center">已报名&nbsp;&nbsp;{{enrollNums}}人</div>
+			</div>
+		</header>
+		
+		<section class="shanqiTitle container-fluid b-w">
+			<h4>{{actDetail.activityName}}</h4>
+			<p>{{actDetail.startTimeStr}}~{{actDetail.endTimeStr}}</p>
+			
+			<a :href="'share:4'+'|'+actDetail.activityName+'|'+activityId" class="share" style="color:#fff;"><img src="img/shares.png" class="shareImg" alt="" /></a>
+			
+		</section>
+		<section class="activityBg container-fluid b-w p-0">			
+			<div class="container-fluid">
+				
+						<div class="pading">
+							<a :href="activityBackgroudUrl">
+							<h4 class="pull-left actBg">活动详情</h4>
+						    <span class="pull-right actDetail" ><img src="img/activity_19.png" alt="" /></span>
+						    <span class="clearfix"></span>
+						     </a>
+					   </div>			   
+				</div>
+				
+			<div class="container-fluid actItems">
+				{{actDetail.profile}}				
+			</div>
+			
+		</section>
+		<div class="container-fluid b-w itemBorder p-0">
+				<ul class="itemTitle text-center m-b-0">
+					<li class="target">活动流程</li>
+					<li @click="getCompany">参会企业</li>
+					<li @click="reportTrack">跟踪报道</li>
+			    </ul>
+			</div>
+		<section class="itemTabs container-fluid b-w">
+								
+			<div class="cons actProcess" style="display:block;">				
+				<img :src="scheduleImg" class="Zoom" width="100%" alt="" />
+			</div>
+			
+			<!--参会企业-->
+			<div class="cons" style="min-height:25vh;">
+				<ul>
+					<li v-for="(val,index) in joinEnts">
+						<a :href="'enterprisedetail:'+val.enterpriseId" style="text-decoration: none;">
+							<h3 class="enterpriseName">{{val.name}}</h3>
+							<p class="product"><span>{{val.rangeService}}</span><span>{{val.type}}</span></p>
+							<p class="address">{{val.address}}</p>
+						</a>
+					</li>				
+				</ul>
+				
+			</div>
+			<div class="cons" style="min-height:25vh;">
+			 <div class="container-fluid actProcess p-0" v-for="(val,index) in reportList">
+				<a :href="val.reportUrl">
+				<div class="col-xs-8 preTitle p-0">
+					<h4 class="m-t-0 listTitle">{{val.title}}</h4>
+					<p class="reportTime"><span class="glyphicon glyphicon-time" aria-hidden="true"></span><span>{{val.createTimeStr}}</span></p>
+				</div>
+				<div class="col-xs-4 p-0 text-center list">
+					<img :src="val.bannerImg" class="img-responsive" alt="" />
+				</div>
+				<span class="clearfix"></span>
+				</a>
+			</div>
+			</div>
+		</section>
+		<!--<footer class="container-fluid p-0 entryFooter text-right">
+			<div class="footerWraper">
+			<div class="col-xs-6 pull-left h4 m-t-0 m-b-0" v-if="userId&&isEnrollStart&&hasUserId"><a :href="'javascript:void(0);'" style="color:#fff;">报名未开始</a></div>
+			<div class="col-xs-6 pull-left h4 m-t-0 m-b-0" v-if="userId&&!isEnrollStart&&hasUserId">				
+				<a :href="'baoming:?Id='+activityId+'&&Code='+activityCode" style="color:#fff;" v-if="!enrollStop">我要报名</a>
+				<a  style="color:#fff;cursor: pointer;" v-if="enrollStop">报名截止</a>
+			</div>
+			<div class="col-xs-6 pull-left h4 m-t-0 m-b-0" v-if="isEnroll"><a :href="'checkDetail:?Id='+activityId+'&&Code='+activityCode" style="color:#fff;">查看详情</a></div>
+			<!--<div class="col-xs-6 pull-left h4 m-t-0 m-b-0" v-if="verifyUser"><a :href="'joinCompany:?Id='+activityId" style="color:#fff;">企业认证</a></div>-->
+			<!--<div class="col-xs-6 pull-left h4 m-t-0 m-b-0" v-if="!userId||!hasUserId"><a :href="'login:?Id='+activityId" style="color:#fff;">请先登录</a></div>
+			<div class="col-xs-5 pull-right h4 timeLeft m-b-0 m-t-0">				
+				<div v-if="!holding&&!finished">
+					<p class="m-b-0 fromStart">离活动开始</p>
+				    <span class="leave">剩余</span>
+				    <span id="leftTime"></span>
+				    <span class="ing">进行中</span>
+				</div>
+				<div v-if="holding&&!finished">
+					<p class="m-b-0 holding">活动进行中</p>
+				</div>
+				<div v-if="finished">
+					<p class="m-b-0 holding">活动已结束</p>
+				</div>
+			</div>
+			<span class="clearfix"></span>
+			
+			</div>
+		</footer>-->		
+		</div>
+		</div>
+		
+		<script type="text/javascript">		   
+		
+		   new Vue({
+		   	 el:"#app",
+		   	 data:{	
+		   	 	collect:true,		   	 	
+		   	 	collectState:"",
+		   	 	enrolling:false,
+		   	 	enrollNums:0,
+		   	 	haveEnroll:false,
+		   	 	headerImg:"",
+		   	 	actDetail:{},
+		   	 	joinEnts:[],
+		   	 	scheduleImg:{},
+		   	 	startTime:0,
+		   	 	activityBackgroudUrl:"",
+		   	 	userId:-1,
+		   	 	isEnroll:false,
+		   	 	reportList:[],
+		   	 	activityCode:-1,
+		   	 	activityId:-1,		   	 	
+		   	 	//verifyUser:false,
+		   	 	isEnrollStart:false,
+		   	 	holding:false,
+		   	 	finished:false,
+		   	 	enrollStop:false,
+		   	 	hasUserId:false
+		   	 },
+		   	 mounted:function(){
+		   	 	var _this=this;
+		   	 	_this.userId=Number(getQueryString('userId'));
+		   	 	_this.activityCode=getQueryString('activityCode');
+		   	 	_this.changeTitle();
+            _this.$nextTick(function () {            	
+            	if(_this.userId!=null&&_this.userId>0){
+            		_this.hasUserId=true;
+            	}
+                _this.fetchDatas(); 
+                _this.wordlimit('listTitle',10);                
+		   	 })
+              $(window).scroll(function(){
+              	  if($(this).scrollTop()>=337){
+              	  	$('.itemBorder').addClass('fixedTab');
+              	  	$('body').addClass('fixPadding');
+              	  }else{
+              	  	$('.itemBorder').removeClass('fixedTab');
+              	  	$('body').removeClass('fixPadding');
+              	  }
+              })
+		   	 },
+		   	 methods:{
+		   	 	//更改页面title
+		   	 	changeTitle:function(){
+		   	 		if(this.activityCode=="A001"){
+		   	 			document.title="走进企业"
+		   	 		}else if(this.activityCode=="A002"){
+		   	 			document.title="行业会议"
+		   	 		}
+		   	 	},
+		   	 	//tabs切换
+		   	 	showTabs:function(){
+		   	 		$('.itemTitle li').each(function(){
+		   	 			$(this).on('click',function(){
+		   	 				var _index=$(this).index();
+		   	 				$(this).addClass('target').siblings().removeClass('target');
+		   	 				$('.itemTabs .cons').eq(_index).show().siblings('.cons').hide();
+		   	 			})
+		   	 		})
+		   	 	},
+		   	 			   			   	 			   	 	
+		   	 	//获取数据
+		   	 	fetchDatas:function(){	
+		   	 		 //活动详情		   	 		   	 		
+		   	 		var _this=this;
+		   	 		
+		   	 		_this.$http.post(appUrl+"/factoryActivity/activityDetail",{activityCode:_this.activityCode}).then(function(res){
+		   	 			
+		   	 			var res=res.body;			   	 			
+		   	 			 _this.activityId=res.body.activityDetail.id;
+		   	 			 _this.enrollNums=res.body.enrollNums;
+		   	 			 		   	 			
+			   	 		//判断是否报名		   	 				   	
+			   	 		_this.$http.post(appUrl+"/factoryActivityEnroll/enrollDetail",{userId:_this.userId,activityId:_this.activityId}).then(function(response){
+			   	 			  var res=response.body
+			   	 			  if(res.isSuccess==1){
+			   	 			  	var resList=res.body;
+			   	 			  	 _this.isEnroll=resList.isEnroll;
+			   	 			  	 console.log('isEnroll'+_this.isEnroll)
+			   	 			  	 
+			   	 			  }
+	                    
+			   	 		}).catch(function(err){
+			   	 			console.log(err)
+			   	 		})
+		   	 			 
+		   	 			if(res.isSuccess==1){
+		   	 				
+		   	 				 _this.actDetail=res.body.activityDetail;
+		   	 				 _this.startTime=_this.actDetail.startTime;
+		   	 				 _this.enrollendTime=_this.actDetail.enrollendTime;
+		   	 				 _this.activityBackgroudUrl=_this.actDetail.activityBackgroudUrl;
+		   	 				 _this.headerImg=_this.actDetail.discoveryBannerImg;
+		   	 				_this.$nextTick(function(){
+		   	 					 _this.getLeftTime();//剩余时间
+			   	 				 _this.isEndEnroll();//报名是否截止
+						   	 	_this.showTabs();	
+						   	 	_this.getSchedul();
+						   	 	_this.isCompanyer();
+		   	 				})
+		   	 				
+					   	 	
+		   	 				 if(_this.actDetail.activityState=="报名中"){
+		   	 				 	 _this.enrolling=true;
+		   	 				 }else if(_this.actDetail.activityState=="报名未开始"){
+		   	 				 	_this.isEnrollStart=true;
+		   	 				 }else if(_this.actDetail.activityState=="活动中"){
+		   	 				 	_this.holding=true;
+		   	 				 }else if(_this.actDetail.activityState=="已结束"){
+		   	 				 	_this.finished=true;
+		   	 				 }
+		   	 				 		   	 				 
+		   	 				  
+		   	 			}
+                    
+		   	 		}).catch(function(err){
+		   	 			console.log(err)
+		   	 		});
+		   	 				   	 				   	 				   	 				   	 			   	 		
+		   	 	},
+		   	 	//收藏
+		   	 	addCollect:function(){		   	 		
+		   	 		var _this=this;
+		   	 		_this.collect=false;
+		   	 		//收藏
+		   	 		this.$http.post(appUrl+'/user/addCollection',{userId:_this.userId,type:6,bizId:_this.activityId}).then(function(response){
+		   	 			
+		   	 			 var res=response.body;				   	 			
+		   	 			 if(res.isSuccess==1){		   	 			 			   	 			 		   	 			 		 
+		   	 			 		_this.collectState=res.errorMsg;		   	 			 	
+		   	 			 		func();
+		   	 			 	}
+		   	 			  if(res.isSuccess==0){		   	 			 			   	 			 		   	 			 		 
+		   	 			 		_this.collectState=res.errorMsg;		   	 			 	
+		   	 			 		func();
+		   	 			 	}			   	 			 			   	 			 
+		   	 		})
+		   	 			  	 		
+                    	   	 		 
+					function func(){
+						var layer=document.createElement("div");
+					     layer.id="layer";
+					    var style={
+					        background: '#232222',
+						    fontSize: '1.4rem',
+						    color: 'rgb(255, 255, 255)',
+						    position: 'absolute',
+						    zIndex: 10,
+						    width: '40vw',
+						    textAlign: 'center',
+						    //height: '11vh',
+						    lineHeight: '4vh',
+						    //paddingTop: '2vh',
+						    opacity: .8,
+						    borderRadius: '19px',
+						    left: '33vw',
+						    top: '18vh'
+					    }
+					    for(var i in style){
+					        layer.style[i]=style[i];   
+					    if(document.getElementById("layer")==null){ 
+					    	layer.innerHTML=_this.collectState;
+					        document.body.appendChild(layer);
+					        setTimeout("document.body.removeChild(layer)",2000)
+					    }
+					   }
+					}
+									
+		   	 	},
+		   	 	cancelCollect:function(){
+		   	 		 var _this=this;
+		   	 		_this.collect=true;
+		   	 			//取消收藏
+		   	 		this.$http.post(appUrl+'/user/cancelCollection',{userId:_this.userId,type:6,bizId:_this.activityId}).then(function(response){		   	 			
+		   	 			 var res=response.body;				   	 		
+		   	 			 if(res.isSuccess==1){		   	 			 			   	 			 			   	 			 	
+		   	 			 		_this.collectState=res.errorMsg;		   	 			 		
+		   	 			 		func();
+		   	 			 	}		   	 			 			   	 			 			   	 			 
+		   	 		})
+		   	 		
+                    	 		 
+					function func(){
+						var layer=document.createElement("div");
+					     layer.id="layer";
+					    var style={
+					        background: '#232222',
+						    fontSize: '1.4rem',
+						    color: 'rgb(255, 255, 255)',
+						    position: 'absolute',
+						    zIndex: 10,
+						    width: '40vw',
+						    textAlign: 'center',
+						    //height: '11vh',
+						    lineHeight: '4vh',
+						    //paddingTop: '2vh',
+						    opacity: .8,
+						    borderRadius: '19px',
+						    left: '33vw',
+						    top: '18vh'
+					    }
+					    for(var i in style){
+					        layer.style[i]=style[i];   
+					    if(document.getElementById("layer")==null){ 
+					    	layer.innerHTML=_this.collectState;
+					        document.body.appendChild(layer);
+					        setTimeout("document.body.removeChild(layer)",2000)
+					    }
+					   }
+					}
+		   	 		
+		   	 	},
+		   	 	//判断企业用户
+		   	 	isCompanyer:function(){			   	 				   	 		   	 		
+		   	 		var _this=this;			   	 				   	 		
+		   	 		this.$http.post(appUrl+"/user/userRuleInfo",{userId:_this.userId}).then(function(response){	   	 			
+		   	 			var res=response.body.body;			   	 			
+		   	 			if(res.userType==1){
+		   	 				_this.verifyUser=true;
+		   	 			}		   	 			                   
+		   	 		}).catch(function(err){
+		   	 			console.log(err)
+		   	 		});
+		   	 		//判断是否报名		   	 				 
+		   	 		this.$http.post(appUrl+"/factoryActivityEnroll/enrollDetail",{userId:_this.userId,activityId:_this.activityId}).then(function(response){
+		   	 			  var res=response.body		   	 			   
+		   	 			  if(res.isSuccess==1){
+		   	 			  	var resList=res.body;
+		   	 			  	 _this.isEnroll=resList.isEnroll;
+		   	 			  		   	 			  	 
+		   	 			  }
+                    
+		   	 		}).catch(function(err){
+		   	 			console.log(err)
+		   	 		})
+		   	 		
+		   	 		
+		   	 	},
+		   	 	//活动流程
+		   	 	getSchedul:function(){
+		   	 		var _this=this;
+		   		   	 		
+		   	 		
+		   	 		var getDatas={id:_this.activityId};
+		   	 		this.$http.post(appUrl+"/factoryActivity/searchScheduleImg",getDatas).then(function(response){
+		   	 			var res=response.body;	   	 			
+		   	 			if(res.isSuccess==1){
+		   	 				_this.scheduleImg=res.body.scheduleImg;
+		   	 				
+		   	 			}
+                    
+		   	 		}).catch(function(err){
+		   	 			console.log(err)
+		   	 		})
+		   	 				   	 		
+		   	 	},
+		   	 	//参会企业
+		   	 	getCompany:function(){
+		   	 		var _this=this;
+		   	 				   	 		
+		   	 		var getDatas={id:_this.activityId};
+		   	 		this.$http.post(appUrl+"/factoryActivity/searchJoinEnts",getDatas).then(function(response){
+		   	 			var res=response.body;
+		   	 			
+		   	 			if(res.isSuccess==1){
+		   	 				 _this.joinEnts=res.body.joinEnts;		   	 						   	 				  
+		   	 			}
+                    
+		   	 		}).catch(function(err){
+		   	 			console.log(err)
+		   	 		})
+		   	 		
+		   	 	},
+		   	 	//跟踪报道
+		   	 	reportTrack:function(){
+		   	 		var _this=this;		   	 				   	 				   	 			
+		   	 		  var getDatas={activityId:_this.activityId};
+		   	 		this.$http.post(appUrl+"/factoryActivityReport/reportList",getDatas).then(function(response){
+		   	 			
+		   	 			  var res=response.body;
+		   	 			if(res.isSuccess==1){
+		   	 				_this.reportList=res.body.reports;			   	 						   	 				
+		   	 			}
+                    
+		   	 		}).catch(function(err){
+		   	 			console.log(err)
+		   	 		})	   	 		
+		   	 	},
+		   	 	//限制字数
+		   	 	wordlimit:function(cname,wordlength){
+		   	 		 var cname=document.getElementsByClassName(cname);	
+					　 for(var i=0;i<cname.length;i++){	
+					　　　　var nowLength=cname[i].innerHTML.length;
+					　　　　if(nowLength>wordlength){	
+					　　　　　　cname[i].innerHTML=(cname[i].innerHTML).substr(0,wordlength)+' . . . ';	
+					　　　　}	
+					　　}　
+		   	 	},		   	 	
+		   	 	//获取剩余时间
+		   	 	getLeftTime:function(){	
+		   	 		 var _this=this;
+		   	 	   var timer=null;
+			       function getRTime(){
+			       		   	 		
+			        var EndTime=_this.startTime/* new Date('2017/07/20 10:15:00')*/; 
+			        var NowTime = new Date();			        			      			       
+			        var t =EndTime-NowTime.getTime();			       
+			        var d=Math.floor(t/1000/60/60/24);
+			        var h=Math.floor(t/1000/60/60%24);
+			        var m=Math.floor(t/1000/60%60);
+			        var s=Math.floor(t/1000%60);
+			                if(h<10){
+			                	h="0"+h;
+			                }
+			                if(m<10){
+			                	m="0"+m;
+			                }
+				            if(s<10){
+				            	s="0"+s;
+				            }
+			                if(d>0){
+			                	document.getElementById('leftTime').innerHTML=d+'天'+h+':'+m+':'+s
+			                }else if(d<=0&&h>0){
+			                	document.getElementById('leftTime').innerHTML=h+':'+m+':'+s
+			                }else if(h<=0&&m>0){
+			                	document.getElementById('leftTime').innerHTML=m+':'+s
+			                }else if(m<=0&&s>0){
+			                	document.getElementById('leftTime').innerHTML=s
+			                }else if(t<=0){
+			                	$('.ing').show();
+			                	$('#leftTime').hide();
+			                	$('.leave').hide();
+			                	$('.fromStart').hide()
+			                	clearInterval(timer)
+			                }   			             
+				    }
+				    timer=setInterval(getRTime,1000);
+		   	 	},
+		   	 	isEndEnroll:function(){		   	
+		   	 	   var _this=this;
+		   	 	   var endTimer=null;
+			       function getEndTime(){			       		   	 					      
+			        var enrollEndTime=_this.enrollendTime;
+			        var NowTime = new Date();
+			        
+			        var enrollTime=enrollEndTime-NowTime.getTime();//报名是否截止			       			       
+			               //判断报名是否截止			               
+			               if(enrollTime<=0){
+			               	 _this.enrollStop=true;
+			               	 clearInterval(endTimer)
+			               }
+			                
+				    }
+			        getEndTime()
+				    //endTimer=setInterval(getEndTime,1000);
+		   	 	}
+		   	 	
+		   	 }
+		   })
+		  
+		
+		
+		
+    </script>
+	</body>
+</html>
+

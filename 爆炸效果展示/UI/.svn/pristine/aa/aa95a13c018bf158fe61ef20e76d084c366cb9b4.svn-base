@@ -1,0 +1,154 @@
+
+    <view class="body" bindtap="hideSearchList">
+       <view>
+           <view class="hasConfirm">
+              <view class="antsooLogo"><image src="../resources/img/materailImg.png"/></view>
+              <text class="txt">{{applyStateTip}}</text>
+              <text class="toConfirm"  wx:if="{{hideBtn}}" bindtap="{{isJoin=='noappliy'||isJoin=='unpassed'?'toConfirmInfo':'changPositionInfo'}}">{{applyState}}</text>
+           </view>
+       </view>
+  <view class="confirmWraper" style="padding-bottom:144rpx;">
+     <form bindsubmit="formSubmit">
+      <view class="banner">
+         <view class="confirmDl">
+              <text class="confirmDt">姓名</text>
+              <view class="confirmDd"><input name="pName" value="{{pName}}"/></view>
+              <view class="confirmTo"/>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">邮箱</text>
+              <view class="confirmDd"><input name="pEmail" value="{{pEmail}}"/></view>
+              <view class="confirmTo"/>
+         </view>
+        </view>
+        <view class="wraper">
+         <view class="confirmDl">
+              <text class="confirmDt">名片职位</text>
+              <view class="confirmDd"><input name="cardPosition" value="{{cardPosition}}" disabled="{{otherIpt}}"/></view>
+              <view class="confirmTo"/>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">企业名称</text>
+              <view class="confirmDd"><input name="pCompanyName" value="{{pCompanyName}}" disabled="{{otherIpt}}" bindinput="filterMname" bindblur="blurEvent"/></view>
+              <view class="confirmTo"/>
+              <view class="pNameSelect"  wx:if="{{showSeachList}}">
+                  <scroll-view scroll-y style="max-height:250rpx;">
+                      <view>
+                            <view class="pNameOpt" wx:for="{{filteredName}}" wx:key="{{index}}" data-v="{{item.name}}" data-d="{{item.enterpriseId}}" data-i="{{index}}" catchtap="selectPname">{{item.name}}</view>
+                        </view>
+                  </scroll-view>
+              </view>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">企业简称</text>
+              <view class="confirmDd"><input name="pCompanybrief" value="{{pCompanybrief}}" disabled="{{otherIpt}}"/></view>
+              <view class="confirmTo"/>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">企业类型</text>
+              <view class="confirmDd"><input name="companyType" value="{{companyType}}" disabled/></view>
+              <view class="confirmTo" bindtap="toChooseModel"><image src="../resources/icons/chevion.jpg" wx:if="{{!otherIpt&&!isChange}}"/></view>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">经营模式</text>
+              <view class="confirmDd"><input name="runingWay" value="{{runingWay}}" disabled/></view>
+              <view class="confirmTo" bindtap="listenerButton"><image src="../resources/icons/chevion.jpg" wx:if="{{!otherIpt&&!isChange}}"/></view>
+         </view>
+         <view class="confirmDl companyArea">
+              <text class="confirmDt">企业地区</text>
+              <picker mode="region" bindchange="bindRegionChange" value="{{region}}" disabled="{{otherIpt||isChange}}">
+                <view class="picker">
+                  <view class="confirmDd"><input name="companyP" value="{{companyP}}" placeholder="省" disabled="true"/><input name="companyC" value="{{companyC}}" placeholder="市" disabled="true"/><input name="companyA" value="{{companyA}}" placeholder="区" disabled="true"/></view>
+                </view>
+              </picker>
+              <view class="confirmTo"><image src="../resources/icons/chevion.jpg" wx:if="{{!otherIpt&&!isChange}}"/></view>
+         </view>
+         <view class="confirmDl">
+              <text class="confirmDt">详细地址</text>
+              <view class="confirmDd"><input name="addressDetail" value="{{addressDetail}}" disabled="{{otherIpt||isChange}}"/></view>
+              <view class="confirmTo"/>
+         </view>
+       </view>
+         <view class="btn-area" style="padding:50rpx 0 0;">
+            <button class="btnSub" formType="submit">保存</button>
+        </view>
+      </form>
+       </view>
+      </view>
+      <view class="changeInfoLayer"  wx:if="{{hideLayer}}" bindtap="closeLayer"/>
+      <view class="changeInfoLayerCon"  wx:if="{{hideLayer}}" catchtap="showModel">
+         <image src="../resources/img/slice.png"/>
+           名片职位变更
+      </view>
+      <view class="changeInfoLayer"  wx:if="{{hideOperateLayer}}" bindtap="closeLayer"/>
+      <view class="OperateLayerCon"  wx:if="{{hideOperateLayer}}">
+         <view class="ConDetail">
+               <view class="layerTitle">名片职位变更</view>
+               <view class="layerDl">
+                    <view class="layerDt">*名片职位</view>
+                    <view class="layerDd"><input placeholder="请输入新名片职位" value="{{cardDuty}}" placeholder-class="pClass" bindblur="getVal"/></view>
+               </view>
+                 <view class="upload">
+                   <text class="uploadDl">*名片</text>
+                   <view class="uploadImg">
+                       <image src="{{changeNameCard}}" bindtap="upLoadCard"/>
+                   </view>
+                 </view>
+               <view class="operateBtn">
+                  <text class="opCancel" bindtap="closeLayer">取消</text>
+                  <text class="gap"/>
+                  <text class="opSubmit" catchtap="subChangedInfo">提交</text>
+               </view>
+         </view>
+      </view>
+      <view class="changeInfoLayer"  wx:if="{{unPassedOperateLayer}}" bindtap="closeLayer"/>
+      <view class="OperateLayerCon"  wx:if="{{unPassedOperateLayer}}">
+         <view class="ConDetail">
+               <view class="layerTitle">名片职位变更</view>
+               <view class="layerDl">
+                    <view class="layerDt">*名片职位</view>
+                    <view class="layerDd"><input placeholder="请输入新名片职位" value="{{cardDuty}}" placeholder-class="pClass" bindblur="getVal"/></view>
+               </view>
+                 <view class="upload">
+                   <text class="uploadDl">*名片</text>
+                   <view class="uploadImg">
+                       <image src="{{changeNameCard}}" bindtap="upLoadCard"/>
+                   </view>
+                 </view>
+                 <view class="auditRes">
+                   <text class="layerDt">审核结果</text>
+                   <view class="layerDd">
+                   {{rejectReason}}
+                   </view>
+                 </view>
+               <view class="operateBtn" style="padding-top:40rpx;">
+                  <text class="opCancel" bindtap="closeLayer">取消</text>
+                  <text class="gap"/>
+                  <text class="opSubmit" catchtap="subChangedInfo">提交</text>
+               </view>
+         </view>
+      </view>
+      <view class="changeInfoLayer"  wx:if="{{verifyingOperateLayer}}" bindtap="closeLayer"/>
+      <view class="OperateLayerCon"  wx:if="{{verifyingOperateLayer}}">
+         <view class="ConDetail">
+               <view class="layerTitle">名片职位变更</view>
+               <view class="layercontent">
+               您的名片职位变更已提交，俺搜将在48小时
+                内核实。核实期间将不影响您的身份认证。
+                请勿多次提交
+                 </view>
+               <view class="layerFooter" bindtap="closeLayer">
+                    知道了
+               </view>
+         </view>
+      </view>
+      <view  wx:if="{{opa}}" class="view">
+         <view class="tipPic"><image src="../resources/icons/warning.png"/></view>
+         <text>{{tip}}</text>
+      </view>
+      <action-sheet hidden="{{actionSheetHidden}}" bindchange="listenerActionSheet">
+        <view  wx:for="{{actionSheetItems}}" wx:key="{{index}}">
+            <action-sheet-item data-v="{{item}}" bindtap="selModel">{{item}}</action-sheet-item>
+        </view>
+        <action-sheet-cancel>取消</action-sheet-cancel>
+    </action-sheet>

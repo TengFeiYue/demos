@@ -1,0 +1,39 @@
+import home from './components/home';
+
+export default [{
+	path: '/',
+	component: home,
+	children: [{
+		path: '/',
+		redirect: '/home'
+	}, {
+		path: 'home',
+		component: home,
+		children: [{
+			path: '/',
+			meta: {
+				title: '俺搜'
+			},
+			component: resolve => require(['./view/home/index'], resolve)
+		},{
+			path: '/demo',
+			component: resolve => require(['./view/home/demo'], resolve),
+		}]
+	}, {
+		path: 'user',
+		component: home,
+		children: [{
+			path: '/',
+			meta: {
+				title: '个人中心'
+			},
+			component: resolve => require(['./view/user/index'], resolve)
+		}]
+	}]
+}, {
+	path: '*',
+	meta: {
+		title: '页面不存在'
+	},
+	component: resolve => require(['./view/other/error'], resolve)
+}]

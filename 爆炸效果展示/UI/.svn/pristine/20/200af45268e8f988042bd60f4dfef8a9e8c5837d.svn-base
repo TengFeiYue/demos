@@ -1,0 +1,219 @@
+<style lang="less">
+	.tab_item {
+		height: 91%;
+	}
+
+	page,
+	.body {
+		height: 100%;
+		font-family: PingFangSC-Regular;
+		background-color: #ffffff;
+	}
+</style>
+<template>
+	<view class="body">
+		<view class="tab_item tab_message" wx:if="{{currentTab == 0}}">
+			<index />
+		</view>
+		<view class="tab_item tab_contact" wx:if="{{currentTab == 1}}">
+			<connections />
+		</view>
+		<view class="tab_item tab_contact" wx:if="{{currentTab == 2}}">
+			<company />
+		</view>
+		<view class="tab_item tab_me" wx:if="{{currentTab == 3}}">
+			<my />
+		</view>
+		<tab />
+	</view>
+</template>
+
+<script>
+	import wepy from 'wepy'
+	import { api } from '../config'
+	import location from '../utils/location'
+	import tab from '../components/tab/tabBar'
+	import index from '../components/tab/tabPages/index'
+	import connections from '../components/tab/tabPages/connections'
+	import company from '../components/tab/tabPages/company'
+	import my from '../components/tab/tabPages/my'
+	import interfaces from '../interfaces/index'
+	export default class Index extends wepy.page {
+		config = {
+			'navigationBarTitleText': '俺搜.找客户',
+			'navigationBarTextStyle': '#FFFFFF',
+			'navigationBarBackgroundColor': '#0092FF'
+		}
+		events = {
+			'gotoEnterprise':(arg)=>{
+					this.currentTab = 2;
+					this.$broadcast('industryRole', {
+					 findIndex: arg.findex,
+					 findtItem: arg.industryRole
+				 });
+				 this.$broadcast('currentContent', {
+	 				goFindId: this.currentTab
+	 			});
+				wx.setNavigationBarTitle({
+					title: '俺搜.找企业'
+				})
+			},
+			'gotoRelations':(arg)=>{
+					this.currentTab = 1;
+					this.$broadcast('personRole', {
+					 findtItem: arg.industryRole
+				 });
+				 this.$broadcast('currentContent', {
+	 				goFindId: this.currentTab
+	 			});
+				wx.setNavigationBarTitle({
+					title: '俺搜.找人脉'
+				})
+			},
+			'tabChange': (p1) => {
+				this.currentTab = parseInt(p1);
+				this.$apply();
+				switch(this.currentTab) {
+					case 0:
+						wx.setNavigationBarTitle({
+							title: '俺搜.找客户'
+						})
+						break;
+					case 1:
+						wx.setNavigationBarTitle({
+							title: '俺搜.找人脉'
+						})
+						break;
+					case 2:
+						wx.setNavigationBarTitle({
+							title: '俺搜.找企业'
+						})
+						break;
+					case 3:
+						wx.setNavigationBarTitle({
+							title: '我的'
+						})
+						break;
+					default:
+						break;
+				}
+			}
+		}
+		components = {
+			tab,
+			index,
+			connections,
+			company,
+			my
+		}
+
+		data = {
+			currentTab: 0,
+			long: -1,
+			lat: -1,
+			currentCityName: '',
+			applyStatus: -1
+		}
+
+		methods = {
+			cityChange(data){
+				this.$broadcast('selectCity',data.city);
+			}
+		}
+
+		onLoad(e) {
+			if(e.formPage=='exit'){
+				 this.currentTab = 0;
+			}
+
+			// if(e.goFindId == 1) {
+			// 	this.currentTab = 1;
+			// 	this.$broadcast('industryRole', {
+			// 		findtItem: e.findtItem
+			// 	});
+			// } else if(e.goFindId == 2) {
+			// 	this.currentTab = 2;
+			// 	this.$broadcast('industryRole', {
+			// 		findIndex: e.findIndex,
+			// 		findtItem: e.findtItem
+			// 	});
+			// } else
+			if(e.goFindId == 3) {
+				this.currentTab = 3;
+				if(e.feedback == 'feedback') {
+					wx.showModal({
+						title: '',
+						content: '反馈成功',
+						showCancel: false,
+						confirmText: '确定',
+						confirmColor: '#0092ff',
+					})
+				}
+			};
+			this.fetchBannerData();
+			this.onShareAppMessage();
+		}
+		async onShow() {
+			const antUserInfo = wx.getStorageSync('antUserInfo');
+			this.loginUId = antUserInfo.userId;
+			var pages = this.getCurrentPages()[0];
+			var that = this;
+			this.$broadcast('currentContent', {
+				goFindId: this.currentTab
+			});
+			var offCompanySub = wx.getStorageSync('offCompanySub');
+			this.$broadcast('offCompanySub', offCompanySub);
+			this.getCheckStatus();
+		}
+		getCheckStatus() { //查询状态
+			const antUserInfo = wx.getStorageSync('antUserInfo');
+			if(!antUserInfo) {
+				this.$broadcast('getAntsooUserInfo', -1);
+				return;
+			}
+			let that = this;
+			wepy.request({
+				url: api.my.checkStatus.url,
+				method: api.my.checkStatus.method,
+				data: {
+					'userId': this.loginUId,
+				},
+				success: function(res) {
+					if (res.statusCode == 200) {
+						if (res.data.body != null) {
+							that.$broadcast('getAntsooUserInfo', res.data.body.status);
+						} else {
+							console.log('查询状态借口返回数据为null')
+						}
+					}
+					that.$apply();
+				}
+			});
+		}
+		fetchBannerData() { //获取banner数据
+			let that = this;
+			wepy.request({
+				url: api.index.bannerImg.url,
+				method: api.index.bannerImg.method,
+				data: {},
+				success: function(res) {
+					var bannerList = res.data.body.barnerList;
+					that.$broadcast('getBannerData', bannerList);
+					that.$apply();
+				}
+			});
+		}
+		onShareAppMessage(res) {
+	    	return {
+	      		title: '我在使用俺搜·找客户，10万+材料人都在用，就差你了',
+	      		path: '/pages/index',
+	      		success: function(res) {// 转发成功
+	        		console.log(res)
+	      		},
+	      		fail: function(res) {// 转发失败
+	        		console.log(res)
+	      		}
+	    	}
+	  	}
+	}
+</script>

@@ -1,0 +1,56 @@
+
+	<view class="comS">
+		<view class="comquery" bindtap="toSearchCom">
+			<view class="comicon">
+				<image src="../../resources/icons/comSearch.png"  wx:if="{{show_hide}}"/>
+			</view>
+			<view class="comsearchIpt">
+				<input type="text" value="{{searchvalue}}" placeholder="搜索企业名称/主营产品"/>
+			</view>
+		</view>
+	</view>
+	<view class="comT">
+		<view  wx:for="{{tabItems}}" wx:key="{{index}}" class="tabItems{{selIndex==index?'Act':''}}" data-i="{{index}}" data-v="{{item.name}}" data-a="{{item.childs}}" bindtap="chooseType">
+			<view class="companyTypeIcon">
+				<image src="{{selIndex==index?item.image:item.image2}}"/>
+			</view>
+			<view class="companyTypeName{{selIndex==index?'Act':''}}">{{item.name}}</view>
+		</view>
+
+	</view>
+	<view class="comD">
+		<text bindtap="setFilterPanel" data-index="1" class="selects{{showfilterindex==1?'Act':''}}">{{selectedSite}}</text>
+		<text bindtap="setFilterPanel" data-index="2" class="selects{{showfilterindex==2?'Act':''}}">{{selectedAll}}</text>
+		<text bindtap="setFilterPanel" data-index="3" class="selects{{showfilterindex==3?'Act':''}}">{{selectedAllModel}}</text>
+	</view>
+	<view class="filter-content"  wx:if="{{showfilter}}">
+		<view class="filter-panel" wx:if="{{showfilterindex==1}}">
+			<view class="filter-panel-left">
+				<scroll-view style="max-height:300px;width:100%;position:relative;z-index:13;" scroll-y="true">
+					<view class="distanceItem">
+						<view wx:for="{{distance}}" wx:key="{{index}}" catchtap="selectDistance" data-sort="{{item}}" data-index="{{index}}" wx:if="{{nearIndex=='a'}}" class="dItem{{disIndex==index?'Act':''}}">{{item}}</view>
+					</view>
+					<view bindtap="selectNear" data-sort="附近" data-index="a" class="item{{nearIndex=='a'?'Act':''}}"><text>附近</text></view>
+					<view wx:for="{{near}}" wx:key="{{index}}" bindtap="selectNear" data-sort="{{item.districtName}}" data-index="{{index}}" class="item{{nearIndex==index?'Act':''}}">
+						<text>{{item.districtName}}</text>
+					</view>
+				</scroll-view>
+			</view>
+
+		</view>
+		<view class="filter-panel" wx:if="{{showfilterindex==2}}">
+			<view class="filter-panel-left">
+				<scroll-view style="max-height:300px;width:100%;z-index:13;" scroll-y="true">
+					<view wx:for="{{all}}" wx:key="{{index}}" bindtap="selectAll" data-sort="{{item.name}}" data-index="{{index}}" class="item{{allIndex==index?'Act':''}}">{{item.name}}</view>
+				</scroll-view>
+			</view>
+		</view>
+		<view class="filter-panel" wx:if="{{showfilterindex==3}}">
+			<view class="filter-panel-left">
+				<scroll-view style="max-height:300px;width:100%;z-index:13;" scroll-y="true">
+					<view wx:for="{{allModel}}" wx:key="{{index}}" bindtap="selectAllModel" data-sort="{{item.value}}" data-index="{{index}}" class="item{{allModelIndex==index?'Act':''}}">{{item.value}}</view>
+				</scroll-view>
+			</view>
+		</view>
+	</view>
+	<view class="filter-shadow"  wx:if="{{showfilter}}" bindtap="hideFilter"/>
